@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { RecruiterdashboardComponent } from './recruiterdashboard/recruiterdashboard.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SalesrepdashboardComponent } from './salesrepdashboard/salesrepdashboard.component';
+import { RepsignupComponent } from './repsignup/repsignup.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { SalesrepdashboardComponent } from './salesrepdashboard/salesrepdashboar
     LoginComponent,
     RecruiterdashboardComponent,
     DashboardComponent,
-    SalesrepdashboardComponent
+    SalesrepdashboardComponent,
+    RepsignupComponent
   ],
   imports: [
     BrowserModule,

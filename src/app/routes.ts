@@ -8,6 +8,7 @@ import { DashboardComponent }  from './dashboard/dashboard.component';
 import { LoginComponent }  from './login/login.component';
 import { RecruiterdashboardComponent }  from './recruiterdashboard/recruiterdashboard.component';
 import { SalesrepdashboardComponent }  from './salesrepdashboard/salesrepdashboard.component';
+import { RepsignupComponent }  from './repsignup/repsignup.component';
 
 
 const appRoutes: Routes = [
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent},
     { path: 'recruiterdashboard', component: RecruiterdashboardComponent},
     { path: 'salesrepdashboard', component: SalesrepdashboardComponent},
+    { path: 'repsignup', component: RepsignupComponent},
 
 
    // { path: 'content', component: ContentComponent,outlet:'content'},
