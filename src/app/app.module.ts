@@ -19,7 +19,7 @@ import { SalesrepdashboardComponent } from './salesrepdashboard/salesrepdashboar
     BrowserModule,
     routing
   ],
-  providers: [],
+  providers: [appRoutingProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
