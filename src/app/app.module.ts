@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {appRoutingProviders, routing} from './routes';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RecruiterdashboardComponent } from './recruiterdashboard/recruiterdashboard.component';
@@ -16,7 +16,8 @@ import { SalesrepdashboardComponent } from './salesrepdashboard/salesrepdashboar
     SalesrepdashboardComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]
