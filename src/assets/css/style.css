@@ -145,7 +145,38 @@ a:visited {	text-decoration: none;	outline: none;}
 .admindashboardcon1_block2 .admindashboardcon1_div4  img{ background: #fdbd7b; width: 60px; height:60px; border-radius: 100px; padding: 2px; border:solid 5px rgba(252, 164, 73, 0.9); display: inline-block; float: right;  box-shadow: 0 0 20px #7f4b16;}
 
 
+.admindashboardmenublock{ background: #172931; padding: 0 15px;}
 
+.admindashboardmenublock .row{ padding: 0 8px; margin: 0px;}
+
+.admindashboardmenublock .col-sm-2{ width: 100px; margin: 30px 0; padding: 0px;}
+.admindashboardmenublock .col-sm-2 img{ width: 100%;}
+
+.admindashboardmenublock .col-sm-3{ width:52px; float: right; padding: 0px; margin-top: 38px;}
+
+.admindashboardmenublock .col-sm-3 .btn-primary{ background: none!important; padding: 0px; border: none; box-shadow: none!important; }
+
+.admindashboardmenublock .col-sm-3 .btn-primary img{ width: 30px; border-radius: 100px; border: solid 1px #fff; padding: 2px; margin-right: 10px;}
+.admindashboardmenublock .col-sm-3 .dropdown-menu{ right: 0px!important; left: inherit;}
+
+
+.admindashboardmenublock  .col-lg-7 {
+    width: auto;     margin-top: 53px;
+}
+
+.admindashboardmenublock .navbar-inverse{ background: none; border:none; min-height: inherit; margin: 0px;}
+
+.admindashboardmenublock .col-sm-7 .btn-primary{ box-shadow: none!important; background: none!important;  border: none;       padding: 10px 15px; font-size: 16px; color: #fff; font-family: 'proximanova-regular';}
+.admindashboardmenublock .col-sm-7 a{ background: none!important;  border: none;       padding: 10px 15px; font-size: 16px; color: #fff!important; font-family: 'proximanova-regular';}
+
+
+.admindashboardmenublock .dropdown-menu{ border-radius: 0px!important; padding: 0px;}
+
+.admindashboardmenublock .dropdown-menu li{ margin: 0px; padding: 0; border-bottom: solid 1px  #ccc;}
+.admindashboardmenublock .dropdown-menu li a{font-size: 16px; color: #172931!important; font-family: 'proximanova-regular'; margin: 0px; padding: 5px; text-align: center;}
+.admindashboardmenublock .dropdown-menu li:last-of-type{ border: none;}
+
+.admindashboardmenublock .dropdown-menu li a:hover{ background: #28577f!important; color: #fff!important; }
 /*----------------------------------------------repsignup----------------------------------*/
 
 .repsignup_topblock{ border-top: solid 10px #29aae2;}
@@ -216,3 +247,5 @@ a:visited {	text-decoration: none;	outline: none;}
 .has-error{ font-size: 12px; font-family: 'proximanova-regular'; color: #ff0000; display: block; margin-top: -5px;}
 
 .rep_subbtn{ width: 100%; position:absolute; right: 0; top: 474px;  background: #2eb7f2; text-align: center; font-size: 30px; color: #fff; font-family: 'proximanova-bold'; text-transform: uppercase; border: navajowhite; box-shadow: none; line-height: 57px; }
+
+
