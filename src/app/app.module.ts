@@ -10,6 +10,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SalesrepdashboardComponent } from './salesrepdashboard/salesrepdashboard.component';
 import { RepsignupComponent } from './repsignup/repsignup.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,10 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
   imports: [
     BrowserModule,
     routing,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+      FormsModule,
+      ReactiveFormsModule,
+      HttpModule,
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]
