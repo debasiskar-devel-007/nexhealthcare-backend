@@ -10,6 +10,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SalesrepdashboardComponent } from './salesrepdashboard/salesrepdashboard.component';
 import { RepsignupComponent } from './repsignup/repsignup.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { FrontheaderComponent } from './frontheader/frontheader.component';
+import { FrontfooterComponent } from './frontfooter/frontfooter.component';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+import { RecruitersignupComponent } from './recruitersignup/recruitersignup.component';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -18,12 +25,20 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     RecruiterdashboardComponent,
     DashboardComponent,
     SalesrepdashboardComponent,
-    RepsignupComponent
+    RepsignupComponent,
+    FrontheaderComponent,
+    FrontfooterComponent,
+    FooterComponent,
+    HeaderComponent,
+    RecruitersignupComponent
   ],
   imports: [
     BrowserModule,
     routing,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule,
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]
