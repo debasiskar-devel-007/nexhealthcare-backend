@@ -143,3 +143,76 @@ a:visited {	text-decoration: none;	outline: none;}
 .admindashboardcon1_block2 .admindashboardcon1_div2  img{ background: #fa886f; width: 60px; height:60px; border-radius: 100px; padding: 2px; border:solid 5px rgba(252, 103, 73, 0.9); display: inline-block; float: right;  box-shadow: 0 0 20px #892511;}
 .admindashboardcon1_block2 .admindashboardcon1_div3  img{ background: #56bbf6; width: 60px; height:60px; border-radius: 100px; padding: 2px; border:solid 5px rgba(74, 158, 239, 0.9); display: inline-block; float: right;  box-shadow: 0 0 20px #124271;}
 .admindashboardcon1_block2 .admindashboardcon1_div4  img{ background: #fdbd7b; width: 60px; height:60px; border-radius: 100px; padding: 2px; border:solid 5px rgba(252, 164, 73, 0.9); display: inline-block; float: right;  box-shadow: 0 0 20px #7f4b16;}
+
+
+
+/*----------------------------------------------repsignup----------------------------------*/
+
+.repsignup_topblock{ border-top: solid 10px #29aae2;}
+
+.repsignup_topblock .row{ width: 1620px; margin: 0 auto; padding:8px 0px; }
+
+.repsignup_topblock .col-xl-4 img{ width: 127px;}
+
+.repsignup_topblock_menudiv{ width: 278px; float: right;}
+
+.repsignup_topblock_menudiv .navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0;
+    border: none; border-radius: 0px;
+}
+
+.repsignup_topblock_menudiv .navbar a{ font-size: 18px; color: #434444!important;   font-family: 'proximanova-semibold';}
+
+.repsignup_topblock_menudiv .navbar-default{ background: none;}
+
+.repsignup_topblock_menudiv .navbar a:hover{ color: #29aae2!important;}
+.repsignup_topblock_menudiv .navbar .active{ color: #29aae2!important;}
+
+.repsignup_footer{border-top: solid 10px #29aae2; padding: 15px 0;}
+.repsignup_footer .row{ width: 1620px; margin: 0 auto; padding:8px 0px; }
+
+.repsignup_footer .col-xl-8 p{ text-align: right; margin: 0; padding: 15px 0 0 0; font-size: 15px; color: #575057; font-family: 'proximanova-regular';}
+
+.repsignup_footer .col-xl-8 p a{ padding: 0 5px; color: #575057;}
+.repsignup_footer .col-xl-8 p a:hover{color: #29aae2!important;}
+
+.repsignup_pageheading{background: url("../images/repsignup_textbg.png") no-repeat right bottom; background-size: cover; border-top: solid 4px #29aae2; border-bottom: solid 4px #29aae2; }
+
+.repsignup_pageheading h2{ text-align: center; margin: 0; padding: 15px 5px; text-transform: uppercase; font-size: 48px; color: #fff; font-family: 'proximanova-bold'; text-shadow: 0 0 1px #0c303f;}
+
+
+.repsignup_mainbody{background: url("../images/repsignup_bg.png") no-repeat right bottom; }
+
+.repsignup_mainbody .row{ width: 1620px; margin: 0 auto; padding:40px 0px; }
+
+.repsignup_mainbody .form_wrapper{ width: 75%; padding: 20px 1%; background: #fff; display: flex;}
+
+.repsignup_mainbody .form_wrapper .form_div_row{ width: 31.3%; float: left; margin: 0 1%;  position: relative;}
+
+.repsignup_mainbody .form_wrapper .form_div_row h2{ margin: 0; padding: 0px; font-size: 24px; color: #454646; text-transform: uppercase; font-family: 'proximanova-bold';}
+
+.repsignup_mainbody .form_wrapper .form_div_row h3{ margin: 0; padding:20px 0 10px 0; font-size: 18px; color: #454646; font-family: 'proximanova-regular';}
+
+.repsignup_mainbody .form_wrapper .form_div_row input[type="text"]{ width: 100%; height: 36px; padding: 0 10px; margin: 6px 0; font-size: 18px; color: #454646; font-family: 'proximanova-regular'; background: #fff; border: solid 1px #bbbaba!important;}
+.repsignup_mainbody .form_wrapper .form_div_row input[type="password"]{ width: 100%; height: 36px; padding: 0 10px; margin: 6px 0; font-size: 18px; color: #454646; font-family: 'proximanova-regular'; background: #fff; border: solid 1px #bbbaba!important;}
+.repsignup_mainbody .form_wrapper .form_div_row select{ width: 100%; height: 36px; padding:0 10px; margin: 6px 0; font-size: 18px; color: #454646; font-family: 'proximanova-regular'; background: #fff; border: solid 1px #bbbaba!important;}
+.repsignup_mainbody .form_wrapper .form_div_row textarea{ width: 100%; height:50px; padding:5px 10px; margin: 6px 0; font-size: 18px; color: #454646; font-family: 'proximanova-regular'; resize: none; background: #fff; border: solid 1px #bbbaba!important;}
+
+.repsignup_mainbody .form_wrapper ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #454646;
+    opacity: inherit; /* Firefox */
+}
+
+.repsignup_mainbody .form_wrapper :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #454646;
+}
+
+.repsignup_mainbody .form_wrapper ::-ms-input-placeholder { /* Microsoft Edge */
+    color: #454646;
+}
+
+.has-error{ font-size: 12px; font-family: 'proximanova-regular'; color: #ff0000; display: block; margin-top: -5px;}
+
+.rep_subbtn{ width: 100%; position:absolute; right: 0; top: 474px;  background: #2eb7f2; text-align: center; font-size: 30px; color: #fff; font-family: 'proximanova-bold'; text-transform: uppercase; border: navajowhite; box-shadow: none; line-height: 57px; }
