@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms';
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
-import {RepsignupComponent} from '../repsignup/repsignup.component';
 
 @Component({
   selector: 'app-recruitersignup',
@@ -21,8 +20,8 @@ export class RecruitersignupComponent implements OnInit {
 
     constructor(fb: FormBuilder, private _http: Http, private router: Router) {
         this.fb = fb;
-        RepsignupComponent.blankemail = false;
-        RepsignupComponent.invalidemail = false;
+        RecruitersignupComponent.blankemail = false;
+        RecruitersignupComponent.invalidemail = false;
     }
 
     ngOnInit() {
@@ -30,9 +29,9 @@ export class RecruitersignupComponent implements OnInit {
         this.dataForm = this.fb.group({
             firstname: ['', Validators.required],
             lastname: ['', Validators.required],
-            username: ['', Validators.compose([Validators.required, RepsignupComponent.validateUsername])],
-            email: ['', Validators.compose([Validators.required, RepsignupComponent.validateEmail])],
-            password: ['', Validators.compose([Validators.required, RepsignupComponent.validatePassword])],
+            username: ['', Validators.compose([Validators.required, RecruitersignupComponent.validateUsername])],
+            email: ['', Validators.compose([Validators.required, RecruitersignupComponent.validateEmail])],
+            password: ['', Validators.compose([Validators.required, RecruitersignupComponent.validatePassword])],
             confpassword: ['', Validators.required],
             address: ['', Validators.required],
             address2: [''],
@@ -47,31 +46,31 @@ export class RecruitersignupComponent implements OnInit {
 
 
     static validateEmail(control: FormControl) {
-        RepsignupComponent.blankemail = false;
-        RepsignupComponent.invalidemail = false;
+        RecruitersignupComponent.blankemail = false;
+        RecruitersignupComponent.invalidemail = false;
 
         if (control.value == '') {
-            RepsignupComponent.blankemail = true;
+            RecruitersignupComponent.blankemail = true;
             return {'invalidemail': true};
         }
         if (!control.value.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)) {
-            RepsignupComponent.invalidemail = true;
+            RecruitersignupComponent.invalidemail = true;
             return {'invalidemail': true};
         }
     }
 
     static validatePassword(control: FormControl) {
-        RepsignupComponent.invalidpassword = false;
+        RecruitersignupComponent.invalidpassword = false;
         if (!control.value.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/)) {
             //  if (!control.value.match(/^[a-zA-Z0-9_]+$/)) {
-            RepsignupComponent.invalidpassword = true;
+            RecruitersignupComponent.invalidpassword = true;
             return {'invalidpassword': true};
         }
     }
     static validateUsername(control: FormControl) {
-        RepsignupComponent.invalidusername = false;
+        RecruitersignupComponent.invalidusername = false;
         if (!control.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]/)) {
-            RepsignupComponent.invalidusername = true;
+            RecruitersignupComponent.invalidusername = true;
             return {'invalidusername': true};
         }
     }
@@ -79,22 +78,22 @@ export class RecruitersignupComponent implements OnInit {
     getemail(type: any) {
         // console.log('t '+type);
         if (type == 'invalid') {
-            return RepsignupComponent.invalidemail;
+            return RecruitersignupComponent.invalidemail;
         }
         if (type == 'blank') {
-            return RepsignupComponent.blankemail;
+            return RecruitersignupComponent.blankemail;
         }
     }
 
     getpassword(type: any) {
         if (type == 'invalid') {
-            return RepsignupComponent.invalidpassword;
+            return RecruitersignupComponent.invalidpassword;
         }
     }
 
     getusername(type: any) {
         if (type == 'invalid') {
-            return RepsignupComponent.invalidusername;
+            return RecruitersignupComponent.invalidusername;
         }
     }
 
@@ -119,7 +118,7 @@ export class RecruitersignupComponent implements OnInit {
         for (x in this.dataForm.controls) {
             this.dataForm.controls[x].markAsTouched();
         }
-        if (this.dataForm.valid && this.passmatchvalidate && (RepsignupComponent.invalidemail == false || RepsignupComponent.blankemail == false) && RepsignupComponent.invalidusername == false && RepsignupComponent.invalidpassword == false) {
+        if (this.dataForm.valid && this.passmatchvalidate && (RecruitersignupComponent.invalidemail == false || RecruitersignupComponent.blankemail == false) && RecruitersignupComponent.invalidusername == false && RecruitersignupComponent.invalidpassword == false) {
             console.log('inside dataformvalid');
             console.log(formval);
             //   let link = 'http://localhost:3020/addadmin';
