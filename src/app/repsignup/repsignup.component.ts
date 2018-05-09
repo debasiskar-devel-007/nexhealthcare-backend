@@ -69,7 +69,7 @@ export class RepsignupComponent implements OnInit {
     }
     static validateUsername(control: FormControl) {
         RepsignupComponent.invalidusername = false;
-        if (!control.value.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/)) {
+        if (!control.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]/)) {
             RepsignupComponent.invalidusername = true;
             return {'invalidusername': true};
         }
