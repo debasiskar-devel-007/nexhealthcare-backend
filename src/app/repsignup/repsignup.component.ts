@@ -118,18 +118,18 @@ export class RepsignupComponent implements OnInit {
         for (x in this.dataForm.controls) {
             this.dataForm.controls[x].markAsTouched();
         }
-        console.log('inside submit');
-        console.log(this.dataForm.valid);
+      //  console.log('inside submit');
+      //  console.log(this.dataForm.valid);
       //  console.log(this.passmatchvalidate);
       //  console.log(RepsignupComponent.invalidemail);
        // console.log(RepsignupComponent.blankemail);
-        console.log(RepsignupComponent.invalidusername);
-        console.log(RepsignupComponent.invalidpassword);
+       // console.log(RepsignupComponent.invalidusername);
+      //  console.log(RepsignupComponent.invalidpassword);
         if (this.dataForm.valid && this.passmatchvalidate && (RepsignupComponent.invalidemail == false || RepsignupComponent.blankemail == false) && RepsignupComponent.invalidusername == false && RepsignupComponent.invalidpassword == false) {
             console.log('inside dataformvalid');
             console.log(formval);
            //   let link = 'http://localhost:3020/addadmin';
-            let link = 'http://influxiq.com:3020/repsignup';
+            let link = 'http://influxiq.com:3020/signup';
             let data = {
                 firstname: formval.firstname,
                 lastname: formval.lastname,
