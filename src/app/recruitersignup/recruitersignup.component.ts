@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms';
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
+import {Commonservices} from '../app.commonservices' ;
 
 @Component({
   selector: 'app-recruitersignup',
   templateUrl: './recruitersignup.component.html',
-  styleUrls: ['./recruitersignup.component.css']
+  styleUrls: ['./recruitersignup.component.css'],
+    providers: [Commonservices],
 })
 export class RecruitersignupComponent implements OnInit {
     public dataForm: FormGroup;
@@ -17,11 +19,13 @@ export class RecruitersignupComponent implements OnInit {
     static invalidusername;
     private passmatchvalidate;
     public alreadyexist: any;
+    public serverurl;
 
-    constructor(fb: FormBuilder, private _http: Http, private router: Router) {
+    constructor(fb: FormBuilder, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.fb = fb;
         RecruitersignupComponent.blankemail = false;
         RecruitersignupComponent.invalidemail = false;
+        this.serverurl = _commonservices.url;
     }
 
     ngOnInit() {
@@ -128,8 +132,7 @@ export class RecruitersignupComponent implements OnInit {
         if (this.dataForm.valid && this.passmatchvalidate && (RecruitersignupComponent.invalidemail == false || RecruitersignupComponent.blankemail == false) && RecruitersignupComponent.invalidusername == false && RecruitersignupComponent.invalidpassword == false) {
             console.log('inside dataformvalid');
             console.log(formval);
-            //   let link = 'http://localhost:3020/addadmin';
-            let link = 'http://influxiq.com:3020/signup';
+            let link = this.serverurl + 'signup';
             let data = {
                 firstname: formval.firstname,
                 lastname: formval.lastname,

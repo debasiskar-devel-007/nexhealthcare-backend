@@ -8,11 +8,13 @@
     <div class="login_form_wrapper">
 
 
-      <form>
-
-        <input type="text" placeholder="USER NAME/ EMAIL">
+      <form  role="form" novalidate [formGroup]="dataForm" (ngSubmit)="dosubmit(dataForm.value)">
+        <span class="has-error" *ngIf="is_error">{{is_error}}</span>
+        <input type="text" placeholder="USER NAME/ EMAIL" [formControl]="dataForm.controls['usernameoremail']">
+        <span class="has-error" *ngIf ="dataForm.controls['usernameoremail'].touched && !dataForm.controls['usernameoremail'].valid">Invalid Username/Email id!</span>
         <!--<span class="has-error">error text</span>-->
-        <input type="password" placeholder="PASSWORD">
+        <input type="password" placeholder="PASSWORD" [formControl]="dataForm.controls['password']">
+        <span class="has-error" *ngIf ="dataForm.controls['password'].touched && !dataForm.controls['password'].valid">Password is Required !</span>
 
         
         <!--<span class="has-error">error text</span>-->

@@ -18,6 +18,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
       HttpModule,
     AccordionModule.forRoot(),
   ],
-  providers: [appRoutingProviders],
+  providers: [appRoutingProviders,CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
