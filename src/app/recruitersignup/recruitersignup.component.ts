@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms';
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
+import {Commonservices} from '../app.commonservices' ;
 
 @Component({
   selector: 'app-recruitersignup',
   templateUrl: './recruitersignup.component.html',
-  styleUrls: ['./recruitersignup.component.css']
+  styleUrls: ['./recruitersignup.component.css'],
+    providers: [Commonservices],
 })
 export class RecruitersignupComponent implements OnInit {
     public dataForm: FormGroup;
@@ -17,11 +19,13 @@ export class RecruitersignupComponent implements OnInit {
     static invalidusername;
     private passmatchvalidate;
     public alreadyexist: any;
+    public serverurl;
 
-    constructor(fb: FormBuilder, private _http: Http, private router: Router) {
+    constructor(fb: FormBuilder, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.fb = fb;
         RecruitersignupComponent.blankemail = false;
         RecruitersignupComponent.invalidemail = false;
+        this.serverurl = _commonservices.url;
     }
 
     ngOnInit() {
@@ -49,7 +53,7 @@ export class RecruitersignupComponent implements OnInit {
         RecruitersignupComponent.blankemail = false;
         RecruitersignupComponent.invalidemail = false;
 
-        if (control.value == '') {
+        if (control.value == '' || control.value == null) {
             RecruitersignupComponent.blankemail = true;
             return {'invalidemail': true};
         }
@@ -61,6 +65,9 @@ export class RecruitersignupComponent implements OnInit {
 
     static validatePassword(control: FormControl) {
         RecruitersignupComponent.invalidpassword = false;
+        if (control.value == '' || control.value == null) {
+            return {'invalidpassword': false};
+        }
         if (!control.value.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/)) {
             //  if (!control.value.match(/^[a-zA-Z0-9_]+$/)) {
             RecruitersignupComponent.invalidpassword = true;
@@ -69,7 +76,11 @@ export class RecruitersignupComponent implements OnInit {
     }
     static validateUsername(control: FormControl) {
         RecruitersignupComponent.invalidusername = false;
-        if (!control.value.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{6,})$/)) {
+        if (control.value == '' || control.value == null) {
+            console.log('control.value null');
+            return {'invalidusername': false};
+        }
+        if (!control.value.match(/^(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{3,})$/)) {
             RecruitersignupComponent.invalidusername = true;
             return {'invalidusername': true};
         }
@@ -121,8 +132,7 @@ export class RecruitersignupComponent implements OnInit {
         if (this.dataForm.valid && this.passmatchvalidate && (RecruitersignupComponent.invalidemail == false || RecruitersignupComponent.blankemail == false) && RecruitersignupComponent.invalidusername == false && RecruitersignupComponent.invalidpassword == false) {
             console.log('inside dataformvalid');
             console.log(formval);
-            //   let link = 'http://localhost:3020/addadmin';
-            let link = 'http://influxiq.com:3020/signup';
+            let link = this.serverurl + 'signup';
             let data = {
                 firstname: formval.firstname,
                 lastname: formval.lastname,
@@ -147,9 +157,15 @@ export class RecruitersignupComponent implements OnInit {
                         console.log('inside mailexists');
                         this.alreadyexist = 'Emailid already exists';
                     }
+                    if (result.status == 'error' && result.id == '-2') {
+                        console.log('inside Username exists');
+                        this.alreadyexist = 'Username already exists';
+                    }
                     if (result.status == 'success') {
                         // this.router.navigate(['/adminlist']);
                         console.log('success');
+                        this.alreadyexist = null;
+                        this.dataForm.reset();
                     }
                 }, error => {
                     console.log('Oooops!');

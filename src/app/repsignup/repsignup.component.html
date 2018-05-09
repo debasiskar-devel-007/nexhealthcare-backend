@@ -17,7 +17,7 @@
       <h2>Account Information</h2>
       <h3>Rep ID: 2349</h3>
       <input type="text" placeholder="Username "  [formControl]="dataForm.controls['username']">
-      <span class="has-error" *ngIf ="dataForm.controls['username'].touched && !dataForm.controls['username'].valid && getusername('invalid')==true">Invalid User Name, username must contain at least 6 characters, and it should be alphanumeric!</span>
+      <span class="has-error" *ngIf ="dataForm.controls['username'].touched && !dataForm.controls['username'].valid && getusername('invalid')==true">Invalid User Name, username must contain at least 3 characters, and it should be alphanumeric!</span>
 
 
       <input type="password"placeholder="Password" [formControl]="dataForm.controls['password']">

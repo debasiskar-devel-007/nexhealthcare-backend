@@ -14,10 +14,13 @@ import { FooterComponent } from './footer/footer.component';
 import { RecruitersignupComponent } from './recruitersignup/recruitersignup.component';
 import { RepcontractComponent } from './repcontract/repcontract.component';
 import { TrainingstepComponent } from './trainingstep/trainingstep.component';
+import { FrontfooterComponent } from './frontfooter/frontfooter.component';
+import { FrontheaderComponent } from './frontheader/frontheader.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,9 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
       FooterComponent,
       RecruitersignupComponent,
     RepcontractComponent,
-    TrainingstepComponent
+    TrainingstepComponent,
+      FrontheaderComponent,
+      FrontfooterComponent
   ],
   imports: [
     BrowserModule,
@@ -40,9 +45,9 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
       FormsModule,
       ReactiveFormsModule,
       HttpModule,
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
   ],
-  providers: [appRoutingProviders],
+  providers: [appRoutingProviders, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

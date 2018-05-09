@@ -14,6 +14,8 @@ import { FooterComponent }  from './footer/footer.component';
 import { RecruitersignupComponent }  from './recruitersignup/recruitersignup.component';
 import { TrainingstepComponent }  from './trainingstep/trainingstep.component';
 import { RepcontractComponent }  from './repcontract/repcontract.component';
+import { FrontheaderComponent }  from './frontheader/frontheader.component';
+import { FrontfooterComponent }  from './frontfooter/frontfooter.component';
 
 
 const appRoutes: Routes = [
@@ -29,6 +31,8 @@ const appRoutes: Routes = [
     { path: 'recrutersignup', component: RecruitersignupComponent},
     { path: 'repcontract', component: RepcontractComponent},
     { path: 'trainingstep', component: TrainingstepComponent},
+    { path: 'frontheader', component: FrontheaderComponent},
+    { path: 'frontfooter', component: FrontfooterComponent},
 
 
    // { path: 'content', component: ContentComponent,outlet:'content'},

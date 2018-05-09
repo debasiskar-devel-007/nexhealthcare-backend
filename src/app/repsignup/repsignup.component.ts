@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms';
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
+import {Commonservices} from '../app.commonservices' ;
 
 @Component({
   selector: 'app-repsignup',
   templateUrl: './repsignup.component.html',
-  styleUrls: ['./repsignup.component.css']
+  styleUrls: ['./repsignup.component.css'],
+  providers: [Commonservices],
 })
 export class RepsignupComponent implements OnInit {
     public dataForm: FormGroup;
@@ -17,11 +19,13 @@ export class RepsignupComponent implements OnInit {
     static invalidusername;
     private passmatchvalidate;
     public alreadyexist: any;
+    public serverurl;
 
-    constructor(fb: FormBuilder, private _http: Http, private router: Router) {
+    constructor(fb: FormBuilder, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.fb = fb;
         RepsignupComponent.blankemail = false;
         RepsignupComponent.invalidemail = false;
+        this.serverurl = _commonservices.url;
     }
 
     ngOnInit() {
@@ -49,7 +53,7 @@ export class RepsignupComponent implements OnInit {
         RepsignupComponent.blankemail = false;
         RepsignupComponent.invalidemail = false;
 
-        if (control.value == '') {
+        if (control.value == '' || control.value == null) {
             RepsignupComponent.blankemail = true;
             return {'invalidemail': true};
         }
@@ -61,15 +65,25 @@ export class RepsignupComponent implements OnInit {
 
     static validatePassword(control: FormControl) {
         RepsignupComponent.invalidpassword = false;
+        if (control.value == '' || control.value == null) {
+            return {'invalidpassword': false};
+        }
        if (!control.value.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/)) {
       //  if (!control.value.match(/^[a-zA-Z0-9_]+$/)) {
             RepsignupComponent.invalidpassword = true;
             return {'invalidpassword': true};
         }
     }
+
     static validateUsername(control: FormControl) {
         RepsignupComponent.invalidusername = false;
-        if (!control.value.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{6,})$/)) {
+        console.log('control.value');
+        console.log(control.value);
+        if (control.value == '' || control.value == null) {
+            console.log('control.value null');
+            return {'invalidusername': false};
+        }
+        if (!control.value.match(/^(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{3,})$/)) {
             RepsignupComponent.invalidusername = true;
             return {'invalidusername': true};
         }
@@ -118,18 +132,10 @@ export class RepsignupComponent implements OnInit {
         for (x in this.dataForm.controls) {
             this.dataForm.controls[x].markAsTouched();
         }
-      //  console.log('inside submit');
-      //  console.log(this.dataForm.valid);
-      //  console.log(this.passmatchvalidate);
-      //  console.log(RepsignupComponent.invalidemail);
-       // console.log(RepsignupComponent.blankemail);
-       // console.log(RepsignupComponent.invalidusername);
-      //  console.log(RepsignupComponent.invalidpassword);
         if (this.dataForm.valid && this.passmatchvalidate && (RepsignupComponent.invalidemail == false || RepsignupComponent.blankemail == false) && RepsignupComponent.invalidusername == false && RepsignupComponent.invalidpassword == false) {
             console.log('inside dataformvalid');
             console.log(formval);
-           //   let link = 'http://localhost:3020/addadmin';
-            let link = 'http://influxiq.com:3020/signup';
+            let link = this.serverurl + 'signup';
             let data = {
                 firstname: formval.firstname,
                 lastname: formval.lastname,
@@ -151,12 +157,18 @@ export class RepsignupComponent implements OnInit {
                     let result = res.json();
                     console.log(result);
                     if (result.status == 'error' && result.id == '-1') {
-                        console.log('inside mailexists');
+                        console.log('inside mail exists');
                         this.alreadyexist = 'Emailid already exists';
+                    }
+                    if (result.status == 'error' && result.id == '-2') {
+                        console.log('inside Username exists');
+                        this.alreadyexist = 'Username already exists';
                     }
                     if (result.status == 'success') {
                        // this.router.navigate(['/adminlist']);
                         console.log('success');
+                        this.alreadyexist = null;
+                        this.dataForm.reset();
                     }
                 }, error => {
                     console.log('Oooops!');
