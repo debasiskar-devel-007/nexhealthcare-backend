@@ -49,7 +49,7 @@ export class RepsignupComponent implements OnInit {
         RepsignupComponent.blankemail = false;
         RepsignupComponent.invalidemail = false;
 
-        if (control.value == '') {
+        if (control.value == '' || control.value == null) {
             RepsignupComponent.blankemail = true;
             return {'invalidemail': true};
         }
@@ -61,15 +61,25 @@ export class RepsignupComponent implements OnInit {
 
     static validatePassword(control: FormControl) {
         RepsignupComponent.invalidpassword = false;
+        if (control.value == '' || control.value == null) {
+            return {'invalidpassword': false};
+        }
        if (!control.value.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/)) {
       //  if (!control.value.match(/^[a-zA-Z0-9_]+$/)) {
             RepsignupComponent.invalidpassword = true;
             return {'invalidpassword': true};
         }
     }
+
     static validateUsername(control: FormControl) {
         RepsignupComponent.invalidusername = false;
-        if (!control.value.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{6,})$/)) {
+        console.log('control.value');
+        console.log(control.value);
+        if (control.value == '' || control.value == null) {
+            console.log('control.value null');
+            return {'invalidusername': false};
+        }
+        if (!control.value.match(/^(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{3,})$/)) {
             RepsignupComponent.invalidusername = true;
             return {'invalidusername': true};
         }
@@ -118,13 +128,6 @@ export class RepsignupComponent implements OnInit {
         for (x in this.dataForm.controls) {
             this.dataForm.controls[x].markAsTouched();
         }
-      //  console.log('inside submit');
-      //  console.log(this.dataForm.valid);
-      //  console.log(this.passmatchvalidate);
-      //  console.log(RepsignupComponent.invalidemail);
-       // console.log(RepsignupComponent.blankemail);
-       // console.log(RepsignupComponent.invalidusername);
-      //  console.log(RepsignupComponent.invalidpassword);
         if (this.dataForm.valid && this.passmatchvalidate && (RepsignupComponent.invalidemail == false || RepsignupComponent.blankemail == false) && RepsignupComponent.invalidusername == false && RepsignupComponent.invalidpassword == false) {
             console.log('inside dataformvalid');
             console.log(formval);
@@ -151,12 +154,18 @@ export class RepsignupComponent implements OnInit {
                     let result = res.json();
                     console.log(result);
                     if (result.status == 'error' && result.id == '-1') {
-                        console.log('inside mailexists');
+                        console.log('inside mail exists');
                         this.alreadyexist = 'Emailid already exists';
+                    }
+                    if (result.status == 'error' && result.id == '-2') {
+                        console.log('inside Username exists');
+                        this.alreadyexist = 'Username already exists';
                     }
                     if (result.status == 'success') {
                        // this.router.navigate(['/adminlist']);
                         console.log('success');
+                        this.alreadyexist = null;
+                        this.dataForm.reset();
                     }
                 }, error => {
                     console.log('Oooops!');

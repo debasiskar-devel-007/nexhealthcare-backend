@@ -40,7 +40,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
       FormsModule,
       ReactiveFormsModule,
       HttpModule,
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]

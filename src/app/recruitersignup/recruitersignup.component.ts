@@ -49,7 +49,7 @@ export class RecruitersignupComponent implements OnInit {
         RecruitersignupComponent.blankemail = false;
         RecruitersignupComponent.invalidemail = false;
 
-        if (control.value == '') {
+        if (control.value == '' || control.value == null) {
             RecruitersignupComponent.blankemail = true;
             return {'invalidemail': true};
         }
@@ -61,6 +61,9 @@ export class RecruitersignupComponent implements OnInit {
 
     static validatePassword(control: FormControl) {
         RecruitersignupComponent.invalidpassword = false;
+        if (control.value == '' || control.value == null) {
+            return {'invalidpassword': false};
+        }
         if (!control.value.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/)) {
             //  if (!control.value.match(/^[a-zA-Z0-9_]+$/)) {
             RecruitersignupComponent.invalidpassword = true;
@@ -69,7 +72,11 @@ export class RecruitersignupComponent implements OnInit {
     }
     static validateUsername(control: FormControl) {
         RecruitersignupComponent.invalidusername = false;
-        if (!control.value.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{6,})$/)) {
+        if (control.value == '' || control.value == null) {
+            console.log('control.value null');
+            return {'invalidusername': false};
+        }
+        if (!control.value.match(/^(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{3,})$/)) {
             RecruitersignupComponent.invalidusername = true;
             return {'invalidusername': true};
         }
@@ -147,9 +154,15 @@ export class RecruitersignupComponent implements OnInit {
                         console.log('inside mailexists');
                         this.alreadyexist = 'Emailid already exists';
                     }
+                    if (result.status == 'error' && result.id == '-2') {
+                        console.log('inside Username exists');
+                        this.alreadyexist = 'Username already exists';
+                    }
                     if (result.status == 'success') {
                         // this.router.navigate(['/adminlist']);
                         console.log('success');
+                        this.alreadyexist = null;
+                        this.dataForm.reset();
                     }
                 }, error => {
                     console.log('Oooops!');
