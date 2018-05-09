@@ -14,6 +14,8 @@ import { FooterComponent } from './footer/footer.component';
 import { RecruitersignupComponent } from './recruitersignup/recruitersignup.component';
 import { RepcontractComponent } from './repcontract/repcontract.component';
 import { TrainingstepComponent } from './trainingstep/trainingstep.component';
+import { FrontfooterComponent } from './frontfooter/frontfooter.component';
+import { FrontheaderComponent } from './frontheader/frontheader.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -32,7 +34,9 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
       FooterComponent,
       RecruitersignupComponent,
     RepcontractComponent,
-    TrainingstepComponent
+    TrainingstepComponent,
+      FrontheaderComponent,
+      FrontfooterComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,7 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
       HttpModule,
     AccordionModule.forRoot(),
   ],
-  providers: [appRoutingProviders,CookieService],
+  providers: [appRoutingProviders, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

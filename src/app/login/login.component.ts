@@ -50,22 +50,30 @@ export class LoginComponent implements OnInit {
             this._http.post(link, data)
                 .subscribe(res => {
                     let result = res.json();
-                    let addresultforcookie = {
-                        firstname : result.msg.firstname,
-                        lastname : result.msg.lastname,
-                        email : result.msg.email,
-                        username : result.msg.username,
-                        type : result.msg.type,
-                    };
-                    console.log(addresultforcookie);
                     if (result.status == 'success') {
+                        let addresultforcookie = {
+                            firstname : result.msg.firstname,
+                            lastname : result.msg.lastname,
+                            email : result.msg.email,
+                            username : result.msg.username,
+                            type : result.msg.type,
+                        };
+                        console.log(addresultforcookie);
                         this.addcookie.putObject('cookiedetails', addresultforcookie);
                        console.log('cookiedetails from login page');
                         console.log(this.cookiedetails);
+                        if (result.msg.type == 'salesrep') {
+                            this.router.navigate(['/salesrepdashboard']);
+                        }
+                        else if (result.msg.type == 'recruiter') {
+                            this.router.navigate(['/recruiterdashboard']);
+                        }
+                        else {
+                            this.router.navigate(['/dashboard']);
+                        }
                     }
                     else {
                         this.is_error = result.msg;
-                        //  this.router.navigate(['/addadmin']);
                     }
 
                 }, error => {
