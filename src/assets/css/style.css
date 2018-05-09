@@ -291,3 +291,76 @@ a:visited {	text-decoration: none;	outline: none;}
 .login_form_wrapper .login_link2 a:hover{ text-decoration: underline;}
 
 .login_form_wrapper .has-error{ padding-top: 10px;}
+
+
+
+/*-------------------------------------training-------------------*/
+
+.admin_inner_top{ background: #373c40; border-bottom:solid 1px #fff;}
+
+.admin_inner_top img{ background: #fff; padding: 6px;}
+
+.admininnerwrappe{ width: 1199px; margin: 0 auto;}
+
+.admin_inner_heading{background: rgba(1,131,182,1);
+    background: -moz-linear-gradient(left, rgba(1,131,182,1) 0%, rgba(41,170,225,1) 51%, rgba(1,133,181,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(1,131,182,1)), color-stop(51%, rgba(41,170,225,1)), color-stop(100%, rgba(1,133,181,1)));
+    background: -webkit-linear-gradient(left, rgba(1,131,182,1) 0%, rgba(41,170,225,1) 51%, rgba(1,133,181,1) 100%);
+    background: -o-linear-gradient(left, rgba(1,131,182,1) 0%, rgba(41,170,225,1) 51%, rgba(1,133,181,1) 100%);
+    background: -ms-linear-gradient(left, rgba(1,131,182,1) 0%, rgba(41,170,225,1) 51%, rgba(1,133,181,1) 100%);
+    background: linear-gradient(to right, rgba(1,131,182,1) 0%, rgba(41,170,225,1) 51%, rgba(1,133,181,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0183b6', endColorstr='#0185b5', GradientType=1 ); text-align: center; padding: 28px 0;}
+
+.admin_inner_heading h2{ margin: 0px; text-align: center; display: inline-block; margin: 0 auto; background: #295b73 url("../images/training_page_icon1.png") no-repeat  3px center;  padding: 2px 16px 0px 90px; font-size: 60px; line-height: 63px; color: #fefefe; text-transform: uppercase; font-family: 'proximanova-bold'; }
+
+
+.admin_inner_body h3{ margin: 0px; padding: 30px 0; font-size: 36px; color: #142c37; font-family: 'proximanova-bold';  line-height: 36px;}
+
+.admin_inner_body h3 span{ color: #29aae1;}
+
+
+.admin_inner_body .panel-group .panel {
+    margin-bottom: 0;
+    border-radius: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+
+.admin_inner_body .panel-heading {
+
+    background-color: #0083b4!important; border: none;  box-shadow: none; border-radius: 0px;
+}
+
+.admin_inner_body .panel-heading .panel-title{ background: url("../images/training_page_icon2.png") no-repeat right center; font-size: 20px; color: #ffffff; font-family: 'proximanova-regular'; }
+
+
+.panel-group .panel-heading+.panel-collapse>.list-group, .panel-group .panel-heading+.panel-collapse>.panel-body{ border: none;  border-top:solid 1px #fff;}
+
+
+.admin_inner_body .panel-body{ background: #ececec; padding: 20px;}
+
+.admin_inner_body .panel-body h4{ text-align: center; padding:0 0 20px 0; margin: 0px; font-size: 24px; color: #000000; font-family: 'proximanova-regular';}
+
+.videoWrapper_div{ width: 80%; margin: 0 auto;}
+
+.videoWrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+.videoWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.admin_inner_body{ background: #fff;}
+
+.admin_inner_footer{ background: #373c40; padding: 30px 0;}
+
+.admin_inner_footer p{ margin: 0; padding: 0; text-align: right; font-size: 13px; color: #fefefe; font-family: 'proximanova-regular';}
