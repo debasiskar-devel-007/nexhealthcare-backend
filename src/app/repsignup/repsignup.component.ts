@@ -69,7 +69,7 @@ export class RepsignupComponent implements OnInit {
     }
     static validateUsername(control: FormControl) {
         RepsignupComponent.invalidusername = false;
-        if (!control.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]/)) {
+        if (!control.value.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{6,})$/)) {
             RepsignupComponent.invalidusername = true;
             return {'invalidusername': true};
         }
@@ -144,7 +144,7 @@ export class RepsignupComponent implements OnInit {
                 gender: formval.gender,
                 dob: formval.dob,
                 phone: formval.phone,
-                type: 1
+                type: 'salesrep'
             };
             this._http.post(link, data)
                 .subscribe(res => {
