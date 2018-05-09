@@ -397,6 +397,8 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .sign_blockbody .sign_blockbodysub h6{ padding-bottom: 20px;}
 
+
+
 .sign_blockbody .sign_blockbodysub input[type="text"]{ background: #fff; border:none; box-shadow: none; outline:none; padding: 0 10px; border-bottom: solid 1px #4b4b4b;}
 
 .sign_blockbody .sign_blockbodysub strong{ display: block; font-weight: normal; padding: 4px 0 0 45px;}
