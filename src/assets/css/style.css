@@ -311,7 +311,7 @@ a:visited {	text-decoration: none;	outline: none;}
     background: linear-gradient(to right, rgba(1,131,182,1) 0%, rgba(41,170,225,1) 51%, rgba(1,133,181,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0183b6', endColorstr='#0185b5', GradientType=1 ); text-align: center; padding: 28px 0;}
 
-.admin_inner_heading h2{ margin: 0px; text-align: center; display: inline-block; margin: 0 auto; background: #295b73 url("../images/training_page_icon1.png") no-repeat  3px center;  padding: 2px 16px 0px 90px; font-size: 60px; line-height: 63px; color: #fefefe; text-transform: uppercase; font-family: 'proximanova-bold'; }
+.admin_inner_heading h2{ margin: 0px; text-align: center; display: inline-block; margin: 0 auto; background: #295b73 url("../images/training_page_icon1.png") no-repeat  3px center;  padding: 2px 16px 0px 90px; font-size: 58px; line-height: 63px; color: #fefefe; text-transform: uppercase; font-family: 'proximanova-bold'; }
 
 
 .admin_inner_body h3{ margin: 0px; padding: 30px 0; font-size: 36px; color: #142c37; font-family: 'proximanova-bold';  line-height: 36px;}
@@ -364,3 +364,41 @@ a:visited {	text-decoration: none;	outline: none;}
 .admin_inner_footer{ background: #373c40; padding: 30px 0;}
 
 .admin_inner_footer p{ margin: 0; padding: 0; text-align: right; font-size: 13px; color: #fefefe; font-family: 'proximanova-regular';}
+
+
+
+.repcontract_inner_body{  background: #fff; padding: 30px 0; font-family: 'proximanova-regular'; font-weight: normal;}
+
+.repcontract_inner_body p{ font-size: 18px; color: #353535; font-family: 'proximanova-regular'; font-weight: normal; margin: 0px; padding: 0 0 30px 0;}
+
+.repcontract_inner_body h6{ margin: 0; padding: 0 0 30px 0; font-size: 24px; color: #295b73;}
+
+.repcontract_inner_body h5{ font-size: 18px; color: #058aca; text-decoration: underline;  font-family: 'proximanova-bold'; margin: 0; padding: 0; padding-bottom: 16px;}
+
+.repcontract_inner_body .listitem1{ padding-bottom: 30px; padding-left: 30px; font-size: 18px; color: #353535;}
+
+.repcontract_inner_body .listitem1 li:nth-of-type(2){ padding: 15px 0;}
+
+.repcontract_inner_body label{ font-size: 18px; color: #426a7f; display: block; margin: 0; padding: 0 0 15px 0;}
+
+.repcontract_inner_body .listitem2{ margin: 0px; padding: 0;}
+
+.repcontract_inner_body .listitem2 li{  background: url("../images/libg2.jpg") no-repeat left 5px; padding: 0 0 0 28px; margin-bottom: 12px; }
+
+.repcontract_inner_body .listitem2 li label{ margin: 0; padding: 0; color: #353535; display: inline-block; font-weight: normal; min-width: 270px;}
+
+.repcontract_inner_body span{ display: inline-block; text-decoration: underline; background: #fffc00;}
+
+.sign_blockbody{ border-bottom: solid 1px #d5d6d6; margin-bottom: 30px; padding-bottom: 30px; margin-top: 30px;}
+
+.sign_blockbody .sign_blockbodysub{ width: 400px; float: left; font-size: 18px; color: #353535; font-family: 'proximanova-regular'; font-weight: normal;}
+
+.sign_blockbody .sign_blockbodysub:nth-of-type(1){ border-right: dotted 1px #d5d6d6; padding-right: 30px; margin-right: 30px; }
+
+.sign_blockbody .sign_blockbodysub h6{ padding-bottom: 20px;}
+
+.sign_blockbody .sign_blockbodysub input[type="text"]{ background: #fff; border:none; box-shadow: none; outline:none; padding: 0 10px; border-bottom: solid 1px #4b4b4b;}
+
+.sign_blockbody .sign_blockbodysub strong{ display: block; font-weight: normal; padding: 4px 0 0 45px;}
+
+.repcontract_subbtn{width: 216px; line-height: 46px; background: #089cd3; text-transform: uppercase; text-align: center; font-size: 36px; color: #fff;  font-family: 'proximanova-bold'; border: none; cursor: pointer;  box-shadow: none; outline: none; float: right;}
