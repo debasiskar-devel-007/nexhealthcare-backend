@@ -170,7 +170,7 @@
 
         <div class="sign_blockbodysubform">
 
-          /s/  <button (click)="signature()">Sign Up</button>
+          /s/  <button (click)="signature()">Sign Up &#8595;</button>
             <!--<input type="text" [formControl]="dataForm.controls['name']"><br/>
             <span class="has-error" *ngIf ="dataForm.controls['name'].touched && !dataForm.controls['name'].valid">Please enter Sales's rep name!</span>-->
            <!-- <div *ngIf="signaturename">{{signaturename}}</div>-->
@@ -244,23 +244,30 @@
 </div>
 
 
-<div *ngIf="signaturemodal" class="modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+<div *ngIf="signaturemodal" class=" sign_modal modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
      tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
             </div>
             <div class="modal-body">
+
+                <img src="../../assets/images/adminlogo.png" alt="#" class="popup_logo1">
+                <h1>Digital Signature</h1>
                 <label>Full Name</label>
                 <input type="text" [(ngModel)]="signaturename">
                 <div class="popsigndiv">
                     <h2>Digitally Signed By:</h2>
                     <h3>{{signaturename}}</h3>
+                    <h4>May 10, 2018 08:02am</h4>
                 </div>
+
+                <h5>By selecting “agree”, the parties agree that this agreement may be electronically signed. The parties agree that the electronic signatures appearing on this agreement are the same as handwritten signatures for the purposes of validity, enforceability, and admissibility.
+                </h5>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onHidden()">Cancel</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="putsignaure()">Agree</button>
+                <button type="button" class="btn btn-default popbtn1" data-dismiss="modal" (click)="onHidden()">Cancel</button>
+                <button type="button" class="btn btn-primary popbtn2" data-dismiss="modal" (click)="putsignaure()">Agree</button>
             </div>
         </div>
     </div>
