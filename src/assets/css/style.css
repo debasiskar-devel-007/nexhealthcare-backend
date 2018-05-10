@@ -34,6 +34,16 @@ a:visited {	text-decoration: none;	outline: none;}
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'notera_personal_use_onlyRg';
+
+    src: url('../fonts/notera_personaluseonly-webfont.woff2') format('woff2'),
+
+    url('../fonts/notera_personaluseonly-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 
 
 
@@ -481,3 +491,117 @@ a:visited {	text-decoration: none;	outline: none;}
 .recruiterdashboard_bottom_link3 span{ font-size: 30px;
     display: block;
     line-height: 30px;}
+
+
+.sign_blockbodysubform button{width: auto;
+    line-height: inherit; border-radius: 5px;
+    background: #089cd3;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 26px;
+    color: #fff;
+    font-family: 'proximanova-regular';
+    border: none;
+    cursor: pointer;
+    box-shadow: none;
+    outline: none; padding: 3px 15px 2px 15px;}
+
+.sign_modal .modal-content{border: solid 4px #1a77bc!important; width: 480px;}
+
+.sign_modal  .modal-header {
+    padding: 0;
+    border-bottom: none;
+}
+
+.sign_modal .modal-footer {
+    padding: 0 15px 15px 15px;
+    text-align: left;
+    border-top: none;
+}
+
+.popup_logo1{ display: block; margin:  0 auto;}
+
+.sign_modal .modal-content h1 {
+    font-family: 'proximanova-regular';
+    font-size: 24px;
+    color: #1a77bc;
+    text-transform: capitalize;
+    margin: 0;
+    padding: 24px 0 28px 0;
+}
+
+.sign_modal .modal-content label {
+    font-weight: normal;
+    font-family: 'proximanova-regular';
+    font-size: 16px;
+    color: #000;
+    width: 100%;
+}
+
+.sign_modal .modal-content input[type="text"] {
+    width: 100%;
+    height: 40px;
+    border: solid 1px #ddd;
+    border-radius: 0px;
+    padding: 0 5px;
+    font-family: 'proximanova-regular';
+    font-size: 14px;
+    color: #000; outline: none!important;
+}
+
+
+.sign_modal .modal-content   h2 {
+    margin: 0;
+    padding: 0 0 10px 40px;
+
+    font-family: 'proximanova-regular';
+    font-size: 16px!important;
+    color: #1a77bc;     background: url(../images/pop_text_top.png) no-repeat left 8px;
+}
+
+.sign_modal .modal-content  h3 {
+    margin: 0;
+    padding: 5px 0 5px 20px;
+    font-size: 45px;
+    color: #000;
+    border-left: solid 1px #1a77bc;
+    font-family: 'notera_personal_use_onlyRg'; line-height: 45px; overflow: hidden;;
+}
+
+.sign_modal .modal-content h4 {
+    font-family: 'proximanova-regular';
+    font-size: 16px;
+    color: #1a77bc;
+    text-transform: capitalize;
+    margin: 0;
+    padding: 10px 0 0 40px!important;     background: url(../images/pop_text_bottom.png) no-repeat left top;
+}
+
+.sign_modal .modal-content h5 {
+    margin: 0;
+    padding: 0;
+    font-family: 'proximanova-regular';
+    font-size: 14px;
+    line-height: 22px;
+    color: #000;
+}
+
+.popsigndiv{ margin: 28px 0;  border-radius:  15px 0 0 15px; border-right: none; }
+
+.sign_modal .popbtn1 {
+    background: #1a77bc;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-family: 'proximanova-regular';
+    box-shadow: none;
+}
+
+.sign_modal .popbtn2 {
+    background: #333;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-family: 'proximanova-regular';
+    box-shadow: none;
+}
