@@ -3,6 +3,7 @@ import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms';
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
+import {CookieService} from 'angular2-cookie/core';
 
 @Component({
   selector: 'app-repsignup',
@@ -20,12 +21,16 @@ export class RepsignupComponent implements OnInit {
     private passmatchvalidate;
     public alreadyexist: any;
     public serverurl;
+    private addcookie: CookieService;
+    private cookiedetails;
 
-    constructor(fb: FormBuilder, private _http: Http, private router: Router, private _commonservices: Commonservices) {
+    constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.fb = fb;
         RepsignupComponent.blankemail = false;
         RepsignupComponent.invalidemail = false;
         this.serverurl = _commonservices.url;
+        this.addcookie = addcookie ;
+        this.cookiedetails = this.addcookie.getObject('cookiedetails');
     }
 
     ngOnInit() {
@@ -133,8 +138,8 @@ export class RepsignupComponent implements OnInit {
             this.dataForm.controls[x].markAsTouched();
         }
         if (this.dataForm.valid && this.passmatchvalidate && (RepsignupComponent.invalidemail == false || RepsignupComponent.blankemail == false) && RepsignupComponent.invalidusername == false && RepsignupComponent.invalidpassword == false) {
-            console.log('inside dataformvalid');
-            console.log(formval);
+          //  console.log('inside dataformvalid');
+          //  console.log(formval);
             let link = this.serverurl + 'signup';
             let data = {
                 firstname: formval.firstname,
@@ -150,12 +155,14 @@ export class RepsignupComponent implements OnInit {
                 gender: formval.gender,
                 dob: formval.dob,
                 phone: formval.phone,
-                type: 'salesrep'
+                type: 'salesrep',
+                signup_step: 1,
             };
             this._http.post(link, data)
                 .subscribe(res => {
                     let result = res.json();
-                    console.log(result);
+                   // console.log('from repsignup page');
+                  //  console.log(result);
                     if (result.status == 'error' && result.id == '-1') {
                         console.log('inside mail exists');
                         this.alreadyexist = 'Emailid already exists';
@@ -165,10 +172,21 @@ export class RepsignupComponent implements OnInit {
                         this.alreadyexist = 'Username already exists';
                     }
                     if (result.status == 'success') {
-                       // this.router.navigate(['/adminlist']);
-                        console.log('success');
+                     //   console.log('success');
                         this.alreadyexist = null;
+                        let addresultforcookie = {
+                            id : result.id,
+                            firstname : formval.firstname,
+                            lastname : formval.firstname,
+                            email : formval.firstname,
+                            username : formval.firstname,
+                            type : 'recruiter',
+                        };
+                        this.addcookie.putObject('cookiedetails', addresultforcookie);
+                        console.log('cookiedetails from repsignup page');
+                        console.log(this.cookiedetails);
                         this.dataForm.reset();
+                        this.router.navigate(['/repcontract']);
                     }
                 }, error => {
                     console.log('Oooops!');

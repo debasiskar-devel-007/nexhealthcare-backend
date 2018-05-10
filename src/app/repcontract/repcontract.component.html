@@ -14,7 +14,7 @@
 
 <div class="container-fluid repcontract_inner_body">
   <div class="container admininnerwrappe">
-    <form>
+      <form>
 
     <p>This Agreement, (the “Agreement”), is made on the <span>21 day of January, 2018,</span> by and between Foremost Laboratories, LLC, a Michigan limited liability
       company, the address of 600 West Congress Street, Detroit, MI 48226, (Employer), and <span>John Doe</span> (Employee). The parties have negotiated certain
@@ -154,7 +154,7 @@
 
         <div class="sign_blockbodysubform">
 
-          By: /s/<input type="text"><br/>
+          By: /s/<input type="text" ><br/>
           <strong>Christopher A. Parris</strong>
             <strong> Its: Senior Vice President </strong>
         </div>
@@ -164,12 +164,17 @@
 
       <div class="sign_blockbodysub">
         <h6>EMPLOYEE</h6>
-        <p><span>John Doe</span></p>
+       <!-- <p><span>John Doe</span></p>-->
+          <p><span *ngIf="signaturename">{{signaturename}}</span></p>
+
 
         <div class="sign_blockbodysubform">
 
-          /s/<input type="text"><br/>
-
+          /s/  <button (click)="signature()">Sign Up</button>
+            <!--<input type="text" [formControl]="dataForm.controls['name']"><br/>
+            <span class="has-error" *ngIf ="dataForm.controls['name'].touched && !dataForm.controls['name'].valid">Please enter Sales's rep name!</span>-->
+           <!-- <div *ngIf="signaturename">{{signaturename}}</div>-->
+            <span class="has-error" *ngIf="errorblank">{{errorblank}}</span>
         </div>
 
 
@@ -221,10 +226,7 @@
       introduced in the future.
     </p>
 
-
-
-
-<input type="submit" value="Submit" class="repcontract_subbtn">
+<input type="submit" value="Submit" class="repcontract_subbtn" (click)="callsubmit()">
       <div class="clearfix"></div>
     </form>
   </div>
@@ -239,4 +241,27 @@
 
   </div>
 
+</div>
+
+
+<div *ngIf="signaturemodal" class="modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <label>Full Name</label>
+                <input type="text" [(ngModel)]="signaturename">
+                <div class="popsigndiv">
+                    <h2>Digitally Signed By:</h2>
+                    <h3>{{signaturename}}</h3>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onHidden()">Cancel</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="putsignaure()">Agree</button>
+            </div>
+        </div>
+    </div>
 </div>

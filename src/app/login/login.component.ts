@@ -6,10 +6,10 @@ import {CookieService} from 'angular2-cookie/core';
 import {Commonservices} from '../app.commonservices' ;
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  providers: [Commonservices],
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
+    providers: [Commonservices],
 })
 export class LoginComponent implements OnInit {
     public dataForm: FormGroup;
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
         this.fb = fb;
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
-         this.serverurl = _commonservices.url;
+        this.serverurl = _commonservices.url;
     }
 
     ngOnInit() {
@@ -52,23 +52,40 @@ export class LoginComponent implements OnInit {
                     let result = res.json();
                     if (result.status == 'success') {
                         let addresultforcookie = {
+                            id : result.msg._id,
                             firstname : result.msg.firstname,
                             lastname : result.msg.lastname,
                             email : result.msg.email,
                             username : result.msg.username,
                             type : result.msg.type,
                         };
-                        console.log(addresultforcookie);
                         this.addcookie.putObject('cookiedetails', addresultforcookie);
-                       console.log('cookiedetails from login page');
+                        console.log('cookiedetails from login page');
                         console.log(this.cookiedetails);
+
                         if (result.msg.type == 'salesrep') {
-                            this.router.navigate(['/salesrepdashboard']);
+                            if (result.msg.signup_step == '1') {
+                                this.router.navigate(['/repcontract']);
+                            }
+                            else if (result.msg.signup_step == '2') {
+                                this.router.navigate(['/trainingstep']);
+                            }
+                            else if (result.msg.signup_step == '3') {
+                                this.router.navigate(['/salesrepdashboard']);
+                            }
                         }
                         else if (result.msg.type == 'recruiter') {
-                            this.router.navigate(['/recruiterdashboard']);
+                            if (result.msg.signup_step == '1') {
+                                this.router.navigate(['/repcontract']);
+                            }
+                            else if (result.msg.signup_step == '2') {
+                                this.router.navigate(['/trainingstep']);
+                            }
+                            else if (result.msg.signup_step == '3') {
+                                this.router.navigate(['/recruiterdashboard']);
+                            }
                         }
-                        else {
+                        else { // admin
                             this.router.navigate(['/dashboard']);
                         }
                     }
