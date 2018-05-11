@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
       ReactiveFormsModule,
       HttpModule,
     AccordionModule.forRoot(),
+      ModalModule.forRoot(),
   ],
   providers: [appRoutingProviders, CookieService],
   bootstrap: [AppComponent]
