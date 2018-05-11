@@ -413,7 +413,11 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .sign_blockbody .sign_blockbodysub strong{ display: block; font-weight: normal; padding: 4px 0 0 45px;}
 
-.repcontract_subbtn{width: 216px; line-height: 46px; background: #089cd3; text-transform: uppercase; text-align: center; font-size: 36px; color: #fff;  font-family: 'proximanova-bold'; border: none; cursor: pointer;  box-shadow: none; outline: none; float: right;}
+.repcontract_subbtn{min-width: 180px; line-height: 46px; background: #089cd3; text-transform: uppercase; text-align: center; font-size:18px!important; color: #fff;  font-family: 'proximanova-bold'; border: none; cursor: pointer;  box-shadow: none; outline: none; float: right;}
+
+.popupbtn_wrapper{ text-align: center;}
+.popupbtn_wrapper .btn{ margin: 0 2px;}
+
 
 .row-eq-height {
     display: -webkit-box!important;
@@ -651,6 +655,59 @@ a:visited {	text-decoration: none;	outline: none;}
     line-height: 22px;
     color: #000;
 }
-  
+
 .termsmodaldiv .modal-content h1{ margin: 0px; padding: 0px 0 10px 0;  font-family: 'proximanova-bold'; color: #1a77bc; font-size: 24px; }
 .termsmodaldiv .modal-content h6{ margin: 0px; padding:10px 0px;  font-family: 'proximanova-bold'; color: #29aae1; font-size: 18px; }
+
+
+
+/*-------------------pateints----------*/
+
+.pateints_inner_body{  background: #fff; padding: 30px 0; font-family: 'proximanova-regular'; font-weight: normal;}
+
+
+.pateintswrappe{ width: 1199px; margin: 0 auto; padding: 0px; }
+
+
+ .pateints_header_left{ width: 50%; float: left;}
+ .pateints_header_right{ width: 50%; float: right;}
+
+.pateints_header_left h2{ margin: 0; padding: 0; font-size: 36px; color: #142c37; font-family: 'proximanova-bold';}
+
+.pateints_header_left h2 span{ color: #29aae1;}
+
+.pateints_searchdiv{ width: 320px; height: 30px; float: right; background: #7b7b7b;}
+.pateints_searchdiv input[type="text"]{ width: 290px;  height: 30px; float: left;  background: #7b7b7b; border: none; outline: none; font-size: 14px; color: #fff; font-family: 'proximanova-regular';  padding: 0 10px; }
+
+.pateints_searchdiv ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #fff;
+    opacity: inherit; /* Firefox */
+}
+
+.pateints_searchdiv :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #fff;
+}
+
+.pateints_searchdiv ::-ms-input-placeholder { /* Microsoft Edge */
+    color: #fff;
+}
+
+.pateints_searchdiv input[type="button"]{ background: url(../images/searchicon.png) no-repeat left top; width: 26px; height: 26px; float: right; border: navajowhite; box-shadow: none; cursor: pointer; margin: 2px 2px 0 0; cursor: pointer; outline: none}
+
+.pateints_list_weraper{ margin: 20px 0;}
+
+.pateints_list_weraper .row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.pateints_list_table_header{ background: #cfcfcf; font-size: 16px; color: #707070; font-family: 'proximanova-bold';}
+
+.pateints_list_table_contain{ background: #ececec; font-size: 16px; color: #707070; font-family: 'proximanova-regular'; border-bottom: solid 1px #fff;}
+
+.pateints_list_weraper span{ display: block; padding: 5px 0;}
+
+.pateints_list_weraper .div1{ width: 40%; padding: 10px;}
+.pateints_list_weraper .div2{ width: 25%;  padding: 10px;}
+.pateints_list_weraper .div3{ width: 15%;  padding: 10px;}
+.pateints_list_weraper .div4{ width: 20%;  padding: 10px;}
