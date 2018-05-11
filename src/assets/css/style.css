@@ -605,3 +605,16 @@ a:visited {	text-decoration: none;	outline: none;}
     font-family: 'proximanova-regular';
     box-shadow: none;
 }
+
+.admindashboardcon2_sub .recruiterdashboard_bottom_con h2{ font-size: 20px;}
+
+.admindashboardcon2_sub .recruiterdashboard_bottom_link1{ font-size: 45px; }
+
+.admindashboardcon2_sub .recruiterdashboard_bottom_link2{ font-size: 16px;}
+.admindashboardcon2_sub .recruiterdashboard_bottom_link3{ font-size: 16px;}
+
+.admindashboardcon2_sub .recruiterdashboard_bottom_link2 strong{ font-size: 20px; display: block; padding-bottom: 5px;}
+.admindashboardcon2_sub .recruiterdashboard_bottom_link3 strong{ font-size: 20px; display: block; padding-bottom: 5px;}
+
+.recruiterdashboard_bottom_link2 span{ display: block; padding-top: 5px;}
+.recruiterdashboard_bottom_link3 span{ display: block; padding-top: 5px;}
