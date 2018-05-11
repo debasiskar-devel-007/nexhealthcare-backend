@@ -177,10 +177,10 @@ export class RepsignupComponent implements OnInit {
                         let addresultforcookie = {
                             id : result.id,
                             firstname : formval.firstname,
-                            lastname : formval.firstname,
-                            email : formval.firstname,
-                            username : formval.firstname,
-                            type : 'recruiter',
+                            lastname : formval.lastname,
+                            email : formval.email,
+                            username : formval.username,
+                            type : 'salesrep',
                         };
                         this.addcookie.putObject('cookiedetails', addresultforcookie);
                         console.log('cookiedetails from repsignup page');
@@ -193,4 +193,5 @@ export class RepsignupComponent implements OnInit {
                 });
         }
     }
+
 }

@@ -1,7 +1,7 @@
 <div class="container-fluid admin_inner_top">
   <div class="container admininnerwrappe">
     <a href="javascript:void(0)"><img src="../../assets/images/adminlogo.png" alt="#"></a>
-
+      <a (click)='calllogout()' class="logout_link">Logout</a>
   </div>
 
 </div>
@@ -259,7 +259,7 @@
                 <div class="popsigndiv">
                     <h2>Digitally Signed By:</h2>
                     <h3>{{signaturename}}</h3>
-                    <h4>May 10, 2018 08:02am</h4>
+                    <h4>{{today}}</h4>
                 </div>
 
                 <h5>By selecting “agree”, the parties agree that this agreement may be electronically signed. The parties agree that the electronic signatures appearing on this agreement are the same as handwritten signatures for the purposes of validity, enforceability, and admissibility.

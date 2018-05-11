@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms';
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'angular2-cookie/core';
+declare var moment: any;
 
 @Component({
     selector: 'app-repcontract',
@@ -12,28 +12,31 @@ import {CookieService} from 'angular2-cookie/core';
     providers: [Commonservices],
 })
 export class RepcontractComponent implements OnInit {
-    public dataForm: FormGroup;
-    public fb;
     public errorblank;
     public serverurl;
     public signaturemodal: boolean = false;
     private addcookie: CookieService;
     private cookiedetails;
     public signaturename;
+    public today;
 
-    constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
-        this.fb = fb;
+    constructor(addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.serverurl = _commonservices.url;
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
+       // console.log('repcontract get ');
+       // console.log(this.cookiedetails);
+        this.today = moment().format('MMM') + ' ' + moment().format('D') + ', ' + moment().format('YYYY') + ' ' + moment().format('h') + ':' + moment().format('mm') + ' ' + moment().format('A');
     }
 
     ngOnInit() {
-        /*  this.dataForm = this.fb.group({
-            name: ['', Validators.required]});*/
     }
     signature() {
         this.signaturemodal = true;
+    }
+    calllogout() {
+        this.addcookie.removeAll();
+        this.router.navigate(['/']);
     }
     putsignaure() {
         this.signaturemodal = false;

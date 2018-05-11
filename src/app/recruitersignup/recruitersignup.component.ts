@@ -173,9 +173,9 @@ export class RecruitersignupComponent implements OnInit {
                         let addresultforcookie = {
                             id : result.id,
                             firstname : formval.firstname,
-                            lastname : formval.firstname,
-                            email : formval.firstname,
-                            username : formval.firstname,
+                            lastname : formval.lastname,
+                            email : formval.email,
+                            username : formval.username,
                             type : 'recruiter',
                         };
                         this.addcookie.putObject('cookiedetails', addresultforcookie);

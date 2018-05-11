@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
             this._http.post(link, data)
                 .subscribe(res => {
                     let result = res.json();
+                    console.log(result);
                     if (result.status == 'success') {
                         let addresultforcookie = {
                             id : result.msg._id,
@@ -57,7 +58,7 @@ export class LoginComponent implements OnInit {
                             lastname : result.msg.lastname,
                             email : result.msg.email,
                             username : result.msg.username,
-                            type : result.msg.type,
+                            type : result.msg.type
                         };
                         this.addcookie.putObject('cookiedetails', addresultforcookie);
                         console.log('cookiedetails from login page');
