@@ -47,3 +47,14 @@
 @media(max-width:400px) {
     .admindashboardcon2_sub_condiv{ width: 96%; float: none; margin: 5px auto;}
 }
+
+
+@media (min-width: 768px){
+    .modal-sm {
+        width: 480px;
+    }
+
+   .termsmodaldiv .modal-sm {
+        width: 80%;
+    }
+}
