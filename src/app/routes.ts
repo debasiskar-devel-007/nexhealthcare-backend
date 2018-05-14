@@ -4,18 +4,21 @@
 
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent }  from './dashboard/dashboard.component';
-import { LoginComponent }  from './login/login.component';
-import { RecruiterdashboardComponent }  from './recruiterdashboard/recruiterdashboard.component';
-import { SalesrepdashboardComponent }  from './salesrepdashboard/salesrepdashboard.component';
-import { RepsignupComponent }  from './repsignup/repsignup.component';
-import { HeaderComponent }  from './header/header.component';
-import { FooterComponent }  from './footer/footer.component';
-import { RecruitersignupComponent }  from './recruitersignup/recruitersignup.component';
-import { TrainingstepComponent }  from './trainingstep/trainingstep.component';
-import { RepcontractComponent }  from './repcontract/repcontract.component';
-import { FrontheaderComponent }  from './frontheader/frontheader.component';
-import { FrontfooterComponent }  from './frontfooter/frontfooter.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
+import { RecruiterdashboardComponent } from './recruiterdashboard/recruiterdashboard.component';
+import { SalesrepdashboardComponent } from './salesrepdashboard/salesrepdashboard.component';
+import { RepsignupComponent } from './repsignup/repsignup.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { RecruitersignupComponent } from './recruitersignup/recruitersignup.component';
+import { TrainingstepComponent } from './trainingstep/trainingstep.component';
+import { RepcontractComponent } from './repcontract/repcontract.component';
+import { FrontheaderComponent } from './frontheader/frontheader.component';
+import { FrontfooterComponent } from './frontfooter/frontfooter.component';
+import { PateintsComponent } from './pateints/pateints.component';
+import { PateintquestionireComponent } from './pateintquestionire/pateintquestionire.component';
+import { PateintdetailComponent } from './pateintdetail/pateintdetail.component';
 
 
 const appRoutes: Routes = [
@@ -33,6 +36,9 @@ const appRoutes: Routes = [
     { path: 'trainingstep', component: TrainingstepComponent},
     { path: 'frontheader', component: FrontheaderComponent},
     { path: 'frontfooter', component: FrontfooterComponent},
+    { path: 'pateints', component: PateintsComponent},
+    { path: 'pateintquestionire', component: PateintquestionireComponent},
+    { path: 'pateintdetail', component: PateintdetailComponent},
 
 
    // { path: 'content', component: ContentComponent,outlet:'content'},

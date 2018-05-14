@@ -16,8 +16,8 @@
   <div class="container admininnerwrappe">
       <form>
 
-    <p>This Agreement, (the “Agreement”), is made on the <span>21 day of January, 2018,</span> by and between Foremost Laboratories, LLC, a Michigan limited liability
-      company, the address of 600 West Congress Street, Detroit, MI 48226, (Employer), and <span>John Doe</span> (Employee). The parties have negotiated certain
+    <p>This Agreement, (the “Agreement”), is made on the <span>{{showtoday}},</span> by and between Foremost Laboratories, LLC, a Michigan limited liability
+      company, the address of 600 West Congress Street, Detroit, MI 48226, (Employer), and <span>{{cookiedetails.firstname}} {{cookiedetails.lastname}}</span> (Employee). The parties have negotiated certain
    terms of the Employee’s part-time employment with the Employer and have come to certain understandings about the terms and conditions of
    employment and wish to evidence this in writing.</p>
 
@@ -43,9 +43,7 @@
 
     <h6>II. TERM</h6>
 
-    <p>The Initial Term of part-time employment under this Agreement (the "Initial Term"), shall commence on the <span>21st day of January,
-      2018,</span> (the “Effective Date”), and continue until the <span>21st day of January,
-      2019,</span> unless terminated earlier as provided herein.  Following the expiration of the Initial Term, and subject to the provisions
+    <p>The Initial Term of part-time employment under this Agreement (the "Initial Term"), shall commence on the <span>{{showtoday}}</span> (the “Effective Date”), and continue until the <span>{{showafteryear}},</span> unless terminated earlier as provided herein.  Following the expiration of the Initial Term, and subject to the provisions
       of Section VI herein, (“Termination”), this Agreement shall be automatically renewed for additional successive twelve (12) month
       part-time employment terms, (“Successor Terms”), unless terminated by Employer or Employee by delivery of 30 days written notice at any time.
       In the event that either party delivers such a notice, the period of Employee's part-time employment will expire on the thirtieth day
@@ -165,16 +163,16 @@
       <div class="sign_blockbodysub">
         <h6>EMPLOYEE</h6>
        <!-- <p><span>John Doe</span></p>-->
-          <p><span *ngIf="signaturename">{{signaturename}}</span></p>
+          <p><span *ngIf="signaturename" class="callsignautre">{{signaturename}}</span></p>
 
 
         <div class="sign_blockbodysubform">
 
-          /s/  <button (click)="signature()">Sign Up &#8595;</button>
+          /s/  <button (click)="signature()">Sign Here &#8595;</button>
             <!--<input type="text" [formControl]="dataForm.controls['name']"><br/>
             <span class="has-error" *ngIf ="dataForm.controls['name'].touched && !dataForm.controls['name'].valid">Please enter Sales's rep name!</span>-->
            <!-- <div *ngIf="signaturename">{{signaturename}}</div>-->
-            <span class="has-error" *ngIf="errorblank">{{errorblank}}</span>
+            <br/><span class="has-error" *ngIf="errorblank">{{errorblank}}</span>
         </div>
 
 

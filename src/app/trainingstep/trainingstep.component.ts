@@ -41,7 +41,7 @@ export class TrainingstepComponent implements OnInit {
   let result = res.json();
   this.trainingvideolist = parseInt(result.status.timeindex);
   console.log(this.trainingvideolist);
-  //console.log(this.trainingvideolist.status.timeindex);
+  // console.log(this.trainingvideolist.status.timeindex);
 }, error => {
   console.log('Oooops!');
 });
@@ -89,7 +89,7 @@ export class TrainingstepComponent implements OnInit {
     }
     calllogout() {
         var aud = document.getElementById("video1");
-        //console.log(aud.currentTime);
+        // console.log(aud.currentTime);
         let link = this.serverurl + 'trainingvideostatus';
         let data = {
             userid: this.cookiedetails.id,

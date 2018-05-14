@@ -671,3 +671,15 @@ a:visited {	text-decoration: none;	outline: none;}
 .logout_link{ background: #2eb7f2; padding:5px 10px; border-radius: 5px;  font-family: 'proximanova-semibold';
     font-size: 16px; color: #fff!important;     float: right;
     margin-top: 15px; cursor: pointer;}
+
+.callsignautre {
+    margin: 0;
+    padding: 5px 0 5px 20px;
+    font-size: 45px;
+    color: #000;
+    border-left: solid 1px #1a77bc;
+    font-family: 'notera_personal_use_onlyRg';
+    line-height: 45px;
+    overflow: hidden;
+    text-decoration: none !important;
+}
