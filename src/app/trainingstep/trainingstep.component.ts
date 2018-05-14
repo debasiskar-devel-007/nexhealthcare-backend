@@ -76,7 +76,7 @@ export class TrainingstepComponent implements OnInit {
                 // $('video').get(1).pause();
               $('video').get(0).load();
               $('video').get(0).pause();
-                //aud.currentTime=58;
+                // aud.currentTime=58;
               $('video').get(0).pause();
                 $('video').find('source').attr('src', '');
               //  this.gonextmodal = true;
