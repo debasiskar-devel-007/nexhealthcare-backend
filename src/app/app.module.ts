@@ -16,6 +16,9 @@ import { RepcontractComponent } from './repcontract/repcontract.component';
 import { TrainingstepComponent } from './trainingstep/trainingstep.component';
 import { FrontfooterComponent } from './frontfooter/frontfooter.component';
 import { FrontheaderComponent } from './frontheader/frontheader.component';
+import { PateintdetailComponent } from './pateintdetail/pateintdetail.component';
+import { PateintsComponent } from './pateints/pateints.component';
+import { PateintquestionireComponent } from './pateintquestionire/pateintquestionire.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -37,7 +40,10 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     RepcontractComponent,
     TrainingstepComponent,
       FrontheaderComponent,
-      FrontfooterComponent
+      FrontfooterComponent,
+    PateintquestionireComponent,
+    PateintsComponent,
+    PateintdetailComponent
   ],
   imports: [
     BrowserModule,
