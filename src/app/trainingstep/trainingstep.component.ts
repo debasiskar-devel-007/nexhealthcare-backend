@@ -39,6 +39,7 @@ export class TrainingstepComponent implements OnInit {
   this._http.post(link, data)
 .subscribe(res => {
   let result = res.json();
+  console.log(result);
   this.trainingvideolist = parseInt(result.status.timeindex);
   console.log(this.trainingvideolist);
   // console.log(this.trainingvideolist.status.timeindex);
@@ -130,7 +131,7 @@ export class TrainingstepComponent implements OnInit {
     this.gonextmodal = true;
     }
     calldashboard() {
-        let link = this.serverurl + 'trainingvideostatus';
+        let link = this.serverurl + 'dashboardtrainingvideostatus';
         let data = {
             userid: this.cookiedetails.id,
             timeindex: 'c',
