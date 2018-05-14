@@ -53,7 +53,7 @@ export class TrainingstepComponent implements OnInit {
                 aud.currentTime=58;
                 aud.pause();
                 $('video').find('source').attr('src', '');
-                this.gonextmodal = true;
+              //  this.gonextmodal = true;
                 $('#modalcall').click();
                 console.log('aud');
                 console.log(aud);
