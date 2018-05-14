@@ -59,6 +59,7 @@ export class RepcontractComponent implements OnInit {
                 .subscribe(res => {
                     let result = res.json();
                     if (result.status == 'success') {
+                        this.router.navigate(['/trainingstep']);
                     }
                 }, error => {
                     console.log('Oooops!');
