@@ -88,7 +88,7 @@ export class RepsignupComponent implements OnInit {
             console.log('control.value null');
             return {'invalidusername': false};
         }
-        if (!control.value.match(/^(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{3,})$/)) {
+        if (!control.value.match(/^([a-zA-Z0-9]{3,})*$/)) {
             RepsignupComponent.invalidusername = true;
             return {'invalidusername': true};
         }

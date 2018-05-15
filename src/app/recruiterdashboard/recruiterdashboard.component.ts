@@ -3,6 +3,7 @@ import {CookieService} from 'angular2-cookie/core';
 import {Router} from '@angular/router';
 import {Commonservices} from '../app.commonservices';
 import {Http} from '@angular/http';
+declare var moment: any;
 
 @Component({
   selector: 'app-recruiterdashboard',
@@ -16,6 +17,8 @@ export class RecruiterdashboardComponent implements OnInit {
     public comingsoonmodal;
     public serverurl;
     public recdetails;
+    public logintime;
+    public signuptime;
 
     constructor( addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.addcookie = addcookie ;
@@ -41,6 +44,8 @@ export class RecruiterdashboardComponent implements OnInit {
                     this.recdetails = result.id;
                     console.log('this.recdetails');
                     console.log(this.recdetails);
+                    this.logintime = moment(this.recdetails.logintime).format('DD-MM-YYYY');
+                    this.signuptime = moment(this.recdetails.signuptime).format('DD-MM-YYYY');
                 }
             }, error => {
                 console.log('Oooops!');

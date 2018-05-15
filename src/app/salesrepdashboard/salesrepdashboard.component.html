@@ -41,10 +41,9 @@
                 </button>
                 <ul id="dropdown-basic2" *dropdownMenu class="dropdown-menu"
                     role="menu" aria-labelledby="button-basic">
-                  <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Recruiters</a></li>
-                  <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Sales Rep</a></li>
-                  <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Patients </a></li>
-
+                <!--  <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Recruiters</a></li>
+                  <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Sales Rep</a></li>-->
+                  <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/pateints']">Patients </a></li>
 
                 </ul>
               </li>
@@ -137,8 +136,8 @@
                 <span>Name: {{recdetails.firstname}} {{recdetails.lastname}}</span>
                 <span> Username: {{recdetails.username}}</span>
                 <span> Email: {{recdetails.email}}</span>
-                <span> Previous Login Date: 02-12-2018</span>
-                <span> Member  Since: 06-05-1999</span>
+                <span> Previous Login Date: {{logintime}}</span>
+                <span> Member  Since: {{signuptime}}</span>
 
               </td>
               <td>

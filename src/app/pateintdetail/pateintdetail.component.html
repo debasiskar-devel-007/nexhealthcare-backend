@@ -29,28 +29,66 @@
     </div>
 
     <div class="pateints_list_weraper">
-      <form>
+      <form role="form" novalidate [formGroup]="dataForm" (ngSubmit)="dosubmit(dataForm.value)">
 
         <div class="pateintdetail_left">
 
           <div class="pateintdetail_left_form">
 
-            <div class="form-group"><input type="text"  class="form-control" placeholder="First Name"/></div>
-            <div class="form-group"><input type="text"  class="form-control"  placeholder="Last Name"/></div>
-            <div class="form-group"><input type="text"  class="form-control"  placeholder="Phone Number"/></div>
-            <div class="form-group"><input type="email"  class="form-control"  placeholder="Email Address"/></div>
-            <div class="form-group"><textarea  placeholder="Address"></textarea></div>
-            <div class="form-group"><input type="text"  class="form-control"  placeholder="City"/></div>
-            <div class="form-group"><input type="text"  class="form-control"  placeholder="State"/></div>
-            <div class="form-group"><input type="text"  class="form-control"  placeholder="Zip"/></div>
-            <div class="form-group"><input type="text"  class="form-control"  placeholder="Date of Birth"/></div>
-            <div class="form-group"><input type="text"  class="form-control"  placeholder="Gender"/></div>
-            <div class="form-group"><input type="text"  class="form-control"  placeholder="Race/Ethnicity "/></div>
-            <div class="form-group"><input type="text"  class="form-control"  placeholder="Height/Weight"/></div>
-            <div class="form-group"><input type="text"  class="form-control"  placeholder="Allergies"/></div>
-            <div class="form-group"><input type="text"  class="form-control"  placeholder="Medicare Claim #"/></div>
-            <div class="form-group"><input type="text"  class="form-control"  placeholder="Tag"/></div>
-            <div class="form-group"><input type="text"  class="form-control"  placeholder="Tracking Number "/></div>
+            <div class="form-group"><input type="text"  class="form-control" placeholder="First Name" [formControl]="dataForm.controls['firstname']"/>
+              <span class="has-error" *ngIf ="dataForm.controls['firstname'].touched && !dataForm.controls['firstname'].valid">Firstname is required!</span></div>
+
+            <div class="form-group"><input type="text"  class="form-control"  placeholder="Last Name" [formControl]="dataForm.controls['lastname']"/>
+              <span class="has-error" *ngIf ="dataForm.controls['lastname'].touched && !dataForm.controls['lastname'].valid">Lastname is required!</span></div>
+
+            <div class="form-group"><input type="text"  class="form-control"  placeholder="Phone Number" [formControl]="dataForm.controls['phone']"/>
+              <span class="has-error" *ngIf ="dataForm.controls['phone'].touched && !dataForm.controls['phone'].valid">Phone No must be 10 numbers!</span></div>
+
+            <div class="form-group"><input type="email"  class="form-control"  placeholder="Email Address" [formControl]="dataForm.controls['email']"/>
+              <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('blank')==true">Emailid is Required !</span>
+              <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('invalid')==true">Invalid Emailid!</span></div>
+
+            <div class="form-group"><textarea  placeholder="Address" [formControl]="dataForm.controls['address']"></textarea>
+              <span class="has-error" *ngIf ="dataForm.controls['address'].touched && !dataForm.controls['address'].valid">Address is required!</span></div>
+
+            <div class="form-group"><input type="text"  class="form-control"  placeholder="City" [formControl]="dataForm.controls['city']"/>
+              <span class="has-error" *ngIf ="dataForm.controls['city'].touched && !dataForm.controls['city'].valid">City is required!</span></div>
+
+            <div class="form-group"><input type="text"  class="form-control"  placeholder="State" [formControl]="dataForm.controls['state']"/>
+              <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid">State is required!</span></div>
+
+            <div class="form-group"><input type="text"  class="form-control"  placeholder="Zip" [formControl]="dataForm.controls['zip']"/>
+              <span class="has-error" *ngIf ="dataForm.controls['zip'].touched && !dataForm.controls['zip'].valid">Zip is required!</span></div>
+
+            <div class="form-group"><input type="text"  class="form-control"  placeholder="Date of Birth" [formControl]="dataForm.controls['dob']"/>
+              <span class="has-error" *ngIf ="dataForm.controls['dob'].touched && !dataForm.controls['dob'].valid">Date Of Birth is required!</span></div>
+
+            <div class="form-group">
+            <select [formControl]="dataForm.controls['gender']" class="form-control">
+              <option value="" disabled>Gender </option>
+              <option value="male" name="gender">Male </option>
+              <option value="female" name="gender">Female </option>
+            </select>
+              <span class="has-error" *ngIf ="dataForm.controls['gender'].touched && !dataForm.controls['gender'].valid">Gender is required!</span>
+            </div>
+
+
+            <div class="form-group"><input type="text"  class="form-control"  placeholder="Race/Ethnicity " [formControl]="dataForm.controls['raceethnicity']"/>
+              <span class="has-error" *ngIf ="dataForm.controls['raceethnicity'].touched && !dataForm.controls['raceethnicity'].valid">Race/Ethnicity is required!</span></div>
+
+            <div class="form-group"><input type="text"  class="form-control"  placeholder="Height/Weight" [formControl]="dataForm.controls['heightwidth']"/>
+              <span class="has-error" *ngIf ="dataForm.controls['heightwidth'].touched && !dataForm.controls['heightwidth'].valid">Height/Width is required!</span></div>
+
+            <div class="form-group"><input type="text"  class="form-control"  placeholder="Allergies" [formControl]="dataForm.controls['allergies']"/>
+              <span class="has-error" *ngIf ="dataForm.controls['allergies'].touched && !dataForm.controls['allergies'].valid">Allergies is required!</span></div>
+
+            <div class="form-group"><input type="text"  class="form-control"  placeholder="Medicare Claim #" [formControl]="dataForm.controls['medicareclaim']"/>
+              <span class="has-error" *ngIf ="dataForm.controls['medicareclaim'].touched && !dataForm.controls['medicareclaim'].valid">Medicareclaim is required!</span></div>
+
+            <div class="form-group"><input type="text"  class="form-control"  placeholder="Tag" [formControl]="dataForm.controls['tag']"/></div>
+            <div class="form-group"><input type="text"  class="form-control"  placeholder="Tracking Number " [formControl]="dataForm.controls['trackingno']"/>
+              <span class="has-error" *ngIf ="dataForm.controls['trackingno'].touched && !dataForm.controls['trackingno'].valid">Tracking No is required!</span></div>
+
 
             <div class="clearfix"></div>
 
@@ -64,42 +102,47 @@
               <label class="labeltext">Do you currently have the Red, White, or Blue Medicare Part-B Card? </label>
               <div class="radiobtn_div1">
                 <div class="button-holder">
-                  <input type="radio" checked="" class="regular-radio" name="radio-1-set" id="radio-1-set"><label for="radio-1-set"></label><span>YES</span>
-                  <input type="radio" checked="" class="regular-radio" name="radio-1-set" id="radio-2-set"><label for="radio-2-set"></label><span>NO</span>
+                  <input type="radio" checked="" class="regular-radio" name="radio-1-set" id="radio-1-set" [formControl]="dataForm.controls['medicarecard']" value="1"><label for="radio-1-set" ></label><span>YES</span>
+                  <input type="radio" checked="" class="regular-radio" name="radio-1-set" id="radio-2-set"  [formControl]="dataForm.controls['medicarecard']" value="0"><label for="radio-2-set"></label><span>NO</span>
                 </div>
                 <div class="clearfix"></div>
               </div>
               <div class="clearfix"></div>
+              <span class="has-error" *ngIf ="dataForm.controls['medicarecard'].touched && !dataForm.controls['medicarecard'].valid">Medicare card is required!</span>
             </div>
 
             <div class="form-group2">
               <label class="labeltext">Have YOU and/or ANYONE else in your family EVER been diagnosed with any type of cancer? </label>
               <div class="radiobtn_div1">
                 <div class="button-holder">
-                  <input type="radio" checked="" class="regular-radio" name="radio-3-set" id="radio-3-set"><label for="radio-3-set"></label><span>YES</span>
-                  <input type="radio" checked="" class="regular-radio" name="radio-3-set" id="radio-4-set"><label for="radio-4-set"></label><span>NO</span>
+                  <input type="radio" checked="" class="regular-radio" name="radio-3-set" id="radio-3-set" [formControl]="dataForm.controls['iscancer']" value="1"><label for="radio-3-set"></label><span>YES</span>
+                  <input type="radio" checked="" class="regular-radio" name="radio-3-set" id="radio-4-set" [formControl]="dataForm.controls['iscancer']" value="0"><label for="radio-4-set"></label><span>NO</span>
                 </div>
                 <div class="clearfix"></div>
               </div>
               <div class="clearfix"></div>
+              <span class="has-error" *ngIf ="dataForm.controls['iscancer'].touched && !dataForm.controls['iscancer'].valid">Please give the number!</span>
             </div>
 
             <div class="form-group3">
               <label class="labeltext">Do you know what cancer(s) they were diagnosed with?</label>
-              <input type="text"  class="form-control" />
+              <input type="text"  class="form-control" [formControl]="dataForm.controls['cancertypes']" />
               <div class="clearfix"></div>
+              <span class="has-error" *ngIf ="dataForm.controls['cancertypes'].touched && !dataForm.controls['cancertypes'].valid">This is a required field!</span>
             </div>
 
             <div class="form-group4">
               <label class="labeltext">What is their relation to you?  </label>
-              <input type="text"  class="form-control" />
+              <input type="text"  class="form-control" [formControl]="dataForm.controls['relation']"/>
               <div class="clearfix"></div>
+              <span class="has-error" *ngIf ="dataForm.controls['relation'].touched && !dataForm.controls['relation'].valid">This is a required field!</span>
             </div>
 
             <div class="form-group5">
               <label class="labeltext">At what age approximately were they diagnosed with this cancer?  </label>
-              <input type="text"  class="form-control" />
+              <input type="text"  class="form-control" [formControl]="dataForm.controls['approxage']"/>
               <div class="clearfix"></div>
+              <span class="has-error" *ngIf ="dataForm.controls['approxage'].touched && !dataForm.controls['approxage'].valid">This is a required field!</span>
             </div>
 
 
@@ -107,7 +150,7 @@
           </div>
 
 
-          <textarea placeholder="Only Notes" class="notes_textarea"></textarea>
+          <textarea placeholder="Only Notes" class="notes_textarea hidden"></textarea>
 
 
 
@@ -116,7 +159,7 @@
 
         <div class="pateintdetail_right">
           <div class="pateints_btn_wrapper">
-            <input type="button"  value="Save" class="btn1"/>
+            <input type="submit"  value="Save" class="btn1" (click)="cancel()"/>
             <input type="button"  value="Cancel" class="btn2"/>
 
           </div>
