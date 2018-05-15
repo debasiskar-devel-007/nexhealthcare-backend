@@ -52,6 +52,7 @@ export class PateintdetailComponent implements OnInit {
             approxage: ['', Validators.required],
         });
     }
+
     static validateEmail(control: FormControl) {
         PateintdetailComponent.blankemail = false;
         PateintdetailComponent.invalidemail = false;
@@ -77,10 +78,6 @@ export class PateintdetailComponent implements OnInit {
     }
 
     dosubmit(formval) {
-      console.log('dosubmit');
-      console.log('dataform valid '+this.dataForm.valid);
-      console.log('PateintdetailComponent.invalidemail'+PateintdetailComponent.invalidemail);
-      console.log('PateintdetailComponent.blankemail'+PateintdetailComponent.blankemail);
         let x: any;
         for (x in this.dataForm.controls) {
             this.dataForm.controls[x].markAsTouched();
@@ -116,15 +113,16 @@ export class PateintdetailComponent implements OnInit {
                     let result = res.json();
                       console.log(result);
                     if (result.status == 'success') {
-
+                        this.router.navigate(['/pateints']);
                     }
                 }, error => {
                     console.log('Oooops!');
                 });
         }
     }
+
     cancel() {
-      console.log('call');
       this.dataForm.reset();
+        this.router.navigate(['/pateints']);
     }
 }

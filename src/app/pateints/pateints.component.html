@@ -21,13 +21,14 @@
 
       <div class="pateints_header_left"><h2>Patients <span>List View</span></h2></div>
       <div class="pateints_header_right">
-        <div class="pateints_searchdiv">
+        <div class="pateints_searchdiv pateints_searchdiv2">
         <form>
-          <input type="text" placeholder="Search...">
+          <input type="text" placeholder="Search..." #listFilter (keyup)="0">
           <input type="button">
           <div class="clearfix"></div>
         </form>
       </div>
+        <button [routerLink]="['/pateintdetail']" class="btn btn-primary patients_btn">Add Patients</button>
       </div>
       <div class="clearfix"></div>
 
@@ -35,7 +36,6 @@
     </div>
 
     <div class="pateints_list_weraper">
-
 
       <div class="pateints_list_table_header">
         <div class="row row-eq-height">
@@ -59,7 +59,32 @@
 
       </div>
 
-      <div class="pateints_list_table_contain">
+      <div class="pateints_list_table_contain" *ngFor="let item of datalist | usersearch:listFilter.value| paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+        <div class="row row-eq-height">
+          <div class="div1">
+            <span>{{item.uniqueid}}</span>
+            <span>{{item.phone}}</span>
+            <span>{{item.tag}}</span>
+          </div>
+          <div class="div2">
+            <span>{{item.firstname}} </span>
+          </div>
+          <div class="div3">
+            <span>{{item.lastname}} </span>
+          </div>
+          <div class="div4">
+            <span> {{item.email}}      </span>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+
+
+      </div>
+
+      <div class="pagination_wrapper">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+      <!--<div class="pateints_list_table_contain">
         <div class="row row-eq-height">
           <div class="div1">
             <span>600</span>
@@ -79,28 +104,7 @@
         </div>
 
 
-      </div>
-      <div class="pateints_list_table_contain">
-        <div class="row row-eq-height">
-          <div class="div1">
-            <span>600</span>
-            <span>12345678</span>
-            <span>Lorem Ipsum is simply dummy text</span>
-          </div>
-          <div class="div2">
-            <span>Michael </span>
-          </div>
-          <div class="div3">
-            <span>Sidebottom </span>
-          </div>
-          <div class="div4">
-            <span> sidebottom24@yahoo.com      </span>
-          </div>
-          <div class="clearfix"></div>
-        </div>
-
-
-      </div>
+      </div>-->
 
 
 

@@ -25,6 +25,8 @@ import { HttpModule } from '@angular/http';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { UsersearchPipe } from './search.pipe';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
       FrontfooterComponent,
     PateintquestionireComponent,
     PateintsComponent,
-    PateintdetailComponent
+    PateintdetailComponent,
+      UsersearchPipe,
+
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
       HttpModule,
     AccordionModule.forRoot(),
       ModalModule.forRoot(),
+      NgxPaginationModule
   ],
   providers: [appRoutingProviders, CookieService],
   bootstrap: [AppComponent]
