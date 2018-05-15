@@ -997,8 +997,6 @@ a:visited {	text-decoration: none;	outline: none;}
 .myaccount_form_wrapper  .form-group textarea{ width:364px; height:40px; background:#fff; border:solid 1px #dadada; border-radius:0px; box-shadow:none; outline:none; font-size: 16px; color: #000; font-family: 'proximanova-regular'; padding:5px; float: right; resize: none;}
 
 
-
-
 .myaccount_form_wrapper  .form-group .form-groupcheckbox{ width:364px;  float: right; font-size: 16px; color: #000; font-family: 'proximanova-regular';}
 
 .myaccount_form_wrapper  .form-group .form-groupcheckbox .checkbox{ margin-right: 2px;}
