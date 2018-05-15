@@ -20,7 +20,7 @@
           <span class="has-error" *ngIf ="dataForm.controls['username'].touched && !dataForm.controls['username'].valid && getusername('invalid')==true">Invalid User Name, username must contain at least 3 characters, and it should be alphanumeric!</span>
 
 
-          <input type="password"placeholder="Password" [formControl]="dataForm.controls['password']">
+          <input type="password" placeholder="Password" [formControl]="dataForm.controls['password']">
           <span class="has-error" *ngIf ="dataForm.controls['password'].touched && !dataForm.controls['password'].valid && getpassword('invalid')==true">Password is not valid ,Password must contain at least 8 characters,one lower case character , one upper case character , one number, one special character</span>
 
           <input type="password" placeholder="Confirm Password"  [formControl]="dataForm.controls['confpassword']">

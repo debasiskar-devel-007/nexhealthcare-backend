@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-
+import {CookieService} from 'angular2-cookie/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,9 +10,17 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+    private addcookie: CookieService;
+    private cookiedetails;
+    constructor( addcookie: CookieService, private router: Router) {
+        this.addcookie = addcookie ;
+        this.cookiedetails = this.addcookie.getObject('cookiedetails');
+    }
 
-  ngOnInit() {
-  }
-
+    ngOnInit() {
+    }
+    calllogout() {
+        this.addcookie.removeAll();
+        this.router.navigate(['/']);
+    }
 }

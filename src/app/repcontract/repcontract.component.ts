@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms';
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'angular2-cookie/core';
+declare var moment: any;
 
 @Component({
     selector: 'app-repcontract',
@@ -12,31 +12,44 @@ import {CookieService} from 'angular2-cookie/core';
     providers: [Commonservices],
 })
 export class RepcontractComponent implements OnInit {
-    public dataForm: FormGroup;
-    public fb;
     public errorblank;
     public serverurl;
     public signaturemodal: boolean = false;
-    private addcookie: CookieService;
-    private cookiedetails;
+    public addcookie: CookieService;
+    public cookiedetails;
     public signaturename;
+    public today;
+    public showtoday;
+    public showafteryear;
 
-    constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
-        this.fb = fb;
+    constructor(addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.serverurl = _commonservices.url;
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
+       // console.log('repcontract get ');
+        console.log(this.cookiedetails);
+        this.today = moment().format('MMM') + ' ' + moment().format('D') + ', ' + moment().format('YYYY') + ' ' + moment().format('h') + ':' + moment().format('mm') + ' ' + moment().format('A');
+        this.showtoday = moment().format('D') + ' day of ' + moment().format('MMM') + ', ' + moment().format('YYYY');
+        this.showafteryear = moment().format('D') + ' day of ' + moment().format('MMM') + ', ' + moment().add(1, 'years').format('YYYY');
     }
 
     ngOnInit() {
-        /*  this.dataForm = this.fb.group({
-            name: ['', Validators.required]});*/
     }
     signature() {
         this.signaturemodal = true;
     }
+    calllogout() {
+        this.addcookie.removeAll();
+        this.router.navigate(['/']);
+    }
     putsignaure() {
         this.signaturemodal = false;
+        if (this.signaturename == null || this.signaturename == '') {
+            this.errorblank = 'Please enter Sales\'s rep name';
+        }
+        else {
+            this.errorblank = null;
+        }
     }
     onHidden() {
         this.signaturename = null;
@@ -55,7 +68,9 @@ export class RepcontractComponent implements OnInit {
             this._http.post(link, data)
                 .subscribe(res => {
                     let result = res.json();
+                    console.log(result);
                     if (result.status == 'success') {
+                        this.router.navigate(['/trainingstep']);
                     }
                 }, error => {
                     console.log('Oooops!');
