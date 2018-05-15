@@ -121,6 +121,9 @@ export class PateintdetailComponent implements OnInit {
         }
     }
 
+
+
+
     cancel() {
       this.dataForm.reset();
         this.router.navigate(['/pateints']);
