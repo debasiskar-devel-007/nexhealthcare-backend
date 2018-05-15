@@ -980,3 +980,35 @@ a:visited {	text-decoration: none;	outline: none;}
     overflow: hidden;
     text-decoration: none !important;
 }
+
+
+.myaccount_form_wrapper{ background: #ececec; padding: 20px;}
+
+.myaccount_form_wrapper h6{ margin: 0; padding: 0 0 0 0; font-size: 24px; color: #295b73;  font-family: 'proximanova-bold';}
+
+.myaccount_form_wrapper h6 a{color: #295b73;}
+
+.myaccount_form_wrapper .form-group{ width: 590px; margin: 20px 0 0 0;}
+
+.myaccount_form_wrapper .form-group label{ display: block; width: 218px; line-height: 40px; margin: 0; padding: 0; font-size: 16px; color: #707070; font-family: 'proximanova-bold';text-transform: uppercase; float: left;}
+
+.myaccount_form_wrapper  .form-group .form-control{ width:364px; height:40px; background:#fff; border:solid 1px #dadada; border-radius:0px; box-shadow:none; outline:none; font-size: 16px; color: #000; font-family: 'proximanova-regular'; padding:0 5px; float: right;}
+.myaccount_form_wrapper  .form-group .form-control2{ width:364px; height:40px; background:#fff; border:solid 1px #dadada; border-radius:0px; box-shadow:none; outline:none; font-size: 16px; color: #000; font-family: 'proximanova-regular'; padding:0 5px; float: right;}
+.myaccount_form_wrapper  .form-group textarea{ width:364px; height:40px; background:#fff; border:solid 1px #dadada; border-radius:0px; box-shadow:none; outline:none; font-size: 16px; color: #000; font-family: 'proximanova-regular'; padding:5px; float: right; resize: none;}
+
+
+.myaccount_btn_wrapper{ width: 235px; float: right; margin-top: 20px;}
+
+
+.myaccount_btn_wrapper input{ width:107px; height:44px; margin:0 5px; border:none; padding:0 15px; box-shadow:none; outline:none; cursor:pointer; text-align:center; font-size:18px; color:#fff; text-transform:uppercase; font-family: 'proximanova-semibold'; line-height:46px;}
+
+.myaccount_btn_wrapper .btn1{ background:#0083b4;}
+.myaccount_btn_wrapper .btn2{ background:#295b73;}
+
+
+.userrecruiterlist_table_wrapper{ width: 90%; margin: 0 auto;}
+
+.userrecruiterlist_table_wrapper table{ width: 100%; background: #ececec;}
+
+.userrecruiterlist_table_wrapper table td{ border: solid 1px #fff; padding: 18px; text-align: center; font-size: 16px; color: #707070;  font-family: 'proximanova-regular';}
+.userrecruiterlist_table_wrapper table th{ border: solid 1px #fff; padding: 18px; text-align: center; font-size: 16px; color: #707070;  font-family: 'proximanova-regular'; background: #cfcfcf; font-weight: normal;}
