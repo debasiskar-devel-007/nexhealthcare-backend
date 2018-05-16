@@ -59,4 +59,8 @@
    .termsmodaldiv .modal-sm {
         width: 80%;
     }
+
+    .pateintquestioniremodal .modal-sm {
+        width: 100%;
+    }
 }
