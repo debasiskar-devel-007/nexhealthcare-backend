@@ -705,7 +705,7 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .pateints_list_table_header{ background: #cfcfcf; font-size: 16px; color: #707070; font-family: 'proximanova-bold';}
 
-.pateints_list_table_contain{ background: #ececec; font-size: 16px; color: #707070; font-family: 'proximanova-regular'; border-bottom: solid 1px #fff;}
+.pateints_list_table_contain{ background: #ececec; font-size: 16px; color: #707070; font-family: 'proximanova-regular'; border-bottom: solid 1px #fff; cursor: pointer;}
 
 .pateints_list_weraper span{ display: block; padding: 5px 0;}
 
@@ -1014,8 +1014,6 @@ a:visited {	text-decoration: none;	outline: none;}
 
 
 
-
-
 .userrecruiterlist_table_wrapper{ width: 90%; margin: 0 auto;}
 
 .userrecruiterlist_table_wrapper table{ width: 100%; background: #ececec;}
@@ -1108,3 +1106,25 @@ a:visited {	text-decoration: none;	outline: none;}
 .pagination_wrapper .pagination-next  span{ font-family: 'proximanova-regular'!important; font-size: 16px!important; }
 
 .ngx-pagination a, .ngx-pagination button{ padding: 0px!important;}
+
+
+
+
+
+.compensationmodifier_table_wrapper table{ width: 100%;}
+.compensationmodifier_table_wrapper td:nth-of-type(1){ width: 40%; vertical-align: top;}
+.compensationmodifier_table_wrapper td:nth-of-type(2){ width: 60%; vertical-align: top;}
+
+
+.compensationmodifier_table_wrapper table td{ border: solid 1px #fff; padding: 18px; text-align: center; font-size: 16px; color: #707070;  font-family: 'proximanova-regular';}
+.compensationmodifier_table_wrapper table th{ border: solid 1px #fff; padding: 18px; text-align: center; font-size: 16px; color: #707070;  font-family: 'proximanova-regular'; background: #cfcfcf; font-weight: normal;}
+
+.compensationmodifier_table_wrapper table td .copyurlbtn{background:#0083b4; cursor:pointer; text-align:center; font-size:16px; padding: 5px 12px; color:#fff;  font-family: 'proximanova-regular'; border: navajowhite; float: right;     width: 100px !important;
+    display: block !important; outline: none;}
+
+
+.compensationmodifier_table_wrapper table td span {
+    display: inline-block;
+    float: left;
+    padding: 7px 0;
+}

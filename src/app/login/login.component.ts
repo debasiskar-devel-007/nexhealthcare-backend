@@ -66,18 +66,18 @@ export class LoginComponent implements OnInit {
 
                         if (result.msg.type == 'salesrep') {
                             if (result.msg.signup_step == '1') {
-                                this.router.navigate(['/repcontract']);
+                                this.router.navigate(['/employment-agreement']);
                             }
                             else if (result.msg.signup_step == '2') {
                                 this.router.navigate(['/trainingstep']);
                             }
                             else if (result.msg.signup_step == '3') {
-                                this.router.navigate(['/salesrepdashboard']);
+                                this.router.navigate(['/rep-dashboard']);
                             }
                         }
                         else if (result.msg.type == 'recruiter') {
                             if (result.msg.signup_step == '1') {
-                                this.router.navigate(['/repcontract']);
+                                this.router.navigate(['/employment-agreement']);
                             }
                             else if (result.msg.signup_step == '2') {
                                 this.router.navigate(['/trainingstep']);
