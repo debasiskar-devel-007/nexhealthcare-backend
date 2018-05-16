@@ -47,7 +47,7 @@ const appRoutes: Routes = [
     { path: 'add-pateint', component: PateintdetailComponent},
     { path: 'compensationmodifier', component: CompensationmodifierComponent},
     { path: 'myaccount', component: MyaccountComponent},
-    { path: 'patientrecord', component: PatientrecordComponent},
+    { path: 'patientrecord/:id', component: PatientrecordComponent},
     { path: 'userrecruiterlist', component: UserrecruiterlistComponent},
     { path: 'userrecruiteredit', component: UserrecruitereditComponent},
     { path: 'userrecruiterdetail', component: UserrecruiterdetailComponent},

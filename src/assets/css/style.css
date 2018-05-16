@@ -705,7 +705,7 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .pateints_list_table_header{ background: #cfcfcf; font-size: 16px; color: #707070; font-family: 'proximanova-bold';}
 
-.pateints_list_table_contain{ background: #ececec; font-size: 16px; color: #707070; font-family: 'proximanova-regular'; border-bottom: solid 1px #fff;}
+.pateints_list_table_contain{ background: #ececec; font-size: 16px; color: #707070; font-family: 'proximanova-regular'; border-bottom: solid 1px #fff; cursor: pointer;}
 
 .pateints_list_weraper span{ display: block; padding: 5px 0;}
 

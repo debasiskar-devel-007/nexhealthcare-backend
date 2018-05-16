@@ -57,12 +57,7 @@ export class PateintdetailComponent implements OnInit {
             email: ['', Validators.compose([Validators.required, PateintdetailComponent.validateEmail])],
             phone: ['', Validators.required],
             city: ['', Validators.required],
-            state: ['', Validators.required],
-            medicarecard: ['', Validators.required],
-            iscancer: ['', Validators.required],
-            cancertypes: ['', Validators.required],
-            relation: ['', Validators.required],
-            approxage: ['', Validators.required],
+            state: ['', Validators.required]
         });
     }
 
@@ -114,12 +109,12 @@ export class PateintdetailComponent implements OnInit {
                 medicareclaim: formval.medicareclaim,
                 tag: formval.tag,
                 raceethnicity: formval.raceethnicity,
-                trackingno: formval.trackingno,*/
+                trackingno: formval.trackingno,
                 medicarecard: formval.medicarecard,
                 iscancer: formval.iscancer,
                 cancertypes: formval.cancertypes,
                 relation: formval.relation,
-                approxage: formval.approxage,
+                approxage: formval.approxage,*/
             };
             this._http.post(link, data)
                 .subscribe(res => {

@@ -36,4 +36,7 @@ export class PateintsComponent implements OnInit {
                 console.log('Oooops!');
             });
     }
+    gotopatientrecord(id) {
+        this.router.navigate(['/patientrecord', id]);
+    }
 }
