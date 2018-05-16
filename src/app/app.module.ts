@@ -28,6 +28,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { UsersearchPipe } from './search.pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { CompensationmodifierComponent } from './compensationmodifier/compensationmodifier.component';
+import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { CompensationmodifierComponent } from './compensationmodifier/compensati
     PateintdetailComponent,
       UsersearchPipe,
       CompensationmodifierComponent,
+      ForgetpasswordComponent,
+      ResetpasswordComponent,
 
   ],
   imports: [
