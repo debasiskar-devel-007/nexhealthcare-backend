@@ -19,6 +19,11 @@ import { FrontfooterComponent } from './frontfooter/frontfooter.component';
 import { PateintsComponent } from './pateints/pateints.component';
 import { PateintquestionireComponent } from './pateintquestionire/pateintquestionire.component';
 import { PateintdetailComponent } from './pateintdetail/pateintdetail.component';
+import { UserrecruiterlistComponent } from './userrecruiterlist/userrecruiterlist.component';
+import { UserrecruitereditComponent } from './userrecruiteredit/userrecruiteredit.component';
+import { UserrecruiterdetailComponent } from './userrecruiterdetail/userrecruiterdetail.component';
+import { MyaccountComponent } from './myaccount/myaccount.component';
+import { CompensationmodifierComponent } from './compensationmodifier/compensationmodifier.component';
 
 
 const appRoutes: Routes = [
@@ -39,6 +44,11 @@ const appRoutes: Routes = [
     { path: 'pateints', component: PateintsComponent},
     { path: 'pateintquestionire', component: PateintquestionireComponent},
     { path: 'pateintdetail', component: PateintdetailComponent},
+    { path: 'userrecruiterdetail', component: UserrecruiterdetailComponent},
+    { path: 'userrecruiteredit', component: UserrecruitereditComponent},
+    { path: 'userrecruiterlist', component: UserrecruiterlistComponent},
+    { path: 'myaccount', component: MyaccountComponent},
+    { path: 'compensationmodifier', component: CompensationmodifierComponent},
 
 
    // { path: 'content', component: ContentComponent,outlet:'content'},

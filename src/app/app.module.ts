@@ -28,6 +28,10 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { UsersearchPipe } from './search.pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { CompensationmodifierComponent } from './compensationmodifier/compensationmodifier.component';
+import { UserrecruiterdetailComponent } from './userrecruiterdetail/userrecruiterdetail.component';
+import { UserrecruitereditComponent } from './userrecruiteredit/userrecruiteredit.component';
+import { UserrecruiterlistComponent } from './userrecruiterlist/userrecruiterlist.component';
+import { MyaccountComponent } from './myaccount/myaccount.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +53,10 @@ import { CompensationmodifierComponent } from './compensationmodifier/compensati
     PateintdetailComponent,
       UsersearchPipe,
       CompensationmodifierComponent,
+      UserrecruiterdetailComponent,
+      UserrecruitereditComponent,
+      UserrecruiterlistComponent,
+      MyaccountComponent
 
   ],
   imports: [
