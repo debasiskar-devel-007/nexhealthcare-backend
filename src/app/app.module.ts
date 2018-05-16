@@ -33,6 +33,8 @@ import { PatientrecordComponent } from './patientrecord/patientrecord.component'
 import { UserrecruiterdetailComponent } from './userrecruiterdetail/userrecruiterdetail.component';
 import { UserrecruitereditComponent } from './userrecruiteredit/userrecruiteredit.component';
 import { UserrecruiterlistComponent } from './userrecruiterlist/userrecruiterlist.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { UserrecruiterlistComponent } from './userrecruiterlist/userrecruiterlis
       PatientrecordComponent,
       UserrecruiterdetailComponent,
       UserrecruitereditComponent,
-      UserrecruiterlistComponent
+      UserrecruiterlistComponent,
+      ResetpasswordComponent,
+      ForgetpasswordComponent
   ],
   imports: [
     BrowserModule,

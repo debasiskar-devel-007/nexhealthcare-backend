@@ -25,6 +25,8 @@ import { PatientrecordComponent } from './patientrecord/patientrecord.component'
 import { UserrecruiterlistComponent } from './userrecruiterlist/userrecruiterlist.component';
 import { UserrecruitereditComponent } from './userrecruiteredit/userrecruiteredit.component';
 import { UserrecruiterdetailComponent } from './userrecruiterdetail/userrecruiterdetail.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 
 
 const appRoutes: Routes = [
@@ -51,6 +53,8 @@ const appRoutes: Routes = [
     { path: 'userrecruiterlist', component: UserrecruiterlistComponent},
     { path: 'userrecruiteredit', component: UserrecruitereditComponent},
     { path: 'userrecruiterdetail', component: UserrecruiterdetailComponent},
+    { path: 'forgetpassword', component: ForgetpasswordComponent},
+    { path: 'resetpassword/:id', component: ResetpasswordComponent},
 
 
    // { path: 'content', component: ContentComponent,outlet:'content'},
