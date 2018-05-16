@@ -663,7 +663,7 @@ a:visited {	text-decoration: none;	outline: none;}
 
 /*-------------------pateints----------*/
 
-.pateints_inner_body{  background: #fff; padding: 30px 0; font-family: 'proximanova-regular'; font-weight: normal;}
+.pateints_inner_body{  background: #fff; padding: 30px 0; font-family: 'proximanova-regular'; font-weight: normal; min-height: 700px;}
 
 
 .pateintswrappe{ width: 1199px; margin: 0 auto; padding: 0px; }
@@ -983,6 +983,8 @@ a:visited {	text-decoration: none;	outline: none;}
 }
 
 
+
+
 .myaccount_form_wrapper{ background: #ececec; padding: 20px;}
 
 .myaccount_form_wrapper h6{ margin: 0; padding: 0 0 0 0; font-size: 24px; color: #295b73;  font-family: 'proximanova-bold';}
@@ -1174,7 +1176,7 @@ a:visited {	text-decoration: none;	outline: none;}
     display: inline-block!important;  line-height: inherit;  font-family: 'proximanova-regular'!important;
 }
 
-.pateintquestioniremodal .pateints_inner_body{ padding: 0px;}
+.pateintquestioniremodal .pateints_inner_body{ padding: 0px; min-height: inherit!important; }
 
 .pateintquestioniremodal  .modal-content input[type="text"]{ height: auto!important;}
 
