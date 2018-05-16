@@ -27,6 +27,7 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { UsersearchPipe } from './search.pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { CompensationmodifierComponent } from './compensationmodifier/compensationmodifier.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     PateintsComponent,
     PateintdetailComponent,
       UsersearchPipe,
+      CompensationmodifierComponent,
 
   ],
   imports: [
