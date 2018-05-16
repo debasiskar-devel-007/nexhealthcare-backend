@@ -19,7 +19,7 @@
 
     <div class="pateints_header">
 
-      <div class="pateints_header_left"><h2>Patients <span>List View</span></h2></div>
+      <div class="pateints_header_left"><!--<h2>Patients <span>List View</span></h2>--></div>
       <div class="pateints_header_right">
         <div class="pateints_searchdiv pateints_searchdiv2">
         <form>
@@ -28,7 +28,7 @@
           <div class="clearfix"></div>
         </form>
       </div>
-        <button [routerLink]="['/pateintdetail']" class="btn btn-primary patients_btn">Add Patients</button>
+        <!--<button [routerLink]="['/add-pateint']" class="btn btn-primary patients_btn">Add Patients</button>-->
       </div>
       <div class="clearfix"></div>
 
@@ -60,7 +60,7 @@
       </div>
 
       <div class="pateints_list_table_contain" *ngFor="let item of datalist | usersearch:listFilter.value| paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
-        <div class="row row-eq-height">
+        <div class="row row-eq-height" (click)="gotopatientrecord(item._id)">
           <div class="div1">
             <span>{{item.uniqueid}}</span>
             <span>{{item.phone}}</span>

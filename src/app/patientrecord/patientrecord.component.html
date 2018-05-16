@@ -1,0 +1,735 @@
+
+<div class="container-fluid admin_inner_top">
+  <div class="container admininnerwrappe">
+    <a href="javascript:void(0)"><img src="../../assets/images/adminlogo.png" alt="#"></a>
+    <!-- <a href="javascript:void(0)"><img src="images/adminlogo.png" alt="#"></a>-->
+
+  </div>
+
+</div>
+
+<div class="container-fluid admin_inner_heading">
+
+  <h2><span>Patients Record View</span></h2>
+
+</div>
+
+
+
+<div class="container-fluid pateints_inner_body">
+  <div class="container pateintswrappe">
+
+    <div class="pateints_header">
+
+      <div class="pateints_header_left"><h2>Patient <span>Information</span></h2></div>
+      <div class="pateints_header_right"></div>
+      <div class="clearfix"></div>
+
+
+    </div>
+
+    <div class="pateints_list_weraper">
+      <form role="form" novalidate [formGroup]="dataForm" (ngSubmit)="dosubmit(dataForm.value)">
+
+        <div class="pateintdetail_left">
+
+          <div class="pateintdetail_left_form">
+
+            <div class="form-group"><input type="text"  class="form-control" placeholder="First Name" [formControl]="dataForm.controls['firstname']"/>
+              <span class="has-error" *ngIf ="dataForm.controls['firstname'].touched && !dataForm.controls['firstname'].valid">Firstname is required!</span></div>
+
+            <div class="form-group"><input type="text"  class="form-control"  placeholder="Last Name" [formControl]="dataForm.controls['lastname']"/>
+              <span class="has-error" *ngIf ="dataForm.controls['lastname'].touched && !dataForm.controls['lastname'].valid">Lastname is required!</span></div>
+
+            <div class="form-group"><input type="text"  class="form-control"  placeholder="Phone Number" [formControl]="dataForm.controls['phone']"/>
+              <span class="has-error" *ngIf ="dataForm.controls['phone'].touched && !dataForm.controls['phone'].valid">Phone No must be 10 numbers!</span></div>
+
+            <div class="form-group"><input type="email"  class="form-control"  placeholder="Email Address" [formControl]="dataForm.controls['email']" readonly/>
+             <!-- <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('blank')==true">Emailid is Required !</span>
+              <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('invalid')==true">Invalid Emailid!</span>-->
+            </div>
+            <!--
+                        <div class="form-group"><textarea  placeholder="Address" [formControl]="dataForm.controls['address']"></textarea>
+                          <span class="has-error" *ngIf ="dataForm.controls['address'].touched && !dataForm.controls['address'].valid">Address is required!</span></div>-->
+
+            <div class="form-group"><input type="text"  class="form-control"  placeholder="City" [formControl]="dataForm.controls['city']"/>
+              <span class="has-error" *ngIf ="dataForm.controls['city'].touched && !dataForm.controls['city'].valid">City is required!</span></div>
+            <div class="clearfix"></div>
+            <div class="form-group"><input type="text"  class="form-control"  placeholder="State" [formControl]="dataForm.controls['state']"/>
+              <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid">State is required!</span></div>
+
+            <!-- <div class="form-group"><input type="text"  class="form-control"  placeholder="Zip" [formControl]="dataForm.controls['zip']"/>
+               <span class="has-error" *ngIf ="dataForm.controls['zip'].touched && !dataForm.controls['zip'].valid">Zip is required!</span></div>
+
+             <div class="form-group"><input type="text"  class="form-control"  placeholder="Date of Birth" [formControl]="dataForm.controls['dob']"/>
+               <span class="has-error" *ngIf ="dataForm.controls['dob'].touched && !dataForm.controls['dob'].valid">Date Of Birth is required!</span></div>
+
+             <div class="form-group">
+             <select [formControl]="dataForm.controls['gender']" class="form-control">
+               <option value="" disabled>Gender </option>
+               <option value="male" name="gender">Male </option>
+               <option value="female" name="gender">Female </option>
+             </select>
+               <span class="has-error" *ngIf ="dataForm.controls['gender'].touched && !dataForm.controls['gender'].valid">Gender is required!</span>
+             </div>
+
+
+             <div class="form-group"><input type="text"  class="form-control"  placeholder="Race/Ethnicity " [formControl]="dataForm.controls['raceethnicity']"/>
+               <span class="has-error" *ngIf ="dataForm.controls['raceethnicity'].touched && !dataForm.controls['raceethnicity'].valid">Race/Ethnicity is required!</span></div>
+
+             <div class="form-group"><input type="text"  class="form-control"  placeholder="Height/Weight" [formControl]="dataForm.controls['heightwidth']"/>
+               <span class="has-error" *ngIf ="dataForm.controls['heightwidth'].touched && !dataForm.controls['heightwidth'].valid">Height/Width is required!</span></div>
+
+             <div class="form-group"><input type="text"  class="form-control"  placeholder="Allergies" [formControl]="dataForm.controls['allergies']"/>
+               <span class="has-error" *ngIf ="dataForm.controls['allergies'].touched && !dataForm.controls['allergies'].valid">Allergies is required!</span></div>
+
+             <div class="form-group"><input type="text"  class="form-control"  placeholder="Medicare Claim #" [formControl]="dataForm.controls['medicareclaim']"/>
+               <span class="has-error" *ngIf ="dataForm.controls['medicareclaim'].touched && !dataForm.controls['medicareclaim'].valid">Medicareclaim is required!</span></div>
+
+             <div class="form-group"><input type="text"  class="form-control"  placeholder="Tag" [formControl]="dataForm.controls['tag']"/></div>
+             <div class="form-group"><input type="text"  class="form-control"  placeholder="Tracking Number " [formControl]="dataForm.controls['trackingno']"/>
+               <span class="has-error" *ngIf ="dataForm.controls['trackingno'].touched && !dataForm.controls['trackingno'].valid">Tracking No is required!</span></div>-->
+
+
+            <div class="clearfix"></div>
+
+
+
+         <!--   <h6>Qualifying Questions</h6>
+
+
+
+            <div class="form-group2">
+              <label class="labeltext">Do you currently have the Red, White, or Blue Medicare Part-B Card? </label>
+              <div class="radiobtn_div1">
+                <div class="button-holder">
+                  <input type="radio" checked="" class="regular-radio" name="radio-1-set" id="radio-1-set" [formControl]="dataForm.controls['medicarecard']" value="1"><label for="radio-1-set" ></label><span>YES</span>
+                  <input type="radio" checked="" class="regular-radio" name="radio-1-set" id="radio-2-set"  [formControl]="dataForm.controls['medicarecard']" value="0"><label for="radio-2-set"></label><span>NO</span>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="clearfix"></div>
+              <span class="has-error" *ngIf ="dataForm.controls['medicarecard'].touched && !dataForm.controls['medicarecard'].valid">Medicare card is required!</span>
+            </div>
+
+            <div class="form-group2">
+              <label class="labeltext">Have YOU and/or ANYONE else in your family EVER been diagnosed with any type of cancer? </label>
+              <div class="radiobtn_div1">
+                <div class="button-holder">
+                  <input type="radio" checked="" class="regular-radio" name="radio-3-set" id="radio-3-set" [formControl]="dataForm.controls['iscancer']" value="1"><label for="radio-3-set"></label><span>YES</span>
+                  <input type="radio" checked="" class="regular-radio" name="radio-3-set" id="radio-4-set" [formControl]="dataForm.controls['iscancer']" value="0"><label for="radio-4-set"></label><span>NO</span>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="clearfix"></div>
+              <span class="has-error" *ngIf ="dataForm.controls['iscancer'].touched && !dataForm.controls['iscancer'].valid">Please give the number!</span>
+            </div>
+
+            <div class="form-group3">
+              <label class="labeltext">Do you know what cancer(s) they were diagnosed with?</label>
+              <input type="text"  class="form-control" [formControl]="dataForm.controls['cancertypes']" />
+              <div class="clearfix"></div>
+              <span class="has-error" *ngIf ="dataForm.controls['cancertypes'].touched && !dataForm.controls['cancertypes'].valid">This is a required field!</span>
+            </div>
+
+            <div class="form-group4">
+              <label class="labeltext">What is their relation to you?  </label>
+              <input type="text"  class="form-control" [formControl]="dataForm.controls['relation']"/>
+              <div class="clearfix"></div>
+              <span class="has-error" *ngIf ="dataForm.controls['relation'].touched && !dataForm.controls['relation'].valid">This is a required field!</span>
+            </div>
+
+            <div class="form-group5">
+              <label class="labeltext">At what age approximately were they diagnosed with this cancer?  </label>
+              <input type="text"  class="form-control" [formControl]="dataForm.controls['approxage']"/>
+              <div class="clearfix"></div>
+              <span class="has-error" *ngIf ="dataForm.controls['approxage'].touched && !dataForm.controls['approxage'].valid">This is a required field!</span>
+            </div>-->
+
+
+
+          </div>
+
+
+          <textarea placeholder="Only Notes" class="notes_textarea hidden"></textarea>
+
+
+
+        </div>
+
+
+        <div class="pateintdetail_right">
+          <div class="pateints_btn_wrapper">
+            <input type="submit"  value="Save" class="btn1" />
+            <input type="button"  value="Cancel" class="btn2" (click)="cancel()"/>
+
+          </div>
+
+
+        </div>
+
+
+
+        <div class="clearfix"></div>
+
+      </form>
+
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+
+</div>
+<div class="container-fluid admin_inner_footer">
+  <div class="container admininnerwrappe">
+    <p>Copyright &copy; 2017-2018 Nex Healthcare . All rights reserved.</p>
+
+  </div>
+
+</div>
+
+
+
+<div *ngIf="pateintquestioniremodal" class=" sign_modal modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+
+
+        <div class="container-fluid admin_inner_top">
+          <div class="container admininnerwrappe">
+            <a href="javascript:void(0)"><img src="../../assets/images/adminlogo.png" alt="#"></a>
+            <!-- <a href="javascript:void(0)"><img src="images/adminlogo.png" alt="#"></a>-->
+
+          </div>
+
+        </div>
+
+        <div class="container-fluid admin_inner_heading">
+
+          <h2><span>Patient Profile Sheet-(Medicare) </span></h2>
+
+        </div>
+
+
+
+        <div class="container-fluid pateints_inner_body">
+          <div class="container pateintswrappe">
+
+
+
+            <div class="pateints_list_weraper">
+              <form>
+
+                <div class="pateintquestionire_div1">
+                  <table>
+                    <tr>
+                      <td><h2> PRODUCT(S)<br/>REQUESTED </h2></td>
+                      <td>
+                        <input  type="checkbox"/> <span>DME</span><br/>
+                        <input  type="checkbox"/><span> Rx</span><br/>
+                        <input  type="checkbox"/><span>PGX</span><br/>
+                        <input  type="checkbox"/> <span>CGX</span>
+                      </td>
+                      <td>
+                        <h3>NEX HEALTHCARE<br/>
+                          610 W Congress Street<br/>
+                          Detroit, MI 48226
+                        </h3>
+                      </td>
+
+                    </tr>
+
+                  </table>
+
+
+
+
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="pateintquestionire_div2">
+                  <div class="pateintquestionire_div2_left">
+
+                    <h3>PATIENT INFORMATION</h3>
+
+                    <div class="form-group">
+                      <label>First Name: </label><input type="text"  class="form-control1_pq"/>
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Last Name: </label><input type="text"  class="form-control1_pq"/>
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Best Phone #:</label><input type="text"  class="form-control1_pq"/>
+                      <div class="clearfix"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label>Address: </label><textarea></textarea>
+                      <div class="clearfix"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label>City/State/Zip: </label><input type="text"  class="form-control1_pq"/>
+                      <div class="clearfix"></div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                      <label>Date of Birth: </label><input type="text"  class="form-control1_pq"/>
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Gender:  </label><input type="text"  class="form-control1_pq"/>
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Race/Ethnicity: </label><input type="text"  class="form-control1_pq"/>
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>HT/WT : </label><input type="text"  class="form-control2_pq"/> /<input type="text"  class="form-control2_pqr"/>
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Allergies: </label><input type="text"  class="form-control1_pq"/>
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Medicare Claim # </label><input type="text"  class="form-control1_pq"/>
+                      <div class="clearfix"></div>
+                    </div>
+
+
+
+                  </div>
+
+                  <div class="pateintquestionire_div2_right">
+                    <h3>SPECIAL NOTES</h3>
+
+
+                    <div class="form-group">
+                      <label>A) : </label><input type="text"  class="form-control3_pq"/>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                      <label>B) : </label><input type="text"  class="form-control3_pq"/>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                      <label>C) : </label><input type="text"  class="form-control3_pq"/>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                      <label>D) : </label><input type="text"  class="form-control3_pq"/>
+                      <div class="clearfix"></div>
+                    </div>
+
+
+                  </div>
+
+
+                  <div class="clearfix"></div>
+                </div>
+
+
+                <div class="pateintquestionire_div2">
+                  <div class="pateintquestionire_div2_left">
+
+                    <h3>Pharmacy</h3>
+
+                    <p>Pharmacy Insurance Name:</p>
+                    <p>ID #:</p>
+                    <p>BIN #:</p>
+                    <p>PCN #:</p>
+                    <p>GROUP #: </p>
+
+                    <div class="pclass2">
+                      <p> History / Reason:</p>
+                      <p>Area(s) of Issue:</p>
+                      <p>Treatments:</p>
+
+                    </div>
+
+
+
+                  </div>
+
+                  <div class="pateintquestionire_div2_right">
+                    <h3>Products Requested</h3>
+
+
+                    <p> <input  type="checkbox"/> <span>TOPICAL PAIN</span><br/></p>
+                    <p>  <input  type="checkbox"/><span> ORAL PAIN</span><br/></p>
+                    <p>  <input  type="checkbox"/><span>DERMA</span><br/></p>
+                    <p>  <input  type="checkbox"/> <span>MIGRAINE/HA</span></p>
+
+                  </div>
+
+
+                  <div class="clearfix"></div>
+                </div>
+
+
+                <div class="pateintquestionire_div2">
+
+                  <div class="pateintquestionire_div2_left2">
+                    <div class="pateintquestionire_div2_left2_heading">
+                      <div class="left2_heading1"><h5><span>PGX</span> (Med List)</h5></div>
+                      <div class="left2_heading2"><h5><span>CGX</span> (Questionnaire)</h5></div>
+                      <div class="left2_heading3"><p>TYPE</p></div>
+                      <div class="left2_heading4"><p>TYPE</p></div>
+                      <div class="left2_heading5"><p>AGE DIAGNOSED</p></div>
+                      <div class="left2_heading6"><p> IF DECEASED,</p></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>1.</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p><strong>PERSONAL HISTORY:</strong></p></div>
+                      <div class="left2_heading3"><input type="text" /></div>
+                      <div class="left2_heading4"><input type="text" /></div>
+                      <div class="left2_heading5"><input type="text" /></div>
+                      <div class="left2_heading6"><p>AGE AT<br/>
+                        DEATH</p></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>2.</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p><strong>FAMILY HISTORY:</strong></p></div>
+                      <div class="left2_heading3">&nbsp;</div>
+                      <div class="left2_heading4">&nbsp;</div>
+                      <div class="left2_heading5">&nbsp;</div>
+                      <div class="left2_heading6">&nbsp;</div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>3.</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p>MOTHER:</p></div>
+                      <div class="left2_heading3"><input type="text" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" /></div>
+                      <div class="left2_heading5"><input type="text" /></div>
+                      <div class="left2_heading6"><input type="text" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>+</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p>FATHER:</p></div>
+                      <div class="left2_heading3"><input type="text" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" /></div>
+                      <div class="left2_heading5"><input type="text" /></div>
+                      <div class="left2_heading6"><input type="text" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>+</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p>DAUGHTER:</p></div>
+                      <div class="left2_heading3"><input type="text" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" /></div>
+                      <div class="left2_heading5"><input type="text" /></div>
+                      <div class="left2_heading6"><input type="text" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>+</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p>SON:</p></div>
+                      <div class="left2_heading3"><input type="text" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" /></div>
+                      <div class="left2_heading5"><input type="text" /></div>
+                      <div class="left2_heading6"><input type="text" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>+</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p>BROTHER:</p></div>
+                      <div class="left2_heading3"><input type="text" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" /></div>
+                      <div class="left2_heading5"><input type="text" /></div>
+                      <div class="left2_heading6"><input type="text" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>+</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p>SISTER:</p></div>
+                      <div class="left2_heading3"><input type="text" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" /></div>
+                      <div class="left2_heading5"><input type="text" /></div>
+                      <div class="left2_heading6"><input type="text" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>+</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p>NEPHEW:</p></div>
+                      <div class="left2_heading3"><input type="text" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" /></div>
+                      <div class="left2_heading5"><input type="text" /></div>
+                      <div class="left2_heading6"><input type="text" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>+</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p>NIECE:</p></div>
+                      <div class="left2_heading3"><input type="text" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" /></div>
+                      <div class="left2_heading5"><input type="text" /></div>
+                      <div class="left2_heading6"><input type="text" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>+</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p>UNCLE:</p></div>
+                      <div class="left2_heading3"><input type="text" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" /></div>
+                      <div class="left2_heading5"><input type="text" /></div>
+                      <div class="left2_heading6"><input type="text" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>+</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p>AUTN:</p></div>
+                      <div class="left2_heading3"><input type="text" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" /></div>
+                      <div class="left2_heading5"><input type="text" /></div>
+                      <div class="left2_heading6"><input type="text" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>+</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p>MOM'S FATHER:</p></div>
+                      <div class="left2_heading3"><input type="text" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" /></div>
+                      <div class="left2_heading5"><input type="text" /></div>
+                      <div class="left2_heading6"><input type="text" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>+</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p>MOM'S MOTHER:</p></div>
+                      <div class="left2_heading3"><input type="text" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" /></div>
+                      <div class="left2_heading5"><input type="text" /></div>
+                      <div class="left2_heading6"><input type="text" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>+</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p>DAD'S FATHER:</p></div>
+                      <div class="left2_heading3"><input type="text" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" /></div>
+                      <div class="left2_heading5"><input type="text" /></div>
+                      <div class="left2_heading6"><input type="text" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>+</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p>DAD'S MOTHER:</p></div>
+                      <div class="left2_heading3"><input type="text" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" /></div>
+                      <div class="left2_heading5"><input type="text" /></div>
+                      <div class="left2_heading6"><input type="text" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>+</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p><i>OTHER :</i></p></div>
+                      <div class="left2_heading3"><input type="text" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" /></div>
+                      <div class="left2_heading5"><input type="text" /></div>
+                      <div class="left2_heading6"><input type="text" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>+</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p><i>OTHER :</i></p></div>
+                      <div class="left2_heading3"><input type="text" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" /></div>
+                      <div class="left2_heading5"><input type="text" /></div>
+                      <div class="left2_heading6"><input type="text" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading1"><span>+</span> <input type="text" /></div>
+                      <div class="left2_heading2"><p><i>OTHER :</i></p></div>
+                      <div class="left2_heading3"><input type="text" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" /></div>
+                      <div class="left2_heading5"><input type="text" /></div>
+                      <div class="left2_heading6"><input type="text" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                  </div>
+
+
+                  <div class="pateintquestionire_div2_right2">
+                    <h3>Type of Cancer</h3>
+
+                    <label>* <u>Breast</u></label>
+                    <label>* <u>Ovarian</u></label>
+                    <label>* Digestive</label>
+                    <p>
+                      - Pancreatic<br/>
+                      - Colon<br/>
+                      - Rectal<br/>
+                      - Gallbladder<br/>
+                      - Intestinal<br/>
+                      - Stomach<br/>
+                      - Esophageal<br/>
+                      - Throat<br/>
+                      - Liver
+                    </p>
+
+                    <label>* Lung</label>
+                    <p>
+                      - Other Respiratory
+                    </p>
+
+
+                    <label>* Genital</label>
+                    <p>
+                      - Cervical<br/>
+                      - Uterine<br/>
+                      - Endometrial<br/>
+                      - Other Genital Organs
+                    </p>
+
+                    <label>* Prostate</label>
+                    <label>* Testicular</label>
+                    <label>* Kidney</label>
+                    <label>* Bladder</label>
+                    <p>- Urinary Tract</p>
+
+                    <label>* Leukemia</label>
+                    <label>* Lymphatic</label>
+                    <label>* Other Organ Systems</label>
+
+
+                  </div>
+
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="pateintquestionire_div3">
+
+                  <div class="pateintquestionire_bottom_form">
+                    <label>Rep ID: </label>
+                    <input type="text" />
+
+                    <div class="clearfix"></div>
+
+                  </div>
+
+
+                  <input type="submit"  value="Submit" class="pateintquestionirebtn"/>
+
+
+                  <div class="clearfix"></div>
+
+                </div>
+
+
+
+                <div class="clearfix"></div>
+
+              </form>
+
+            </div>
+
+
+
+
+
+
+
+
+          </div>
+
+        </div>
+        <div class="container-fluid admin_inner_footer">
+          <div class="container admininnerwrappe">
+            <p>Copyright &copy; 2017-2018 Nex Healthcare . All rights reserved.</p>
+
+          </div>
+
+        </div>
+
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default popbtn1" data-dismiss="modal" (click)="onHidden()">Cancel</button>
+        <button type="button" class="btn btn-primary popbtn2" data-dismiss="modal" (click)="savepateintquestionire()">Agree</button>
+      </div>
+    </div>
+  </div>
+</div>

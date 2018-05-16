@@ -28,7 +28,7 @@ export class PateintdetailComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.dataForm = this.fb.group({
+       /* this.dataForm = this.fb.group({
             firstname: ['', Validators.required],
             lastname: ['', Validators.required],
             email: ['', Validators.compose([Validators.required, PateintdetailComponent.validateEmail])],
@@ -50,6 +50,14 @@ export class PateintdetailComponent implements OnInit {
             cancertypes: ['', Validators.required],
             relation: ['', Validators.required],
             approxage: ['', Validators.required],
+        });*/
+        this.dataForm = this.fb.group({
+            firstname: ['', Validators.required],
+            lastname: ['', Validators.required],
+            email: ['', Validators.compose([Validators.required, PateintdetailComponent.validateEmail])],
+            phone: ['', Validators.required],
+            city: ['', Validators.required],
+            state: ['', Validators.required]
         });
     }
 
@@ -90,10 +98,10 @@ export class PateintdetailComponent implements OnInit {
                 lastname: formval.lastname,
                 email: formval.email,
                 phone: formval.phone,
-                address: formval.address,
+              //  address: formval.address,
                 city: formval.city,
                 state: formval.state,
-                zip: formval.zip,
+                /*zip: formval.zip,
                 gender: formval.gender,
                 dob: formval.dob,
                 heightwidth: formval.heightwidth,
@@ -106,14 +114,14 @@ export class PateintdetailComponent implements OnInit {
                 iscancer: formval.iscancer,
                 cancertypes: formval.cancertypes,
                 relation: formval.relation,
-                approxage: formval.approxage,
+                approxage: formval.approxage,*/
             };
             this._http.post(link, data)
                 .subscribe(res => {
                     let result = res.json();
                       console.log(result);
                     if (result.status == 'success') {
-                        this.router.navigate(['/pateints']);
+                        this.router.navigate(['/patient-list']);
                     }
                 }, error => {
                     console.log('Oooops!');
@@ -126,6 +134,6 @@ export class PateintdetailComponent implements OnInit {
 
     cancel() {
       this.dataForm.reset();
-        this.router.navigate(['/pateints']);
+        this.router.navigate(['/patient-list']);
     }
 }

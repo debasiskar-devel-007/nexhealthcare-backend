@@ -47,9 +47,9 @@
             <div class="form-group"><input type="email"  class="form-control"  placeholder="Email Address" [formControl]="dataForm.controls['email']"/>
               <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('blank')==true">Emailid is Required !</span>
               <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('invalid')==true">Invalid Emailid!</span></div>
-
+<!--
             <div class="form-group"><textarea  placeholder="Address" [formControl]="dataForm.controls['address']"></textarea>
-              <span class="has-error" *ngIf ="dataForm.controls['address'].touched && !dataForm.controls['address'].valid">Address is required!</span></div>
+              <span class="has-error" *ngIf ="dataForm.controls['address'].touched && !dataForm.controls['address'].valid">Address is required!</span></div>-->
 
             <div class="form-group"><input type="text"  class="form-control"  placeholder="City" [formControl]="dataForm.controls['city']"/>
               <span class="has-error" *ngIf ="dataForm.controls['city'].touched && !dataForm.controls['city'].valid">City is required!</span></div>
@@ -57,7 +57,7 @@
             <div class="form-group"><input type="text"  class="form-control"  placeholder="State" [formControl]="dataForm.controls['state']"/>
               <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid">State is required!</span></div>
 
-            <div class="form-group"><input type="text"  class="form-control"  placeholder="Zip" [formControl]="dataForm.controls['zip']"/>
+           <!-- <div class="form-group"><input type="text"  class="form-control"  placeholder="Zip" [formControl]="dataForm.controls['zip']"/>
               <span class="has-error" *ngIf ="dataForm.controls['zip'].touched && !dataForm.controls['zip'].valid">Zip is required!</span></div>
 
             <div class="form-group"><input type="text"  class="form-control"  placeholder="Date of Birth" [formControl]="dataForm.controls['dob']"/>
@@ -87,13 +87,13 @@
 
             <div class="form-group"><input type="text"  class="form-control"  placeholder="Tag" [formControl]="dataForm.controls['tag']"/></div>
             <div class="form-group"><input type="text"  class="form-control"  placeholder="Tracking Number " [formControl]="dataForm.controls['trackingno']"/>
-              <span class="has-error" *ngIf ="dataForm.controls['trackingno'].touched && !dataForm.controls['trackingno'].valid">Tracking No is required!</span></div>
+              <span class="has-error" *ngIf ="dataForm.controls['trackingno'].touched && !dataForm.controls['trackingno'].valid">Tracking No is required!</span></div> -->
 
 
             <div class="clearfix"></div>
 
 
-
+<!--
             <h6>Qualifying Questions</h6>
 
 
@@ -143,7 +143,7 @@
               <input type="text"  class="form-control" [formControl]="dataForm.controls['approxage']"/>
               <div class="clearfix"></div>
               <span class="has-error" *ngIf ="dataForm.controls['approxage'].touched && !dataForm.controls['approxage'].valid">This is a required field!</span>
-            </div>
+            </div>-->
 
 
 
@@ -159,7 +159,7 @@
 
         <div class="pateintdetail_right">
           <div class="pateints_btn_wrapper">
-            <input type="submit"  value="Save" class="btn1" />
+            <input type="submit"  value="Add Patient" class="btn1" />
             <input type="button"  value="Cancel" class="btn2" (click)="cancel()"/>
 
           </div>

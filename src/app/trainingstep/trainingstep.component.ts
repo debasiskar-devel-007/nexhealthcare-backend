@@ -145,7 +145,7 @@ export class TrainingstepComponent implements OnInit {
                 console.log('Oooops!');
             });
       if (this.cookiedetails.type == 'salesrep') {
-        this.router.navigate(['/salesrepdashboard']);
+        this.router.navigate(['/rep-dashboard']);
       }
       else {
           this.router.navigate(['/recruiterdashboard']);
