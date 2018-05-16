@@ -28,7 +28,7 @@ export class PateintdetailComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.dataForm = this.fb.group({
+       /* this.dataForm = this.fb.group({
             firstname: ['', Validators.required],
             lastname: ['', Validators.required],
             email: ['', Validators.compose([Validators.required, PateintdetailComponent.validateEmail])],
@@ -45,6 +45,19 @@ export class PateintdetailComponent implements OnInit {
             tag: [''],
             raceethnicity: ['', Validators.required],
             trackingno: ['', Validators.required],
+            medicarecard: ['', Validators.required],
+            iscancer: ['', Validators.required],
+            cancertypes: ['', Validators.required],
+            relation: ['', Validators.required],
+            approxage: ['', Validators.required],
+        });*/
+        this.dataForm = this.fb.group({
+            firstname: ['', Validators.required],
+            lastname: ['', Validators.required],
+            email: ['', Validators.compose([Validators.required, PateintdetailComponent.validateEmail])],
+            phone: ['', Validators.required],
+            city: ['', Validators.required],
+            state: ['', Validators.required],
             medicarecard: ['', Validators.required],
             iscancer: ['', Validators.required],
             cancertypes: ['', Validators.required],
@@ -90,10 +103,10 @@ export class PateintdetailComponent implements OnInit {
                 lastname: formval.lastname,
                 email: formval.email,
                 phone: formval.phone,
-                address: formval.address,
+              //  address: formval.address,
                 city: formval.city,
                 state: formval.state,
-                zip: formval.zip,
+                /*zip: formval.zip,
                 gender: formval.gender,
                 dob: formval.dob,
                 heightwidth: formval.heightwidth,
@@ -101,7 +114,7 @@ export class PateintdetailComponent implements OnInit {
                 medicareclaim: formval.medicareclaim,
                 tag: formval.tag,
                 raceethnicity: formval.raceethnicity,
-                trackingno: formval.trackingno,
+                trackingno: formval.trackingno,*/
                 medicarecard: formval.medicarecard,
                 iscancer: formval.iscancer,
                 cancertypes: formval.cancertypes,
@@ -113,7 +126,7 @@ export class PateintdetailComponent implements OnInit {
                     let result = res.json();
                       console.log(result);
                     if (result.status == 'success') {
-                        this.router.navigate(['/pateints']);
+                        this.router.navigate(['/patient-list']);
                     }
                 }, error => {
                     console.log('Oooops!');
@@ -126,6 +139,6 @@ export class PateintdetailComponent implements OnInit {
 
     cancel() {
       this.dataForm.reset();
-        this.router.navigate(['/pateints']);
+        this.router.navigate(['/patient-list']);
     }
 }

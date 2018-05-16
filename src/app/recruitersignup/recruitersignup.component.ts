@@ -183,7 +183,7 @@ export class RecruitersignupComponent implements OnInit {
                         console.log('cookiedetails from recruitersignup page');
                         console.log(this.cookiedetails);
                         this.dataForm.reset();
-                        this.router.navigate(['/repcontract']);
+                        this.router.navigate(['/employment-agreement']);
                     }
                 }, error => {
                     console.log('Oooops!');
