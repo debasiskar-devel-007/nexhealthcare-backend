@@ -91,7 +91,6 @@ export class CompensationmodifierComponent implements OnInit {
                                 let result = res.json();
                                 console.log(result);
                                 if (result.status == 'success') {
-                                  console.log('51');
                                     this.compensationerror = null;
                                     this.compensationmodal = false;
                                     this.compensationamount = null;

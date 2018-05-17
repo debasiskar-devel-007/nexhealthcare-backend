@@ -20,12 +20,20 @@ export class LoginComponent implements OnInit {
     private addcookie: CookieService;
     private cookiedetails;
     public serverurl;
+    public serverhost;
+    public neededhost;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.fb = fb;
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
         this.serverurl = _commonservices.url;
+        this.serverhost = _commonservices.hostis;
+        var splitvalue = this.serverhost.split('.');
+        console.log(splitvalue);
+        console.log(splitvalue[1]);
+        console.log(splitvalue[2]);
+        this.neededhost = splitvalue[1] + '.' + splitvalue[2];
     }
 
     ngOnInit() {
@@ -58,12 +66,17 @@ export class LoginComponent implements OnInit {
                             lastname : result.msg.lastname,
                             email : result.msg.email,
                             username : result.msg.username,
-                            type : result.msg.type
+                            type : result.msg.type,
+                          //  lastlogin: result.lastlogintime
                         };
                         this.addcookie.putObject('cookiedetails', addresultforcookie);
                         console.log('cookiedetails from login page');
                         console.log(this.cookiedetails);
-
+                      //  this.router.navigate(['/autologin,']);
+                      var newurl = result.msg.username + '.' + this.neededhost + '/autologin?id=' + result.msg.logintoken;
+                      console.log(newurl);
+                      window.location.href = newurl;
+/*
                         if (result.msg.type == 'salesrep' || 'corporate' || 'leadmanager' || 'masteraccount') {
                             if (result.msg.signup_step == '1') {
                                 this.router.navigate(['/employment-agreement']);
@@ -88,7 +101,7 @@ export class LoginComponent implements OnInit {
                         }
                         else { // admin
                             this.router.navigate(['/dashboard']);
-                        }
+                        }*/
                     }
                     else {
                         this.is_error = result.msg;
