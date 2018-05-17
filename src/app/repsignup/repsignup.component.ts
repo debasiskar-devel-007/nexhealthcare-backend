@@ -23,6 +23,8 @@ export class RepsignupComponent implements OnInit {
     public serverurl;
     private addcookie: CookieService;
     private cookiedetails;
+    public hostname;
+    public type;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.fb = fb;
@@ -31,6 +33,39 @@ export class RepsignupComponent implements OnInit {
         this.serverurl = _commonservices.url;
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
+        console.log(window.location.host);
+        this.hostname = window.location.host;
+        if (this.hostname == 'localhost:4200') {
+            this.type = 'salesrep';
+        }
+        else {
+            var splitvalue = this.hostname.split('.');
+            console.log(splitvalue);
+            console.log(splitvalue[0]);
+            let link = this.serverurl + 'getuserdetailsbyuserid';
+            let data = {
+                username: splitvalue[0],
+            };
+            this._http.post(link, data)
+                .subscribe(res => {
+                    let result = res.json();
+                    console.log(result);
+                    if (result.status == 'success') {
+                        console.log(result.id.type);
+                        if (result.id.type == 'corporate') {
+                            this.type = 'leadmanager ';
+                        }
+                        else if (result.id.type == 'leadmanager') {
+                            this.type = 'masteraccount';
+                        }if (result.id.type == 'masteraccount') {
+                            this.type = 'salesrep';
+                        }
+                    }
+                }, error => {
+                    console.log('Oooops!');
+                });
+        }
+
     }
 
     ngOnInit() {
@@ -155,7 +190,8 @@ export class RepsignupComponent implements OnInit {
                 gender: formval.gender,
                 dob: formval.dob,
                 phone: formval.phone,
-                type: 'salesrep',
+              //  type: 'salesrep',
+                type: this.type,
                 signup_step: 1,
             };
             this._http.post(link, data)
@@ -180,7 +216,8 @@ export class RepsignupComponent implements OnInit {
                             lastname : formval.lastname,
                             email : formval.email,
                             username : formval.username,
-                            type : 'salesrep',
+                           // type : 'salesrep',
+                            type : this.type,
                         };
                         this.addcookie.putObject('cookiedetails', addresultforcookie);
                         console.log('cookiedetails from repsignup page');

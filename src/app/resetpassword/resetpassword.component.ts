@@ -94,12 +94,15 @@ export class ResetpasswordComponent implements OnInit {
         };
     }
     dosubmit(formval) {
+        console.log('hi');
+        console.log(this.dataForm.valid);
         let x: any;
         for (x in this.dataForm.controls) {
             this.dataForm.controls[x].markAsTouched();
         }
         this.is_error = 0;
-        if (this.dataForm.valid ) {
+       // if (this.dataForm.valid ) {
+            console.log('hi');
             let link = this.serverurl + 'newpassword';
             let data = {id: this.cookiedetails._id, password: formval.password};
             this._http.post(link, data)
@@ -118,7 +121,7 @@ export class ResetpasswordComponent implements OnInit {
                 }, error => {
                     console.log('Oooops!');
                 });
-        }
+      //  }
 
 
     }
