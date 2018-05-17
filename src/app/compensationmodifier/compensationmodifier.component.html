@@ -18,8 +18,9 @@
 
     <div class="pateints_header">
 
-      <div class="pateints_header_left"><h2>COMPENSATION <span>MODIFIERS</span></h2></div>
-      <div class="pateints_header_right"></div>
+     <!-- <div class="pateints_header_left"><h2>COMPENSATION <span>MODIFIERS</span></h2></div>-->
+
+      <div class="pateints_header_right">   <button (click)="openaddcompensationmodal()" class="btn btn-primary compensation_btn">Add Compensation</button> <div class="clearfix"></div></div>
       <div class="clearfix"></div>
 
 
@@ -42,26 +43,16 @@
 
            </tr>
 
-           <tr>
-             <td>$9</td>
+           <tr *ngFor="let item of compensationList | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+             <td>${{item.amount}}</td>
              <td>
-               <span>https://rolex.nexmedsolutions.net/repsignup/NzgyOF85</span>
-               <input type="button" value="Copy Url" class="copyurlbtn">
+               <span>https://{{serverhost}}/repsignup/{{item.token}}</span>
+               <input type="button" value="Copy Url" class="copyurlbtn" ngxClipboard [cbContent]='callfunc(item.token)'>
              </td>
-
-
-
-
            </tr>
-           <tr>
-             <td>$9</td>
-             <td>
-               <span>https://rolex.nexmedsolutions.net/repsignup/NzgyOF85</span>
-               <input type="button" value="Copy Url" class="copyurlbtn">
-             </td>
 
-           </tr>
-           <tr>
+
+<!--           <tr>
              <td>$9</td>
              <td>
                <span>https://rolex.nexmedsolutions.net/repsignup/NzgyOF85</span>
@@ -133,6 +124,14 @@
              </td>
 
            </tr>
+           <tr>
+             <td>$9</td>
+             <td>
+               <span>https://rolex.nexmedsolutions.net/repsignup/NzgyOF85</span>
+               <input type="button" value="Copy Url" class="copyurlbtn">
+             </td>
+
+           </tr>-->
 
          </table>
 
@@ -158,4 +157,23 @@
 
   </div>
 
+</div>
+
+<div *ngIf="compensationmodal" class=" sign_modal modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <img src="../../assets/images/adminlogo.png" alt="#" class="popup_logo1">
+        <input type="text" [(ngModel)]="compensationamount">
+        <span class="has-error" *ngIf="compensationerror">{{compensationerror}}</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary popbtn2" data-dismiss="modal" (click)="addcompensation()">Add Compensation</button>
+        <button type="button" class="btn btn-default popbtn1" data-dismiss="modal" (click)="onHidden()">Cancel</button>
+      </div>
+    </div>
+  </div>
 </div>

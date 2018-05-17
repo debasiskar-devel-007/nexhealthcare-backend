@@ -194,6 +194,8 @@ export class RepsignupComponent implements OnInit {
                 type: this.type,
                 signup_step: 1,
             };
+            console.log('data-------');
+            console.log(data);
             this._http.post(link, data)
                 .subscribe(res => {
                     let result = res.json();

@@ -43,7 +43,7 @@
                     role="menu" aria-labelledby="button-basic">
                 <!--  <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Recruiters</a></li>
                   <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Sales Rep</a></li>-->
-                  <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/pateintdetail']">Add Patient</a></li>
+                  <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/add-pateint']">Add Patient</a></li>
                   <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/patient-list']">Patient List </a></li>
 
                 </ul>
@@ -77,6 +77,7 @@
                 </ul>
               </li>
               <li><a href="javascript:void(0)" (click)="openmodal()">Reports </a></li>
+              <li *ngIf="cookiedetails.type=='leadmanager'"><a href="javascript:void(0)" [routerLink]="['/compensationmodifier']">Compensation Modifier </a></li>
             </ul>
 
 
