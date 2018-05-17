@@ -95,6 +95,7 @@ export class CompensationmodifierComponent implements OnInit {
                                     this.compensationerror = null;
                                     this.compensationmodal = false;
                                     this.compensationamount = null;
+                                    this. getcompensationlist();
                                 }
                                 else if (result.status == 'error') {
                                     this.compensationerror = 'Some server issues! Please try again later.';
