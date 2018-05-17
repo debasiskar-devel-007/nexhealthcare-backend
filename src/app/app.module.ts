@@ -6,6 +6,7 @@ import {appRoutingProviders, routing} from './routes';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RecruiterdashboardComponent } from './recruiterdashboard/recruiterdashboard.component';
+import { AutologinComponent } from './autologin/autologin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SalesrepdashboardComponent } from './salesrepdashboard/salesrepdashboard.component';
 import { RepsignupComponent } from './repsignup/repsignup.component';
@@ -64,7 +65,7 @@ import { ClipboardModule } from 'ngx-clipboard';
       UserrecruiterlistComponent,
       ResetpasswordComponent,
       ForgetpasswordComponent,
-
+      AutologinComponent
   ],
   imports: [
     BrowserModule,

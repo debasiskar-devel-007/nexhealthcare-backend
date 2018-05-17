@@ -4,7 +4,6 @@ import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'angular2-cookie/core';
-import {RepsignupComponent} from '../repsignup/repsignup.component';
 
 @Component({
   selector: 'app-resetpassword',
@@ -74,7 +73,7 @@ export class ResetpasswordComponent implements OnInit {
     }
     getpassword(type: any) {
         if (type == 'invalid') {
-            return RepsignupComponent.invalidpassword;
+            return ResetpasswordComponent.invalidpassword;
         }
     }
     public matchingPasswords(passwordKey: string, confirmPasswordKey: string) {

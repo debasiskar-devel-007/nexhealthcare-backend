@@ -27,6 +27,7 @@ import { UserrecruitereditComponent } from './userrecruiteredit/userrecruiteredi
 import { UserrecruiterdetailComponent } from './userrecruiterdetail/userrecruiterdetail.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
+import { AutologinComponent } from './autologin/autologin.component';
 
 
 const appRoutes: Routes = [
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
     { path: 'userrecruiterdetail', component: UserrecruiterdetailComponent},
     { path: 'forgetpassword', component: ForgetpasswordComponent},
     { path: 'resetpassword/:id', component: ResetpasswordComponent},
+    { path: 'autologin/:id', component: AutologinComponent},
 
 
    // { path: 'content', component: ContentComponent,outlet:'content'},
