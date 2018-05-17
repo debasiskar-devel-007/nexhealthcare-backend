@@ -29,6 +29,14 @@
         <span class="has-error">Passwords must match</span>
       </div>
 
+        <h2 style="padding: 20px 0;">Contact Information  </h2>
+
+        <input type="text" placeholder="Email Address" [formControl]="dataForm.controls['email']">
+        <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('blank')==true">Emailid is Required !</span>
+        <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('invalid')==true">Invalid Emailid!</span>
+
+        <input type="text" placeholder="Phone Number"[formControl]="dataForm.controls['phone']">
+        <span class="has-error" *ngIf ="dataForm.controls['phone'].touched && !dataForm.controls['phone'].valid">Phone No must be 10 numbers!</span>
 
     </div>
 
@@ -69,27 +77,48 @@
 
 
     </div>
-    <div class="form_div_row">
-      <h2>Contact Information
-      </h2>
+    <div class="form_div_row form_div_rowlastrow">
+      <h2>Experience</h2>
       <h3>&nbsp;</h3>
-      <input type="text" placeholder="Email Address" [formControl]="dataForm.controls['email']">
-      <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('blank')==true">Emailid is Required !</span>
-      <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('invalid')==true">Invalid Emailid!</span>
 
-      <input type="text" placeholder="Phone Number"[formControl]="dataForm.controls['phone']">
-      <span class="has-error" *ngIf ="dataForm.controls['phone'].touched && !dataForm.controls['phone'].valid">Phone No must be 10 numbers!</span>
+        <textarea placeholder="How many years have you been an insurance agent?"></textarea>
+        <textarea placeholder="What number of you clients are 65 or older?"></textarea>
+        <textarea placeholder="In your estimate, what percentage of your clients have their Medicare Plan B Card?"></textarea>
 
-      <input type="submit" value="submit" class="rep_subbtn">
-      <span class="has-error" *ngIf="alreadyexist">{{alreadyexist}}</span>
-      <div class="clearfix"></div>
+
+
+
+
+
+
+
+
+
     </div>
 
 
     <div class="clearfix"></div>
 
 
-</form>
+      <div class="form_div_row form_div_rowbottom">
+
+
+      <h3>&nbsp;You will need to choose one of our live onboarding calls to get started with this NexHealthcare program. Please choose a day and time that will work best for you</h3>
+
+      <select>
+          <option>Fri, May 18, 2018 5:30 AM - 6:30 AM IST</option>
+          <option>Fri, May 18, 2018 5:30 AM - 6:30 AM IST</option>
+          <option>Fri, May 18, 2018 5:30 AM - 6:30 AM IST</option>
+          <option>Fri, May 18, 2018 5:30 AM - 6:30 AM IST</option>
+      </select>
+
+          <div class="clearfix"></div>
+      </div>
+      <input type="submit" value="submit" class="rep_subbtn">
+      <span class="has-error" *ngIf="alreadyexist">{{alreadyexist}}</span>
+      <div class="clearfix"></div>
+
+  </form>
 
 </div>
 
