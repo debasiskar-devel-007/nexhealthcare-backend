@@ -864,7 +864,7 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .pateintquestionire_div2 .pateintquestionire_div2_right{ width:48%; float:right;}
 
-.pateintquestionire_div2 h3{ margin:0 0 12px 0; padding:0; font-size:24px; color:#295b73;  border-bottom:solid 1px #a3a8a9; display:inline-block; }
+.pateintquestionire_div2 h3{ margin:0 0 12px 0; padding:0; font-size:24px; color:#295b73;  border-bottom:solid 1px #a3a8a9; display:inline-block; text-transform: uppercase; }
 
 .pateintquestionire_div2 .pateintquestionire_div2_left .form-group{ width:100%; margin:8px 0;}
 
@@ -1181,7 +1181,7 @@ a:visited {	text-decoration: none;	outline: none;}
     font-size: 24px!important;
     color: #295b73!important; border-left: none!important;
     border-bottom: solid 1px #a3a8a9!important;
-    display: inline-block!important;  line-height: inherit;  font-family: 'proximanova-regular'!important;
+    display: inline-block!important;  line-height: inherit;  font-family: 'proximanova-regular'!important; text-transform: uppercase!important;
 }
 
 .pateintquestioniremodal .pateints_inner_body{ padding: 0px; min-height: inherit!important; }
