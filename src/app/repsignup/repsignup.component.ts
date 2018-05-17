@@ -53,7 +53,7 @@ export class RepsignupComponent implements OnInit {
                     if (result.status == 'success') {
                         console.log(result.id.type);
                         if (result.id.type == 'corporate') {
-                            this.type = 'leadmanager ';
+                            this.type = 'leadmanager';
                         }
                         else if (result.id.type == 'leadmanager') {
                             this.type = 'masteraccount';
