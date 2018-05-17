@@ -21,16 +21,21 @@ export class RepcontractComponent implements OnInit {
     public today;
     public showtoday;
     public showafteryear;
+    public cgxvalue: any = 0;
 
     constructor(addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.serverurl = _commonservices.url;
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
        // console.log('repcontract get ');
+        console.log('this.cookiedetails');
         console.log(this.cookiedetails);
         this.today = moment().format('MMM') + ' ' + moment().format('D') + ', ' + moment().format('YYYY') + ' ' + moment().format('h') + ':' + moment().format('mm') + ' ' + moment().format('A');
         this.showtoday = moment().format('D') + ' day of ' + moment().format('MMM') + ', ' + moment().format('YYYY');
         this.showafteryear = moment().format('D') + ' day of ' + moment().format('MMM') + ', ' + moment().add(1, 'years').format('YYYY');
+        if (this.cookiedetails.type == 'leadmanager') {
+            this.cgxvalue = 10;
+        }
     }
 
     ngOnInit() {
@@ -64,6 +69,7 @@ export class RepcontractComponent implements OnInit {
             let data = {
                 name: this.signaturename,
                 addedby: this.cookiedetails.id,
+                compensationgrade: this.cgxvalue,
             };
             this._http.post(link, data)
                 .subscribe(res => {

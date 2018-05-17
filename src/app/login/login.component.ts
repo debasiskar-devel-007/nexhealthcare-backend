@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
                         console.log('cookiedetails from login page');
                         console.log(this.cookiedetails);
 
-                        if (result.msg.type == 'salesrep' || 'corporate') {
+                        if (result.msg.type == 'salesrep' || 'corporate' || 'leadmanager' || 'masteraccount') {
                             if (result.msg.signup_step == '1') {
                                 this.router.navigate(['/employment-agreement']);
                             }

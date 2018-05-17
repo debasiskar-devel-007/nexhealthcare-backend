@@ -53,7 +53,7 @@ export class RepsignupComponent implements OnInit {
                     if (result.status == 'success') {
                         console.log(result.id.type);
                         if (result.id.type == 'corporate') {
-                            this.type = 'leadmanager ';
+                            this.type = 'leadmanager';
                         }
                         else if (result.id.type == 'leadmanager') {
                             this.type = 'masteraccount';
@@ -194,6 +194,8 @@ export class RepsignupComponent implements OnInit {
                 type: this.type,
                 signup_step: 1,
             };
+            console.log('data-------');
+            console.log(data);
             this._http.post(link, data)
                 .subscribe(res => {
                     let result = res.json();

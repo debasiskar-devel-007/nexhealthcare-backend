@@ -14,7 +14,7 @@
 
 <div class="container-fluid repcontract_inner_body">
   <div class="container admininnerwrappe">
-      <form>
+
 
     <p>This Agreement, (the “Agreement”), is made on the <span>{{showtoday}},</span> by and between Foremost Laboratories, LLC, a Michigan limited liability
       company, the address of 600 West Congress Street, Detroit, MI 48226, (Employer), and <span>{{cookiedetails.firstname}} {{cookiedetails.lastname}}</span> (Employee). The parties have negotiated certain
@@ -204,13 +204,14 @@
 <p>Laboratory Services</p>
     <ul class="listitem2">
 
-      <li><label>Quantitative Urine Analysis: </label>  	   $75</li>
+      <!--<li><label>Quantitative Urine Analysis: </label>  	   $75</li>
       <li><label> PGX Exam:  </label>		          	           $100</li>
       <li><label> Wellness Blood Panel Exam:  </label> 	   $100</li>
       <li><label> Allergy:   </label>		        	                  $100</li>
       <li><label>Comprehensive Cancer Exam:  </label>    $250</li>
       <li><label>Carrier Exam: </label>		          	          $250</li>
-      <li><label> RPP:	 </label>		          	          $100</li>
+      <li><label> RPP:	 </label>		          	          $100</li>-->
+      <li><label> CGX:	&nbsp;&nbsp;$<input type="text" [(ngModel)]="cgxvalue" readonly> </label>		          	          </li>
 
     </ul>
       <br/>
@@ -226,7 +227,7 @@
 
 <input type="submit" value="Submit" class="repcontract_subbtn" (click)="callsubmit()">
       <div class="clearfix"></div>
-    </form>
+
   </div>
 </div>
 

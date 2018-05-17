@@ -144,11 +144,14 @@ export class TrainingstepComponent implements OnInit {
             }, error => {
                 console.log('Oooops!');
             });
-      if (this.cookiedetails.type == 'salesrep') {
+      if (this.cookiedetails.type == 'salesrep' || 'corporate' || 'leadmanager' || 'masteraccount') {
         this.router.navigate(['/rep-dashboard']);
       }
-      else {
+      else if (this.cookiedetails.type == 'recruiter') {
           this.router.navigate(['/recruiterdashboard']);
+      }
+      else { // admin
+          this.router.navigate(['/dashboard']);
       }
     }
 }

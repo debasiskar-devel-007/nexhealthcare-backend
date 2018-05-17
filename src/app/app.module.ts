@@ -35,6 +35,7 @@ import { UserrecruitereditComponent } from './userrecruiteredit/userrecruiteredi
 import { UserrecruiterlistComponent } from './userrecruiterlist/userrecruiterlist.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
       UserrecruitereditComponent,
       UserrecruiterlistComponent,
       ResetpasswordComponent,
-      ForgetpasswordComponent
+      ForgetpasswordComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,8 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
       HttpModule,
     AccordionModule.forRoot(),
       ModalModule.forRoot(),
-      NgxPaginationModule
+      NgxPaginationModule,
+      ClipboardModule
   ],
   providers: [appRoutingProviders, CookieService],
   bootstrap: [AppComponent]
