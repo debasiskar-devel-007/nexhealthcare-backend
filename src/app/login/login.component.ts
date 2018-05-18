@@ -69,12 +69,15 @@ export class LoginComponent implements OnInit {
                             type : result.msg.type,
                           //  lastlogin: result.lastlogintime
                         };
+
                         this.addcookie.putObject('cookiedetails', addresultforcookie);
                         console.log('cookiedetails from login page');
                         console.log(this.cookiedetails);
+                        console.log(result.msg.username);
                       //  this.router.navigate(['/autologin,']);
-                      var newurl = result.msg.username + '.' + this.neededhost + '/autologin?id=' + result.msg.logintoken;
+                      var newurl = 'http://'+result.msg.username + '.' + this.neededhost + '/#/autologin/' + result.msg.logintoken;
                       console.log(newurl);
+                      // http://tyy.nexhealthtoday.com/#/autologin/12
                       window.location.href = newurl;
 /*
                         if (result.msg.type == 'salesrep' || 'corporate' || 'leadmanager' || 'masteraccount') {

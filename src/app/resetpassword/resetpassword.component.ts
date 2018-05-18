@@ -92,6 +92,7 @@ export class ResetpasswordComponent implements OnInit {
             }
         };
     }
+
     dosubmit(formval) {
         console.log('hi');
         console.log(this.dataForm.valid);

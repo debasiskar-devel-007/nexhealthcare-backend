@@ -36,6 +36,7 @@ calllogout() {
 }
     onHidden() {
         this.comingsoonmodal = false;
+
     }
     openmodal() {
         this.comingsoonmodal = true;
@@ -48,12 +49,18 @@ calllogout() {
         this._http.post(link, data)
             .subscribe(res => {
                 let result = res.json();
+                console.log('result');
                 console.log(result);
                 if (result.status == 'success') {
                     this.recdetails = result.id;
-                    console.log(this.recdetails);
+                   // console.log(this.recdetails);
+                   // console.log(this.recdetails.logintime);
+                  setTimeout(() => {
+                    if (this.recdetails.logintime != null) {
                     this.logintime = moment(this.recdetails.logintime).format('DD-MM-YYYY');
                     this.signuptime = moment(this.recdetails.signuptime).format('DD-MM-YYYY');
+                    }
+                  }, 500);
                 }
             }, error => {
                 console.log('Oooops!');

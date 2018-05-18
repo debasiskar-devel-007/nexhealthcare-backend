@@ -88,6 +88,7 @@ export class TrainingstepComponent implements OnInit {
         $('video').get(0).play();
     }, 1000);
     }
+
     calllogout() {
         var aud = document.getElementById("video1");
         // console.log(aud.currentTime);

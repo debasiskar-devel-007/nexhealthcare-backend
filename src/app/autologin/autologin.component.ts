@@ -20,18 +20,24 @@ export class AutologinComponent implements OnInit {
         this.serverurl = _commonservices.url;
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
-        this.getdetailsusinglogintoken();
+
     }
+
 
   ngOnInit() {
       this.route.params.subscribe(params => {
           this.logintoken = params['id'];
+          console.log('this.logintoken');
           console.log(this.logintoken);
       });
+    setTimeout(() => {
+      this.getdetailsusinglogintoken();
+    }, 1000);
   }
     getdetailsusinglogintoken() {
         let link = this.serverurl + 'detailsusinglogintoken';
         let data = {logintoken: this.logintoken};
+        console.log(data);
         this._http.post(link, data)
             .subscribe(res => {
                 let result = res.json();
