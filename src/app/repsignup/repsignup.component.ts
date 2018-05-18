@@ -25,6 +25,8 @@ export class RepsignupComponent implements OnInit {
     private cookiedetails;
     public hostname;
     public type;
+    public serverhost;
+    public neededhost;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.fb = fb;
@@ -35,6 +37,9 @@ export class RepsignupComponent implements OnInit {
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
         console.log(window.location.host);
         this.hostname = window.location.host;
+        this.serverhost = _commonservices.hostis;
+        var splitvalue = this.serverhost.split('.');
+        this.neededhost = splitvalue[1] + '.' + splitvalue[2];
         if (this.hostname == 'localhost:4200') {
             this.type = 'salesrep';
         }
@@ -214,7 +219,7 @@ export class RepsignupComponent implements OnInit {
                      //   console.log('success');
                         this.alreadyexist = null;
                         let addresultforcookie = {
-                            id : result.id,
+                            id : result.id._id,
                             firstname : formval.firstname,
                             lastname : formval.lastname,
                             email : formval.email,
@@ -223,10 +228,13 @@ export class RepsignupComponent implements OnInit {
                             type : this.type,
                         };
                         this.addcookie.putObject('cookiedetails', addresultforcookie);
-                        console.log('cookiedetails from repsignup page');
-                        console.log(this.cookiedetails);
                         this.dataForm.reset();
-                        this.router.navigate(['/employment-agreement']);
+                      //  this.router.navigate(['/employment-agreement']);
+
+                        var newurl = 'http://' + formval.username + '.' + this.neededhost + '/#/autologin/' + result.id.logintoken;
+                        console.log(newurl);
+                        // http://tyy.nexhealthtoday.com/#/autologin/12
+                        window.location.href = newurl;
                     }
                 }, error => {
                     console.log('Oooops!');

@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         this.serverhost = _commonservices.hostis;
         var splitvalue = this.serverhost.split('.');
         // console.log(splitvalue);
-        //console.log(splitvalue[1]);
+        // console.log(splitvalue[1]);
         //  console.log(splitvalue[2]);
         this.neededhost = splitvalue[1] + '.' + splitvalue[2];
     }
