@@ -197,7 +197,7 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .repsignup_topblock .row{ width: 1620px; margin: 0 auto; padding:8px 0px; }
 
-.repsignup_topblock .col-xl-4 img{ width: 127px;}
+.repsignup_topblock .col-xl-4 img{ width: 100px;}
 
 .repsignup_topblock_menudiv{ width: 278px; float: right;}
 
@@ -216,7 +216,7 @@ a:visited {	text-decoration: none;	outline: none;}
 .repsignup_topblock_menudiv .navbar .active{ color: #29aae2!important;}
 
 .repsignup_footer{border-top: solid 10px #29aae2; padding: 15px 0;}
-.repsignup_footer .row{ width: 1620px; margin: 0 auto; padding:8px 0px; }
+.repsignup_footer .row{ margin: 0 auto; padding:8px 10px; }
 
 .repsignup_footer .col-xl-8 p{ text-align: right; margin: 0; padding: 15px 0 0 0; font-size: 15px; color: #575057; font-family: 'proximanova-regular';}
 
@@ -228,17 +228,20 @@ a:visited {	text-decoration: none;	outline: none;}
 .repsignup_pageheading h2{ text-align: center; margin: 0; padding: 15px 5px; text-transform: uppercase; font-size: 48px; color: #fff; font-family: 'proximanova-bold'; text-shadow: 0 0 1px #0c303f;}
 
 
-.repsignup_mainbody{background: url("../images/repsignup_bg.png") no-repeat right bottom; }
+/*.repsignup_mainbody{background: url("../images/repsignup_bg.png") no-repeat right bottom; }*/
+.repsignup_mainbody{ padding: 15px!important; }
 
-.repsignup_mainbody .row{ width: 1620px; margin: 0 auto; padding:40px 0px; }
+.repsignup_mainbody .row{  margin: 0 auto;  }
 
-.repsignup_mainbody .form_wrapper{ width: 75%; padding: 20px 1%; background: #fff; display: flex;}
+.repsignup_mainbody .form_wrapper_text{ width: 49.5%; padding: 20px 1%; background: #fff; float: left; }
+
+.repsignup_mainbody .form_wrapper{ width: 49.5%; padding: 20px 1%; background: #fff; float: right; }
 
 .repsignup_mainbody .form_wrapper .form_div_row{ width: 31.3%; float: left; margin: 0 1%;  position: relative;}
 
 .repsignup_mainbody .form_wrapper .form_div_row h2{ margin: 0; padding: 0px; font-size: 24px; color: #454646; text-transform: uppercase; font-family: 'proximanova-bold';}
 
-.repsignup_mainbody .form_wrapper .form_div_row h3{ margin: 0; padding:20px 0 10px 0; font-size: 18px; color: #454646; font-family: 'proximanova-regular';}
+.repsignup_mainbody .form_wrapper .form_div_row h3{ margin: 0; padding:20px 0 10px 0; font-size: 17px; color: #454646; font-family: 'proximanova-regular';}
 
 .repsignup_mainbody .form_wrapper .form_div_row input[type="text"]{ width: 100%; height: 32px; padding: 0 10px; margin: 6px 0; font-size: 16px; color: #454646; font-family: 'proximanova-regular'; background: #fff; border: solid 1px #bbbaba!important; outline: none; line-height: 20px;}
 .repsignup_mainbody .form_wrapper .form_div_row input[type="password"]{ width: 100%; height: 32px; padding: 0 10px; margin: 6px 0; font-size: 16px; color: #454646; font-family: 'proximanova-regular'; background: #fff; border: solid 1px #bbbaba!important; outline: none; line-height: 20px;}
@@ -1424,3 +1427,94 @@ a:visited {	text-decoration: none;	outline: none;}
 .form_div_rowbottom h3{ width: 66.6%; float: left; margin: 0!important; padding: 0!important;}
 
 .form_div_rowbottom select{ width: 32%!important; float: right;}
+
+
+
+/*--------------------cgx---------------*/
+
+.cgxtop{ border-top: solid 10px #0068b1; padding: 22px 0; text-align: center;}
+
+.cgxtop img{ width: 192px; display: block; margin: 0 auto;}
+
+.cgxwrapper{  background: url("../images/cgx_bg1.jpg") no-repeat left top; background-size: cover; padding: 0px;}
+
+.cgxwrapper_body{  background: url("../images/cgx_img1.png") no-repeat right bottom;   overflow: hidden;}
+
+
+.cgxwrapper_wrapper{ width: 1660px; margin: 0 auto;}
+
+.cgxwrapper_wrapper h2{ margin: 0;  padding: 25px 0 0 0; font-size: 85px; color: #fff;   font-family: 'proximanova-bold'; text-transform: uppercase;}
+
+.cgxwrapper_wrapper .cgxul{ margin: 0; padding: 5px 0 28px 0;}
+
+.cgxwrapper_wrapper .cgxul ul{ margin: 0; padding: 0;}
+
+.cgxwrapper_wrapper .cgxul ul li{ margin: 0; padding: 0 20px 0 30px; list-style: none; font-size: 30px; color: #fff; font-family: 'proximanova-bold'; float: left;  background: url("../images/cgx_libg.png") no-repeat left center;}
+
+.cgxwrapper_wrapper .cgxul ul li:nth-of-type(1){ background: none; padding-left: 0px;}
+.cgxwrapper_wrapper .cgxul ul li a{ color: #fff; text-decoration: none; outline: none}
+
+.cgxwrapper_video_wrapper{ width: 800px;}
+
+.cgxwrapper_video_wrapper video{ margin: 0px; border: solid 10px #28aae1;  box-shadow: 0 0 30px #3c4b55; background:#28aae1;}
+
+.cgxwrapper_text_wrapper{ width: 980px; margin: 33px 0 36px 0;}
+
+.cgxwrapper_text_wrapper p{ margin: 0; padding: 0; font-size: 24px; color: #fff;  font-family: 'proximanova-bold'; text-shadow: 0 0 5px #111; line-height: 24px;}
+
+.cgxwrapper_text_wrapper .link1{ background: rgba(253,253,253,1);
+    background: -moz-linear-gradient(top, rgba(253,253,253,1) 0%, rgba(225,225,225,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(253,253,253,1)), color-stop(100%, rgba(225,225,225,1)));
+    background: -webkit-linear-gradient(top, rgba(253,253,253,1) 0%, rgba(225,225,225,1) 100%);
+    background: -o-linear-gradient(top, rgba(253,253,253,1) 0%, rgba(225,225,225,1) 100%);
+    background: -ms-linear-gradient(top, rgba(253,253,253,1) 0%, rgba(225,225,225,1) 100%);
+    background: linear-gradient(to bottom, rgba(253,253,253,1) 0%, rgba(225,225,225,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#e1e1e1', GradientType=0 );  border-radius: 25px; padding: 14px 0; margin-top: 30px; font-size:30px; color: #161616; font-family: 'proximanova-bold'; display: block; width: 580px; text-align: center;}
+
+
+
+.repsignup_mainbody .form_wrapper_text h2{ margin: 0; padding: 0; font-size: 48px; line-height: 48px; color: #1f1f1f;  font-family: 'proximanova-bold'; text-transform: uppercase;}
+
+
+.repsignup_mainbody .form_wrapper_text h3 {background: rgba(76,200,253,1);
+    background: -moz-linear-gradient(top, rgba(76,200,253,1) 0%, rgba(42,171,227,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(76,200,253,1)), color-stop(100%, rgba(42,171,227,1)));
+    background: -webkit-linear-gradient(top, rgba(76,200,253,1) 0%, rgba(42,171,227,1) 100%);
+    background: -o-linear-gradient(top, rgba(76,200,253,1) 0%, rgba(42,171,227,1) 100%);
+    background: -ms-linear-gradient(top, rgba(76,200,253,1) 0%, rgba(42,171,227,1) 100%);
+    background: linear-gradient(to bottom, rgba(76,200,253,1) 0%, rgba(42,171,227,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4cc8fd', endColorstr='#2aabe3', GradientType=0 ); padding: 10px; border-radius: 15px; font-size: 36px; line-height: 36px; color: #fff;  font-family: 'proximanova-bold'; margin: 17px 0;}
+
+
+.repsignup_mainbody .form_wrapper_text h3:nth-of-type(2){ margin-bottom: 0px;}
+
+.repsignup_mainbody .form_wrapper_text h4{ margin: 24px 0 10px 0; padding: 0; font-size: 30px; line-height: 30px; color: #0068b1;  font-family: 'proximanova-bold'; }
+
+.form_wrapper_text_subdiv{ width: 49%; float: left;}
+
+.form_wrapper_text_subdiv:nth-of-type(2){ float: right;}
+
+.form_wrapper_text_subdiv img{ width: 100%;}
+
+.form_wrapper_text_subdiv h5{ background: #0068b1; margin: 0px; display: table-cell; height: 138px; border-left: solid 25px #29aae2; width: 100%; vertical-align: middle; padding: 10px; font-size: 19px; line-height: 28px;  font-family: 'proximanova-bold';  color: #fff;}
+
+
+.form_wrapper_text_subdiv2{ margin: 24px 0;}
+
+.form_wrapper_text_subdiv2 label{ display: block; width: 100%; border-top: solid 1px #fff;   border-bottom: solid 1px #fff; font-size: 24px; color: #ffffff;  font-family: 'proximanova-bold'; padding: 15px; margin: 0px;}
+
+.form_wrapper_text_subdiv2 label:nth-of-type(1){ background: #53c8fb;}
+.form_wrapper_text_subdiv2 label:nth-of-type(2){ background: #42b9ed;}
+.form_wrapper_text_subdiv2 label:nth-of-type(3){ background: #34a8db;}
+.form_wrapper_text_subdiv2 label:nth-of-type(4){ background: #2b9aca;}
+.form_wrapper_text_subdiv2 label:nth-of-type(5){ background: #2088b6;}
+
+.form_wrapper_text_subdiv3{ background: url("../images/new_repsignup_img3.jpg") no-repeat right bottom;}
+
+.form_wrapper_text_subdiv3 strong{ display: block;  font-size: 48px; color: #161616; font-family: 'proximanova-bold'; padding: 20px 0 0 0; text-transform: uppercase; line-height: 48px;}
+.form_wrapper_text_subdiv3 span{ display: block;  font-size: 30px; color: #161616; font-family: 'proximanova-bold'; padding:18px 0; line-height: 30px;}
+
+.form_wrapper_text_subdiv3 ul{ margin: 0; padding: 0;}
+.form_wrapper_text_subdiv3 ul li{ margin: 1px 0 0 0; padding: 0; font-size: 20px; color: #fff; font-family: 'proximanova-bold'; }
+
+.form_wrapper_text_subdiv3 ul li p{ display: inline-block; background: url("../images/repsignup_new_libg.png") no-repeat 12px center #2088b6; margin: 0px; padding: 10px 10px 10px 36px;}
