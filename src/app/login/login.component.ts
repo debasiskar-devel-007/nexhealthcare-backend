@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
                       //  console.log(result.msg.username);
                       //  this.router.navigate(['/autologin,']);
                       var newurl = 'http://'+result.msg.username + '.' + this.neededhost + '/#/autologin/' + result.msg.logintoken;
-                    //  console.log(newurl);
+                      console.log(newurl);
                       // http://tyy.nexhealthtoday.com/#/autologin/12
                       window.location.href = newurl;
 /*
