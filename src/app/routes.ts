@@ -39,6 +39,7 @@ const appRoutes: Routes = [
     { path: 'recruiterdashboard', component: RecruiterdashboardComponent},
     { path: 'rep-dashboard', component: SalesrepdashboardComponent},
     { path: 'repsignup', component: RepsignupComponent},
+    { path: 'repsignup/:id', component: RepsignupComponent},
     { path: 'header', component: HeaderComponent},
     { path: 'footer', component: FooterComponent},
     { path: 'recrutersignup', component: RecruitersignupComponent},
