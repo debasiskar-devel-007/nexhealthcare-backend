@@ -37,6 +37,7 @@ import { UserrecruiterlistComponent } from './userrecruiterlist/userrecruiterlis
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { ClipboardModule } from 'ngx-clipboard';
+import { CgxComponent } from './cgx/cgx.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { ClipboardModule } from 'ngx-clipboard';
       UserrecruiterlistComponent,
       ResetpasswordComponent,
       ForgetpasswordComponent,
-      AutologinComponent
+      AutologinComponent,
+      CgxComponent
   ],
   imports: [
     BrowserModule,

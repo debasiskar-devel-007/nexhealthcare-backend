@@ -30,9 +30,9 @@ export class LoginComponent implements OnInit {
         this.serverurl = _commonservices.url;
         this.serverhost = _commonservices.hostis;
         var splitvalue = this.serverhost.split('.');
-        console.log(splitvalue);
-        console.log(splitvalue[1]);
-        console.log(splitvalue[2]);
+       // console.log(splitvalue);
+        //console.log(splitvalue[1]);
+      //  console.log(splitvalue[2]);
         this.neededhost = splitvalue[1] + '.' + splitvalue[2];
     }
 
@@ -58,6 +58,7 @@ export class LoginComponent implements OnInit {
             this._http.post(link, data)
                 .subscribe(res => {
                     let result = res.json();
+                    console.log('result-----------');
                     console.log(result);
                     if (result.status == 'success') {
                         let addresultforcookie = {
@@ -71,12 +72,12 @@ export class LoginComponent implements OnInit {
                         };
 
                         this.addcookie.putObject('cookiedetails', addresultforcookie);
-                        console.log('cookiedetails from login page');
-                        console.log(this.cookiedetails);
-                        console.log(result.msg.username);
+                     //   console.log('cookiedetails from login page');
+                      //  console.log(this.cookiedetails);
+                      //  console.log(result.msg.username);
                       //  this.router.navigate(['/autologin,']);
                       var newurl = 'http://'+result.msg.username + '.' + this.neededhost + '/#/autologin/' + result.msg.logintoken;
-                      console.log(newurl);
+                    //  console.log(newurl);
                       // http://tyy.nexhealthtoday.com/#/autologin/12
                       window.location.href = newurl;
 /*
