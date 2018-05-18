@@ -30,10 +30,19 @@ export class LoginComponent implements OnInit {
         this.serverurl = _commonservices.url;
         this.serverhost = _commonservices.hostis;
         var splitvalue = this.serverhost.split('.');
-        // console.log(splitvalue);
+        // console.log('splitvalue  ' + splitvalue);
+       //  console.log('this.serverhost   ' + this.serverhost);
+       //  console.log(this.serverhost);
         // console.log(splitvalue[1]);
         //  console.log(splitvalue[2]);
-        this.neededhost = splitvalue[1] + '.' + splitvalue[2];
+        if (splitvalue[2] != null) {
+            this.neededhost = splitvalue[1] + '.' + splitvalue[2];
+           // console.log('needhost' + this.neededhost);
+        }
+        else {
+            this.neededhost = this.serverhost;
+         //   console.log('needhost44444' + this.neededhost);
+        }
     }
 
     ngOnInit() {

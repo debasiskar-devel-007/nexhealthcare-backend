@@ -85,7 +85,7 @@ export class RepsignupComponent implements OnInit {
             confpassword: ['', Validators.required],
             address: ['', Validators.required],
             address2: [''],
-            city: ['', Validators.required],
+            city: ['',    Validators.required],
             state: ['', Validators.required],
             zip: ['', Validators.required],
             gender: ['', Validators.required],

@@ -35,7 +35,8 @@ export class CompensationmodifierComponent implements OnInit {
     ngOnInit() {
     }
     callfunc(token) {
-        return 'https://' + this.serverhost + '/repsignup/' + token;
+      //  return 'https://' + this.serverhost + '/#/repsignup/' + token;
+        return this.serverhost + '/#/repsignup/' + token;
     }
     getcompensationlist() {
         let link = this.serverurl + 'compensationlistbyuserid';
