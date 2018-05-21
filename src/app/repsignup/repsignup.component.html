@@ -197,3 +197,20 @@
 
 <app-footer></app-footer>
 
+
+
+<div *ngIf="wrongtokenforleadrolemodal" class=" sign_modal pateintquestioniremodal modal fade" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <a href="javascript:void(0)"><img src="../../assets/images/adminlogo.png" alt="#" style="display: block; margin: 0 auto; margin-bottom: 15px;"></a>
+                <p>Sorry ! You have to signup with proper url.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -4,12 +4,12 @@ import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'angular2-cookie/core';
-
+declare var $ : any;
 @Component({
-  selector: 'app-repsignup',
-  templateUrl: './repsignup.component.html',
-  styleUrls: ['./repsignup.component.css'],
-  providers: [Commonservices],
+    selector: 'app-repsignup',
+    templateUrl: './repsignup.component.html',
+    styleUrls: ['./repsignup.component.css'],
+    providers: [Commonservices],
 })
 export class RepsignupComponent implements OnInit {
     public dataForm: FormGroup;
@@ -26,9 +26,13 @@ export class RepsignupComponent implements OnInit {
     public hostname;
     public type;
     public serverhost;
+    public cgxamount;
     public neededhost;
+    public compensationtokenvalue;
+    public roleid;
+    public wrongtokenforleadrolemodal: boolean = true;
 
-    constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
+    constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices, private route: ActivatedRoute) {
         this.fb = fb;
         RepsignupComponent.blankemail = false;
         RepsignupComponent.invalidemail = false;
@@ -45,8 +49,8 @@ export class RepsignupComponent implements OnInit {
         }
         else {
             var splitvalue = this.hostname.split('.');
-            console.log(splitvalue);
-            console.log(splitvalue[0]);
+          //  console.log(splitvalue);
+          //  console.log(splitvalue[0]);
             let link = this.serverurl + 'getuserdetailsbyuserid';
             let data = {
                 username: splitvalue[0],
@@ -57,11 +61,18 @@ export class RepsignupComponent implements OnInit {
                     console.log(result);
                     if (result.status == 'success') {
                         console.log(result.id.type);
+                        console.log(result.id._id);
+                        this.roleid = result.id._id;
                         if (result.id.type == 'corporate') {
                             this.type = 'leadmanager';
                         }
                         else if (result.id.type == 'leadmanager') {
                             this.type = 'masteraccount';
+                            this.route.params.subscribe(params => {
+                                this.compensationtokenvalue = params['id'];
+                              //  console.log(this.compensationtokenvalue);
+                                this.getdetailsbycompensationtokenvalue();
+                            });
                         }if (result.id.type == 'masteraccount') {
                             this.type = 'salesrep';
                         }
@@ -114,8 +125,8 @@ export class RepsignupComponent implements OnInit {
         if (control.value == '' || control.value == null) {
             return {'invalidpassword': false};
         }
-       if (!control.value.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/)) {
-      //  if (!control.value.match(/^[a-zA-Z0-9_]+$/)) {
+        if (!control.value.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/)) {
+            //  if (!control.value.match(/^[a-zA-Z0-9_]+$/)) {
             RepsignupComponent.invalidpassword = true;
             return {'invalidpassword': true};
         }
@@ -123,10 +134,10 @@ export class RepsignupComponent implements OnInit {
 
     static validateUsername(control: FormControl) {
         RepsignupComponent.invalidusername = false;
-        console.log('control.value');
-        console.log(control.value);
+      //  console.log('control.value');
+      //  console.log(control.value);
         if (control.value == '' || control.value == null) {
-            console.log('control.value null');
+         //   console.log('control.value null');
             return {'invalidusername': false};
         }
         if (!control.value.match(/^([a-zA-Z0-9]{3,})*$/)) {
@@ -163,7 +174,7 @@ export class RepsignupComponent implements OnInit {
             let confirmPassword = group.controls[confirmPasswordKey];
 
             if (password.value !== confirmPassword.value) {
-                console.log('mismatch');
+              //  console.log('mismatch');
                 return {
                     mismatchedPasswords: true
                 };
@@ -179,8 +190,6 @@ export class RepsignupComponent implements OnInit {
             this.dataForm.controls[x].markAsTouched();
         }
         if (this.dataForm.valid && this.passmatchvalidate && (RepsignupComponent.invalidemail == false || RepsignupComponent.blankemail == false) && RepsignupComponent.invalidusername == false && RepsignupComponent.invalidpassword == false) {
-          //  console.log('inside dataformvalid');
-          //  console.log(formval);
             let link = this.serverurl + 'signup';
             let data = {
                 firstname: formval.firstname,
@@ -196,27 +205,26 @@ export class RepsignupComponent implements OnInit {
                 gender: formval.gender,
                 dob: formval.dob,
                 phone: formval.phone,
-              //  type: 'salesrep',
+                //  type: 'salesrep',
                 type: this.type,
                 signup_step: 1,
+                cgxamountoflead: this.cgxamount,
             };
             console.log('data-------');
             console.log(data);
             this._http.post(link, data)
                 .subscribe(res => {
                     let result = res.json();
-                   // console.log('from repsignup page');
-                  //  console.log(result);
                     if (result.status == 'error' && result.id == '-1') {
-                        console.log('inside mail exists');
+                      //  console.log('inside mail exists');
                         this.alreadyexist = 'Emailid already exists';
                     }
                     if (result.status == 'error' && result.id == '-2') {
-                        console.log('inside Username exists');
+                      //  console.log('inside Username exists');
                         this.alreadyexist = 'Username already exists';
                     }
                     if (result.status == 'success') {
-                     //   console.log('success');
+                        //   console.log('success');
                         this.alreadyexist = null;
                         let addresultforcookie = {
                             id : result.id._id,
@@ -224,16 +232,19 @@ export class RepsignupComponent implements OnInit {
                             lastname : formval.lastname,
                             email : formval.email,
                             username : formval.username,
-                           // type : 'salesrep',
+                            // type : 'salesrep',
                             type : this.type,
                         };
                         this.addcookie.putObject('cookiedetails', addresultforcookie);
                         this.dataForm.reset();
-                      //  this.router.navigate(['/employment-agreement']);
-
-                        var newurl = 'http://' + formval.username + '.' + this.neededhost + '/#/autologin/' + result.id.logintoken;
+                        //  this.router.navigate(['/employment-agreement']);
+                        if (this.serverhost == 'localhost:4200') {
+                            var newurl = 'http://localhost:4200/#/autologin/' + result.msg.logintoken;
+                        }
+                        else {
+                            var newurl = 'http://' + formval.username + '.' + this.neededhost + '/#/autologin/' + result.id.logintoken;
+                        }
                         console.log(newurl);
-                        // http://tyy.nexhealthtoday.com/#/autologin/12
                         window.location.href = newurl;
                     }
                 }, error => {
@@ -241,5 +252,21 @@ export class RepsignupComponent implements OnInit {
                 });
         }
     }
-
+    getdetailsbycompensationtokenvalue() {
+        let link = this.serverurl + 'getdetailsbycompensationtokenvalue';
+        let data = {roleid : this.roleid , compensationtokenvalue : this.compensationtokenvalue};
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                console.log(result);
+                if (result.status == 'success' && typeof(result.id) != 'undefined') {
+                    this.cgxamount  = result.id.amount;
+                } else {
+                 console.log('Sorry ! You have to signup with proper url.');
+                    this.wrongtokenforleadrolemodal = true;
+                }
+            }, error => {
+                console.log('Ooops');
+            });
+    }
 }

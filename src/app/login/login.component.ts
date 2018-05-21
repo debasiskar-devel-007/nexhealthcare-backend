@@ -31,17 +31,17 @@ export class LoginComponent implements OnInit {
         this.serverhost = _commonservices.hostis;
         var splitvalue = this.serverhost.split('.');
         // console.log('splitvalue  ' + splitvalue);
-       //  console.log('this.serverhost   ' + this.serverhost);
-       //  console.log(this.serverhost);
+        //  console.log('this.serverhost   ' + this.serverhost);
+        //  console.log(this.serverhost);
         // console.log(splitvalue[1]);
         //  console.log(splitvalue[2]);
         if (splitvalue[2] != null) {
             this.neededhost = splitvalue[1] + '.' + splitvalue[2];
-           // console.log('needhost' + this.neededhost);
+            // console.log('needhost' + this.neededhost);
         }
         else {
             this.neededhost = this.serverhost;
-         //   console.log('needhost44444' + this.neededhost);
+            //   console.log('needhost44444' + this.neededhost);
         }
     }
 
@@ -85,9 +85,15 @@ export class LoginComponent implements OnInit {
                         //  console.log(this.cookiedetails);
                         //  console.log(result.msg.username);
                         //  this.router.navigate(['/autologin,']);
-                        var newurl = 'http://'+result.msg.username + '.' + this.neededhost + '/#/autologin/' + result.msg.logintoken;
+                        if (this.serverhost == 'localhost:4200') {
+                            var newurl = 'http://localhost:4200/#/autologin/' + result.msg.logintoken;
+                            //   http://localhost:4200/#/autologin/12
+                        }
+                        else {
+                            var newurl = 'http://' + result.msg.username + '.' + this.neededhost + '/#/autologin/' + result.msg.logintoken;
+                            // http://tyy.nexhealthtoday.com/#/autologin/12
+                        }
                         console.log(newurl);
-                        // http://tyy.nexhealthtoday.com/#/autologin/12
                         window.location.href = newurl;
                         /*
                                                 if (result.msg.type == 'salesrep' || 'corporate' || 'leadmanager' || 'masteraccount') {
