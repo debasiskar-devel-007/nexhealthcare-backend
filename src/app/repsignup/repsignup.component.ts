@@ -4,7 +4,7 @@ import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'angular2-cookie/core';
-declare var $ : any;
+
 @Component({
     selector: 'app-repsignup',
     templateUrl: './repsignup.component.html',
@@ -30,7 +30,7 @@ export class RepsignupComponent implements OnInit {
     public neededhost;
     public compensationtokenvalue;
     public roleid;
-    public wrongtokenforleadrolemodal: boolean = true;
+    public wrongtokenforleadrolemodal: boolean = false;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices, private route: ActivatedRoute) {
         this.fb = fb;
@@ -75,14 +75,13 @@ export class RepsignupComponent implements OnInit {
                             });
                         }if (result.id.type == 'masteraccount') {
                             this.type = 'salesrep';
+                            this.cgxamount = 150 - result.id.cgxamountoflead;
                         }
                     }
                 }, error => {
                     console.log('Oooops!');
                 });
         }
-
-
     }
 
     ngOnInit() {
@@ -264,9 +263,11 @@ export class RepsignupComponent implements OnInit {
                 } else {
                  console.log('Sorry ! You have to signup with proper url.');
                     this.wrongtokenforleadrolemodal = true;
+
                 }
             }, error => {
                 console.log('Ooops');
             });
     }
 }
+

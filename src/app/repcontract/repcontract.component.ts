@@ -36,6 +36,9 @@ export class RepcontractComponent implements OnInit {
         if (this.cookiedetails.type == 'leadmanager') {
             this.cgxvalue = 10;
         }
+        else {
+            this.getuserdetails();
+        }
     }
 
     ngOnInit() {
@@ -83,6 +86,22 @@ export class RepcontractComponent implements OnInit {
                 });
             this.errorblank = null;
         }
+    }
+    getuserdetails() {
+        let link = this.serverurl + 'getuserdetails';
+        let data = {
+            userid: this.cookiedetails.id,
+        };
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                console.log(result);
+                if (result.status == 'success' && typeof(result.id) != 'undefined') {
+                    this.cgxvalue = result.id.cgxamountoflead;
+                }
+            }, error => {
+                console.log('Oooops!');
+            });
     }
 }
 
