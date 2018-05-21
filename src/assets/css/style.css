@@ -688,6 +688,14 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .pateints_header_left h2 span{ color: #29aae1;}
 
+
+.pateints_header h6{ margin: 0; padding: 0 0 12px 0; font-size: 26px; color: #29aae1; font-family: 'proximanova-bold'; text-transform: uppercase;}
+
+
+.pateints_header .pateints_headerptext{ padding-bottom: 18px;  color: #142c37;     }
+
+.pateints_header .pateints_headerptext p{ padding: 5px 0;  font-family: 'proximanova-regular'; font-size: 18px; margin: 0px;}
+
 .pateints_searchdiv{ width: 320px; height: 30px; float: right; background: #7b7b7b;}
 .pateints_searchdiv input[type="text"]{ width: 290px;  height: 30px; float: left;  background: #7b7b7b; border: none; outline: none; font-size: 14px; color: #fff; font-family: 'proximanova-regular';  padding: 0 10px; }
 
@@ -715,19 +723,20 @@ a:visited {	text-decoration: none;	outline: none;}
 
 
 
-.pateints_list_table_header{ background: #cfcfcf; font-size: 16px; color: #707070; font-family: 'proximanova-bold';}
+.pateints_list_table_header{ background: #cfcfcf; font-size: 16px; color: #000; font-family: 'proximanova-bold';}
 
-.pateints_list_table_contain{ background: #ececec; font-size: 16px; color: #707070; font-family: 'proximanova-regular'; border-bottom: solid 1px #fff; cursor: pointer;}
+.pateints_list_table_contain{ background: #ececec; font-size: 16px; color: #000; font-family: 'proximanova-regular'; border-bottom: solid 1px #fff; cursor: pointer;}
 
 .pateints_list_weraper span{ display: block; padding: 5px 0;}
 
-.pateints_list_weraper .div1{ width: 40%; padding: 10px;}
-.pateints_list_weraper .div2{ width: 25%;  padding: 10px;}
-.pateints_list_weraper .div3{ width: 15%;  padding: 10px;}
+.pateints_list_weraper .div1{ width: 20%; padding: 10px;}
+.pateints_list_weraper .div2{ width: 20%;  padding: 10px;}
+.pateints_list_weraper .div3{ width: 20%;  padding: 10px;}
 .pateints_list_weraper .div4{ width: 20%;  padding: 10px;}
+.pateints_list_weraper .div5{ width: 20%;  padding: 10px;}
 
 /*-----------------------------------------------------------*/
-.pateintdetail_left{ width:825px; float:left;}
+.pateintdetail_left{ width:900px; float:left;}
 
 .pateintdetail_right{ width:280px; float:right; background:#ececec; padding:18px 20px;}
 
@@ -735,6 +744,20 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .pateintdetail_right .btn1{ background:#0083b4;}
 .pateintdetail_right .btn2{ background:#295b73;}
+
+.pateintdetail_left_formnew label{ display:block; width: 112px; float: left; font-weight: normal; font-size: 16px; padding-top: 10px; text-align: right; padding-right: 5px;}
+
+.pateintdetail_left_formnew .form-group {
+    width: 273px!important;
+    float: left;
+    margin: 0 5px;
+    margin-bottom: 10px;
+}
+
+.pateintdetail_left_formnew  .form-group .form-control{width: 161px!important; float: left;}
+
+.pateintdetail_left_formnew  .form-group .has-error{ padding-left: 110px;}
+
 .pateintdetail_left_form{ background:#ececec; padding:20px 10px;}
 .pateintdetail_left_form .form-group{ width:248px; float:left; margin:0 10px; margin-bottom:10px;}
 
