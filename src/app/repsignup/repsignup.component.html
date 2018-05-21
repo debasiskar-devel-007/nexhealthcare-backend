@@ -94,7 +94,7 @@
         <span class="has-error" *ngIf ="dataForm.controls['password'].touched && !dataForm.controls['password'].valid">Invalid Password.</span>
       <span class="has-error" *ngIf ="dataForm.controls['password'].touched && !dataForm.controls['password'].valid && getpassword('invalid')==true">Password must contain at least 8 characters,one lower case character , one upper case character , one number, one special character</span>
         <label>Confirm Password</label>
-      <input type="password"    [formControl]="dataForm.controls['confpassword']">
+      <input type="password" [formControl]="dataForm.controls['confpassword']">
       <span class="has-error" *ngIf ="dataForm.controls['confpassword'].touched && !dataForm.controls['confpassword'].valid">Please fill in the required field.</span>
       <div class="has-error" *ngIf ="dataForm.hasError('mismatchedPasswords') && dataForm.controls['confpassword'].valid ">
         <span class="has-error">Passwords must match</span>
@@ -104,33 +104,40 @@
 
         <label>Email Address</label>
 
-        <input type="text"   [formControl]="dataForm.controls['email']">
+        <input type="text" [formControl]="dataForm.controls['email']">
         <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('blank')==true">Emailid is Required !</span>
         <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('invalid')==true">Invalid Emailid!</span>
+
         <label> Phone Number</label>
-        <input type="text"  [formControl]="dataForm.controls['phone']">
+        <input type="text" [formControl]="dataForm.controls['phone']">
         <span class="has-error" *ngIf ="dataForm.controls['phone'].touched && !dataForm.controls['phone'].valid">Phone No must be 10 numbers!</span>
 
         <h2 style="padding: 20px 0 0 0;">Experience </h2>
         <label>How many years have you been an insurance agent?</label>
-      <div class="form_radio_wrapper">
-        <input type="radio"> <b>1-2</b>
-        <input type="radio">  <b>3-5</b>
-        <input type="radio">  <b>5-10</b>
-        <input type="radio">  <b>10+</b>
+      <div class="form_radio_wrapper" >
+          <div>
+        <input type="radio" name="agent" value="1" [formControl]="dataForm.controls['agentexperience']"> <b>1-2</b>
+        <input type="radio" name="agent" value="2" [formControl]="dataForm.controls['agentexperience']">  <b>3-5</b>
+        <input type="radio" name="agent" value="3" [formControl]="dataForm.controls['agentexperience']">  <b>5-10</b>
+        <input type="radio" name="agent" value="4" [formControl]="dataForm.controls['agentexperience']">  <b>10+</b>
+
+          <div class="clearfix"></div>
+          </div>
+         <span style="display: block; margin-top: 5px;" class="has-error" *ngIf ="dataForm.controls['agentexperience'].touched && !dataForm.controls['agentexperience'].valid"> Please choose the most relevant one!</span>
 
           <div class="clearfix"></div>
 
      </div>
 
-        <label>What number of you clients are 65 or older?</label>
+        <label>What number of your clients are 65 or older?</label>
 
-        <input type="text">
+        <input type="text" [formControl]="dataForm.controls['olderclients']">
+        <span class="has-error" *ngIf ="dataForm.controls['olderclients'].touched && !dataForm.controls['olderclients'].valid"> Please provide the number!</span>
 
         <label>In your estimate, what percentage of your clients have their Medicare Plan B Card?</label>
 
-        <input type="text">
-
+        <input type="text" [formControl]="dataForm.controls['noofplanBcard']">
+        <span class="has-error" *ngIf ="dataForm.controls['noofplanBcard'].touched && !dataForm.controls['noofplanBcard'].valid"> Please provide the number!</span>
     </div>
 
     <div class="form_div_row">

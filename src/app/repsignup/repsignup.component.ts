@@ -100,6 +100,9 @@ export class RepsignupComponent implements OnInit {
             zip: ['', Validators.required],
             gender: ['', Validators.required],
             dob: ['', Validators.required],
+            agentexperience: ['', Validators.required],
+            olderclients: ['', Validators.required],
+            noofplanBcard: ['', Validators.required],
             phone: ['', Validators.compose([Validators.required, Validators.minLength(10)])],
         }, {validator: this.matchingPasswords('password', 'confpassword')});
     }
@@ -204,6 +207,9 @@ export class RepsignupComponent implements OnInit {
                 gender: formval.gender,
                 dob: formval.dob,
                 phone: formval.phone,
+                agentexperience: formval.agentexperience,
+                olderclients: formval.olderclients,
+                noofplanBcard: formval.noofplanBcard,
                 //  type: 'salesrep',
                 type: this.type,
                 signup_step: 1,
