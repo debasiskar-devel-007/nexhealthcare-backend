@@ -38,6 +38,7 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { CgxComponent } from './cgx/cgx.component';
+import { OrderBy } from './orderby';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { CgxComponent } from './cgx/cgx.component';
       ResetpasswordComponent,
       ForgetpasswordComponent,
       AutologinComponent,
-      CgxComponent
+      CgxComponent,
+      OrderBy
   ],
   imports: [
     BrowserModule,
