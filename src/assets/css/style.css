@@ -233,20 +233,21 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .repsignup_mainbody .row{  margin: 0 auto;  }
 
-.repsignup_mainbody .form_wrapper_text{ width: 49.5%; padding: 20px 1%; background: #fff; float: left; }
+.repsignup_mainbody .form_wrapper_text{ width: 58.5%; padding: 20px 1%; background: #fff; float: left; margin-right: 1%; }
 
-.repsignup_mainbody .form_wrapper{ width: 49.5%; padding: 20px 1%; background: #fff; float: right; }
+.repsignup_mainbody .form_wrapper{ width: 40.5%; padding: 20px 1%; background: #fff; float: right; }
 
-.repsignup_mainbody .form_wrapper .form_div_row{ width: 31.3%; float: left; margin: 0 1%;  position: relative;}
+.repsignup_mainbody .form_wrapper .form_div_row{ width:48%; float: left; margin: 0 1%;  position: relative;}
 
-.repsignup_mainbody .form_wrapper .form_div_row h2{ margin: 0; padding: 0px; font-size: 24px; color: #454646; text-transform: uppercase; font-family: 'proximanova-bold';}
+.repsignup_mainbody .form_wrapper .form_div_row h2{ margin: 0; padding: 0px; font-size: 27px; color: #454646; text-transform: uppercase; font-family: 'proximanova-bold';}
 
+.repsignup_mainbody .form_wrapper .form_div_row h6{ margin: 0; padding:20px 0 10px 0; font-size: 22px; color: #454646; font-family: 'proximanova-regular';}
 .repsignup_mainbody .form_wrapper .form_div_row h3{ margin: 0; padding:20px 0 10px 0; font-size: 17px; color: #454646; font-family: 'proximanova-regular';}
 
-.repsignup_mainbody .form_wrapper .form_div_row input[type="text"]{ width: 100%; height: 32px; padding: 0 10px; margin: 6px 0; font-size: 16px; color: #454646; font-family: 'proximanova-regular'; background: #fff; border: solid 1px #bbbaba!important; outline: none; line-height: 20px;}
-.repsignup_mainbody .form_wrapper .form_div_row input[type="password"]{ width: 100%; height: 32px; padding: 0 10px; margin: 6px 0; font-size: 16px; color: #454646; font-family: 'proximanova-regular'; background: #fff; border: solid 1px #bbbaba!important; outline: none; line-height: 20px;}
-.repsignup_mainbody .form_wrapper .form_div_row select{ width: 100%; height: 32px; padding:0 10px; margin: 6px 0; font-size: 16px; color: #454646; font-family: 'proximanova-regular'; background: #fff; border: solid 1px #bbbaba!important; outline: none; line-height: 20px;}
-.repsignup_mainbody .form_wrapper .form_div_row textarea{ width: 100%; height:45px; padding:5px 10px; margin: 6px 0; font-size: 16px; color: #454646; font-family: 'proximanova-regular'; resize: none; background: #fff; border: solid 1px #bbbaba!important; outline: none; line-height: 20px;}
+.repsignup_mainbody .form_wrapper .form_div_row input[type="text"]{ width: 100%; height: 46px; padding: 0 10px; margin: 6px 0; font-size: 16px; color: #454646; font-family: 'proximanova-regular'; background: #fff; border: solid 1px #bbbaba!important; outline: none; line-height: 20px;}
+.repsignup_mainbody .form_wrapper .form_div_row input[type="password"]{ width: 100%; height: 46px; padding: 0 10px; margin: 6px 0; font-size: 16px; color: #454646; font-family: 'proximanova-regular'; background: #fff; border: solid 1px #bbbaba!important; outline: none; line-height: 20px;}
+.repsignup_mainbody .form_wrapper .form_div_row select{ width: 100%; height: 46px; padding:0 10px; margin: 6px 0; font-size: 16px; color: #454646; font-family: 'proximanova-regular'; background: #fff; border: solid 1px #bbbaba!important; outline: none; line-height: 20px;}
+.repsignup_mainbody .form_wrapper .form_div_row textarea{ width: 100%; height:51px; padding:5px 10px; margin: 6px 0; font-size: 16px; color: #454646; font-family: 'proximanova-regular'; resize: none; background: #fff; border: solid 1px #bbbaba!important; outline: none; line-height: 20px;}
 
 .repsignup_mainbody .form_wrapper ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #454646;
@@ -263,7 +264,7 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .has-error{ font-size: 12px; font-family: 'proximanova-regular'; color: #ff0000; display: block; margin-top: -5px;}
 
-.rep_subbtn{ /*width: 100%;*/ width: 220px; /*position:absolute; right: 0; top: 474px;*/  outline: none!important; background: #2eb7f2; text-align: center; font-size: 30px; color: #fff; font-family: 'proximanova-bold'; text-transform: uppercase; border: none; box-shadow: none; line-height: 57px; margin: 0 auto; margin-top: 15px; display: block; }
+.rep_subbtn{ /*width: 100%;*/ width: 220px; /*position:absolute; right: 0; top: 474px;*/  outline: none!important; background: #2eb7f2; text-align: center; font-size: 30px; color: #fff; font-family: 'proximanova-bold'; text-transform: uppercase; border: none; box-shadow: none; line-height: 57px; margin: 0 auto; margin-top: 0px; display: block; }
 
 
 /*----------------login--------------*/
@@ -1410,9 +1411,9 @@ a:visited {	text-decoration: none;	outline: none;}
 
 
 
+.form_div_rowlastrow{ width: 98%!important;}
 
-
-.form_div_rowlastrow textarea{ height: 128px!important;}
+.form_div_rowlastrow textarea{ height: 100px!important;}
 
 
 
@@ -1423,10 +1424,10 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .repcontract_inner_body .listitem2 li input[type="text"]{ width: auto; border: none; padding: 0 5px;  border-bottom: solid 1px #b3b3b4!important;}
 
-.form_div_rowbottom{ width:auto!important; padding: 15px 0;}
+.form_div_rowbottom{ width:auto!important; padding:0 0 15px 0;}
 .form_div_rowbottom h3{ width: 62%; float: left; margin: 0!important; padding: 0!important;}
 
-.form_div_rowbottom select{ width: 32%!important; float: right;}
+/*.form_div_rowbottom select{ width: 32%!important; float: right;}*/
 
 
 
@@ -1483,7 +1484,7 @@ a:visited {	text-decoration: none;	outline: none;}
     background: -o-linear-gradient(top, rgba(76,200,253,1) 0%, rgba(42,171,227,1) 100%);
     background: -ms-linear-gradient(top, rgba(76,200,253,1) 0%, rgba(42,171,227,1) 100%);
     background: linear-gradient(to bottom, rgba(76,200,253,1) 0%, rgba(42,171,227,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4cc8fd', endColorstr='#2aabe3', GradientType=0 ); padding: 10px; border-radius: 15px; font-size: 36px; line-height: 36px; color: #fff;  font-family: 'proximanova-bold'; margin: 17px 0;}
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4cc8fd', endColorstr='#2aabe3', GradientType=0 ); padding: 15px; border-radius: 15px; font-size: 30px; line-height: 36px; color: #fff;  font-family: 'proximanova-bold'; margin: 17px 0;}
 
 
 .repsignup_mainbody .form_wrapper_text h3:nth-of-type(2){ margin-bottom: 0px;}
@@ -1496,12 +1497,12 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .form_wrapper_text_subdiv img{ width: 100%;}
 
-.form_wrapper_text_subdiv h5{ background: #0068b1; margin: 0px; display: table-cell; height: 138px; border-left: solid 25px #29aae2; width: 100%; vertical-align: middle; padding: 10px; font-size: 19px; line-height: 28px;  font-family: 'proximanova-bold';  color: #fff;}
+.form_wrapper_text_subdiv h5{ background: #0068b1; margin: 0px; display: table-cell; height: 114px; border-left: solid 25px #29aae2; width: 100%; vertical-align: middle; padding: 10px; font-size: 17px; line-height: 28px;  font-family: 'proximanova-bold';  color: #fff;}
 
 
 .form_wrapper_text_subdiv2{ margin: 24px 0;}
 
-.form_wrapper_text_subdiv2 label{ display: block; width: 100%; border-top: solid 1px #fff;   border-bottom: solid 1px #fff; font-size: 24px; color: #ffffff;  font-family: 'proximanova-bold'; padding: 15px; margin: 0px;}
+.form_wrapper_text_subdiv2 label{ display: block; width: 100%; border-top: solid 1px #fff;   border-bottom: solid 1px #fff; font-size: 22px; color: #ffffff;  font-family: 'proximanova-bold'; padding: 15px; margin: 0px;}
 
 .form_wrapper_text_subdiv2 label:nth-of-type(1){ background: #53c8fb;}
 .form_wrapper_text_subdiv2 label:nth-of-type(2){ background: #42b9ed;}
@@ -1518,3 +1519,25 @@ a:visited {	text-decoration: none;	outline: none;}
 .form_wrapper_text_subdiv3 ul li{ margin: 1px 0 0 0; padding: 0; font-size: 20px; color: #fff; font-family: 'proximanova-bold'; }
 
 .form_wrapper_text_subdiv3 ul li p{ display: inline-block; background: url("../images/repsignup_new_libg.png") no-repeat 12px center #2088b6; margin: 0px; padding: 10px 10px 10px 36px;}
+
+
+/*
+.repsignup_mainbodynew{  display: table;}
+
+
+.repsignup_mainbodynew .form_wrapper_text{display: table-cell;}
+.repsignup_mainbodynew .form_wrapper{display: table-cell;}*/
+
+
+.form_radio_wrapper{ margin: 10px 0;}
+
+.form_radio_wrapper b{ display: inline-block; font-weight: normal; padding: 0 10px 0 5px; float: left;}
+
+.form_radio_wrapper input{ float: left;}
+
+
+.repsignup_mainbody .form_wrapper label{ margin: 15px 0 10px 0; padding: 0px;    font-family: 'proximanova-regular'!important; font-size: 16px;}
+
+.h2minheight{    padding-top: 28px!important;}
+
+.form_div_rowbottom label{ font-size: 18px!important;}
