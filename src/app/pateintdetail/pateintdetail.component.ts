@@ -19,6 +19,7 @@ export class PateintdetailComponent implements OnInit {
     private cookiedetails;
     static invalidemail;
     static blankemail;
+    public opensuccessmodal: boolean = false;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.fb = fb;
@@ -121,7 +122,9 @@ export class PateintdetailComponent implements OnInit {
                     let result = res.json();
                       console.log(result);
                     if (result.status == 'success') {
-                        this.router.navigate(['/patient-list']);
+                        this.dataForm.reset();
+                        this.opensuccessmodal = true;
+                       // this.router.navigate(['/patient-list']);
                     }
                 }, error => {
                     console.log('Oooops!');
@@ -129,8 +132,13 @@ export class PateintdetailComponent implements OnInit {
         }
     }
 
+    closemodal() {
+        this.opensuccessmodal = false;
+    }
+    onHidden() {
+        this.opensuccessmodal = false;
 
-
+    }
 
     cancel() {
       this.dataForm.reset();

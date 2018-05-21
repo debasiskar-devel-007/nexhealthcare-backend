@@ -230,3 +230,22 @@
 </div>
 
 
+  <div *ngIf="opensuccessmodal" class=" sign_modal modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+       tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <a href="javascript:void(0)"><img src="../../assets/images/adminlogo.png" alt="#" style="display: block; margin: 0 auto; margin-bottom: 15px;"></a><br/>
+        <p class="text-center" style="font-weight: bold">Patient successfully added. </p>
+      <!--  <button class="btn btn-primary" (click)="closemodal()">Add Patient</button>
+        <button class="btn btn-primary" [routerLink]="['/patient-list']">View Patient List</button>-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary popbtn2" data-dismiss="modal" (click)="closemodal()">Add Patient</button>
+        <button type="button" class="btn btn-default popbtn1" data-dismiss="modal" [routerLink]="['/patient-list']">View Patient List</button>
+      </div>
+    </div>
+  </div>
+</div>
