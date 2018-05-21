@@ -10,7 +10,7 @@
 
 <div class="container-fluid admin_inner_heading">
 
-  <h2><span>Patients Record View</span></h2>
+  <h2><span>Patients Record</span></h2>
 
 </div>
 
@@ -29,34 +29,77 @@
     </div>
 
     <div class="pateints_list_weraper">
+
       <form role="form" novalidate [formGroup]="dataForm" (ngSubmit)="dosubmit(dataForm.value)">
 
         <div class="pateintdetail_left">
+          <h6>Manage Contact</h6>
 
-          <div class="pateintdetail_left_form">
+          <div class="pateintdetail_left_form pateintdetail_left_formnew">
 
-            <div class="form-group"><input type="text"  class="form-control" placeholder="First Name" [formControl]="dataForm.controls['firstname']"/>
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text"  class="form-control" placeholder="First Name" [formControl]="dataForm.controls['firstname']"/>  <div class="clearfix"></div>
               <span class="has-error" *ngIf ="dataForm.controls['firstname'].touched && !dataForm.controls['firstname'].valid">Firstname is required!</span></div>
 
-            <div class="form-group"><input type="text"  class="form-control"  placeholder="Last Name" [formControl]="dataForm.controls['lastname']"/>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text"  class="form-control"  placeholder="Last Name" [formControl]="dataForm.controls['lastname']"/>  <div class="clearfix"></div>
               <span class="has-error" *ngIf ="dataForm.controls['lastname'].touched && !dataForm.controls['lastname'].valid">Lastname is required!</span></div>
 
-            <div class="form-group"><input type="text"  class="form-control"  placeholder="Phone Number" [formControl]="dataForm.controls['phone']"/>
+            <div class="form-group">
+              <label>Patient ID</label>
+              <input type="text"  class="form-control"  placeholder="Patient ID"  [formControl]="dataForm.controls['patientid']"/>  <div class="clearfix"></div>
+              <span class="has-error" >Patient ID is required!</span></div>
+            <div class="clearfix"></div>
+
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="text"  class="form-control"  placeholder="Phone Number" [formControl]="dataForm.controls['phone']"/>  <div class="clearfix"></div>
               <span class="has-error" *ngIf ="dataForm.controls['phone'].touched && !dataForm.controls['phone'].valid">Phone No must be 10 numbers!</span></div>
 
-            <div class="form-group"><input type="email"  class="form-control"  placeholder="Email Address" [formControl]="dataForm.controls['email']" readonly/>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email"  class="form-control"  placeholder="Email Address" [formControl]="dataForm.controls['email']" readonly/>  <div class="clearfix"></div>
              <!-- <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('blank')==true">Emailid is Required !</span>
               <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('invalid')==true">Invalid Emailid!</span>-->
             </div>
+            <div class="form-group">
+              <label>Date Added</label>
+              <input type="text"  class="form-control"  placeholder="Date Added"  [formControl]="dataForm.controls['dateadded']"/>  <div class="clearfix"></div>
+              <span class="has-error" >Date Added is required!</span></div>
+            <div class="clearfix"></div>
+
             <!--
                         <div class="form-group"><textarea  placeholder="Address" [formControl]="dataForm.controls['address']"></textarea>
                           <span class="has-error" *ngIf ="dataForm.controls['address'].touched && !dataForm.controls['address'].valid">Address is required!</span></div>-->
 
-            <div class="form-group"><input type="text"  class="form-control"  placeholder="City" [formControl]="dataForm.controls['city']"/>
+            <div class="form-group">
+              <label>City</label>
+              <input type="text"  class="form-control"  placeholder="City" [formControl]="dataForm.controls['city']"/>  <div class="clearfix"></div>
               <span class="has-error" *ngIf ="dataForm.controls['city'].touched && !dataForm.controls['city'].valid">City is required!</span></div>
-            <div class="clearfix"></div>
-            <div class="form-group"><input type="text"  class="form-control"  placeholder="State" [formControl]="dataForm.controls['state']"/>
+
+            <div class="form-group">
+              <label>State</label>
+              <input type="text"  class="form-control"  placeholder="State" [formControl]="dataForm.controls['state']"/>  <div class="clearfix"></div>
               <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid">State is required!</span></div>
+
+            <div class="form-group">
+              <label>Status</label>
+              <input type="text"  class="form-control"  placeholder="Status"  [formControl]="dataForm.controls['status']"/>  <div class="clearfix"></div>
+              <span class="has-error" >Status is required!</span></div>
+            <div class="clearfix"></div>
+
+
+            <div class="form-group form-group_autowidth">
+              <label>Notes</label>
+           <textarea placeholder="Notes"></textarea>
+              <span class="has-error" >Notes is required!</span></div>
+            <div class="clearfix"></div>
+
+
+
+
 
             <!-- <div class="form-group"><input type="text"  class="form-control"  placeholder="Zip" [formControl]="dataForm.controls['zip']"/>
                <span class="has-error" *ngIf ="dataForm.controls['zip'].touched && !dataForm.controls['zip'].valid">Zip is required!</span></div>
@@ -163,7 +206,7 @@
             <input type="submit"  value="Save" class="btn1" />
             <input type="button"  value="Cancel" class="btn2" (click)="cancel()"/>
 
-
+            <input type="button"  value="Add Patient" class="btn2" />
           </div>
 
 
