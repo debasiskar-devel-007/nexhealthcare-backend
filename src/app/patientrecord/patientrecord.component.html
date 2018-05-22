@@ -37,6 +37,9 @@
 
           <div class="pateintdetail_left_form pateintdetail_left_formnew">
 
+
+            <div class="pateintdetail_left_formnew_left">
+
             <div class="form-group">
               <label>First Name</label>
               <input type="text"  class="form-control" placeholder="First Name" [formControl]="dataForm.controls['firstname']"/>  <div class="clearfix"></div>
@@ -47,11 +50,8 @@
               <input type="text"  class="form-control"  placeholder="Last Name" [formControl]="dataForm.controls['lastname']"/>  <div class="clearfix"></div>
               <span class="has-error" *ngIf ="dataForm.controls['lastname'].touched && !dataForm.controls['lastname'].valid">Lastname is required!</span></div>
 
-            <div class="form-group">
-              <label>Patient ID</label>
-              <input type="text"  class="form-control"  placeholder="Patient ID"  [formControl]="dataForm.controls['patientid']"/>  <div class="clearfix"></div>
-              <span class="has-error" >Patient ID is required!</span></div>
             <div class="clearfix"></div>
+
 
             <div class="form-group">
               <label>Phone Number</label>
@@ -64,10 +64,7 @@
              <!-- <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('blank')==true">Emailid is Required !</span>
               <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('invalid')==true">Invalid Emailid!</span>-->
             </div>
-            <div class="form-group">
-              <label>Date Added</label>
-              <input type="text"  class="form-control"  placeholder="Date Added"  [formControl]="dataForm.controls['dateadded']"/>  <div class="clearfix"></div>
-              <span class="has-error" >Date Added is required!</span></div>
+
             <div class="clearfix"></div>
 
             <!--
@@ -84,11 +81,34 @@
               <input type="text"  class="form-control"  placeholder="State" [formControl]="dataForm.controls['state']"/>  <div class="clearfix"></div>
               <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid">State is required!</span></div>
 
+
+            <div class="clearfix"></div>
+
+
+            </div>
+
+            <div class="pateintdetail_left_formnew_right">
+
+            <div class="form-group">
+              <label>Patient ID</label>
+              <input type="text"  class="form-control"  placeholder="Patient ID"  [formControl]="dataForm.controls['patientid']"/>  <div class="clearfix"></div>
+              <span class="has-error" >Patient ID is required!</span></div>
+
+
+            <div class="form-group">
+              <label>Date Added</label>
+              <input type="text"  class="form-control"  placeholder="Date Added"  [formControl]="dataForm.controls['dateadded']"/>  <div class="clearfix"></div>
+              <span class="has-error" >Date Added is required!</span></div>
+
             <div class="form-group">
               <label>Status</label>
               <input type="text"  class="form-control"  placeholder="Status"  [formControl]="dataForm.controls['status']"/>  <div class="clearfix"></div>
               <span class="has-error" >Status is required!</span></div>
-            <div class="clearfix"></div>
+              <div class="clearfix"></div>
+
+          </div>
+
+
 
 
             <div class="form-group form-group_autowidth">
