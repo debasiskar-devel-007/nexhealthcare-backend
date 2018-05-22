@@ -689,12 +689,25 @@ a:visited {	text-decoration: none;	outline: none;}
 .pateints_header_left h2 span{ color: #29aae1;}
 
 
-.pateints_header h6{ margin: 0; padding: 0 0 12px 0; font-size: 26px; color: #29aae1; font-family: 'proximanova-bold'; text-transform: uppercase;}
 
 
-.pateints_header .pateints_headerptext{ padding-bottom: 18px;  color: #142c37;     }
 
-.pateints_header .pateints_headerptext p{ padding: 5px 0;  font-family: 'proximanova-regular'; font-size: 18px; margin: 0px;}
+.pateints_header h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 36px;
+    color: #142c37;
+    font-family: 'proximanova-bold';
+    text-transform: uppercase;
+}
+
+.pateints_header h2 span{  color: #29aae1;}
+
+.pateints_header h6{ margin: 0; padding: 18px 0 2px 0 ; font-size: 22px; color: #29aae1; font-family: 'proximanova-bold'; }
+
+.pateints_header .pateints_headerptext{ padding:0 0 18px 0;  color: #142c37;     }
+
+.pateints_header .pateints_headerptext p{ padding: 5px 0;  font-family: 'proximanova-regular'; font-size: 18px; margin: 0px; color: #000;}
 
 .pateints_searchdiv{ width: 320px; height: 30px; float: right; background: #7b7b7b;}
 .pateints_searchdiv input[type="text"]{ width: 290px;  height: 30px; float: left;  background: #7b7b7b; border: none; outline: none; font-size: 14px; color: #fff; font-family: 'proximanova-regular';  padding: 0 10px; }
@@ -747,6 +760,41 @@ a:visited {	text-decoration: none;	outline: none;}
 .pateintdetail_right .btn1{ background:#0083b4;}
 .pateintdetail_right .btn2{ background:#295b73;}
 
+
+
+
+
+
+.pateintdetail_left_formnew2 label{ display:block; width: 112px; float: left; font-weight: normal; font-size: 16px; padding-top: 10px; text-align: right; padding-right: 5px;}
+
+.pateintdetail_left_formnew2 .form-group {
+    width: 420px!important;
+    float: left;
+    margin: 0 5px;
+    margin-bottom: 10px;
+}
+
+
+
+
+.pateintdetail_left_formnew2  .form-group .form-control{width: 308px!important; float: left;}
+
+.pateintdetail_left_formnew2  .form-group .has-error{ padding-left: 112px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .pateintdetail_left_formnew label{ display:block; width: 112px; float: left; font-weight: normal; font-size: 16px; padding-top: 10px; text-align: right; padding-right: 5px;}
 
 .pateintdetail_left_formnew .form-group {
@@ -758,14 +806,19 @@ a:visited {	text-decoration: none;	outline: none;}
 
 
 .pateintdetail_left_formnew .form-group_autowidth {
-    width: 100%!important;
+    width: 98%!important;
     float: left;
-    margin: 0 5px;
-    margin-bottom: 10px;
+
+    margin-bottom: 10px; margin: 0 auto; margin-top: 10px!important;
 }
 
+.pateintdetail_left_formnew .form-group_autowidth label{ display: block; width: 100%; text-align: left; padding: 10px 15px;
+    margin: 0px;
+    background: #236eb2; color: #fff;}
 
-.pateintdetail_left_formnew  .form-group textarea{width: 747px!important; float: left; height: 80px!important;}
+.pateintdetail_left_formnew  .form-group_autowidth .has-error{ padding-left:2px!important;}
+
+.pateintdetail_left_formnew  .form-group textarea{width: 100%!important; float: none; height: 80px!important;}
 
 
 .pateintdetail_left_formnew  .form-group .form-control{width: 161px!important; float: left;}
@@ -1578,3 +1631,12 @@ a:visited {	text-decoration: none;	outline: none;}
 .h2minheight{    padding-top: 28px!important;}
 
 .form_div_rowbottom label{ font-size: 18px!important;}
+
+
+.pateintdetail_left_formnew_left{ width:586px; float: left;}
+.pateintdetail_left_formnew_right{ width: 273px; float: right; border-left: solid 1px #a0a0a0;}
+
+.pateintdetail_left_formnew_right label{ width: 96px!important;}
+
+.pateintdetail_left_formnew_right  .has-error {
+    padding-left: 99px!important;}
