@@ -18,21 +18,22 @@
           <div class="collapse navbar-collapse" id="myNavbar">
 
             <ul class="nav navbar-nav">
-              <li><a href="javascript:void(0)">Dashboard</a></li>
-              <!--  <li><a href="javascript:void(0)" (click)="openmodal()">Genealogy </a></li>-->
-              <!--<li  class="btn-group" dropdown>
+              <li><a href="javascript:void(0)" [routerLink]="['/rep-dashboard']">Dashboard</a></li>
+                <li><a href="javascript:void(0)" (click)="openmodal()" *ngIf="cookiedetails.type=='superadmin'">Genealogy </a></li>
+              <li  class="btn-group" dropdown *ngIf="cookiedetails.type=='superadmin'">
                 <button id="button-basic1" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
                         aria-controls="dropdown-basic1">
                   User Management <span class="caret"></span>
                 </button>
                 <ul id="dropdown-basic1" *dropdownMenu class="dropdown-menu"
                     role="menu" aria-labelledby="button-basic">
-                  <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)">Recruiters</a></li>
-                  <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)">Sales Rep</a></li>
+                  <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/userrecruiterlist','leadmanager']">Lead Managers</a></li>
+                  <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/userrecruiterlist','masteraccount']">Master Account</a></li>
+                  <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/userrecruiterlist','salesrep']">Sales Rep</a></li>
 
 
                 </ul>
-              </li>-->
+              </li>
               <li  class="btn-group" dropdown>
                 <button id="button-basic2" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
                         aria-controls="dropdown-basic2">
@@ -40,18 +41,19 @@
                 </button>
                 <ul id="dropdown-basic2" *dropdownMenu class="dropdown-menu"
                     role="menu" aria-labelledby="button-basic">
-                  <!--  <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Recruiters</a></li>
-                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Sales Rep</a></li>-->
-                  <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/add-pateint']">Add Patient</a></li>
-                  <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/patient-list']">Patient List </a></li>
+                    <li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Recruiters</a></li>
+                    <li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Sales Rep</a></li>
+                  <li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)"  [routerLink]="['/patient-list']">Patients</a></li>
+                  <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/add-pateint']">Add Patient</a></li>
+                  <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/patient-list']">Patient List </a></li>
 
                 </ul>
               </li>
-              <li  class="btn-group" dropdown>
-                <!-- <button id="button-basic3" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+              <li  class="btn-group" dropdown *ngIf="cookiedetails.type=='superadmin'">
+                 <button id="button-basic3" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
                          aria-controls="dropdown-basic3">
                    Lead System <span class="caret"></span>
-                 </button>-->
+                 </button>
                 <ul id="dropdown-basic3" *dropdownMenu class="dropdown-menu"
                     role="menu" aria-labelledby="button-basic">
                   <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Round Robin</a></li>
@@ -61,7 +63,7 @@
 
                 </ul>
               </li>
-              <li  class="btn-group" dropdown>
+              <li  class="btn-group" dropdown >
                 <button id="button-basic4" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
                         aria-controls="dropdown-basic4">
                   Resources <span class="caret"></span>
@@ -71,8 +73,6 @@
                   <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Training Center</a></li>
                   <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Manage Webinars</a></li>
                   <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Manage Resources</a></li>
-
-
                 </ul>
               </li>
               <li><a href="javascript:void(0)" (click)="openmodal()">Reports </a></li>

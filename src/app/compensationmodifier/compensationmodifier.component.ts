@@ -13,6 +13,7 @@ import {RepsignupComponent} from '../repsignup/repsignup.component';
 })
 export class CompensationmodifierComponent implements OnInit {
     public compensationmodal: boolean = false;
+    public copiedmodal: boolean = false;
     public addcookie: CookieService;
     public cookiedetails;
     public serverurl;
@@ -38,6 +39,12 @@ export class CompensationmodifierComponent implements OnInit {
       //  return 'https://' + this.serverhost + '/#/repsignup/' + token;
         return this.serverhost + '/#/repsignup/' + token;
     }
+    showcopied() {
+          this.copiedmodal = true;
+         setTimeout(() => {
+             this.copiedmodal = false;
+         }, 2000);
+    }
     getcompensationlist() {
         let link = this.serverurl + 'compensationlistbyuserid';
         let data = {
@@ -61,6 +68,7 @@ export class CompensationmodifierComponent implements OnInit {
     onHidden() {
         this.compensationerror = null;
         this.compensationmodal = false;
+      //  this.copiedmodal = false;
         this.compensationamount = null;
     }
 

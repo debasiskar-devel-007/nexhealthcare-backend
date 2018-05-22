@@ -18,6 +18,7 @@ export class FrontheaderComponent implements OnInit {
     constructor( addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
+        console.log('from frontheader');
         console.log(this.cookiedetails);
     }
 

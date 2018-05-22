@@ -48,7 +48,7 @@
              <td>${{item.amount}}</td>
              <td>
                <span>https://{{serverhost}}/repsignup/{{item.token}}</span>
-               <input type="button" value="Copy Url" class="copyurlbtn" ngxClipboard [cbContent]='callfunc(item.token)'>
+               <input type="button" value="Copy Url" class="copyurlbtn" ngxClipboard [cbContent]='callfunc(item.token)' (click)="showcopied()">
              </td>
            </tr>
 
@@ -168,12 +168,28 @@
       </div>
       <div class="modal-body">
         <img src="../../assets/images/adminlogo.png" alt="#" class="popup_logo1">
-        <input type="text" [(ngModel)]="compensationamount">
+        <input class="popupinputnew1" type="text" [(ngModel)]="compensationamount">
         <span class="has-error" *ngIf="compensationerror">{{compensationerror}}</span>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer popupnewbtnwrapper">
         <button type="button" class="btn btn-primary popbtn2" data-dismiss="modal" (click)="addcompensation()">Add Compensation</button>
         <button type="button" class="btn btn-default popbtn1" data-dismiss="modal" (click)="onHidden()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="copiedmodal" class=" sign_modal modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <img src="../../assets/images/adminlogo.png" alt="#" class="popup_logo1"><br/>
+        <p class="copiedtext">URL Copied To Clipboard</p>
+      </div>
+      <div class="modal-footer">
       </div>
     </div>
   </div>

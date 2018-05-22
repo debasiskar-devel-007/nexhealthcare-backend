@@ -1,14 +1,17 @@
-<div class="container-fluid admin_inner_top">
+<!--<div class="container-fluid admin_inner_top">
   <div class="container admininnerwrappe">
     <a href="javascript:void(0)"><img src="../../assets/images/adminlogo.png" alt="#"></a>
 
   </div>
 
-</div>
+</div>-->
+<app-frontheader></app-frontheader>
 
 <div class="container-fluid admin_inner_heading">
 
-  <h2><span>Recruiter</span></h2>
+  <h2 *ngIf="typeis=='salesrep'"><span >Sales Rep</span></h2>
+  <h2 *ngIf="typeis=='leadmanager'"><span>Lead Manager</span></h2>
+  <h2 *ngIf="typeis=='masteraccount'"><span>Master Account</span></h2>
 
 </div>
 
@@ -27,6 +30,30 @@
       <th>Action</th>
     </tr>
 
+    <tr *ngFor="let item of specificlist | orderBy:'_id':'reverse' | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+
+      <td>{{item.uniqueid}}</td>
+      <td>{{item.username}}</td>
+      <td>{{item.firstname}}</td>
+      <td>{{item.lastname}}</td>
+      <td>{{item.type}}</td>
+      <td>{{item.addedby}}</td>
+      <td><a href="javascript:void(0)" [routerLink]="['/userrecruiteredit',item._id]">Edit</a></td>
+
+    </tr>
+    <div class="pagination_wrapper">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+ <!--   <tr>
+
+      <td>10338</td>
+      <td>Switch nadeemhusainzsa2na3u1k
+      <td>Nadeem</td>
+      <td>Husain</td>
+      <td>Doc</td>
+      <td>BethKelley</td>
+      <td><a href="javascript:void(0)">Edit</a></td>
+    </tr>
     <tr>
 
       <td>10338</td>
@@ -48,16 +75,6 @@
       <td>BethKelley</td>
       <td><a href="javascript:void(0)">Edit</a></td>
     </tr>
-    <tr>
-
-      <td>10338</td>
-      <td>Switch nadeemhusainzsa2na3u1k
-      <td>Nadeem</td>
-      <td>Husain</td>
-      <td>Doc</td>
-      <td>BethKelley</td>
-      <td><a href="javascript:void(0)">Edit</a></td>
-    </tr>
 
     <tr>
 
@@ -79,18 +96,7 @@
       <td>Doc</td>
       <td>BethKelley</td>
       <td><a href="javascript:void(0)">Edit</a></td>
-    </tr>
-
-    <tr>
-
-      <td>10338</td>
-      <td>Switch nadeemhusainzsa2na3u1k
-      <td>Nadeem</td>
-      <td>Husain</td>
-      <td>Doc</td>
-      <td>BethKelley</td>
-      <td><a href="javascript:void(0)">Edit</a></td>
-    </tr>
+    </tr>-->
 
 
   </table>

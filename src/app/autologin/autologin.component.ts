@@ -41,7 +41,9 @@ export class AutologinComponent implements OnInit {
         this._http.post(link, data)
             .subscribe(res => {
                 let result = res.json();
-                console.log(result);
+              //  console.log(result);
+               // console.log('result.msg.type++++++++++++++');
+               // console.log(result.msg.type);
                 if (result.status == 'success') {
                     let addresultforcookie = {
                         id : result.msg._id,
@@ -51,10 +53,15 @@ export class AutologinComponent implements OnInit {
                         username : result.msg.username,
                         type : result.msg.type,
                     };
+                    console.log('add result to cookie ++++++');
+                    console.log(addresultforcookie);
                     this.addcookie.putObject('cookiedetails', addresultforcookie);
-                    console.log('cookiedetails from login page');
+                    console.log('cookiedetails put in autologin--------');
                     console.log(this.cookiedetails);
-                    if (result.msg.type == 'salesrep' || 'corporate' || 'leadmanager' || 'masteraccount') {
+                    console.log('result.msg.type');
+                    console.log(result.msg.type);
+                    if (result.msg.type == 'salesrep' || result.msg.type == 'corporate' || result.msg.type == 'leadmanager' || result.msg.type == 'masteraccount') {
+                        console.log('hi 1');
                         if (result.msg.signup_step == '1') {
                             this.router.navigate(['/employment-agreement']);
                         }
@@ -66,6 +73,7 @@ export class AutologinComponent implements OnInit {
                         }
                     }
                     else if (result.msg.type == 'recruiter') {
+                        console.log('hi 2');
                         if (result.msg.signup_step == '1') {
                             this.router.navigate(['/employment-agreement']);
                         }
@@ -76,8 +84,9 @@ export class AutologinComponent implements OnInit {
                             this.router.navigate(['/recruiterdashboard']);
                         }
                     }
-                    else { // admin
-                        this.router.navigate(['/dashboard']);
+                   else {  // superadmin
+                        console.log('hi 3');
+                        this.router.navigate(['/rep-dashboard']);
                     }
                 }
                 else {

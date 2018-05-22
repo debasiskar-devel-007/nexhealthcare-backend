@@ -30,6 +30,7 @@ export class RepsignupComponent implements OnInit {
     public neededhost;
     public compensationtokenvalue;
     public roleid;
+    public addedby;
     public wrongtokenforleadrolemodal: boolean = false;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices, private route: ActivatedRoute) {
@@ -51,6 +52,13 @@ export class RepsignupComponent implements OnInit {
             var splitvalue = this.hostname.split('.');
           //  console.log(splitvalue);
           //  console.log(splitvalue[0]);
+            if (splitvalue[2] == null) {
+                this.type = 'corporate';
+                this.neededhost = 'nexhealthtoday.com';
+                this.addedby = 'corporate';
+            }
+            else {
+                this.addedby = splitvalue[0];
             let link = this.serverurl + 'getuserdetailsbyuserid';
             let data = {
                 username: splitvalue[0],
@@ -81,6 +89,7 @@ export class RepsignupComponent implements OnInit {
                 }, error => {
                     console.log('Oooops!');
                 });
+        }
         }
     }
 
@@ -214,6 +223,7 @@ export class RepsignupComponent implements OnInit {
                 type: this.type,
                 signup_step: 1,
                 cgxamountoflead: this.cgxamount,
+                addedby: this.addedby,
             };
             console.log('data-------');
             console.log(data);
@@ -231,7 +241,7 @@ export class RepsignupComponent implements OnInit {
                     if (result.status == 'success') {
                         //   console.log('success');
                         this.alreadyexist = null;
-                        let addresultforcookie = {
+                      /*  let addresultforcookie = {
                             id : result.id._id,
                             firstname : formval.firstname,
                             lastname : formval.lastname,
@@ -240,11 +250,11 @@ export class RepsignupComponent implements OnInit {
                             // type : 'salesrep',
                             type : this.type,
                         };
-                        this.addcookie.putObject('cookiedetails', addresultforcookie);
+                        this.addcookie.putObject('cookiedetails', addresultforcookie);*/
                         this.dataForm.reset();
                         //  this.router.navigate(['/employment-agreement']);
                         if (this.serverhost == 'localhost:4200') {
-                            var newurl = 'http://localhost:4200/#/autologin/' + result.msg.logintoken;
+                            var newurl = 'http://localhost:4200/#/autologin/' + result.id.logintoken;
                         }
                         else {
                             var newurl = 'http://' + formval.username + '.' + this.neededhost + '/#/autologin/' + result.id.logintoken;

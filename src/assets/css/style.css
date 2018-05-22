@@ -1507,8 +1507,9 @@ a:visited {	text-decoration: none;	outline: none;}
 
 
 
-.compensation_btn{ background: #2eb7f2; padding:8px 10px; border-radius: 5px;  font-family: 'proximanova-semibold';
+.compensation_btn{ background: #2eb7f2!important; padding:8px 10px; border-radius: 0px;  font-family: 'proximanova-semibold';
     font-size: 16px; color: #fff!important;     float: right;  margin-top: 0; cursor: pointer; border: none;
+    box-shadow: none!important;
 }
 
 
@@ -1640,3 +1641,13 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .pateintdetail_left_formnew_right  .has-error {
     padding-left: 99px!important;}
+
+
+.popupinputnew1{ height: 35px; margin: 18px 0 0 0;}
+
+.popupnewbtnwrapper{ text-align: center!important;}
+.popupnewbtnwrapper .popbtn1{ background: #2eb7f2!important;}
+.popupnewbtnwrapper .popbtn2{ background: #2eb7f2!important;}
+
+.copiedtext{ display: block; margin: 0; padding: 0; text-align: center; font-family: 'proximanova-semibold';
+    font-size: 18px; color: #2eb7f2!important;  }

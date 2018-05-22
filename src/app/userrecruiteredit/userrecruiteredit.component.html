@@ -32,95 +32,103 @@
       <div class="myaccount_form_wrapper">
 
 
-        <form>
+        <form role="form" novalidate [formGroup]="dataForm" (ngSubmit)="dosubmit(dataForm.value)">
 
           <h6><a href="javascript:void(0)">Account Information</a></h6>
 
           <div class="form-group">
             <label>Rep ID: </label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [formControl]="dataForm.controls['uniqueid']" readonly/>
             <div class="clearfix"></div>
 
           </div>
 
           <div class="form-group">
             <label>Username : </label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [formControl]="dataForm.controls['username']" readonly/>
             <div class="clearfix"></div>
 
           </div>
 
           <div class="form-group">
             <label>Password :</label>
-            <input type="password" class="form-control">
+            <input type="text" class="form-control" [formControl]="dataForm.controls['password']"/>
             <div class="clearfix"></div>
 
           </div>
 
           <div class="form-group">
             <label>Confirm  Password:</label>
-            <input type="password" class="form-control">
+            <input type="password" class="form-control" [formControl]="dataForm.controls['confpassword']"/>
             <div class="clearfix"></div>
-
+            <span class="has-error" *ngIf="passerror">{{passerror}}</span>
           </div>
 
           <h6><a href="javascript:void(0)">User Information</a></h6>
 
           <div class="form-group">
             <label>First Name :</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [formControl]="dataForm.controls['firstname']"/>
+            <span class="has-error" *ngIf ="dataForm.controls['firstname'].touched && !dataForm.controls['firstname'].valid">Invalid First Name!</span>
             <div class="clearfix"></div>
 
           </div>
           <div class="form-group">
             <label>Last Name :</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [formControl]="dataForm.controls['lastname']"/>
+            <span class="has-error" *ngIf ="dataForm.controls['lastname'].touched && !dataForm.controls['lastname'].valid">Invalid Last Name!</span>
             <div class="clearfix"></div>
 
           </div>
           <div class="form-group">
             <label>Address  :</label>
-            <textarea></textarea>
+            <textarea [formControl]="dataForm.controls['address']"></textarea>
+            <span class="has-error" *ngIf ="dataForm.controls['address'].touched && !dataForm.controls['address'].valid">Invalid Address!</span>
             <div class="clearfix"></div>
 
           </div>
           <div class="form-group">
             <label>Address2  :</label>
-            <textarea></textarea>
+            <textarea [formControl]="dataForm.controls['address2']"></textarea>
             <div class="clearfix"></div>
 
           </div>
 
           <div class="form-group">
             <label>City  :</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [formControl]="dataForm.controls['city']">
+            <span class="has-error" *ngIf ="dataForm.controls['city'].touched && !dataForm.controls['city'].valid">Invalid City!</span>
+
             <div class="clearfix"></div>
 
           </div>
 
           <div class="form-group">
             <label>State   :</label>
-            <select  class="form-control2">
+            <input type="text" class="form-control" [formControl]="dataForm.controls['state']">
+            <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid">Invalid State!</span>
+            <!--<select  class="form-control2">
               <option>State </option>
               <option> State </option>
               <option> State </option>
-            </select>
+            </select>-->
             <div class="clearfix"></div>
 
           </div>
           <div class="form-group">
             <label>Zip    :</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [formControl]="dataForm.controls['zip']">
+            <span class="has-error" *ngIf ="dataForm.controls['zip'].touched && !dataForm.controls['zip'].valid">Invalid Zip!</span>
             <div class="clearfix"></div>
 
           </div>
 
           <div class="form-group">
             <label>Gender  :</label>
-            <select  class="form-control2">
-              <option>Male</option>
-              <option> Female</option>
-              <option> Other</option>
+            <select class="form-control2" [formControl]="dataForm.controls['gender']">
+              <span class="has-error" *ngIf ="dataForm.controls['gender'].touched && !dataForm.controls['gender'].valid"> You must choose your gender!</span>
+              <option value="male" name="gender">Male </option>
+              <option value="female" name="gender">Female </option>
             </select>
             <div class="clearfix"></div>
 
@@ -128,7 +136,8 @@
 
           <div class="form-group">
             <label>Date Of birth :</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [formControl]="dataForm.controls['dob']">
+            <span class="has-error" *ngIf ="dataForm.controls['dob'].touched && !dataForm.controls['dob'].valid">Invalid Date of Birth!</span>
             <div class="clearfix"></div>
 
           </div>
@@ -137,14 +146,15 @@
 
           <div class="form-group">
             <label>Email Address:</label>
-            <input type="email" class="form-control">
+            <input type="email" class="form-control" [formControl]="dataForm.controls['email']" readonly>
             <div class="clearfix"></div>
 
           </div>
 
           <div class="form-group">
             <label>Phone Number:</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [formControl]="dataForm.controls['phone']">
+            <span class="has-error" *ngIf ="dataForm.controls['phone'].touched && !dataForm.controls['phone'].valid">Phone No must be 10 numbers!</span>
             <div class="clearfix"></div>
 
           </div>
@@ -153,13 +163,19 @@
           <h6><a href="javascript:void(0)">User Account</a></h6>
           <div class="form-group">
             <label>Account Type* :</label>
-            <input type="text" class="form-control">
+         <!--   <input type="text" class="form-control" [formControl]="dataForm.controls['type']">-->
+            <select class="form-control2" [formControl]="dataForm.controls['type']">
+              <option value="leadmanager" name="gender">Lead Manager </option>
+              <option value="masteraccount" name="gender">Master account</option>
+              <option value="salesrep" name="gender">Sales Rep</option>
+            </select>
+            <span class="has-error" *ngIf ="dataForm.controls['type'].touched && !dataForm.controls['type'].valid">Please choose any one!</span>
             <div class="clearfix"></div>
 
           </div>
           <div class="form-group">
             <label>Owner :</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [formControl]="dataForm.controls['addedby']" readonly>
             <div class="clearfix"></div>
 
           </div>
@@ -169,25 +185,26 @@
 
 
 
-          <div class="form-group">
+        <!--  <div class="form-group">
             <label> <h6><a href="javascript:void(0)">Admin Notes</a></h6></label>
-            <textarea class="notes_textarea2"></textarea>
+            <textarea class="notes_textarea2" [formControl]="dataForm.controls['notes']"></textarea>
             <div class="clearfix"></div>
 
           </div>
 
           <div class="form-group">
             <label> <h6><a href="javascript:void(0)">Account Status</a></h6></label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [formControl]="dataForm.controls['status']">
             <div class="clearfix"></div>
 
-          </div>
+          </div>-->
 
           <div class="form-group">
             <label> <h6><a href="javascript:void(0)">Subdomain</a></h6></label>
             <div class="form-groupcheckbox">
-            <input type="checkbox"> Yes &nbsp;&nbsp;<input type="checkbox"> No
-            <input type="text" class="form-control">
+           <!-- <input type="checkbox"> Yes &nbsp;&nbsp;<input type="checkbox"> No-->
+            <input type="text" class="form-control" [formControl]="dataForm.controls['subdomain']"
+            readonly>
             <div class="clearfix"></div>
             </div>
 
@@ -203,8 +220,8 @@
 
           <div class="myaccount_btn_wrapper">
 
-            <input type="button"  value="Save" class="btn1"/>
-            <input type="button"  value="Cancel" class="btn2"/>
+            <input type="submit"  value="Save" class="btn1"/>
+            <input type="button"  value="Cancel" class="btn2" (click)="cancelit()"/>
 
             <div class="clearfix"></div>
           </div>

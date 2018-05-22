@@ -3,7 +3,6 @@ import { FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms'
 import { Http } from '@angular/http';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
-import {PateintdetailComponent} from '../pateintdetail/pateintdetail.component';
 
 @Component({
   selector: 'app-patientrecord',
