@@ -115,7 +115,7 @@ export class CompensationmodifierComponent implements OnInit {
                 });
         }
          else {
-             this.compensationerror = 'Please give amount between 0 to 150.';
+             this.compensationerror = 'Please give amount between $1 - $150.';
          }
     }
 }
