@@ -171,17 +171,21 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-            <label> State</label>
-            <input type="text"   [formControl]="dataForm.controls['state']">
-            <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid">Invalid State!</span>
+                    <label> State</label>
+                 <!--   <input type="text" [formControl]="dataForm.controls['state']">-->
+                    <select class="form-group" [formControl]="dataForm.controls['state']">
+                        <option value="" disabled selected>Select State</option>
+                        <option value="{{item.abbreviation}}" *ngFor="let item of usastates; let i = index">{{item.name}}</option>
+                    </select>
+                    <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid">Invalid State!</span>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-            <label> Zip</label>
-            <input type="text"   [formControl]="dataForm.controls['zip']">
-            <span class="has-error" *ngIf ="dataForm.controls['zip'].touched && !dataForm.controls['zip'].valid">Invalid Zip!</span>
-            </div>
+                    <label> Zip</label>
+                    <input type="text"   [formControl]="dataForm.controls['zip']">
+                    <span class="has-error" *ngIf ="dataForm.controls['zip'].touched && !dataForm.controls['zip'].valid">Invalid Zip!</span>
+                </div>
             </div>
         </div>
         <div class="row">

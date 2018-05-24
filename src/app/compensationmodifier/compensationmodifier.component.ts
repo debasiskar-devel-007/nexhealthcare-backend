@@ -36,8 +36,8 @@ export class CompensationmodifierComponent implements OnInit {
     ngOnInit() {
     }
     callfunc(token) {
-      //  return 'https://' + this.serverhost + '/#/repsignup/' + token;
-        return this.serverhost + '/#/repsignup/' + token;
+      //  return 'https://' + this.serverhost + '/#/sign-up/' + token;
+        return this.serverhost + '/#/sign-up/' + token;
     }
     showcopied() {
           this.copiedmodal = true;

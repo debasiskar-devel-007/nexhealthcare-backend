@@ -31,6 +31,7 @@ export class RepsignupComponent implements OnInit {
     public compensationtokenvalue;
     public roleid;
     public addedby;
+    public usastates;
     public wrongtokenforleadrolemodal: boolean = false;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices, private route: ActivatedRoute) {
@@ -91,6 +92,7 @@ export class RepsignupComponent implements OnInit {
                 });
         }
         }
+        this.getusastates();
     }
 
     ngOnInit() {
@@ -112,11 +114,22 @@ export class RepsignupComponent implements OnInit {
             agentexperience: ['', Validators.required],
             olderclients: ['', Validators.required],
             noofplanBcard: ['', Validators.required],
-            phone: ['', Validators.compose([Validators.required, Validators.minLength(10)])],
+            phone: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
         }, {validator: this.matchingPasswords('password', 'confpassword')});
     }
 
+    getusastates() {
+        let link = this.serverurl + 'getusastates';
+        this._http.get(link)
+            .subscribe(res => {
+                let result = res.json();
+                    console.log(result);
+                    this.usastates = result;
 
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
     static validateEmail(control: FormControl) {
         RepsignupComponent.blankemail = false;
         RepsignupComponent.invalidemail = false;
