@@ -16,8 +16,6 @@ export class UserrecruitereditComponent implements OnInit {
     public type;
     id: number;
     public serverurl;
-    static invalidpassword;
-    public passmatchvalidate;
     public passerror ;
 
     constructor(fb: FormBuilder, private _http: Http, private router: Router, private route: ActivatedRoute, private _commonservices: Commonservices) {

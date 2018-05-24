@@ -1,14 +1,14 @@
-<div class="container-fluid admin_inner_top">
+<!--<div class="container-fluid admin_inner_top">
   <div class="container admininnerwrappe">
     <a href="javascript:void(0)"><img src="../../assets/images/adminlogo.png" alt="#"></a>
 
   </div>
 
-</div>
-
+</div>-->
+<app-frontheader></app-frontheader>
 <div class="container-fluid admin_inner_heading">
 
-  <h2><span>User Management</span></h2>
+  <h2><span>Account Information</span></h2>
 
 </div>
 
@@ -17,7 +17,7 @@
 
     <div class="pateints_header">
 
-      <div class="pateints_header_left autoheadingwidth"><h2>User Management <span>Record View</span></h2></div>
+      <!--<div class="pateints_header_left autoheadingwidth"><h2>User Management <span>Record View</span></h2></div>-->
 
       <div class="clearfix"></div>
 
@@ -33,22 +33,22 @@
 
         <div class="userrecruiterdetail_btn_wrapper">
 
-          <a href="javascript:void(0)" class="link1">Back To List</a>
-          <a href="javascript:void(0)" class="link2">Edit</a>
+          <a href="javascript:void(0)" class="link1" [routerLink]="['/userrecruiterlist', this.type]" >Back To List</a>
+          <a href="javascript:void(0)" class="link2" [routerLink]="['/userrecruiteredit', id]">Edit</a>
           <a href="javascript:void(0)" class="link3">New</a>
           <a href="javascript:void(0)" class="link4">Delete</a>
           <div class="clearfix"></div>
         </div>
 
 
-        <form>
+        <form *ngIf="userrecruitterdetails">
 
           <h6><a href="javascript:void(0)">Account Information</a></h6>
 
           <div class="userrecruiterdetail_group">
 
             <div class="userrecruiterdetail_group_heading">Rep ID: </div>
-            <div class="userrecruiterdetail_group_contain">(600) </div>
+            <div class="userrecruiterdetail_group_contain">({{userrecruitterdetails.uniqueid}}) </div>
 
 
             <div class="clearfix"></div>
@@ -57,7 +57,7 @@
           <div class="userrecruiterdetail_group">
 
             <div class="userrecruiterdetail_group_heading">Username*:</div>
-            <div class="userrecruiterdetail_group_contain">Lorem Ipsum is simply </div>
+            <div class="userrecruiterdetail_group_contain">{{userrecruitterdetails.username}} </div>
 
 
             <div class="clearfix"></div>
@@ -88,7 +88,7 @@
           <div class="userrecruiterdetail_group">
 
             <div class="userrecruiterdetail_group_heading">First Name*:</div>
-            <div class="userrecruiterdetail_group_contain">Lorem</div>
+            <div class="userrecruiterdetail_group_contain">{{userrecruitterdetails.firstname}}</div>
 
 
             <div class="clearfix"></div>
@@ -97,7 +97,7 @@
           <div class="userrecruiterdetail_group">
 
             <div class="userrecruiterdetail_group_heading">Last Name*:</div>
-            <div class="userrecruiterdetail_group_contain"> Ipsum </div>
+            <div class="userrecruiterdetail_group_contain"> {{userrecruitterdetails.lastname}} </div>
 
 
             <div class="clearfix"></div>
@@ -106,7 +106,7 @@
           <div class="userrecruiterdetail_group">
 
             <div class="userrecruiterdetail_group_heading">Address*:</div>
-            <div class="userrecruiterdetail_group_contain">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </div>
+            <div class="userrecruiterdetail_group_contain">{{userrecruitterdetails.address}} </div>
 
 
             <div class="clearfix"></div>
@@ -115,7 +115,7 @@
           <div class="userrecruiterdetail_group">
 
             <div class="userrecruiterdetail_group_heading">Address 2:</div>
-            <div class="userrecruiterdetail_group_contain">Lorem Ipsum is simply dummy text of the printing </div>
+            <div class="userrecruiterdetail_group_contain">{{userrecruitterdetails.address2}} </div>
 
 
             <div class="clearfix"></div>
@@ -124,7 +124,7 @@
           <div class="userrecruiterdetail_group">
 
             <div class="userrecruiterdetail_group_heading">City*:</div>
-            <div class="userrecruiterdetail_group_contain">Lorem Ipsum is simply  </div>
+            <div class="userrecruiterdetail_group_contain">{{userrecruitterdetails.city}}  </div>
 
 
             <div class="clearfix"></div>
@@ -133,7 +133,7 @@
           <div class="userrecruiterdetail_group">
 
             <div class="userrecruiterdetail_group_heading">State*:</div>
-            <div class="userrecruiterdetail_group_contain">Lorem Ipsum </div>
+            <div class="userrecruiterdetail_group_contain">{{userrecruitterdetails.state}} </div>
 
 
             <div class="clearfix"></div>
@@ -143,7 +143,7 @@
           <div class="userrecruiterdetail_group">
 
             <div class="userrecruiterdetail_group_heading">Zip*:</div>
-            <div class="userrecruiterdetail_group_contain">123456 </div>
+            <div class="userrecruiterdetail_group_contain">{{userrecruitterdetails.zip}} </div>
 
 
             <div class="clearfix"></div>
@@ -152,7 +152,10 @@
           <div class="userrecruiterdetail_group">
 
             <div class="userrecruiterdetail_group_heading">Gender*:</div>
-            <div class="userrecruiterdetail_group_contain">Male </div>
+            <div class="userrecruiterdetail_group_contain">
+            <p *ngIf="userrecruitterdetails.gender=='female'">Female</p>
+            <p *ngIf="userrecruitterdetails.gender=='male'">Male</p>
+            </div>
 
 
             <div class="clearfix"></div>
@@ -161,7 +164,7 @@
           <div class="userrecruiterdetail_group">
 
             <div class="userrecruiterdetail_group_heading">Date of Birth*:</div>
-            <div class="userrecruiterdetail_group_contain">22.33.44 </div>
+            <div class="userrecruiterdetail_group_contain">{{userrecruitterdetails.dob}} </div>
 
 
             <div class="clearfix"></div>
@@ -178,7 +181,7 @@
           <div class="userrecruiterdetail_group">
 
             <div class="userrecruiterdetail_group_heading">Email Address*:</div>
-            <div class="userrecruiterdetail_group_contain">lorem@ipsum </div>
+            <div class="userrecruiterdetail_group_contain">{{userrecruitterdetails.email}} </div>
 
 
             <div class="clearfix"></div>
@@ -187,7 +190,7 @@
           <div class="userrecruiterdetail_group">
 
             <div class="userrecruiterdetail_group_heading">Phone Number*:</div>
-            <div class="userrecruiterdetail_group_contain">123456</div>
+            <div class="userrecruiterdetail_group_contain">{{userrecruitterdetails.phone}}</div>
 
 
             <div class="clearfix"></div>
@@ -199,7 +202,7 @@
           <div class="userrecruiterdetail_group">
 
             <div class="userrecruiterdetail_group_heading">Account Type*</div>
-            <div class="userrecruiterdetail_group_contain">&nbsp; </div>
+            <div class="userrecruiterdetail_group_contain">&nbsp; {{userrecruitterdetails.type}}</div>
 
 
             <div class="clearfix"></div>
@@ -207,14 +210,14 @@
           <div class="userrecruiterdetail_group">
 
             <div class="userrecruiterdetail_group_heading">Owner*</div>
-            <div class="userrecruiterdetail_group_contain">&nbsp; </div>
+            <div class="userrecruiterdetail_group_contain">&nbsp; {{userrecruitterdetails.addedby}}</div>
 
 
             <div class="clearfix"></div>
           </div>
 
 
-          <h6><a href="javascript:void(0)">Admin Notes </a></h6>
+       <!--   <h6><a href="javascript:void(0)">Admin Notes </a></h6>
 
           <div class="userrecruiterdetail_group">
 
@@ -223,13 +226,13 @@
 
 
             <div class="clearfix"></div>
-          </div>
+          </div>-->
 
           <h6><a href="javascript:void(0)">Account Status</a></h6>
 
           <div class="userrecruiterdetail_group">
 
-            <div class="userrecruiterdetail_group_heading">Blocked</div>
+            <div class="userrecruiterdetail_group_heading">Active</div>
             <div class="userrecruiterdetail_group_contain">&nbsp;</div>
 
 
@@ -251,7 +254,7 @@
 
           <div class="userrecruiterdetail_group">
 
-            <div class="userrecruiterdetail_group_heading">www.test.com</div>
+            <div class="userrecruiterdetail_group_heading">www.{{userrecruitterdetails.username}}test.com</div>
             <div class="userrecruiterdetail_group_contain">&nbsp; </div>
 
 

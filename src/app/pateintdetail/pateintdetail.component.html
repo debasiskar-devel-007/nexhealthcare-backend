@@ -93,7 +93,7 @@
               <label>State*</label>
               <select class="form-control" [formControl]="dataForm.controls['state']">
                 <option value="" disabled selected>Select State</option>
-                <option value="{{item.abbreviation}}" *ngFor="let item of usastates; let i = index">{{item.name}}</option>
+                <option value="{{item.name}}" *ngFor="let item of usastates; let i = index">{{item.name}}</option>
               </select>
            <!--   <input type="text"  class="form-control"  placeholder="State" [formControl]="dataForm.controls['state']"/>-->
               <div class="clearfix"></div>

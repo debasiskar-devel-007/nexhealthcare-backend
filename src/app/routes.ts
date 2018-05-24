@@ -55,7 +55,7 @@ const appRoutes: Routes = [
     { path: 'patientrecord/:id', component: PatientrecordComponent},
     { path: 'userrecruiterlist/:id', component: UserrecruiterlistComponent},
     { path: 'userrecruiteredit/:id', component: UserrecruitereditComponent},
-    { path: 'userrecruiterdetail', component: UserrecruiterdetailComponent},
+    { path: 'userrecruiterdetail/:id', component: UserrecruiterdetailComponent},
     { path: 'forgetpassword', component: ForgetpasswordComponent},
     { path: 'resetpassword/:id', component: ResetpasswordComponent},
     { path: 'autologin/:id', component: AutologinComponent},
