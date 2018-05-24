@@ -65,7 +65,7 @@
 
       </div>
 
-      <div class="pateints_list_table_contain" *ngFor="let item of datalist | orderBy:'_id':'reverse' | usersearch:listFilter.value| paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+      <div class="pateints_list_table_contain" *ngFor="let item of datalist | orderBy:'_id':'reverse' | usersearch:listFilter.value| paginate: { itemsPerPage: 25, currentPage: p }; let i = index">
         <div class="row row-eq-height" (click)="gotopatientrecord(item._id)">
           <div class="div1">
             <span>{{item.uniqueid}}</span>
