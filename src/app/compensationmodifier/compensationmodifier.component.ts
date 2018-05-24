@@ -73,7 +73,7 @@ export class CompensationmodifierComponent implements OnInit {
     }
 
     addcompensation() {
-        if (this.compensationamount >= 0 && this.compensationamount < 150 && this.compensationamount != '' && this.compensationamount != null) {
+        if (this.compensationamount > 0 && this.compensationamount < 150 && this.compensationamount != '' && this.compensationamount != null) {
             this.compensationerror = null;
             let link = this.serverurl + 'getcompensationdetailsbyusernameandamount';
             let data = {
