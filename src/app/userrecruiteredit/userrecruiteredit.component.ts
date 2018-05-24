@@ -152,7 +152,7 @@ export class UserrecruitereditComponent implements OnInit {
             console.log(data);
             this._http.post(link, data)
                 .subscribe(data => {
-                    //  this.router.navigate(['/patient-list']);
+                   this.router.navigate(['/userrecruiterlist', formval.type]);
                 }, error => {
                     console.log('Oooops!');
                 });
@@ -163,13 +163,19 @@ export class UserrecruitereditComponent implements OnInit {
         console.log(formval.password);
           this.passerror = null;
           if (formval.password == formval.confpassword) {
-              if (formval.password.length < 8) {
-                  /*if (!formval.password.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/)) {
+              console.log('1 step ahd');
+              console.log(formval.password.length);
+              if (formval.password.length >= 8) {
+                  console.log('2 step ahd');
+                   if (!formval.password.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/)) {
                       this.passerror = 'Password must contain at least 8 characters,one lower case character , one upper case character , one number, one special character';
-                  }*/
-                //  else {
+                       console.log('3 step ahd');
+                  }
+                  else {
                       this.passerror = null;
-                      if (this.dataForm.valid) {
+                      console.log('4 step ahd');
+                    // if (this.dataForm.valid) {
+                          console.log('yo');
                           let link= this.serverurl + 'edituserdetails';
                           let data = {
                               id: this.id,
@@ -193,8 +199,11 @@ export class UserrecruitereditComponent implements OnInit {
                               }, error => {
                                   console.log('Oooops!');
                               });
-                      }
-                 // }
+                   //   }
+                  }
+              }
+              else {
+                  this.passerror = 'Password must contain at least 8 characters';
               }
           }
           else {

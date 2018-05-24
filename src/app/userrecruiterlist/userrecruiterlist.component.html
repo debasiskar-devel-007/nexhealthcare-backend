@@ -27,6 +27,7 @@
       <th>Last Name</th>
       <th>Account Type</th>
       <th>Owner</th>
+      <th>Cgx Amount</th>
       <th>Action</th>
     </tr>
 
@@ -38,6 +39,11 @@
       <td>{{item.lastname}}</td>
       <td>{{item.type}}</td>
       <td>{{item.addedby}}</td>
+      <td>
+        <p *ngIf="item.Repcontractdetail[0]">{{item.Repcontractdetail[0].compensationgrade}}</p>
+        <p *ngIf="!item.Repcontractdetail[0]">No amount given</p>
+      </td>
+     <!-- <td *ngIf="!item.Repcontractdetail[0] || item.Repcontractdetail[0].compensationgrade==''">No amount given</td>-->
       <td><a href="javascript:void(0)" [routerLink]="['/userrecruiteredit',item._id]">Edit</a></td>
 
     </tr>

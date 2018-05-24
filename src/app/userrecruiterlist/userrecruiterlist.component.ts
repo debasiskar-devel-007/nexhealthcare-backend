@@ -29,7 +29,7 @@ export class UserrecruiterlistComponent implements OnInit {
       });
   }
     getUserList() {
-        let link = this.serverurl + 'userList';
+        let link = this.serverurl + 'user&repcontractList';
         this._http.get(link)
             .subscribe(res => {
                 let result = res.json();
