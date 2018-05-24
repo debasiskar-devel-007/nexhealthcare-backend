@@ -13,10 +13,13 @@ import {CookieService} from 'angular2-cookie/core';
 })
 export class PateintdetailComponent implements OnInit {
     public dataForm: FormGroup;
-    private fb;
+    public fb;
     public serverurl;
-    private addcookie: CookieService;
-    private cookiedetails;
+    public usastates;
+    public addcookie: CookieService;
+    public cookiedetails;
+    public newinstertedid;
+    public newinsertedname;
     static invalidemail;
     static blankemail;
     public opensuccessmodal: boolean = false;
@@ -26,8 +29,20 @@ export class PateintdetailComponent implements OnInit {
         this.serverurl = _commonservices.url;
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
+        this.getusastates();
     }
+    getusastates() {
+        let link = this.serverurl + 'getusastates';
+        this._http.get(link)
+            .subscribe(res => {
+                let result = res.json();
+                console.log(result);
+                this.usastates = result;
 
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
     ngOnInit() {
        /* this.dataForm = this.fb.group({
             firstname: ['', Validators.required],
@@ -55,8 +70,9 @@ export class PateintdetailComponent implements OnInit {
         this.dataForm = this.fb.group({
             firstname: ['', Validators.required],
             lastname: ['', Validators.required],
-            email: ['', Validators.compose([Validators.required, PateintdetailComponent.validateEmail])],
-            phone: ['', Validators.required],
+          //  email: ['', Validators.compose([Validators.required, PateintdetailComponent.validateEmail])],
+            email: [''],
+            phone: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
             city: ['', Validators.required],
             state: ['', Validators.required]
         });
@@ -91,7 +107,9 @@ export class PateintdetailComponent implements OnInit {
         for (x in this.dataForm.controls) {
             this.dataForm.controls[x].markAsTouched();
         }
-        if (this.dataForm.valid && (PateintdetailComponent.invalidemail == false || PateintdetailComponent.blankemail == false)) {
+       // if (this.dataForm.valid && (PateintdetailComponent.invalidemail == false || PateintdetailComponent.blankemail == false))
+        if (this.dataForm.valid )
+        {
           console.log('inside');
             let link = this.serverurl + 'patientdetail';
             let data = {
@@ -124,6 +142,9 @@ export class PateintdetailComponent implements OnInit {
                     if (result.status == 'success') {
                         this.dataForm.reset();
                         this.opensuccessmodal = true;
+                        this.newinstertedid = result.id;
+                        this.newinsertedname = formval.firstname + ' ' + formval.lastname;
+                        this.newinstertedid = result.id;
                        // this.router.navigate(['/patient-list']);
                     }
                 }, error => {
@@ -135,6 +156,11 @@ export class PateintdetailComponent implements OnInit {
     closemodal() {
         this.opensuccessmodal = false;
     }
+
+    gotopatientrecord() {
+    this.router.navigate(['/patientrecord', this.newinstertedid]);
+    }
+
     onHidden() {
         this.opensuccessmodal = false;
 
