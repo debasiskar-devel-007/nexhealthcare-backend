@@ -27,9 +27,8 @@
                   </button>
                   <ul id="dropdown-basic1" *dropdownMenu class="dropdown-menu"
                       role="menu" aria-labelledby="button-basic">
-                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/userrecruiterlist','leadmanager']">Lead Managers</a></li>
-                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/userrecruiterlist','masteraccount']">Master Account</a></li>
-                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/userrecruiterlist','salesrep']">Sales Rep</a></li>
+                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/userrecruiterlist','masteraccount']">Master Accounts</a></li>
+                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/userrecruiterlist','salesrep']">Sales Reps</a></li>
 
 
                   </ul>
@@ -41,8 +40,10 @@
                   </button>
                   <ul id="dropdown-basic2" *dropdownMenu class="dropdown-menu"
                       role="menu" aria-labelledby="button-basic">
-                    <li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Recruiters</a></li>
-                    <li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Sales Rep</a></li>
+                    <li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/userrecruiterlist','leadmanager']">Lead Managers</a></li>
+                    <li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/userrecruiterlist','masteraccount']">Master Accounts</a></li>
+                    <!--<li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Recruiters</a></li>-->
+                    <li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/userrecruiterlist','salesrep']">Sales Reps</a></li>
                     <li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)"  [routerLink]="['/patient-list']">Patients</a></li>
                     <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/add-patient']">Add Patient</a></li>
                     <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/patient-list']">Patient List </a></li>
@@ -71,8 +72,8 @@
                   <ul id="dropdown-basic4" *dropdownMenu class="dropdown-menu"
                       role="menu" aria-labelledby="button-basic">
                     <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Training Center</a></li>
-                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Manage Webinars</a></li>
-                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Manage Resources</a></li>
+                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Webinars</a></li>
+                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Resources</a></li>
                   </ul>
                 </li>
                 <li><a href="javascript:void(0)" (click)="openmodal()">Reports </a></li>
