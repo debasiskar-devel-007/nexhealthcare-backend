@@ -1115,6 +1115,7 @@ a:visited {	text-decoration: none;	outline: none;}
 .myaccount_form_wrapper  .form-group .form-control2{ width:364px; height:40px; background:#fff; border:solid 1px #dadada; border-radius:0px; box-shadow:none; outline:none; font-size: 16px; color: #000; font-family: 'proximanova-regular'; padding:0 5px; float: right;}
 .myaccount_form_wrapper  .form-group textarea{ width:364px; height:40px; background:#fff; border:solid 1px #dadada; border-radius:0px; box-shadow:none; outline:none; font-size: 16px; color: #000; font-family: 'proximanova-regular'; padding:5px; float: right; resize: none;}
 
+.pateints_list_weraper .myaccount_form_wrapper  .form-group textarea {height: 90px !important;}
 
 .myaccount_form_wrapper  .form-group .form-groupcheckbox{ width:364px;  float: right; font-size: 16px; color: #000; font-family: 'proximanova-regular';}
 
@@ -1133,9 +1134,12 @@ a:visited {	text-decoration: none;	outline: none;}
 
 
 
-.userrecruiterlist_table_wrapper{ width: 90%; margin: 0 auto;}
-
+.userrecruiterlist_table_wrapper{ width: 1500px; margin: 0 auto;}
+.pateints_searchdiv_wrapper{ width: 1500px; margin: 0 auto; display: block;}
+.pateints_searchdiv_wrapper .pateints_searchdiv{margin-bottom: 20px !important;}
 .userrecruiterlist_table_wrapper table{ width: 100%; background: #ececec;}
+
+.userrecruiterlist_table_wrapper table td:hover{cursor: pointer;}
 
 .userrecruiterlist_table_wrapper table td{ border: solid 1px #fff; padding: 18px; text-align: center; font-size: 16px; color: #707070;  font-family: 'proximanova-regular';}
 .userrecruiterlist_table_wrapper table th{ border: solid 1px #fff; padding: 18px; text-align: center; font-size: 16px; color: #707070;  font-family: 'proximanova-regular'; background: #cfcfcf; font-weight: normal;}

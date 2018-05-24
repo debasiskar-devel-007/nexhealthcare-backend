@@ -16,11 +16,12 @@
 </div>
 
 <div class="container-fluid pateints_inner_body">
-
-  <div class="userrecruiterlist_searchdiv">
+  <div class="pateints_searchdiv_wrapper">
+    <div class="pateints_searchdiv">
       <input type="text" placeholder="Search..." #listFilter (keyup)="0">
       <input type="button">
       <div class="clearfix"></div>
+    </div>
   </div>
 
   <div class="userrecruiterlist_table_wrapper">
@@ -53,9 +54,7 @@
     <!--  <td><a href="javascript:void(0)" [routerLink]="['/userrecruiteredit',item._id]">Edit</a></td>-->
 
     </tr>
-    <div class="pagination_wrapper">
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    </div>
+
  <!--   <tr>
 
       <td>10338</td>
@@ -112,7 +111,9 @@
 
 
   </table>
-
+    <div class="pagination_wrapper">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
   </div>
 
 </div>
