@@ -108,14 +108,39 @@
               <span class="has-error hide" >Status is required!</span></div>
               <div class="clearfix"></div>
           </div>
-
-
-
-
+          <div class="addnoteblock">
             <div class="form-group form-group_autowidth">
               <label>Notes</label>
-           <textarea placeholder="Notes"></textarea>
+              <h3 style="cursor: pointer;" class="addnote">+ Add a simple note</h3>
+              <div class="addnote-textarea">
+                <textarea placeholder="Notes"></textarea>
+                <button type="button" class="btn btn-primary btnsave">Save</button>
+                <button type="button" class="btn btn-primary btncancel">Cancel </button>
+              </div>
+
               <span class="has-error hide">Notes is required!</span></div>
+            <div class="addnote_textarea_table">
+              <table class="table table-striped">
+                <tbody>
+                <tr>
+                  <td><label>note</label></td>
+                  <td><span>John Test</span></td>
+                  <td><span>May 24, 2018</span></td>
+                </tr>
+                <tr>
+                  <td><label>note</label></td>
+                  <td><span>John Test</span></td>
+                  <td><span>May 24, 2018</span></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+
+
+
+
             <div class="clearfix"></div>
 
 
@@ -227,7 +252,7 @@
             <input type="submit"  value="Save" class="btn1" />
             <input type="button"  value="Cancel" class="btn2" (click)="cancel()"/>
 
-            <input type="button"  value="Add Patient" class="btn2" />
+            <input type="button"  value="Lead Profile Sheet" class="btn2" />
           </div>
 
 

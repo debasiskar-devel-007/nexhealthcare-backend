@@ -1670,3 +1670,27 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .copiedtext{ display: block; margin: 0; padding: 0; text-align: center; font-family: 'proximanova-semibold';
     font-size: 18px; color: #2eb7f2!important;  }
+
+
+
+
+.addnoteblock{}
+
+ h3.addnote{ margin: 0;   padding: 10px 30px 10px 0;    font-family: 'proximanova-semibold';  color: #2c2c2c; font-size: 15px !important; display: inline-block; float: left; text-transform: uppercase; }
+
+.addnote_textarea_table tr{ border: none!important;}
+.addnote_textarea_table td{font-size: 12px!important; padding: 5px 10px!important;
+    vertical-align: middle !important;
+    line-height: 16px !important;
+    border: none!important;
+}
+.addnote_textarea_table td span{color: #919191!important; font-size: 12px!important; margin: 0px; }
+.addnote_textarea_table td label{ padding-top: 0px; font-size: 12px!important; color: #2c2c2c!important; background:  url(../images/add_note_icon.png) no-repeat left center!important; margin: 0px;  padding-left: 24px!important; font-weight: normal!important;}
+
+.addnote-textarea button[type="button"]{border-radius: 0px !important;margin-right: 5px;}
+.addnote-textarea button[type="button"].btnsave{background: #0083b4;}
+.addnote-textarea button[type="button"].btncancel{background: #295b73;}
+.addnote_textarea_table{width: 98%; margin: 0 auto; display: block;}
+.addnoteblock table tr:nth-child(odd) {
+    background: #cfeaff!important;
+}
