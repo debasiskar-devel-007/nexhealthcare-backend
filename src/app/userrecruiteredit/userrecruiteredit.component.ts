@@ -16,13 +16,26 @@ export class UserrecruitereditComponent implements OnInit {
     public type;
     id: number;
     public serverurl;
+    public usastates;
     public passerror ;
 
     constructor(fb: FormBuilder, private _http: Http, private router: Router, private route: ActivatedRoute, private _commonservices: Commonservices) {
         this.fb = fb;
         this.serverurl = _commonservices.url;
+        this.getusastates();
     }
+    getusastates() {
+        let link = this.serverurl + 'getusastates';
+        this._http.get(link)
+            .subscribe(res => {
+                let result = res.json();
+                console.log(result);
+                this.usastates = result;
 
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
     ngOnInit() {
         this.route.params.subscribe(params => {
             this.id = params['id'];
@@ -39,7 +52,7 @@ export class UserrecruitereditComponent implements OnInit {
             address: ['', Validators.required],
             address2: [''],
             email: [''],
-            phone: ['', Validators.required],
+            phone: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
             city: ['', Validators.required],
             state: ['', Validators.required],
             gender: ['', Validators.required],
@@ -73,7 +86,8 @@ export class UserrecruitereditComponent implements OnInit {
                         address: [userdet.address, Validators.required],
                         address2: [userdet.address2],
                         email: [userdet.email],
-                        phone: [userdet.phone, Validators.required],
+                     //   phone: [userdet.phone, Validators.required],
+                        phone: [userdet.phone, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
                         city: [userdet.city, Validators.required],
                         state: [userdet.state, Validators.required],
                         gender: [userdet.gender, Validators.required],

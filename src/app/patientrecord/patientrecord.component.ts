@@ -13,6 +13,7 @@ import {Commonservices} from '../app.commonservices' ;
 export class PatientrecordComponent implements OnInit {
     public dataForm: FormGroup ;
     public fb;
+    public usastates;
     id: number;
     public serverurl;
     public pateintquestioniremodal: boolean = false;
@@ -21,6 +22,7 @@ export class PatientrecordComponent implements OnInit {
     constructor(fb: FormBuilder, private _http: Http, private router: Router, private route: ActivatedRoute, private _commonservices: Commonservices) {
         this.fb = fb;
         this.serverurl = _commonservices.url;
+        this.getusastates();
     }
 
     ngOnInit() {
@@ -33,13 +35,24 @@ export class PatientrecordComponent implements OnInit {
             firstname: ['', Validators.required],
             lastname: ['', Validators.required],
             email: [''],
-            phone: ['', Validators.required],
+            phone: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
             city: ['', Validators.required],
             state: ['', Validators.required]
         });
     }
 
+    getusastates() {
+        let link = this.serverurl + 'getusastates';
+        this._http.get(link)
+            .subscribe(res => {
+                let result = res.json();
+                console.log(result);
+                this.usastates = result;
 
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
     getdetails() {
         let link = this.serverurl + 'getpatientdetails';
         let data = {_id : this.id};

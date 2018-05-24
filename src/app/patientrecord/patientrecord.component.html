@@ -80,7 +80,12 @@
 
             <div class="form-group">
               <label>State</label>
-              <input type="text"  class="form-control"  placeholder="State" [formControl]="dataForm.controls['state']"/>  <div class="clearfix"></div>
+              <!--<input type="text"  class="form-control"  placeholder="State" [formControl]="dataForm.controls['state']"/> -->
+              <select class="form-control" [formControl]="dataForm.controls['state']">
+                <option value="" disabled selected>Select State</option>
+                <option value="{{item.name}}" *ngFor="let item of usastates; let i = index">{{item.name}}</option>
+              </select>
+              <div class="clearfix"></div>
               <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid">State is required!</span></div>
 
 
