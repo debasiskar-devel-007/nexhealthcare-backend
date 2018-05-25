@@ -193,7 +193,7 @@
             <div class="col-md-4">
                 <div class="form-group">
             <label> Phone Number</label>
-            <input type="text" [formControl]="dataForm.controls['phone']">
+            <input type="text" appNumber [formControl]="dataForm.controls['phone']">
             <span class="has-error" *ngIf ="dataForm.controls['phone'].touched && !dataForm.controls['phone'].valid">Phone No must be 10 numbers!</span>
             </div>
             </div>

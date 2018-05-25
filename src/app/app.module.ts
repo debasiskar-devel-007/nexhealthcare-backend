@@ -39,6 +39,7 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
 import { ClipboardModule } from 'ngx-clipboard';
 import { CgxComponent } from './cgx/cgx.component';
 import { OrderBy } from './orderby';
+import { NumberDirective } from './number.directive';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { OrderBy } from './orderby';
       ForgetpasswordComponent,
       AutologinComponent,
       CgxComponent,
-      OrderBy
+      OrderBy,
+      NumberDirective
   ],
   imports: [
     BrowserModule,
