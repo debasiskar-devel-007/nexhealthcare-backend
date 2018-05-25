@@ -101,7 +101,11 @@ export class PateintdetailComponent implements OnInit {
             return PateintdetailComponent.blankemail;
         }
     }
-
+    clearit() {
+        this.dataForm.reset();
+        console.log(this.dataForm.value);
+      //  this.dataForm.value.state = null;
+    }
     dosubmit(formval) {
         let x: any;
         for (x in this.dataForm.controls) {

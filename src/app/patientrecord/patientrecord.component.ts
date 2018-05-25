@@ -12,15 +12,18 @@ import {Commonservices} from '../app.commonservices' ;
 })
 export class PatientrecordComponent implements OnInit {
     public dataForm: FormGroup ;
+    public dataForm1: FormGroup ;
     public fb;
+    public fb1;
     public usastates;
     id: number;
     public serverurl;
     public pateintquestioniremodal: boolean = false;
 
 
-    constructor(fb: FormBuilder, private _http: Http, private router: Router, private route: ActivatedRoute, private _commonservices: Commonservices) {
+    constructor(fb: FormBuilder, fb1: FormBuilder, private _http: Http, private router: Router, private route: ActivatedRoute, private _commonservices: Commonservices) {
         this.fb = fb;
+        this.fb1 = fb1;
         this.serverurl = _commonservices.url;
         this.getusastates();
     }
@@ -38,6 +41,19 @@ export class PatientrecordComponent implements OnInit {
             phone: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
             city: ['', Validators.required],
             state: ['', Validators.required]
+        });
+
+        this.dataForm1 = this.fb.group({
+            firstname1: ['', Validators.required],
+            lastname1: ['', Validators.required],
+            phone1: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
+            address1: ['', Validators.required],
+            city1: ['', Validators.required],
+            state1: ['', Validators.required],
+            zip1: ['', Validators.required],
+            dob1: ['', Validators.required],
+            gender: ['', Validators.required],
+            race: ['', Validators.required],
         });
     }
 

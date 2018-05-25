@@ -209,6 +209,8 @@ export class RepsignupComponent implements OnInit {
         };
     }
     dosubmit(formval) {
+        console.log(this.dataForm.valid);
+        console.log(this.dataForm);
         let x: any;
         for (x in this.dataForm.controls) {
             this.dataForm.controls[x].markAsTouched();
