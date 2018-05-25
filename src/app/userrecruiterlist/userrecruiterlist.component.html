@@ -35,6 +35,7 @@
       <th>Account Type</th>
       <th>Owner</th>
       <th>Cgx Amount</th>
+      <th *ngIf="typeis=='salesrep'">Webinar Completed</th>
      <!-- <th>Action</th>-->
     </tr>
 
@@ -50,12 +51,18 @@
         <p *ngIf="item.Repcontractdetail[0]">{{item.Repcontractdetail[0].compensationgrade}}</p>
         <p *ngIf="!item.Repcontractdetail[0]">No amount given</p>
       </td>
-     <!-- <td *ngIf="!item.Repcontractdetail[0] || item.Repcontractdetail[0].compensationgrade==''">No amount given</td>-->
-    <!--  <td><a href="javascript:void(0)" [routerLink]="['/userrecruiteredit',item._id]">Edit</a></td>-->
+        <td *ngIf="typeis=='salesrep'">
+          <p *ngIf="item.iswebinarchekced == 0 || item.iswebinarchekced== null">No
+          <br/><small (click)="markasdone(item._id)">Mark as Done</small>
+          </p>
+          <p *ngIf="item.iswebinarchekced == 1">Yes</p>
+        </td>
+      <!-- <td *ngIf="!item.Repcontractdetail[0] || item.Repcontractdetail[0].compensationgrade==''">No amount given</td>-->
+      <!--  <td><a href="javascript:void(0)" [routerLink]="['/userrecruiteredit',item._id]">Edit</a></td>-->
 
     </tr>
 
- <!--   <tr>
+    <!--   <tr>
 
       <td>10338</td>
       <td>Switch nadeemhusainzsa2na3u1k

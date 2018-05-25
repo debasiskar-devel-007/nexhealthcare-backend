@@ -306,7 +306,7 @@
 
 
             <div class="pateints_list_weraper">
-              <form>
+              <form role="form" novalidate [formGroup]="dataForm1" (ngSubmit)="dosubmit1(dataForm1.value)">
 
                 <div class="pateintquestionire_div1">
                   <table>
@@ -316,12 +316,12 @@
                        <!-- <input  type="checkbox"/> <span>DME</span><br/>
                         <input  type="checkbox"/><span> Rx</span><br/>
                         <input  type="checkbox"/><span>PGX</span><br/>-->
-                        <input  type="checkbox"/> <span>CGX</span>
+                        <input  type="checkbox" [formControl]="dataForm.controls['cgx1']"/> <span>CGX</span>
                       </td>
                       <td>
                         <div class="pateintquestionire_bottom_form pateintquestionire_top_form">
                           <label>Patient Id: </label>
-                          <input type="text" />
+                          <input type="text"/>
 
                           <div class="clearfix"></div>
 
@@ -350,36 +350,36 @@
                     <h3>PATIENT INFORMATION</h3>
 
                     <div class="form-group">
-                      <label>First Name: * </label><input type="text"  class="form-control1_pq"/>
+                      <label>First Name: * </label><input type="text"  class="form-control1_pq" [formControl]="dataForm.controls['username']"/>
                       <div class="clearfix"></div>
                     </div>
 
                     <div class="form-group">
-                      <label>Last Name: *</label><input type="text"  class="form-control1_pq"/>
+                      <label>Last Name: *</label><input type="text"  class="form-control1_pq" [formControl]="dataForm.controls['username']"/>
                       <div class="clearfix"></div>
                     </div>
 
                     <div class="form-group">
-                      <label>Best Phone #: *</label><input type="text"  class="form-control1_pq"/>
-                      <div class="clearfix"></div>
-                    </div>
-
-
-                    <div class="form-group">
-                      <label>Address: *</label><textarea></textarea>
+                      <label>Best Phone #: *</label><input type="text" appNumber class="form-control1_pq" [formControl]="dataForm.controls['username']"/>
                       <div class="clearfix"></div>
                     </div>
 
 
                     <div class="form-group">
-                      <label>City/State/Zip: *</label><input type="text"  class="form-control1_pq"/>
+                      <label>Address: *</label><textarea [formControl]="dataForm.controls['address']"></textarea>
+                      <div class="clearfix"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label>City/State/Zip: *</label><input type="text"  class="form-control1_pq" [formControl]="dataForm.controls['city']"/>
                       <div class="clearfix"></div>
                     </div>
 
 
 
                     <div class="form-group">
-                      <label>Date of Birth: *</label><input type="text"  class="form-control1_pq"/>
+                      <label>Date of Birth: *</label><input type="text"  class="form-control1_pq" [formControl]="dataForm.controls['dob']"/>
                       <div class="clearfix"></div>
                     </div>
 

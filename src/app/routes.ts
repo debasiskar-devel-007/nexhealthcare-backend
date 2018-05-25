@@ -29,6 +29,7 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { AutologinComponent } from './autologin/autologin.component';
 import { CgxComponent } from './cgx/cgx.component';
+import { CompletewebinarComponent } from './completewebinar/completewebinar.component';
 
 
 const appRoutes: Routes = [
@@ -60,6 +61,7 @@ const appRoutes: Routes = [
     { path: 'resetpassword/:id', component: ResetpasswordComponent},
     { path: 'autologin/:id', component: AutologinComponent},
     { path: 'cgx', component: CgxComponent},
+    { path: 'completewebinar', component: CompletewebinarComponent},
 
 
    // { path: 'content', component: ContentComponent,outlet:'content'},

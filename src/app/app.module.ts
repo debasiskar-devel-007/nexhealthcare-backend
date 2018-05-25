@@ -40,6 +40,7 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { CgxComponent } from './cgx/cgx.component';
 import { OrderBy } from './orderby';
 import { NumberDirective } from './number.directive';
+import { CompletewebinarComponent } from './completewebinar/completewebinar.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { NumberDirective } from './number.directive';
       AutologinComponent,
       CgxComponent,
       OrderBy,
-      NumberDirective
+      NumberDirective,
+      CompletewebinarComponent
   ],
   imports: [
     BrowserModule,

@@ -209,8 +209,6 @@ export class RepsignupComponent implements OnInit {
         };
     }
     dosubmit(formval) {
-        console.log(this.dataForm.valid);
-        console.log(this.dataForm);
         let x: any;
         for (x in this.dataForm.controls) {
             this.dataForm.controls[x].markAsTouched();
@@ -239,6 +237,7 @@ export class RepsignupComponent implements OnInit {
                 signup_step: 1,
                 cgxamountoflead: this.cgxamount,
                 addedby: this.addedby,
+                iswebinarchekced: 0,
             };
             console.log('data-------');
             console.log(data);
