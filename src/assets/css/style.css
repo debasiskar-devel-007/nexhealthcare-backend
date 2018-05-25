@@ -1739,3 +1739,93 @@ a:visited {	text-decoration: none;	outline: none;}
 .repsignup_mainbodynew .form-group {
     margin-bottom: 5px;
 }
+
+
+
+
+.completewebinarbg {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+}
+
+.completewebinarbginner{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.68);
+    margin: auto;
+    min-width: 50%;
+    min-height: 50%;
+    z-index: 99;
+}
+
+.completewebinarbg img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-width: 50%;
+    min-height: 50%;
+}
+
+.completewebinarbginnercontent{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+}
+
+.completewebinarlogo{
+    width: 274px;
+    height: 135px;
+    display: block;
+    margin: 0 auto 50px;
+    position: relative;
+}
+.completewebinarlogo img{
+    min-width: inherit;
+    min-height: inherit;
+    max-width: 100%;
+}
+
+.completewebinarbginnercontentmain{
+    background-color: #000000;
+    border:2px solid #1f82ce;
+    padding: 64px 0px;
+    width: 861px;
+    margin-top: 50%;
+    position: relative;
+    margin-top: 50px;
+}
+
+.completewebinarbginnercontentmain p{
+    border-left: 10px solid #1f82ce;
+    margin: 0px;
+    padding-left: 64px;
+    padding-right: 64px;
+    font-family: 'proximanova-regular'!important;
+    font-size: 30px;
+    line-height: 36px;
+    color:#fff;
+    white-space: normal;
+    word-wrap: break-word;
+}
+.completewebinarbginnercontentmain p a{
+    color:#209eff;
+    border-bottom: 1px solid #209eff;
+}
+
+
+.completewebinarbginnercontentmain p span{
+    color:#209eff;
+}
+
+
