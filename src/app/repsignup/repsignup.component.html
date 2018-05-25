@@ -82,9 +82,13 @@
   <form role="form" novalidate [formGroup]="dataForm" (ngSubmit)="dosubmit(dataForm.value)">
 
     <div class="form_div_row">
-      <h2><!--Account Information-->create your login</h2>
-        <h2 class="h2minheight" style="padding: 20px 0 0 0;">account information</h2>
-      <h6>Rep ID: 2349</h6>
+        <!-- <h2>Account Informationcreate your login</h2>-->
+        <div class="row">
+            <div class="col-md-12">
+              <h2 class="h2minheight" style="padding: 20px 0 0 0;">account information</h2>
+              <h6>Rep ID: 2349</h6>
+            </div>
+        </div>
         <div class="row">
            <div class="col-md-12">
                <div class="form-group">
@@ -130,7 +134,11 @@
 
 
     <div class="form_div_row">
-        <h2 class="h2minheight" style="padding: 20px 0 0 0;">User Information</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="h2minheight" style="padding: 20px 0 0 0;">User Information</h2>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -218,35 +226,39 @@
         </div>
     </div>
 
-      <div class="form_div_row">
-      <h2 class="h2minheight" style="padding: 20px 0 0 0;">Experience </h2>
-      <label>How many years have you been an insurance agent?</label>
+      <div class="form_div_row experiencewrapper">
           <div class="row">
               <div class="col-md-12">
-      <div class="form_radio_wrapper">
-          <div>
-              <input type="radio" name="agent" value="1" [formControl]="dataForm.controls['agentexperience']"> <b>1-2</b>
-              <input type="radio" name="agent" value="2" [formControl]="dataForm.controls['agentexperience']">  <b>3-5</b>
-              <input type="radio" name="agent" value="3" [formControl]="dataForm.controls['agentexperience']">  <b>5-10</b>
-              <input type="radio" name="agent" value="4" [formControl]="dataForm.controls['agentexperience']">  <b>10+</b>
-
-              <div class="clearfix"></div>
+                  <h2 class="h2minheight" style="padding: 20px 0 0 0;">Experience </h2>
+                  <label>How many years have you been an insurance agent?</label>
+              </div>
           </div>
-          <span style="display: block; margin-top: 5px;" class="has-error" *ngIf ="dataForm.controls['agentexperience'].touched && !dataForm.controls['agentexperience'].valid"> Please choose the most relevant one!</span>
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="form_radio_wrapper">
+                      <div>
+                          <input type="radio" name="agent" value="1" [formControl]="dataForm.controls['agentexperience']"> <b>1-2</b>
+                          <input type="radio" name="agent" value="2" [formControl]="dataForm.controls['agentexperience']">  <b>3-5</b>
+                          <input type="radio" name="agent" value="3" [formControl]="dataForm.controls['agentexperience']">  <b>5-10</b>
+                          <input type="radio" name="agent" value="4" [formControl]="dataForm.controls['agentexperience']">  <b>10+</b>
 
-          <div class="clearfix"></div>
+                          <div class="clearfix"></div>
+                      </div>
+                      <span style="display: block; margin-top: 5px;" class="has-error" *ngIf ="dataForm.controls['agentexperience'].touched && !dataForm.controls['agentexperience'].valid"> Please choose the most relevant one!</span>
 
-      </div>
+                      <div class="clearfix"></div>
 
-      <label>What number of your clients are 65 or older?</label>
+                  </div>
 
-      <input type="text" [formControl]="dataForm.controls['olderclients']">
-      <span class="has-error" *ngIf ="dataForm.controls['olderclients'].touched && !dataForm.controls['olderclients'].valid"> Please provide the number!</span>
+                  <label>What number of your clients are 65 or older?</label>
 
-      <label>In your estimate, what percentage of your clients have their Medicare Plan B Card?</label>
+                  <input type="text" [formControl]="dataForm.controls['olderclients']">
+                  <span class="has-error" *ngIf ="dataForm.controls['olderclients'].touched && !dataForm.controls['olderclients'].valid"> Please provide the number!</span>
 
-      <input type="text" [formControl]="dataForm.controls['noofplanBcard']">
-      <span class="has-error" *ngIf ="dataForm.controls['noofplanBcard'].touched && !dataForm.controls['noofplanBcard'].valid"> Please provide the number!</span>
+                  <label>In your estimate, what percentage of your clients have their Medicare Plan B Card?</label>
+
+                  <input type="text" [formControl]="dataForm.controls['noofplanBcard']">
+                  <span class="has-error" *ngIf ="dataForm.controls['noofplanBcard'].touched && !dataForm.controls['noofplanBcard'].valid"> Please provide the number!</span>
 
 <!--    <div class="form_div_row form_div_rowlastrow">
         <h2 style="padding: 20px 0;">Experience</h2>
@@ -277,7 +289,7 @@
           <div class="row">
               <div class="col-md-12">
 
-      <label>You will need to choose one of our live onboarding calls to get started with this NexHealthcare program. Please choose a day and time that will work best for you</label>
+                    <label>You will need to choose one of our live onboarding calls to get started with this NexHealthcare program. Please choose a day and time that will work best for you</label>
 
       <select>
           <option>Fri, May 18, 2018 5:30 AM - 6:30 AM IST</option>

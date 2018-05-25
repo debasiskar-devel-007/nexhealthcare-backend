@@ -1,6 +1,18 @@
 @charset "utf-8";
 /* CSS Document */
 
+
+
+@media(max-width:1900px) {
+    .form_wrapper_text_subdiv2 label {
+        font-size: 20px;
+    }
+    .repsignup_mainbody .form_wrapper_text h3{
+        font-size: 28px;
+    }
+}
+
+
 @media(max-width:1800px) {
     .repsignup_mainbody .form_wrapper_text h3 {
         font-size: 26px;
@@ -196,6 +208,10 @@
 }
 
 @media(max-width:1199px) {
+    .repsignup_mainbody .form_wrapper_text h3 {
+        font-size: 16px;
+    }
+
     .pateintdetail_left_formnew .form-group .form-control {
         width: 58% !important;
     }
@@ -208,9 +224,17 @@
 }
 
 @media(max-width:991px) {
+    .repsignup_mainbody .form_wrapper_text h3 {
+        font-size: 25px;
+    }
     .repsignup_mainbodynew .row-eq-height{display: block !important;}
-    .repsignup_mainbody .form_wrapper_text{width: 98% !important;}
-    .repsignup_mainbody .form_wrapper{width: 98% !important;}
+    .repsignup_mainbody .form_wrapper_text {
+        width: 100% !important;
+        margin-right: 0px !important;
+    }
+    .repsignup_mainbody .form_wrapper {
+        width: 100% !important;
+    }
 
     .pateintdetail_left_form .form-group .form-control {
         width: 64%;
