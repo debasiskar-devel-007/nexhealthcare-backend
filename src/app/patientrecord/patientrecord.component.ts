@@ -195,6 +195,7 @@ export class PatientrecordComponent implements OnInit {
                 if (result.status == 'success' && typeof(result.item) != 'undefined') {
                     // console.log(result);
                     let userdet = result.item;
+                //    result.item.uniqueid;
                     this.dataForm = this.fb.group({
                         firstname: [userdet.firstname, Validators.required],
                         lastname: [userdet.lastname, Validators.required],
