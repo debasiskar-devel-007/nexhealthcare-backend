@@ -124,6 +124,7 @@ export class PateintdetailComponent implements OnInit {
               //  address: formval.address,
                 city: formval.city,
                 state: formval.state,
+                addedby: this.cookiedetails.id,
                 /*zip: formval.zip,
                 gender: formval.gender,
                 dob: formval.dob,

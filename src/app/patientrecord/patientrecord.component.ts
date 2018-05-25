@@ -20,7 +20,8 @@ export class PatientrecordComponent implements OnInit {
     id: number;
     public serverurl;
     public patientuniqueid;
-    public pateintquestioniremodal: boolean = true;
+    public cookieuniqueid;
+    public pateintquestioniremodal: boolean = false;
     private addcookie: CookieService;
     private cookiedetails;
 
@@ -35,8 +36,22 @@ export class PatientrecordComponent implements OnInit {
         console.log(this.cookiedetails);
         this.callcookiedetails();
     }
-    callcookiedetails(){
-
+    callcookiedetails() {
+        let link = this.serverurl + 'getuserdetails';
+        let data = {userid : this.cookiedetails.id};
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                console.log(result);
+                if (result.status == 'success' && typeof(result.id) != 'undefined') {
+                    let userdet = result.id;
+                    this.cookieuniqueid = result.id.uniqueid;
+                    console.log('cookieuniqueid' + this.cookieuniqueid);
+                } else {
+                }
+            }, error => {
+                console.log('Ooops');
+            });
     }
     ngOnInit() {
         this.route.params.subscribe(params => {
