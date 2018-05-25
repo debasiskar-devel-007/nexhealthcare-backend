@@ -17,6 +17,7 @@ export class TrainingstepComponent implements OnInit {
     private cookiedetails;
     public serverurl;
     public trainingvideolist : any;
+    public webinar : any;
     public gonextmodal: boolean = false;
 
     constructor(addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
@@ -26,32 +27,45 @@ export class TrainingstepComponent implements OnInit {
         console.log(this.cookiedetails);
         this.serverurl = _commonservices.url;
         this.callit();
+        this.getuserdetails();
     }
 
     ngOnInit() {
 
     }
     callit() {
-  let link = this.serverurl + 'gettrainingvideostatusindex';
-  let data = {
-    userid: this.cookiedetails.id,
-  };
-  this._http.post(link, data)
-.subscribe(res => {
-  let result = res.json();
-  console.log(result);
-  this.trainingvideolist = parseInt(result.status.timeindex);
-  console.log(this.trainingvideolist);
-  // console.log(this.trainingvideolist.status.timeindex);
-}, error => {
-  console.log('Oooops!');
-});
+        let link = this.serverurl + 'gettrainingvideostatusindex';
+        let data = {
+            userid: this.cookiedetails.id,
+        };
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                console.log(result);
+                this.trainingvideolist = parseInt(result.status.timeindex);
+                console.log(this.trainingvideolist);
+                // console.log(this.trainingvideolist.status.timeindex);
+            }, error => {
+                console.log('Oooops!');
+            });
     }
-
+    getuserdetails() {
+        let link = this.serverurl + 'getuserdetails';
+        let data = {
+            userid: this.cookiedetails.id,
+        };
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                this.webinar = result.id.iswebinarchekced;
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
 
     ngAfterViewChecked() {
 
-  setTimeout(() => {
+        setTimeout(() => {
     var curval=this.trainingvideolist;
     console.log('curvval '+ this.trainingvideolist );
     console.log('curvval '+ curval );
@@ -102,7 +116,7 @@ export class TrainingstepComponent implements OnInit {
                 let result = res.json();
                 if (result.status == 'success') {
                     this.addcookie.removeAll();
-                    this.router.navigate(['/']);
+                    this.router.navigate(['/log-in']);
                 }
             }, error => {
                 console.log('Oooops!');
@@ -145,14 +159,22 @@ export class TrainingstepComponent implements OnInit {
             }, error => {
                 console.log('Oooops!');
             });
-      if (this.cookiedetails.type == 'salesrep' || 'corporate' || 'leadmanager' || 'masteraccount') {
-        this.router.navigate(['/rep-dashboard']);
-      }
-      else if (this.cookiedetails.type == 'recruiter') {
-          this.router.navigate(['/recruiterdashboard']);
-      }
-      else { // admin
-          this.router.navigate(['/dashboard']);
-      }
+        if (this.cookiedetails.type == 'salesrep') {
+            if (this.webinar == 0) {
+                this.router.navigate(['/completewebinar']);
+            }
+            else {
+                this.router.navigate(['/rep-dashboard']);
+            }
+        }
+        else if (this.cookiedetails.type == 'corporate' || 'leadmanager' || 'masteraccount') {
+            this.router.navigate(['/rep-dashboard']);
+        }
+        else if (this.cookiedetails.type == 'recruiter') {
+            this.router.navigate(['/recruiterdashboard']);
+        }
+        else { // admin
+            this.router.navigate(['/dashboard']);
+        }
     }
 }

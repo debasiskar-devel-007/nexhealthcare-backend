@@ -60,8 +60,26 @@ export class AutologinComponent implements OnInit {
                     console.log(this.cookiedetails);
                     console.log('result.msg.type');
                     console.log(result.msg.type);
-                    if (result.msg.type == 'salesrep' || result.msg.type == 'corporate' || result.msg.type == 'leadmanager' || result.msg.type == 'masteraccount') {
+                    if (result.msg.type == 'salesrep') {
                         console.log('hi 1');
+                        if (result.msg.signup_step == '1') {
+                            this.router.navigate(['/employment-agreement']);
+                        }
+                        else if (result.msg.signup_step == '2') {
+                            this.router.navigate(['/trainingstep']);
+                        }
+                        else if (result.msg.signup_step == '3') {
+                            if (result.msg.iswebinarchekced == 0 || result.msg.iswebinarchekced == null) {
+                            this.router.navigate(['/completewebinar']);
+                            }
+                            else {
+                                this.router.navigate(['/rep-dashboard']);
+                            }
+                          //  this.router.navigate(['/rep-dashboard']);
+                        }
+                    }
+                    else if (result.msg.type == 'corporate' || result.msg.type == 'leadmanager' || result.msg.type == 'masteraccount') {
+                        console.log('hi 13');
                         if (result.msg.signup_step == '1') {
                             this.router.navigate(['/employment-agreement']);
                         }

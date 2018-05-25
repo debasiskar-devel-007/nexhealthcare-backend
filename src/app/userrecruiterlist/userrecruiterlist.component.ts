@@ -28,6 +28,23 @@ export class UserrecruiterlistComponent implements OnInit {
           this.getUserList();
       });
   }
+    markasdone(itemid) {
+        let link = this.serverurl + 'markasdone';
+        let data = {
+            userid: itemid,
+            iswebinarchekced : 1,
+        };
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                console.log(result);
+                if (result.status == 'success') {
+                    this.getUserList();
+                }
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
     getUserList() {
         let link = this.serverurl + 'user&repcontractList';
         this._http.get(link)
