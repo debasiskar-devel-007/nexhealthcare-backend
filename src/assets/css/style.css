@@ -1837,3 +1837,34 @@ a:visited {	text-decoration: none;	outline: none;}
 .inputradiocls:nth-child(1){ margin-left: 0px !important;}
 
 .pateintquestionire_div2_left .form-group span{margin-left: 132px;}
+
+
+.completewebinarlogout{
+    position: absolute;
+    top: 28%;
+    right: 26%;
+    z-index: 999;
+
+
+}
+
+.completewebinarlogout a{
+    background-color: #209eff;
+    color: #fff;
+    padding: 5px 15px;
+    font-family: 'proximanova-regular'!important;
+    white-space: normal;
+    font-size: 24px;
+    line-height: 24px;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-bottom: 2px solid #333;
+}
+.completewebinarlogout a:hover{
+    color: #fff;
+}
+
+
+.userrecruiterlist_table_wrapper td p small{
+    color:#209eff;
+}
