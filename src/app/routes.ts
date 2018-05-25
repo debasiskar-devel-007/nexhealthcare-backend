@@ -34,7 +34,7 @@ import { CgxComponent } from './cgx/cgx.component';
 const appRoutes: Routes = [
     // { path: '/**',component: AppComponent},
     // { path: '/*',component: AppComponent},
-    { path: '', component: LoginComponent},
+    { path: 'log-in', component: LoginComponent},
     { path: 'dashboard', component: DashboardComponent},
     { path: 'recruiterdashboard', component: RecruiterdashboardComponent},
     { path: 'rep-dashboard', component: SalesrepdashboardComponent},
