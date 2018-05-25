@@ -19,6 +19,7 @@ export class PatientrecordComponent implements OnInit {
     public usastates;
     id: number;
     public serverurl;
+    public patientuniqueid;
     public pateintquestioniremodal: boolean = true;
     private addcookie: CookieService;
     private cookiedetails;
@@ -32,8 +33,11 @@ export class PatientrecordComponent implements OnInit {
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
         console.log('this.cookiedetails');
         console.log(this.cookiedetails);
+        this.callcookiedetails();
     }
+    callcookiedetails(){
 
+    }
     ngOnInit() {
         this.route.params.subscribe(params => {
             this.id = params['id'];
@@ -88,6 +92,7 @@ export class PatientrecordComponent implements OnInit {
             motype2: [''],
             moage: [''],
             modead: [''],
+            fatype1: [''],
             fatype2: [''],
             faage: [''],
             fadead: [''],
@@ -195,7 +200,8 @@ export class PatientrecordComponent implements OnInit {
                 if (result.status == 'success' && typeof(result.item) != 'undefined') {
                     // console.log(result);
                     let userdet = result.item;
-                //    result.item.uniqueid;
+                    this.patientuniqueid = result.item.uniqueid;
+                    console.log('patientuniqueid' +this.patientuniqueid);
                     this.dataForm = this.fb.group({
                         firstname: [userdet.firstname, Validators.required],
                         lastname: [userdet.lastname, Validators.required],
@@ -324,6 +330,7 @@ export class PatientrecordComponent implements OnInit {
                 motype2: formval.motype2,
                 moage: formval.moage,
                 modead: formval.modead,
+                fatype1: formval.fatype1,
                 fatype2: formval.fatype2,
                 faage: formval.faage,
                 fadead: formval.fadead,
