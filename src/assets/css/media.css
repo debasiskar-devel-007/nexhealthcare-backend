@@ -134,7 +134,7 @@
         line-height: 36px;
     }
 
-    .form_wrapper_text_subdiv2 label{ font-size: 20px;}
+    .form_wrapper_text_subdiv2 label{ font-size: 18px;}
 
 
     .repsignup_mainbody .form_wrapper_text h4{ font-size: 26px;}
@@ -220,13 +220,6 @@
     }
 
 .admindashboardcon2_sub:nth-of-type(2){ margin: 15px 0;}
-
-}
-
-@media(max-width:991px) {
-    .repsignup_mainbody .form_wrapper_text h3 {
-        font-size: 25px;
-    }
     .repsignup_mainbodynew .row-eq-height{display: block !important;}
     .repsignup_mainbody .form_wrapper_text {
         width: 100% !important;
@@ -235,6 +228,13 @@
     .repsignup_mainbody .form_wrapper {
         width: 100% !important;
     }
+}
+
+@media(max-width:991px) {
+    .repsignup_mainbody .form_wrapper_text h3 {
+        font-size: 25px;
+    }
+
 
     .pateintdetail_left_form .form-group .form-control {
         width: 64%;

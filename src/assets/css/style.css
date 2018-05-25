@@ -989,12 +989,17 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .pateintquestionire_div2 .pateintquestionire_div2_left .form-group .form-control1_pq{ width:412px;  background:#fff; border:none; border-bottom:solid 1px #b3b3b4; border-radius:0px; box-shadow:none; outline:none; font-size: 14px; color: #000; font-family: 'proximanova-regular'; padding:0 5px; float:left;}
 
+.pateintquestionire_div2 .pateintquestionire_div2_left .form-group select{width:412px;  background:#fff; border:none; border-bottom:solid 1px #b3b3b4; border-radius:0px; box-shadow:none; outline:none; font-size: 14px; color: #000; font-family: 'proximanova-regular'; padding:0 5px; float:left;}
+
 .pateintquestionire_div2 .pateintquestionire_div2_left .form-group textarea{ width:412px;  background:#fff; border:none; border-bottom:solid 1px #b3b3b4; border-radius:0px; box-shadow:none; outline:none; font-size: 14px; color: #000; font-family: 'proximanova-regular'; padding:0 5px; float:left; resize:none; height:25px;}
 
 .pateintquestionire_div2 .pateintquestionire_div2_left .form-group .form-control2_pq{ width:33%;  background:#fff; border:none; border-bottom:solid 1px #b3b3b4; border-radius:0px; box-shadow:none; outline:none; font-size: 14px; color: #000; font-family: 'proximanova-regular'; padding:0 5px; float:left; margin-right:2%}
 
 .pateintquestionire_div2 .pateintquestionire_div2_left .form-group .form-control2_pqr{ width:34%;  background:#fff; border:none; border-bottom:solid 1px #b3b3b4; border-radius:0px; box-shadow:none; outline:none; font-size: 14px; color: #000; font-family: 'proximanova-regular'; padding:0 5px;  margin-left:2%}
 
+
+
+.pateintquestionire_div2 .pateintquestionire_div2_left .form-group .form-control3_pq{ width:31%;  background:#fff; border:none; border-bottom:solid 1px #b3b3b4; border-radius:0px; box-shadow:none; outline:none; font-size: 14px; color: #000; font-family: 'proximanova-regular'; padding:0 5px; float:left; margin-right:2%}
 
 
 .pateintquestionire_div2 .pateintquestionire_div2_right .form-group{ width:100%; margin:8px 0;}
@@ -1015,9 +1020,9 @@ a:visited {	text-decoration: none;	outline: none;}
 .pateintquestionire_div2 .pateintquestionire_div2_right span{ display:inline-block; font-size:16px; color:#5b5c5c; font-family: 'proximanova-regular'; margin:0px; padding:0 0 0 5px;}
 
 
-.pateintquestionire_div2_left2{ width:926px; float:left;}
+.pateintquestionire_div2_left2{ width:722px; float:left;}
 
-.pateintquestionire_div2_right2{ width:200px; float:right;}
+.pateintquestionire_div2_right2{ width:436px; float:right;}
 
 .pateintquestionire_div2_right2 label{ display:block; font-size:16px; color:#545656;  font-family: 'proximanova-semibold'; font-weight:normal;}
 
@@ -1047,6 +1052,10 @@ a:visited {	text-decoration: none;	outline: none;}
 .pateintquestionire_div2 .pateintquestionire_div2_left2_heading  .left2_heading6 { font-size:16px; color:#545656; font-family: 'proximanova-regular'; text-align:right;}
 
 .pateintquestionire_div2 .pateintquestionire_div2_left2_contain{ margin:2px 0;}
+
+.pateintquestionire_div2 .pateintquestionirerightPGX .pateintquestionire_div2_left2_contain.pateintquestionire_div2_left2_containnew{ margin:10px 0;}
+
+.pateintquestionire_div2 .pateintquestionirerightPGX .pateintquestionire_div2_left2_contain.pateintquestionire_div2_left2_containnew.containnew1{margin-top: 65px !important;}
 
 .pateintquestionire_div2 .pateintquestionire_div2_left2_contain .left2_heading1 span{ display:inline-block; float:left;
     margin: 0px;
@@ -1299,7 +1308,7 @@ a:visited {	text-decoration: none;	outline: none;}
 .pateintquestioniremodal  .pateintquestionire_div2 h3 {
     margin: 0 0 12px 0!important;
     padding: 0!important;
-    font-size: 24px!important;
+    font-size: 18px!important;
     color: #295b73!important; border-left: none!important;
     border-bottom: solid 1px #a3a8a9!important;
     display: inline-block!important;  line-height: inherit;  font-family: 'proximanova-regular'!important; text-transform: uppercase!important;
@@ -1724,3 +1733,9 @@ a:visited {	text-decoration: none;	outline: none;}
 .addnoteblock{}
 .addnoteblock h3.addnote{padding-top: 0px !important; padding-bottom: 10px !important;}
 .addnoteblock .form-group_autowidth{margin-top: 0px !important;}
+
+
+
+.repsignup_mainbodynew .form-group {
+    margin-bottom: 5px;
+}
