@@ -89,6 +89,11 @@ export class PateintsComponent implements OnInit {
   gotopatientrecord(id) {
     this.router.navigate(['/patientrecord', id]);
   }
+  get4rowClass() {
+    if (this.isthisadmin != 'admin') {
+      return 'pateints_list_weraper4row';
+    }
+  }
   getpatientlistunderthisid() {
     let link = this.serverurl + 'getpatientlistunderthisid';
     let data = {
@@ -97,8 +102,8 @@ export class PateintsComponent implements OnInit {
     this._http.post(link, data)
       .subscribe(res => {
         let result = res.json();
-       // console.log('result');
-      //  console.log(result);
+        // console.log('result');
+        //  console.log(result);
         if (result.status == 'success') {
           this.datalist = result.id;
               this.patientlist = this.datalist;

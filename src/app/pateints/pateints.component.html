@@ -38,31 +38,31 @@
 
     </div>
 
-    <div class="pateints_list_weraper">
+    <div class="pateints_list_weraper "  [ngClass]="get4rowClass()">
 
       <div class="pateints_list_table_header">
         <div class="row row-eq-height">
-          <div class="div1">
+          <div class="div1 ">
             <span>Patient ID</span>
 
           <!--  <span>&lt;!&ndash;TAG &ndash;&gt;status</span>-->
           </div>
-          <div class="div2">
+          <div class="div2 ">
             <span>Name </span>
           </div>
         <!--  <div class="div3">
             <span> Last Name </span>
           </div>-->
-          <div class="div4">
+          <div class="div3 ">
             <span>Email Address    </span>
           </div>
-          <div class="div5" *ngIf="isthisadmin!='admin'">
+          <div class="div4 " *ngIf="isthisadmin!='admin'">
             <span>Phone Number</span>
           </div>
-          <div class="div6" *ngIf="isthisadmin=='admin'">
+          <div class="div4" *ngIf="isthisadmin=='admin'">
             <span>Added By</span>
           </div>
-          <div class="div7" *ngIf="isthisadmin=='admin'">
+          <div class="div5 " *ngIf="isthisadmin=='admin'">
             <span>Owner's Email</span>
           </div>
            <div class="clearfix"></div>
@@ -73,33 +73,33 @@
 
       <div class="pateints_list_table_contain" *ngFor="let item of patientlist | orderBy:'_id':'reverse' | usersearch:listFilter.value| paginate: { itemsPerPage: 25, currentPage: p }; let i = index">
         <div class="row row-eq-height" (click)="gotopatientrecord(item._id)">
-          <div class="div1">
+          <div class="div1 ">
             <span>{{item.uniqueid}}</span>
 
           <!--  <span>{{item.tag}}</span>-->
           </div>
 
-          <div class="div2">
+          <div class="div2 ">
             <span>{{item.firstname}} {{item.lastname}}</span>
           </div>
           <!--<div class="div3">
             <span>{{item.lastname}} </span>
           </div>-->
 
-          <div class="div4">
+          <div class="div3 ">
             <span> {{item.email}}      </span>
           </div>
 
-          <div class="div5">
-            <span *ngIf="isthisadmin!='admin'">{{item.phone}}</span>
+          <div class="div4 "  *ngIf="isthisadmin!='admin'">
+            <span>{{item.phone}}</span>
           </div>
 
-          <div class="div6">
-            <span *ngIf="isthisadmin=='admin' && item.Addedbydetail[0]!=null">{{item.Addedbydetail[0].firstname}} {{item.Addedbydetail[0].lastname}}</span>
+          <div class="div4"  *ngIf="isthisadmin=='admin' && item.Addedbydetail[0]!=null">
+            <span>{{item.Addedbydetail[0].firstname}} {{item.Addedbydetail[0].lastname}}</span>
           </div>
 
-          <div class="div7">
-            <span *ngIf="isthisadmin=='admin' && item.Addedbydetail[0]!=null">{{item.Addedbydetail[0].email}}</span>
+          <div class="div5" *ngIf="isthisadmin=='admin' && item.Addedbydetail[0]!=null">
+            <span >{{item.Addedbydetail[0].email}}</span>
           </div>
 
           <div class="clearfix"></div>
