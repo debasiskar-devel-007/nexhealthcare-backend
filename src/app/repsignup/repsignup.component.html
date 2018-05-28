@@ -86,16 +86,16 @@
         <div class="row">
             <div class="col-md-12">
               <h2 class="h2minheight" style="padding: 20px 0 0 0;">account information</h2>
-              <h6>Rep ID: 2349</h6>
+              <h6>Rep ID: {{uniquerepid}}</h6>
             </div>
         </div>
         <div class="row">
            <div class="col-md-12">
                <div class="form-group">
                    <label>Username</label>
-                   <input type="text"   [formControl]="dataForm.controls['username']">
-                   <span class="has-error" *ngIf ="dataForm.controls['username'].touched && !dataForm.controls['username'].valid">Invalid User Name.</span>
-                   <span class="has-error" *ngIf ="dataForm.controls['username'].touched && !dataForm.controls['username'].valid && getusername('invalid')==true">Username must contain at least 3 characters, and it should be alphanumeric!</span>
+                   <input type="text"   [formControl]="dataForm.controls['username']" (keyup)="showvalidationerror=0">
+                   <span class="has-error" *ngIf ="dataForm.controls['username'].touched && !dataForm.controls['username'].valid && showvalidationerror==1">Invalid User Name.</span>
+                   <span class="has-error" *ngIf ="dataForm.controls['username'].touched && !dataForm.controls['username'].valid && getusername('invalid')==true && showvalidationerror==1">Username must contain at least 3 characters, and it should be alphanumeric!</span>
                </div>
            </div>
         </div>
@@ -103,18 +103,18 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Password</label> <!--account information-->
-                    <input type="password"  [formControl]="dataForm.controls['password']">
+                    <input type="password"  [formControl]="dataForm.controls['password']" (keyup)="showvalidationerror=0">
                     <span class="passspan">Password must include at least 1 uppercase, one lowercase, and a number/special character.</span>
-                    <span class="has-error" *ngIf ="dataForm.controls['password'].touched && !dataForm.controls['password'].valid">Invalid Password.</span>
-                    <span class="has-error" *ngIf ="dataForm.controls['password'].touched && !dataForm.controls['password'].valid && getpassword('invalid')==true">Password must contain at least 8 characters,one lower case character , one upper case character , one number, one special character</span>
+                    <span class="has-error" *ngIf ="dataForm.controls['password'].touched && !dataForm.controls['password'].valid && showvalidationerror==1">Invalid Password.</span>
+                    <span class="has-error" *ngIf ="dataForm.controls['password'].touched && !dataForm.controls['password'].valid && getpassword('invalid')==true && showvalidationerror==1">Password must contain at least 8 characters,one lower case character , one upper case character , one number, one special character</span>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Confirm Password</label>
-                    <input type="password" [formControl]="dataForm.controls['confpassword']">
-                    <span class="has-error" *ngIf ="dataForm.controls['confpassword'].touched && !dataForm.controls['confpassword'].valid">Please fill in the required field.</span>
-                    <div class="has-error" *ngIf ="dataForm.hasError('mismatchedPasswords') && dataForm.controls['confpassword'].valid ">
+                    <input type="password" [formControl]="dataForm.controls['confpassword']" (keyup)="showvalidationerror=0">
+                    <span class="has-error" *ngIf ="dataForm.controls['confpassword'].touched && !dataForm.controls['confpassword'].valid && showvalidationerror==1">Please fill in the required field.</span>
+                    <div class="has-error" *ngIf ="dataForm.hasError('mismatchedPasswords') && dataForm.controls['confpassword'].valid && showvalidationerror==1 ">
                         <span class="has-error">Passwords must match</span>
                     </div>
                 </div>
@@ -139,15 +139,15 @@
             <div class="col-md-6">
                 <div class="form-group">
             <label> First Name</label>
-            <input type="text"   [formControl]="dataForm.controls['firstname']">
-            <span class="has-error" *ngIf ="dataForm.controls['firstname'].touched && !dataForm.controls['firstname'].valid">Invalid First Name!</span>
+            <input type="text"   [formControl]="dataForm.controls['firstname']" (keyup)="showvalidationerror=0">
+            <span class="has-error" *ngIf ="dataForm.controls['firstname'].touched && !dataForm.controls['firstname'].valid && showvalidationerror==1">Invalid First Name!</span>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
             <label> Last Name</label>
-            <input type="text"  [formControl]="dataForm.controls['lastname']">
-            <span class="has-error" *ngIf ="dataForm.controls['lastname'].touched && !dataForm.controls['lastname'].valid">Invalid Last Name!</span>
+            <input type="text"  [formControl]="dataForm.controls['lastname']" (keyup)="showvalidationerror=0">
+            <span class="has-error" *ngIf ="dataForm.controls['lastname'].touched && !dataForm.controls['lastname'].valid && showvalidationerror==1">Invalid Last Name!</span>
                 </div>
             </div>
         </div>
@@ -155,14 +155,14 @@
             <div class="col-md-6">
                 <div class="form-group">
             <label> Address</label>
-            <textarea   [formControl]="dataForm.controls['address']"></textarea>
-            <span class="has-error" *ngIf ="dataForm.controls['address'].touched && !dataForm.controls['address'].valid">Invalid Address!</span>
+            <textarea   [formControl]="dataForm.controls['address']" (keyup)="showvalidationerror=0"></textarea>
+            <span class="has-error" *ngIf ="dataForm.controls['address'].touched && !dataForm.controls['address'].valid && showvalidationerror==1">Invalid Address!</span>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
             <label> Address 2</label>
-            <textarea   [formControl]="dataForm.controls['address2']"></textarea>
+            <textarea   [formControl]="dataForm.controls['address2']" (keyup)="showvalidationerror=0"></textarea>
                 </div>
             </div>
         </div>
@@ -170,26 +170,26 @@
             <div class="col-md-4">
                 <div class="form-group">
             <label> City</label>
-            <input type="text"  [formControl]="dataForm.controls['city']">
-            <span class="has-error" *ngIf ="dataForm.controls['city'].touched && !dataForm.controls['city'].valid">Invalid City!</span>
+            <input type="text"  [formControl]="dataForm.controls['city']" (keyup)="showvalidationerror=0">
+            <span class="has-error" *ngIf ="dataForm.controls['city'].touched && !dataForm.controls['city'].valid && showvalidationerror==1">Invalid City!</span>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label> State</label>
                  <!--   <input type="text" [formControl]="dataForm.controls['state']">-->
-                    <select class="form-group" [formControl]="dataForm.controls['state']">
+                    <select class="form-group" [formControl]="dataForm.controls['state']" (keyup)="showvalidationerror=0">
                         <option value="" disabled selected>Select State</option>
                         <option value="{{item.name}}" *ngFor="let item of usastates; let i = index">{{item.name}}</option>
                     </select>
-                    <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid">Invalid State!</span>
+                    <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid && showvalidationerror==1">Invalid State!</span>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label> Zip</label>
-                    <input type="text"   [formControl]="dataForm.controls['zip']">
-                    <span class="has-error" *ngIf ="dataForm.controls['zip'].touched && !dataForm.controls['zip'].valid">Invalid Zip!</span>
+                    <input type="text"   [formControl]="dataForm.controls['zip']" (keyup)="showvalidationerror=0">
+                    <span class="has-error" *ngIf ="dataForm.controls['zip'].touched && !dataForm.controls['zip'].valid && showvalidationerror==1">Invalid Zip!</span>
                 </div>
             </div>
         </div>
@@ -198,8 +198,8 @@
             <div class="col-md-6">
                 <div class="form-group">
             <label> Phone Number</label>
-            <input type="text" appNumber [formControl]="dataForm.controls['phone']">
-            <span class="has-error" *ngIf ="dataForm.controls['phone'].touched && !dataForm.controls['phone'].valid">Phone No must be 10 numbers!</span>
+            <input type="text" appNumber [formControl]="dataForm.controls['phone']" (keyup)="showvalidationerror=0">
+            <span class="has-error" *ngIf ="dataForm.controls['phone'].touched && !dataForm.controls['phone'].valid && showvalidationerror==1">Phone No must be 10 numbers!</span>
             </div>
             </div>
 
@@ -209,9 +209,9 @@
                 <div class="form-group">
                     <label>Email Address</label>
 
-                    <input type="text" [formControl]="dataForm.controls['email']">
-                    <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('blank')==true">Emailid is Required !</span>
-                    <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('invalid')==true">Invalid Emailid!</span>
+                    <input type="text" [formControl]="dataForm.controls['email']" (keyup)="showvalidationerror=0">
+                    <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('blank')==true && showvalidationerror==1">Emailid is Required !</span>
+                    <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('invalid')==true && showvalidationerror==1">Invalid Emailid!</span>
                 </div>
             </div>
 
@@ -228,12 +228,12 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label> Gender</label>
-                    <select [formControl]="dataForm.controls['gender']">
+                    <select [formControl]="dataForm.controls['gender']" (keyup)="showvalidationerror=0">
                         <option value="" disabled>Gender </option>
                         <option value="male" name="gender">Male </option>
                         <option value="female" name="gender">Female </option>
                     </select>
-                    <span class="has-error" *ngIf ="dataForm.controls['gender'].touched && !dataForm.controls['gender'].valid"> You must choose your gender!</span>
+                    <span class="has-error" *ngIf ="dataForm.controls['gender'].touched && !dataForm.controls['gender'].valid && showvalidationerror==1"> You must choose your gender!</span>
                 </div>
             </div>
 
@@ -241,8 +241,8 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label> Date Of Birth</label>
-                    <input type="text" placeholder="MM/DD/YYYY" [formControl]="dataForm.controls['dob']">
-                    <span class="has-error" *ngIf ="dataForm.controls['dob'].touched && !dataForm.controls['dob'].valid">Invalid Date of Birth!</span>
+                    <input type="text" placeholder="MM/DD/YYYY" [formControl]="dataForm.controls['dob']" (keyup)="showvalidationerror=0">
+                    <span class="has-error" *ngIf ="dataForm.controls['dob'].touched && !dataForm.controls['dob'].valid && showvalidationerror==1">Invalid Date of Birth!</span>
                 </div>
             </div>
 
@@ -263,14 +263,14 @@
               <div class="col-md-12">
                   <div class="form_radio_wrapper">
                       <div>
-                          <input type="radio" name="agent" value="1" [formControl]="dataForm.controls['agentexperience']"> <b>1-2</b>
-                          <input type="radio" name="agent" value="2" [formControl]="dataForm.controls['agentexperience']">  <b>3-5</b>
-                          <input type="radio" name="agent" value="3" [formControl]="dataForm.controls['agentexperience']">  <b>5-10</b>
-                          <input type="radio" name="agent" value="4" [formControl]="dataForm.controls['agentexperience']">  <b>10+</b>
+                          <input type="radio" name="agent" value="1" [formControl]="dataForm.controls['agentexperience']" (keyup)="showvalidationerror=0"> <b>1-2</b>
+                          <input type="radio" name="agent" value="2" [formControl]="dataForm.controls['agentexperience']" (keyup)="showvalidationerror=0">  <b>3-5</b>
+                          <input type="radio" name="agent" value="3" [formControl]="dataForm.controls['agentexperience']" (keyup)="showvalidationerror=0">  <b>5-10</b>
+                          <input type="radio" name="agent" value="4" [formControl]="dataForm.controls['agentexperience']" (keyup)="showvalidationerror=0">  <b>10+</b>
 
                           <div class="clearfix"></div>
                       </div>
-                      <span style="display: block; margin-top: 5px;" class="has-error" *ngIf ="dataForm.controls['agentexperience'].touched && !dataForm.controls['agentexperience'].valid"> Please choose the most relevant one!</span>
+                      <span style="display: block; margin-top: 5px;" class="has-error" *ngIf ="dataForm.controls['agentexperience'].touched && !dataForm.controls['agentexperience'].valid && showvalidationerror==1"> Please choose the most relevant one!</span>
 
                       <div class="clearfix"></div>
 
@@ -278,13 +278,13 @@
 
                   <label>What number of your clients are 65 or older?</label>
 
-                  <input type="text" [formControl]="dataForm.controls['olderclients']">
-                  <span class="has-error" *ngIf ="dataForm.controls['olderclients'].touched && !dataForm.controls['olderclients'].valid"> Please provide the number!</span>
+                  <input type="text" [formControl]="dataForm.controls['olderclients']" (keyup)="showvalidationerror=0">
+                  <span class="has-error" *ngIf ="dataForm.controls['olderclients'].touched && !dataForm.controls['olderclients'].valid && showvalidationerror==1"> Please provide the number!</span>
 
                   <label>In your estimate, what percentage of your clients have their Medicare Plan B Card?</label>
 
-                  <input type="text" [formControl]="dataForm.controls['noofplanBcard']">
-                  <span class="has-error" *ngIf ="dataForm.controls['noofplanBcard'].touched && !dataForm.controls['noofplanBcard'].valid"> Please provide the number!</span>
+                  <input type="text" [formControl]="dataForm.controls['noofplanBcard']" (keyup)="showvalidationerror=0">
+                  <span class="has-error" *ngIf ="dataForm.controls['noofplanBcard'].touched && !dataForm.controls['noofplanBcard'].valid && showvalidationerror==1"> Please provide the number!</span>
 
 <!--    <div class="form_div_row form_div_rowlastrow">
         <h2 style="padding: 20px 0;">Experience</h2>

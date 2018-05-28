@@ -32,7 +32,7 @@ export class SalesrepdashboardComponent implements OnInit {
   }
 calllogout() {
     this.addcookie.removeAll();
-    this.router.navigate(['/']);
+    this.router.navigate(['/log-in']);
 }
     onHidden() {
         this.comingsoonmodal = false;

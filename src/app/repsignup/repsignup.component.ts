@@ -29,9 +29,11 @@ export class RepsignupComponent implements OnInit {
     public cgxamount;
     public neededhost;
     public compensationtokenvalue;
+    public showvalidationerror = 0;
     public roleid;
     public addedby;
     public usastates;
+    public uniquerepid;
     public wrongtokenforleadrolemodal: boolean = false;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices, private route: ActivatedRoute) {
@@ -93,6 +95,7 @@ export class RepsignupComponent implements OnInit {
         }
         }
         this.getusastates();
+        this.getuniquerepid();
     }
 
     ngOnInit() {
@@ -130,6 +133,18 @@ export class RepsignupComponent implements OnInit {
                 console.log('Oooops!');
             });
     }
+
+  getuniquerepid() {
+    let link = this.serverurl + 'getuniquerepid';
+    this._http.get(link)
+      .subscribe(res => {
+        let result = res.json();
+        console.log(result);
+        this.uniquerepid = result.id;
+      }, error => {
+        console.log('Oooops!');
+      });
+  }
     static validateEmail(control: FormControl) {
         RepsignupComponent.blankemail = false;
         RepsignupComponent.invalidemail = false;
@@ -208,13 +223,23 @@ export class RepsignupComponent implements OnInit {
             }
         };
     }
-    dosubmit(formval) {
-        let x: any;
-        for (x in this.dataForm.controls) {
-            this.dataForm.controls[x].markAsTouched();
-        }
-        if (this.dataForm.valid && this.passmatchvalidate && (RepsignupComponent.invalidemail == false || RepsignupComponent.blankemail == false) && RepsignupComponent.invalidusername == false && RepsignupComponent.invalidpassword == false) {
-            let link = this.serverurl + 'signup';
+/*  call() {
+    let x: any;
+    for (x in this.dataForm.controls) {
+      if (this.dataForm.controls[x].touched) {
+        this.showvalidationerror = 0;
+      }
+    }
+  }*/
+  dosubmit(formval) {
+    this.showvalidationerror = 1;
+    let x: any;
+    for (x in this.dataForm.controls) {
+      this.dataForm.controls[x].markAsTouched();
+    }
+
+    if (this.dataForm.valid && this.passmatchvalidate && (RepsignupComponent.invalidemail == false || RepsignupComponent.blankemail == false) && RepsignupComponent.invalidusername == false && RepsignupComponent.invalidpassword == false) {
+      let link = this.serverurl + 'signup';
             let data = {
                 firstname: formval.firstname,
                 lastname: formval.lastname,
@@ -238,6 +263,7 @@ export class RepsignupComponent implements OnInit {
                 cgxamountoflead: this.cgxamount,
                 addedby: this.addedby,
                 iswebinarchekced: 0,
+              uniqueid: this.uniquerepid,
             };
             console.log('data-------');
             console.log(data);

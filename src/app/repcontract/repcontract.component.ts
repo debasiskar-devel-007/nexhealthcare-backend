@@ -48,7 +48,7 @@ export class RepcontractComponent implements OnInit {
     }
     calllogout() {
         this.addcookie.removeAll();
-        this.router.navigate(['/']);
+        this.router.navigate(['/log-in']);
     }
     putsignaure() {
         this.signaturemodal = false;
