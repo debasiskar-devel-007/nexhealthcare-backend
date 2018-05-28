@@ -67,7 +67,7 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .admindashboardcon2_sub .admindashboardcon2_sub_wrapper{ background: #fff; padding-bottom: 15px; height: 100%;}
 
-.admindashboardcon2{ padding: 15px 20px;}
+.admindashboardcon2{ padding: 15px 20px; width: 1500px;}
 
 .admindashboardcon2_sub{ padding: 0px 8px;}
 
@@ -93,7 +93,7 @@ a:visited {	text-decoration: none;	outline: none;}
 .admindashboardcon2_sub_condiv span{ display: block; font-size: 16px; color: #57626b; padding: 2px 0 10px 0; font-family: 'proximanova-regular'; }
 
 
-.admindashboardcon3{ padding: 0px 20px; margin-bottom: 15px;}
+.admindashboardcon3{ padding: 0px 20px; margin-bottom: 15px; width: 1500px;}
 
 .admindashboardcon3 img{ display: block;  width:100%;}
 
@@ -102,7 +102,7 @@ a:visited {	text-decoration: none;	outline: none;}
 }
 
 
-.admindashboardcon1{  padding: 15px 20px 0 20px;}
+.admindashboardcon1{  padding: 15px 20px 0 20px; width: 1500px; margin: 0 auto;}
 
 .admindashboardcon1_block1{padding: 0px 8px;}
 
@@ -116,7 +116,7 @@ a:visited {	text-decoration: none;	outline: none;}
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3081a4', endColorstr='#1a1e47', GradientType=1 ); padding: 15px;}
 
 
-.admindashboardcon1_block1_wrapper{ background: url("../images/dashboard_top_line.jpg") repeat-x left bottom; padding:0 0px 15px 0px; background-size: 100%;}
+.admindashboardcon1_block1_wrapper{ background: url("../images/dashboard_top_line.jpg") repeat-x left bottom; padding:0 0px 15px 0px; background-size: 100%; min-height: 194px;}
 
 .admindashboardcon1_block1_wrapper table{ width: 100%;}
 .admindashboardcon1_block1_wrapper td{ width: 50%; vertical-align: top;}
@@ -142,7 +142,7 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .admindashboardcon1_block2  table td{ vertical-align: middle;}
 
-.admindashboardcon1_block2 div h1{ margin: 0; padding: 0; font-size: 68px; color: #edeef0;  font-family: 'proximanova-regular'; opacity: 0.5; line-height: 64px;}
+.admindashboardcon1_block2 div h1{ margin: 0; padding: 0; font-size:63px; color: #edeef0;  font-family: 'proximanova-regular'; opacity: 0.5; line-height: 63px;}
 
 .admindashboardcon1_block2 .clearfix{ padding: 0px;}
 
@@ -159,7 +159,7 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .admindashboardmenublock{ background: #172931; padding: 0 15px;}
 
-
+.admindashboardmenublock .row{ width: 1500px; margin: 0 auto!important;}
 
 .admindashboardmenublock .row{ padding: 0 8px; margin: 0px;}
 
@@ -653,8 +653,8 @@ a:visited {	text-decoration: none;	outline: none;}
 .salesrepdashboardtopdiv .admindashboardcon1_div2{ float: left;}
 
 
-.salesrepdashboardtopdiv .admindashboardcon1_div5{ width: 49%; float: right; background: url("../images/salesrepdashboard_bg1.jpg") no-repeat right bottom; background-size: cover;     padding-top: 42px;
-    padding-bottom: 43px;}
+.salesrepdashboardtopdiv .admindashboardcon1_div5{ width: 49%; float: right; background: url("../images/salesrepdashboard_bg1.jpg") no-repeat right bottom; background-size: cover;     padding-top: 43px;
+    padding-bottom:42px;}
 .salesrepdashboardtopdiv .admindashboardcon1_div5  img{ background: #fdbd7b; width: 130px; height:130px; border-radius: 100px; padding: 2px; border:solid 5px rgba(252, 164, 73, 0.9); display: inline-block; float: right;  box-shadow: 0 0 20px #7f4b16;}
 
 
@@ -1020,7 +1020,7 @@ a:visited {	text-decoration: none;	outline: none;}
 .pateintquestionire_div2 .pateintquestionire_div2_right span{ display:inline-block; font-size:16px; color:#5b5c5c; font-family: 'proximanova-regular'; margin:0px; padding:0 0 0 5px;}
 
 
-.pateintquestionire_div2_left2{ width:722px; float:left;}
+.pateintquestionire_div2_left2{ width:952px; float:left;}
 
 .pateintquestionire_div2_right2{ width:436px; float:right;}
 
@@ -1036,7 +1036,7 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .pateintquestionire_div2_left2 .left2_heading2 { width:180px; float:left; margin:0 5px;}
 
-.pateintquestionire_div2_left2 .left2_heading3 { width:130px; float:left; margin:0 5px;}
+.pateintquestionire_div2_left2 .left2_heading3 { width:100px; float:left; margin:0 5px;}
 
 .pateintquestionire_div2_left2 .left2_heading4 { width:100px; float:left; margin:0 5px;}
 .pateintquestionire_div2_left2 .left2_heading5 { width:160px; float:left; margin:0 5px;}
@@ -1868,3 +1868,6 @@ a:visited {	text-decoration: none;	outline: none;}
 .userrecruiterlist_table_wrapper td p small{
     color:#209eff;
 }
+
+
+.patientinput{ background: #dadada!important; border: none!important;  width: 100px!important;}
