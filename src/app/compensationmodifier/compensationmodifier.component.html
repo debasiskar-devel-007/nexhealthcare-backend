@@ -169,7 +169,7 @@
       <div class="modal-body">
         <img src="../../assets/images/adminlogo.png" alt="#" class="popup_logo1">
         <input class="popupinputnew1" type="text" [(ngModel)]="compensationamount">
-        <span class="has-error" *ngIf="compensationerror">{{compensationerror}}</span>
+        <span class="has-error" *ngIf="compensationerror" style="margin-top: 8px;">{{compensationerror}}</span>
       </div>
       <div class="modal-footer popupnewbtnwrapper">
         <button type="button" class="btn btn-primary popbtn2" data-dismiss="modal" (click)="addcompensation()">Add Compensation</button>
