@@ -63,8 +63,11 @@
             <span>Added By</span>
           </div>
           <div class="div5 " *ngIf="isthisadmin=='admin'">
-            <span>Owner's Email</span>
+            <span>Action</span>
           </div>
+         <!-- <div class="div6 " *ngIf="isthisadmin=='admin'">
+            <span>Action</span>
+          </div>-->
            <div class="clearfix"></div>
         </div>
 
@@ -94,13 +97,25 @@
             <span>{{item.phone}}</span>
           </div>
 
-          <div class="div4"  *ngIf="isthisadmin=='admin' && item.Addedbydetail[0]!=null">
-            <span>{{item.Addedbydetail[0].firstname}} {{item.Addedbydetail[0].lastname}}</span>
+          <div class="div4"  *ngIf="isthisadmin=='admin'">
+            <span *ngIf="item.Addedbydetail[0]!=null">{{item.Addedbydetail[0].firstname}} {{item.Addedbydetail[0].lastname}}</span>
           </div>
 
-          <div class="div5" *ngIf="isthisadmin=='admin' && item.Addedbydetail[0]!=null">
-            <span >{{item.Addedbydetail[0].email}}</span>
+          <!--<div class="div5" *ngIf="isthisadmin=='admin' ">
+            <span *ngIf="item.Addedbydetail[0]!=null">{{item.Addedbydetail[0].email}}</span>
+          </div>-->
+
+          <div class="div5" *ngIf="isthisadmin=='admin'">
+            <span>
+              <p (click)="approveit(item._id)">Click to Approve</p>
+              <br/>
+              <p (click)="declineit()">Click to Decline</p>
+            </span>
           </div>
+
+         <!-- <div class="div6" *ngIf="isthisadmin=='admin'">
+            <span >Approve</span>
+          </div>-->
 
           <div class="clearfix"></div>
         </div>

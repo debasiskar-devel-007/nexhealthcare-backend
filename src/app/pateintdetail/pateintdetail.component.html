@@ -52,10 +52,11 @@
 
             <div class="form-group">
               <label>Patient ID #</label>
-              <input type="text"  class="form-control patientinput" placeholder="Patient ID" [formControl]="dataForm.controls['patientid']"/>
+              <input type="text"  class="form-control patientinput" placeholder="Patient ID"/>
               <div class="clearfix"></div>
 
-              <span class="has-error" *ngIf ="dataForm.controls['patientid'].touched && !dataForm.controls['patientid'].valid">Patient ID is required!</span></div>
+              <!--<span class="has-error" *ngIf ="dataForm.controls['patientid'].touched && !dataForm.controls['patientid'].valid">Patient ID is required!</span>-->
+            </div>
             <div class="clearfix"></div>
 
             <div class="form-group">

@@ -28,7 +28,7 @@ export class PateintsComponent implements OnInit {
     //  if (this.isthisadmin != 'admin') {
       this.addcookie = addcookie ;
       this.cookiedetails = this.addcookie.getObject('cookiedetails');
-     // console.log(this.cookiedetails);
+    //  console.log(this.cookiedetails);
      // this.getpatientlistunderthisid();
     //  }
     }
@@ -93,6 +93,36 @@ export class PateintsComponent implements OnInit {
     if (this.isthisadmin != 'admin') {
       return 'pateints_list_weraper4row';
     }
+  }
+  approveit(patientid) {
+    let link = this.serverurl + 'patientapprove';
+    let data = {
+      patientid: patientid,
+    };
+    this._http.post(link, data)
+      .subscribe(res => {
+        let result = res.json();
+        if (result.status == 'success') {
+
+        }
+      }, error => {
+        console.log('Oooops!');
+      });
+  }
+  declineit(patientid) {
+    let link = this.serverurl + 'patientdecline';
+    let data = {
+      patientid: patientid,
+    };
+    this._http.post(link, data)
+      .subscribe(res => {
+        let result = res.json();
+        if (result.status == 'success') {
+
+        }
+      }, error => {
+        console.log('Oooops!');
+      });
   }
   getpatientlistunderthisid() {
     let link = this.serverurl + 'getpatientlistunderthisid';
