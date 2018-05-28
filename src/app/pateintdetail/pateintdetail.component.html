@@ -51,6 +51,14 @@
           <div class="pateintdetail_left_form pateintdetail_left_formnew2">
 
             <div class="form-group">
+              <label>Patient ID #</label>
+              <input type="text"  class="form-control patientinput" placeholder="Patient ID" [formControl]="dataForm.controls['patientid']"/>
+              <div class="clearfix"></div>
+
+              <span class="has-error" *ngIf ="dataForm.controls['patientid'].touched && !dataForm.controls['patientid'].valid">Patient ID is required!</span></div>
+            <div class="clearfix"></div>
+
+            <div class="form-group">
               <label>First Name*</label>
               <input type="text"  class="form-control" placeholder="First Name" [formControl]="dataForm.controls['firstname']"/>
               <div class="clearfix"></div>
@@ -63,6 +71,7 @@
               <div class="clearfix"></div>
               <span class="has-error" *ngIf ="dataForm.controls['lastname'].touched && !dataForm.controls['lastname'].valid">Lastname is required!</span></div>
             <div class="clearfix"></div>
+
             <div class="form-group">
               <label>Phone Number*</label>
               <input type="text"  class="form-control"  appNumber placeholder="Phone Number" [formControl]="dataForm.controls['phone']"/>
