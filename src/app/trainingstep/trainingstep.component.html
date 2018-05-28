@@ -1,6 +1,6 @@
 <div class="container-fluid admin_inner_top">
   <div class="container admininnerwrappe">
-    <a href="javascript:void(0)"><img src="../../assets/images/adminlogo.png" alt="#"></a>
+    <a href="javascript:void(0)"><img src="../../assets/images/adminlogo.png" alt="#" style="background: none;"></a>
     <a href="javascript:void(0)" (click)='calllogout()' class="logout_link">Logout</a>
 
     <div class="clearfix"></div>
@@ -21,16 +21,16 @@
   <div class="container admininnerwrappe">
 
 
-      <h3>Lorem Ipsum <span>is simply dummy text</span> </h3>
+      <!--<h3>Lorem Ipsum <span>is simply dummy text</span> </h3>-->
 
 
 
-      <div class="trainingstep_block">
+      <div class="trainingstep_block" style="margin-top: 26px; margin-bottom: 26px;">
 
         <accordion>
           <accordion-group heading="Lorem Ipsum is simply dummy text of the - class 1" [isOpen]="true">
 
-            <h4>Lorem Ipsum is simply dummy text of the<br/>
+            <h4>Lorem Ipsum is simply dummy text of the
               printing and typesetting industry. </h4>
 
             <div class="videoWrapper_div">
@@ -82,12 +82,13 @@
     <div class="modal-content">
       <div class="modal-header">
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="text-align: center;">
         <img src="../../assets/images/adminlogo.png" alt="#" class="popup_logo1">
         <h1>You have completed the training video.</h1>
  <div class="popupbtn_wrapper">
         <button (click)="callreplay()" class="btn btn-default popbtn1" >Replay</button>
-        <button (click)="calldashboard()" class="btn btn-default popbtn2" >Go to Dashboard</button>
+       <!-- <button (click)="calldashboard()" class="btn btn-default popbtn2" >Go to Dashboard</button>-->
+        <button (click)="calldashboard()" class="btn btn-default popbtn2" >Next Step</button>
  </div>
       </div>
 
