@@ -58,6 +58,8 @@
 
 @media(max-width:1640px) {
 
+    .videoWrapper_div{ width: 50%; margin: 0 auto;}
+
     .repsignup_topblock .row{ width: 80%;}
  /*   .repsignup_footer .row{ width: 80%;}*/
  /*   .repsignup_mainbody .row{width: 80%;}*/
