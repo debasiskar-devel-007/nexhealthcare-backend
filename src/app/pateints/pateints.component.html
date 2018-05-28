@@ -75,29 +75,29 @@
       </div>
 
       <div class="pateints_list_table_contain" *ngFor="let item of patientlist | orderBy:'_id':'reverse' | usersearch:listFilter.value| paginate: { itemsPerPage: 25, currentPage: p }; let i = index">
-        <div class="row row-eq-height" (click)="gotopatientrecord(item._id)">
-          <div class="div1 ">
+        <div class="row row-eq-height" >
+          <div class="div1 " (click)="gotopatientrecord(item._id)">
             <span>{{item.uniqueid}}</span>
 
           <!--  <span>{{item.tag}}</span>-->
           </div>
 
-          <div class="div2 ">
+          <div class="div2 " (click)="gotopatientrecord(item._id)">
             <span>{{item.firstname}} {{item.lastname}}</span>
           </div>
           <!--<div class="div3">
             <span>{{item.lastname}} </span>
           </div>-->
 
-          <div class="div3 ">
+          <div class="div3 " (click)="gotopatientrecord(item._id)">
             <span> {{item.email}}      </span>
           </div>
 
-          <div class="div4 "  *ngIf="isthisadmin!='admin'">
+          <div class="div4 "  *ngIf="isthisadmin!='admin'" (click)="gotopatientrecord(item._id)">
             <span>{{item.phone}}</span>
           </div>
 
-          <div class="div4"  *ngIf="isthisadmin=='admin'">
+          <div class="div4"  *ngIf="isthisadmin=='admin'" (click)="gotopatientrecord(item._id)">
             <span *ngIf="item.Addedbydetail[0]!=null">{{item.Addedbydetail[0].firstname}} {{item.Addedbydetail[0].lastname}}</span>
           </div>
 
