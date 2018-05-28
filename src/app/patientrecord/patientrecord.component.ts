@@ -429,9 +429,14 @@ export class PatientrecordComponent implements OnInit {
                 pgx18: formval.pgx18,
                 pgx19: formval.pgx19,
             };
+
             console.log(data);
             this._http.post(link, data)
-                .subscribe(data => {
+                .subscribe(res => {
+                    let result = res.json();
+                    if (result.status == 'success') {
+                        this.router.navigate(['/patient-list']);
+                    }
                 }, error => {
                     console.log('Oooops!');
                 });
