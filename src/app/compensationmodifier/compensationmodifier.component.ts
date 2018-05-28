@@ -3,7 +3,6 @@ import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'angular2-cookie/core';
-import {RepsignupComponent} from '../repsignup/repsignup.component';
 
 @Component({
   selector: 'app-compensationmodifier',
