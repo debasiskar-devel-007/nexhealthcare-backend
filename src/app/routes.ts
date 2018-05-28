@@ -49,6 +49,7 @@ const appRoutes: Routes = [
     { path: 'frontheader', component: FrontheaderComponent},
     { path: 'frontfooter', component: FrontfooterComponent},
     { path: 'patient-list', component: PateintsComponent},
+    { path: 'patient-list/:id', component: PateintsComponent},
     { path: 'patientquestionire', component: PateintquestionireComponent},
     { path: 'add-patient', component: PateintdetailComponent},
     { path: 'compensationmodifier', component: CompensationmodifierComponent},

@@ -44,12 +44,25 @@
                     <li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/userrecruiterlist','masteraccount']">Master Accounts</a></li>
                     <!--<li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Recruiters</a></li>-->
                     <li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/userrecruiterlist','salesrep']">Sales Reps</a></li>
-                    <li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)"  [routerLink]="['/patient-list']">Patients</a></li>
+                    <!--<li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)"  [routerLink]="['/patient-list']">Patients</a></li>-->
                     <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/add-patient']">Add Patient</a></li>
                     <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/patient-list']">Patient List </a></li>
 
                   </ul>
                 </li>
+                <li class="btn-group" dropdown *ngIf="cookiedetails.type=='superadmin'">
+                  <button id="button-basic5" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                          aria-controls="dropdown-basic2">
+                    Patient <span class="caret"></span>
+                  </button>
+                  <ul id="dropdown-basic5" *dropdownMenu class="dropdown-menu"
+                      role="menu" aria-labelledby="button-basic">
+                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/patient-list','admin']">Approve/Disapprove Profile Lead Sheet</a></li>
+                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Status of Patients</a></li>
+
+                  </ul>
+                </li>
+
                 <li  class="btn-group" dropdown *ngIf="cookiedetails.type=='superadmin'">
                   <button id="button-basic3" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
                           aria-controls="dropdown-basic3">
