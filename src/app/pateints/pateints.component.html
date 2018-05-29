@@ -10,7 +10,8 @@
 
 <div class="container-fluid admin_inner_heading">
 
-  <h2><span>Patients List View</span></h2>
+  <h2 *ngIf="this.isthisadmin == 'admin'"><span >PPS Approval Process</span></h2>
+  <h2 *ngIf="this.isthisadmin != 'admin'"><span>Patients List View</span></h2>
 
 </div>
 
@@ -37,7 +38,7 @@
 
 
     </div>
-
+<!-- Patient ID, Patient Name, Enroller ID, View PPS, Download PPS, Status, Action-->
     <div class="pateints_list_weraper "  [ngClass]="get4rowClass()">
 
       <div class="pateints_list_table_header">
@@ -48,13 +49,16 @@
           <!--  <span>&lt;!&ndash;TAG &ndash;&gt;status</span>-->
           </div>
           <div class="div2 ">
-            <span>Name </span>
+            <span>Patient Name </span>
           </div>
         <!--  <div class="div3">
             <span> Last Name </span>
           </div>-->
-          <div class="div3 ">
+          <div class="div3 " *ngIf="isthisadmin!='admin'">
             <span>Email Address    </span>
+          </div>
+          <div class="div3 " *ngIf="isthisadmin=='admin'">
+            <span>Enroller ID    </span>
           </div>
           <div class="div4 " *ngIf="isthisadmin!='admin'">
             <span>Phone Number</span>
@@ -62,7 +66,13 @@
           <div class="div4" *ngIf="isthisadmin=='admin'">
             <span>Added By</span>
           </div>
-          <div class="div5 " *ngIf="isthisadmin=='admin'">
+          <div class="div5" *ngIf="isthisadmin=='admin'">
+            <span>View PPS</span>
+          </div>
+          <div class="div6 " >
+            <span>Tags</span>
+          </div>
+          <div class="div7 " *ngIf="isthisadmin=='admin'">
             <span>Action</span>
           </div>
          <!-- <div class="div6 " *ngIf="isthisadmin=='admin'">
@@ -89,8 +99,12 @@
             <span>{{item.lastname}} </span>
           </div>-->
 
-          <div class="div3 " (click)="gotopatientrecord(item._id)">
+          <div class="div3 " (click)="gotopatientrecord(item._id)" *ngIf="isthisadmin!='admin'">
             <span> {{item.email}}      </span>
+          </div>
+
+          <div class="div3 " (click)="gotopatientrecord(item._id)" *ngIf="isthisadmin=='admin'">
+            <span *ngIf="item.Addedbydetail[0]!=null"> {{item.Addedbydetail[0].uniqueid}}      </span>
           </div>
 
           <div class="div4 "  *ngIf="isthisadmin!='admin'" (click)="gotopatientrecord(item._id)">
@@ -101,15 +115,21 @@
             <span *ngIf="item.Addedbydetail[0]!=null">{{item.Addedbydetail[0].firstname}} {{item.Addedbydetail[0].lastname}}</span>
           </div>
 
+          <div class="div5"  *ngIf="isthisadmin=='admin'">
+            <span (click)="showquestionaryform(item._id)">Click to view</span>
+          </div>
+
           <!--<div class="div5" *ngIf="isthisadmin=='admin' ">
             <span *ngIf="item.Addedbydetail[0]!=null">{{item.Addedbydetail[0].email}}</span>
           </div>-->
-
-          <div class="div5" *ngIf="isthisadmin=='admin'">
+          <div class="div6 ">
+            <span *ngIf="item.Tagdetail[0]!=null">{{showtagnme(item.Tagdetail[0].tagid)}}</span>
+          </div>
+          <div class="div7" *ngIf="isthisadmin=='admin'">
             <span>
               <p (click)="approveit(item._id)">Click to Approve</p>
               <br/>
-              <p (click)="declineit()">Click to Decline</p>
+              <p (click)="declineit(item._id)">Click to Decline</p>
             </span>
           </div>
 
@@ -171,4 +191,647 @@
 
   </div>
 
+</div>
+
+
+
+<div *ngIf="pateintquestioniremodal" class=" sign_modal pateintquestioniremodal modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <!-- <a href="javascript:void(0)"><img src="../../assets/images/adminlogo.png" alt="#" style="display: block; margin: 0 auto; margin-bottom: 15px;"></a>-->
+
+        <div class="container-fluid admin_inner_heading">
+
+          <h2><span>Patient Profile Sheet-(Medicare) </span></h2>
+
+        </div>
+
+
+
+
+
+        <div class="container-fluid pateints_inner_body">
+          <div class="container pateintswrappe">
+
+
+
+            <div class="pateints_list_weraper">
+              <form role="form" novalidate [formGroup]="dataForm1" (ngSubmit)="dosubmit1(dataForm1.value)" id="formquestionary" name="formquestionary">
+
+                <div class="pateintquestionire_div1">
+                  <table>
+                    <tr>
+                      <td><h2> PRODUCT<br/>REQUESTED </h2></td>
+                      <td>
+                        <!-- <input  type="checkbox"/> <span>DME</span><br/>
+                        <input  type="checkbox"/><span> Rx</span><br/>
+                        <input  type="checkbox"/><span>PGX</span><br/>-->
+                        <input  type="checkbox" [formControl]="dataForm1.controls['cgx1']"/> <span>CGX</span>
+                      </td>
+                      <td>
+                        <div class="pateintquestionire_bottom_form pateintquestionire_top_form">
+                          <label>Patient Id: </label>
+                          <input type="text" value="{{patientuniqueid}}" />
+
+                          <div class="clearfix"></div>
+
+                        </div>
+                      </td>
+                      <td>
+                        <h3>NEX HEALTHCARE<br/>
+                          610 W Congress Street<br/>
+                          Detroit, MI 48226
+                        </h3>
+                      </td>
+
+                    </tr>
+
+                  </table>
+
+
+
+
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="pateintquestionire_div2">
+                  <div class="pateintquestionire_div2_left">
+
+                    <h3>PATIENT INFORMATION</h3>
+
+                    <div class="form-group">
+                      <label>First Name: * </label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['firstname1']" />
+                      <div class="clearfix"></div>
+                      <span class="has-error" *ngIf ="dataForm1.controls['firstname1'].touched && !dataForm1.controls['firstname1'].valid">First Name is required!</span>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Last Name: *</label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['lastname1']"/>
+                      <div class="clearfix"></div>
+                      <span class="has-error" *ngIf ="dataForm1.controls['lastname1'].touched && !dataForm1.controls['lastname1'].valid">Last Name is required!</span>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Best Phone #: *</label><input type="text"  appNumber class="form-control1_pq" [formControl]="dataForm1.controls['phone1']"/>
+                      <div class="clearfix"></div>
+                      <span class="has-error" *ngIf ="dataForm1.controls['phone1'].touched && !dataForm1.controls['phone1'].valid">Phone no. length should be 10!</span>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label>Address: *</label><textarea [formControl]="dataForm1.controls['address1']"></textarea>
+                      <div class="clearfix"></div>
+                      <span class="has-error" *ngIf ="dataForm1.controls['address1'].touched && !dataForm1.controls['address1'].valid">Address is required!</span>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label>City: *</label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['city1']"/>
+                      <div class="clearfix"></div>
+                      <span class="has-error" *ngIf ="dataForm1.controls['city1'].touched && !dataForm1.controls['city1'].valid">City is required!</span>
+                    </div>
+
+                    <div class="form-group">
+                      <label>State: *</label>
+                      <select class="form-control" [formControl]="dataForm1.controls['state1']">
+                        <option value="" disabled selected>Select State</option>
+                        <option value="{{item.name}}" *ngFor="let item of usastates; let i = index">{{item.name}}</option>
+                      </select>
+                      <div class="clearfix"></div>
+                      <span class="has-error" *ngIf ="dataForm1.controls['state1'].touched && !dataForm1.controls['state1'].valid">State is required!</span>
+                    </div>
+                    <div class="form-group">
+                      <label>Zip: *</label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['zip1']"/>
+                      <div class="clearfix"></div>
+                      <span class="has-error" *ngIf ="dataForm1.controls['zip1'].touched && !dataForm1.controls['zip1'].valid">Zip is required!</span>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Date of Birth: *</label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['dob1']"/>
+                      <div class="clearfix"></div>
+                      <span class="has-error" *ngIf ="dataForm1.controls['dob1'].touched && !dataForm1.controls['dob1'].valid">Date of Birth is required!</span>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Gender: *</label>
+                      <input type="radio" name="gender1" value="male" class="inputradiocls" [formControl]="dataForm1.controls['gender1']"/>Male
+                      <input type="radio" name="gender1" value="female" class="inputradiocls" [formControl]="dataForm1.controls['gender1']"/>Female
+                      <div class="clearfix"></div>
+                      <span class="has-error" *ngIf ="dataForm1.controls['gender1'].touched && !dataForm1.controls['gender1'].valid">Gender is required!</span>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Race/Ethnicity: *</label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['race1']"/>
+                      <div class="clearfix"></div>
+                      <span class="has-error" *ngIf ="dataForm1.controls['race1'].touched && !dataForm1.controls['race1'].valid">Race/Ethnicity is required!</span>
+                    </div>
+
+                    <div class="form-group">
+                      <label>HT/WT : *</label><input type="text"  class="form-control2_pq" [formControl]="dataForm1.controls['height1']"/> /<input type="text"  class="form-control2_pqr" [formControl]="dataForm1.controls['width1']"/>
+                      <div class="clearfix"></div>
+                      <span class="has-error" *ngIf ="dataForm1.controls['height1'].touched && !dataForm1.controls['height1'].valid">Height is required!</span>
+                      <span class="has-error" *ngIf ="dataForm1.controls['width1'].touched && !dataForm1.controls['width1'].valid">Width is required!</span>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Allergies: *</label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['allergies1']"/>
+                      <div class="clearfix"></div>
+                      <span class="has-error" *ngIf ="dataForm1.controls['allergies1'].touched && !dataForm1.controls['allergies1'].valid">These is a required field!</span>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Medicare Claim # *</label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['medicareclaim1']"/>
+                      <span class="has-error" *ngIf ="dataForm1.controls['medicareclaim1'].touched && !dataForm1.controls['medicareclaim1'].valid">These is a required field!</span>
+                      <div class="clearfix"></div>
+                    </div>
+
+
+
+                  </div>
+
+                  <div class="pateintquestionire_div2_right">
+                    <h3>SPECIAL NOTES</h3>
+
+
+                    <div class="form-group">
+                      <label>A) : </label><input type="text"  class="form-control3_pq" [formControl]="dataForm1.controls['notes1']"/>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                      <label>B) : </label><input type="text"  class="form-control3_pq" [formControl]="dataForm1.controls['notes2']"/>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                      <label>C) : </label><input type="text"  class="form-control3_pq" [formControl]="dataForm1.controls['notes3']"/>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                      <label>D) : </label><input type="text"  class="form-control3_pq" [formControl]="dataForm1.controls['notes4']"/>
+                      <div class="clearfix"></div>
+                    </div>
+
+
+                  </div>
+
+
+                  <div class="clearfix"></div>
+                </div>
+
+
+                <div class="pateintquestionire_div2">
+                  <div class="pateintquestionire_div2_left">
+
+                    <h3>Pharmacy</h3>
+
+                    <div class="pdivcalass1">
+                      <span>Pharmacy Insurance Name:</span>
+                      <input type="text" [formControl]="dataForm1.controls['pharmacyinsurancename']">
+
+                      <div class="clearfix"></div>
+                    </div>
+
+
+                    <div class="pdivcalass"><span>ID #:</span> <input type="text" [formControl]="dataForm1.controls['pharmacyid']">
+                      <div class="clearfix"></div></div>
+                    <div class="pdivcalass"><span>BIN #:</span> <input type="text" [formControl]="dataForm1.controls['pharmacybin']"> <div class="clearfix"></div></div>
+                    <div class="pdivcalass"><span>PCN #:</span> <input type="text" [formControl]="dataForm1.controls['pharmacypcn']"> <div class="clearfix"></div></div>
+                    <div class="pdivcalass"><span>GROUP #:</span> <input type="text" [formControl]="dataForm1.controls['pharmacygroup']"> <div class="clearfix"></div></div>
+
+                    <div class="pclass2">
+                      <div class="pdivcalass"><span> History / Reason:</span> <input type="text" [formControl]="dataForm1.controls['pharmacyhistory']"> <div class="clearfix"></div></div>
+                      <div class="pdivcalass"><span>Area(s) of Issue:</span> <input type="text" [formControl]="dataForm1.controls['pharmacyissue']"> <div class="clearfix"></div></div>
+                      <div class="pdivcalass"><span>Treatments:</span><input type="text" [formControl]="dataForm1.controls['pharmacytreatment']"> <div class="clearfix"></div></div>
+
+                    </div>
+
+
+
+                  </div>
+
+                  <div class="pateintquestionire_div2_right">
+                    <h3>Products Requested</h3>
+
+
+                    <p> <input  type="checkbox" [formControl]="dataForm1.controls['topicalpain']"/> <span>TOPICAL PAIN</span><br/></p>
+                    <p>  <input  type="checkbox" [formControl]="dataForm1.controls['oralpain']"/><span> ORAL PAIN</span><br/></p>
+                    <p>  <input  type="checkbox" [formControl]="dataForm1.controls['derma']"/><span>DERMA</span><br/></p>
+                    <p>  <input  type="checkbox" [formControl]="dataForm1.controls['migrane']"/> <span>MIGRAINE/HA</span></p>
+
+                  </div>
+
+
+                  <div class="clearfix"></div>
+                </div>
+
+
+                <div class="pateintquestionire_div2">
+
+                  <div class="pateintquestionire_div2_left2">
+                    <div class="pateintquestionire_div2_left2_heading">
+                      <div class="left2_heading2"><h5><!--<span>CGX</span>--> (Questionnaire)</h5></div>
+                      <div class="left2_heading3"><p>* TYPE</p></div>
+                      <div class="left2_heading4"><p>TYPE</p></div>
+                      <div class="left2_heading5"><p>AGE DIAGNOSED</p></div>
+                      <div class="left2_heading6"><p> IF DECEASED,</p></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p><strong>PERSONAL HISTORY:</strong></p></div>
+                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['phtype1']"/></div>
+                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['phtype2']"/></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['phage']"/></div>
+                      <div class="left2_heading6"><p>AGE AT<br/>
+                        DEATH</p></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p><strong>FAMILY HISTORY:</strong></p></div>
+                      <div class="left2_heading3">&nbsp;</div>
+                      <div class="left2_heading4">&nbsp;</div>
+                      <div class="left2_heading5">&nbsp;</div>
+                      <div class="left2_heading6">&nbsp;</div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p>MOTHER:</p></div>
+                      <div class="left2_heading3"><input type="text"  [formControl]="dataForm1.controls['motype1']"/><span>,</span></div>
+                      <div class="left2_heading4"><input type="text"  [formControl]="dataForm1.controls['motype2']"/></div>
+                      <div class="left2_heading5"><input type="text"  [formControl]="dataForm1.controls['moage']"/></div>
+                      <div class="left2_heading6"><input type="text"  [formControl]="dataForm1.controls['modead']"/></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p>FATHER:</p></div>
+                      <div class="left2_heading3"><input type="text"  [formControl]="dataForm1.controls['fatype1']"/><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['fatype2']" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['faage']" /></div>
+                      <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['fadead']" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p>DAUGHTER:</p></div>
+                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['dautype1']" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['dautype2']" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['dauage']" /></div>
+                      <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['daudead']" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p>SON:</p></div>
+                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['sontype1']" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['sontype2']" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['sonage']" /></div>
+                      <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['sondead']" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p>BROTHER:</p></div>
+                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['brotype1']" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['brotype2']" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['broage']" /></div>
+                      <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['brodead']" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p>SISTER:</p></div>
+                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['sistype1']" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['sistype2']" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['sisage']" /></div>
+                      <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['sisdead']" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p>NEPHEW:</p></div>
+                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['neptype1']" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['neptype2']" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['nepage']" /></div>
+                      <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['nepdead']" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p>NIECE:</p></div>
+                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['niecetype1']" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['niecetype2']" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['nieceage']" /></div>
+                      <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['niecedead']" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p>UNCLE:</p></div>
+                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['unctype1']" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['unctype2']" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['uncage']" /></div>
+                      <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['uncdead']" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p>AUTN:</p></div>
+                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['autntype1']" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['autntype2']" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['autnage']" /></div>
+                      <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['autndead']" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p>MOM'S FATHER:</p></div>
+                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['moftype1']" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['moftype2']" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['mofage']" /></div>
+                      <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['mofdead']" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p>MOM'S MOTHER:</p></div>
+                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['momotype1']" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['momotype2']" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['momoage']" /></div>
+                      <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['momodead']" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p>DAD'S FATHER:</p></div>
+                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['daftype1']" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['daftype2']" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['dafage']" /></div>
+                      <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['dafdead']" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p>DAD'S MOTHER:</p></div>
+                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['damtype1']" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['damtype2']" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['damage']" /></div>
+                      <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['damdead']" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p><i>OTHER :</i></p></div>
+                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['oth1type1']" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['oth1type2']" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['oth1age']" /></div>
+                      <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['oth1dead']" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p><i>OTHER :</i></p></div>
+                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['oth2type1']" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['oth2type2']" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['oth2age']" /></div>
+                      <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['oth2dead']" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="pateintquestionire_div2_left2_contain">
+                      <div class="left2_heading2"><p><i>OTHER :</i></p></div>
+                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['oth3type1']" /><span>,</span></div>
+                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['oth3type2']" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['oth3age']" /></div>
+                      <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['oth3dead']" /></div>
+
+
+                      <div class="clearfix"></div>
+                    </div>
+
+                  </div>
+
+
+                  <div class="pateintquestionire_div2_right2">
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h3>Type of Cancer</h3>
+
+                        <label>* <u>Breast</u></label>
+                        <label>* <u>Ovarian</u></label>
+                        <label>* Digestive</label>
+                        <p>
+                          - Pancreatic<br/>
+                          - Colon<br/>
+                          - Rectal<br/>
+                          - Gallbladder<br/>
+                          - Intestinal<br/>
+                          - Stomach<br/>
+                          - Esophageal<br/>
+                          - Throat<br/>
+                          - Liver
+                        </p>
+
+                        <label>* Lung</label>
+                        <p>
+                          - Other Respiratory
+                        </p>
+
+
+                        <label>* Genital</label>
+                        <p>
+                          - Cervical<br/>
+                          - Uterine<br/>
+                          - Endometrial<br/>
+                          - Other Genital Organs
+                        </p>
+
+                        <label>* Prostate</label>
+                        <label>* Testicular</label>
+                        <label>* Kidney</label>
+                        <label>* Bladder</label>
+                        <p>- Urinary Tract</p>
+
+                        <label>* Leukemia</label>
+                        <label>* Lymphatic</label>
+                        <label>* Other Organ Systems</label>
+                      </div>
+                      <div class="col-md-6 pateintquestionirerightPGX">
+                        <div class="pateintquestionire_div2_left2_heading">
+                          <div class="left2_heading1"><h5><!--<span>PGX</span> (Med List)--></h5></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                          <div class="left2_heading1"><span>1.</span> <input type="text" [formControl]="dataForm1.controls['pgx1']"/></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew containnew1">
+                          <div class="left2_heading1"><span>2.</span> <input type="text" [formControl]="dataForm1.controls['pgx2']"/></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                          <div class="left2_heading1"><span>3.</span> <input type="text" [formControl]="dataForm1.controls['pgx3']" /></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx4']"/></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx5']"/></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx6']"/></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx7']"/></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx8']"/></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx9']"/></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx10']"/></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx11']"/></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx12']"/></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx13']"/></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx14']"/></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx15']"/></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx16']"/></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx17']"/></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx18']"/></div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx19']"/></div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                  </div>
+
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="pateintquestionire_div3">
+
+                  <div class="pateintquestionire_bottom_form">
+                    <label>Rep ID: </label>
+                    <input type="text" value="{{cookieuniqueid}}"/>
+
+                    <div class="clearfix"></div>
+
+                  </div>
+
+                  <input type="button"  value="Cancel" class="pateintquestionirebtn pateintquestionirebtn2" (click)="onHidden()"/>
+                  <input type="submit"  value="Submit" class="pateintquestionirebtn" (click)="submitpateintquestionire()"/>
+                  <input type="submit"  value="Save" class="pateintquestionirebtn" (click)="savepateintquestionire()"/>
+
+
+
+
+                  <div class="clearfix"></div>
+
+                </div>
+
+
+
+                <div class="clearfix"></div>
+
+              </form>
+
+            </div>
+
+
+
+
+
+
+
+
+          </div>
+
+        </div>
+
+
+
+
+
+
+
+      </div>
+      <!-- <div class="modal-footer" >
+        <button type="button" class="btn btn-default popbtn1" data-dismiss="modal" (click)="onHidden()">Cancel</button>
+        <button type="button" class="btn btn-primary popbtn2" data-dismiss="modal" (click)="savepateintquestionire()">Agree</button>
+      </div>-->
+    </div>
+  </div>
 </div>

@@ -4,7 +4,7 @@ import { Http } from '@angular/http';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'angular2-cookie/core';
-
+declare var $ : any;
 @Component({
   selector: 'app-patientrecord',
   templateUrl: './patientrecord.component.html',
@@ -26,6 +26,8 @@ export class PatientrecordComponent implements OnInit {
   public pateintquestioniremodal: boolean = false;
   private addcookie: CookieService;
   private cookiedetails;
+  public iscompletedpatientrecord=0;
+ // public isdisable=0;
 
   constructor(fb: FormBuilder, fb1: FormBuilder, private _http: Http, private router: Router, private route: ActivatedRoute, private _commonservices: Commonservices, addcookie: CookieService) {
     this.fb = fb;
@@ -58,8 +60,10 @@ export class PatientrecordComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.id = params['id'];
+      console.log('this.id________');
       console.log(this.id);
       this.getdetails();
+      this.getpatientrecord();
     });
     this.dataForm = this.fb.group({
       firstname: ['', Validators.required],
@@ -213,7 +217,6 @@ export class PatientrecordComponent implements OnInit {
     this._http.post(link, data)
       .subscribe(res => {
         let result = res.json();
-        console.log(result);
         if (result.status == 'success' && typeof(result.item) != 'undefined') {
           // console.log(result);
           let userdet = result.item;
@@ -229,6 +232,23 @@ export class PatientrecordComponent implements OnInit {
           });
         } else {
           this.router.navigate(['/patient-list']);
+        }
+      }, error => {
+        console.log('Ooops');
+      });
+  }
+
+  getpatientrecord() {
+    let link = this.serverurl + 'getpatientrecord';
+    let data = {_id : this.id};
+    this._http.post(link, data)
+      .subscribe(res => {
+        let result = res.json();
+        if (result.status == 'success' && typeof(result.item) != 'undefined') {
+          console.log('result.item.iscompleted');
+          console.log(result.item.iscompleted);
+         this.iscompletedpatientrecord = result.item.iscompleted;
+        } else {
         }
       }, error => {
         console.log('Ooops');
@@ -275,6 +295,17 @@ export class PatientrecordComponent implements OnInit {
   openquesmodal() {
     this.getpatientdetailsbypatientid();
     this.pateintquestioniremodal = true;
+  }
+  openquesmodalreadonly() {
+    this.getpatientdetailsbypatientid();
+    this.pateintquestioniremodal = true;
+    setTimeout(() => {
+      $('#formquestionary').find('input[type="submit"]').hide();
+      $('#formquestionary').find('input[type="button"]').hide();
+      $( '#formquestionary' ).find('input').each(function() {
+        $(this).attr( 'disabled', 'disabled' );
+      });
+    }, 500);
   }
   getpatientdetailsbypatientid() {
     let link = this.serverurl + 'getpatientdetailsbypatientid';

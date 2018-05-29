@@ -252,7 +252,9 @@
             <input type="submit"  value="Save" class="btn1" />
             <input type="button"  value="Cancel" class="btn2" (click)="cancel()"/>
 
-            <input type="button"  value="Lead Profile Sheet" class="btn2" (click)="openquesmodal()" />
+            <input type="button"  value="Patient Profile Sheet" class="btn2" (click)="openquesmodal()" *ngIf="iscompletedpatientrecord==0"/>
+            <input type="button"  value="View PPS" class="btn2" (click)="openquesmodalreadonly()" *ngIf="iscompletedpatientrecord==1"/>
+            <input type="button"  value="Download PPS" class="btn2" download *ngIf="iscompletedpatientrecord==1"/>
           </div>
         </div>
 
@@ -282,6 +284,8 @@
 
 
 
+<!--<div *ngIf="pateintquestioniremodal" class=" sign_modal pateintquestioniremodal modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">-->
 <div *ngIf="pateintquestioniremodal" class=" sign_modal pateintquestioniremodal modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
      tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
@@ -307,7 +311,7 @@
 
 
             <div class="pateints_list_weraper">
-              <form role="form" novalidate [formGroup]="dataForm1" (ngSubmit)="dosubmit1(dataForm1.value)">
+              <form role="form" novalidate [formGroup]="dataForm1" (ngSubmit)="dosubmit1(dataForm1.value)" id="formquestionary" name="formquestionary">
 
                 <div class="pateintquestionire_div1">
                   <table>
@@ -351,7 +355,7 @@
                     <h3>PATIENT INFORMATION</h3>
 
                     <div class="form-group">
-                      <label>First Name: * </label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['firstname1']"/>
+                      <label>First Name: * </label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['firstname1']" />
                       <div class="clearfix"></div>
                       <span class="has-error" *ngIf ="dataForm1.controls['firstname1'].touched && !dataForm1.controls['firstname1'].valid">First Name is required!</span>
                     </div>

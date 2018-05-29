@@ -47,7 +47,7 @@
            <tr *ngFor="let item of compensationList | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
              <td>${{item.amount}}</td>
              <td>
-               <span>https://{{serverhost}}/#/sign-up/{{item.token}}</span>
+               <span>{{serverhost}}/#/sign-up/{{item.token}}</span>
                <input type="button" value="Copy Url" class="copyurlbtn" ngxClipboard [cbContent]='callfunc(item.token)' (click)="showcopied()">
              </td>
            </tr>
