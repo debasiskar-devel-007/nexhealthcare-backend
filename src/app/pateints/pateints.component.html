@@ -40,34 +40,37 @@
     <div class="pateints_list_weraper "  [ngClass]="get4rowClass()">
       <div class="pateints_list_table_header">
         <div class="row row-eq-height">
-          <div class="div1 ">
+          <div class="divnew ">
             <span>Patient ID</span>
           </div>
-          <div class="div2 ">
-            <span>Patient Name </span>
-          </div>
-          <div class="div3 " *ngIf="isthisadmin!='admin'">
-            <span>Email Address    </span>
-          </div>
-          <div class="div3 " *ngIf="isthisadmin=='admin'">
-            <span>Enroller ID    </span>
-          </div>
-          <div class="div4 " *ngIf="isthisadmin!='admin'">
-            <span>Phone Number</span>
-          </div>
-          <div class="div4" *ngIf="isthisadmin=='admin'">
-            <span>Added By</span>
-          </div>
-          <div class="div5" *ngIf="isthisadmin=='admin'">
-            <span>View PPS</span>
-          </div>
-          <div class="div6" *ngIf="isthisadmin=='admin'">
-            <span>Download PPS</span>
-          </div>
-          <div class="div7 ">
+          <div class="divnew " *ngIf="isthisadmin!='admin'">
             <span>Status</span>
           </div>
-          <div class="div8 " *ngIf="isthisadmin=='admin'">
+          <div class="divnew ">
+            <span>Patient Name </span>
+          </div>
+          <div class="divnew " *ngIf="isthisadmin!='admin'">
+            <span>Email Address    </span>
+          </div>
+          <div class="divnew " *ngIf="isthisadmin=='admin'">
+            <span>Enroller ID    </span>
+          </div>
+          <div class="divnew " *ngIf="isthisadmin!='admin'">
+            <span>Phone Number</span>
+          </div>
+         <!-- <div class="divnew" *ngIf="isthisadmin=='admin'">
+            <span>Added By</span>
+          </div>-->
+          <div class="divnew" *ngIf="isthisadmin=='admin'">
+            <span>View PPS</span>
+          </div>
+          <div class="divnew" *ngIf="isthisadmin=='admin'">
+            <span>Download PPS</span>
+          </div>
+          <div class="divnew " *ngIf="isthisadmin=='admin'">
+            <span>Status</span>
+          </div>
+          <div class="divnew " *ngIf="isthisadmin=='admin'">
             <span>Action</span>
           </div>
            <div class="clearfix"></div>
@@ -78,47 +81,47 @@
 
       <div class="pateints_list_table_contain" *ngFor="let item of patientlist | orderBy:'_id':'reverse' | usersearch:listFilter.value| paginate: { itemsPerPage: 25, currentPage: p }; let i = index">
         <div class="row row-eq-height" >
-          <div class="div1 " (click)="gotopatientrecord(item._id)">
+          <div class="divnew " (click)="gotopatientrecord(item._id)">
             <span>{{item.uniqueid}}</span>
           </div>
-
-          <div class="div2 " (click)="gotopatientrecord(item._id)">
+          <!--Other than admin can see this status-->
+          <div class="divnew " *ngIf="isthisadmin!='admin'">
+            <span *ngIf="item.Tagdetail[0]!=null">{{showtagnme(item.Tagdetail[0].tagid)}}</span>
+          </div>
+          <div class="divnew " (click)="gotopatientrecord(item._id)">
             <span>{{item.firstname}} {{item.lastname}}</span>
           </div>
 
-          <div class="div3 " (click)="gotopatientrecord(item._id)" *ngIf="isthisadmin!='admin'">
+          <div class="divnew " (click)="gotopatientrecord(item._id)" *ngIf="isthisadmin!='admin'">
             <span> {{item.email}}      </span>
           </div>
 
-          <div class="div3 " (click)="gotopatientrecord(item._id)" *ngIf="isthisadmin=='admin'">
+          <div class="divnew " (click)="gotopatientrecord(item._id)" *ngIf="isthisadmin=='admin'">
             <span *ngIf="item.Addedbydetail[0]!=null"> {{item.Addedbydetail[0].uniqueid}}      </span>
           </div>
 
-          <div class="div4 "  *ngIf="isthisadmin!='admin'" (click)="gotopatientrecord(item._id)">
+          <div class="divnew "  *ngIf="isthisadmin!='admin'" (click)="gotopatientrecord(item._id)">
             <span>{{item.phone}}</span>
           </div>
 
-          <div class="div4"  *ngIf="isthisadmin=='admin'" (click)="gotopatientrecord(item._id)">
+        <!--  <div class="divnew"  *ngIf="isthisadmin=='admin'" (click)="gotopatientrecord(item._id)">
             <span *ngIf="item.Addedbydetail[0]!=null">{{item.Addedbydetail[0].firstname}} {{item.Addedbydetail[0].lastname}}</span>
           </div>
-
-          <div class="div5"  *ngIf="isthisadmin=='admin'">
-            <span (click)="showquestionaryform(item._id)">Click to view</span>
+-->
+          <div class="divnew"  *ngIf="isthisadmin=='admin'">
+            <span class="clicklink" (click)="showquestionaryform(item._id)">Click to view</span>
           </div>
-          <div class="div6"  *ngIf="isthisadmin=='admin'">
-            <span>Click to download</span>
+          <div class="divnew"  *ngIf="isthisadmin=='admin'">
+            <span  class="clicklink">Click to download</span>
           </div>
 
           <!--<div class="div5" *ngIf="isthisadmin=='admin' ">
             <span *ngIf="item.Addedbydetail[0]!=null">{{item.Addedbydetail[0].email}}</span>
           </div>-->
 
-          <!--Other than admin can see this status-->
-          <div class="div7 " *ngIf="isthisadmin!='admin'">
-            <span *ngIf="item.Tagdetail[0]!=null">{{showtagnme(item.Tagdetail[0].tagid)}}</span>
-          </div>
+
           <!--only admin can see this status-->
-          <div class="div7" *ngIf="isthisadmin=='admin'">
+          <div class="divnew" *ngIf="isthisadmin=='admin'">
             <span *ngIf="item.Tagdetail[0]!=null">
               <span *ngIf="item.Tagdetail[0].tagid != '5b0bfa1d3fe08865e7955f72' && item.Tagdetail[0].tagid != '5b0bfa1b3fe08865e7955f71'">Action Required</span>
 
@@ -127,11 +130,12 @@
             </span>
           </div>
 
-          <div class="div8" *ngIf="isthisadmin=='admin'">
+          <div class="divnew" *ngIf="isthisadmin=='admin'">
             <span *ngIf="item.Tagdetail[0]!=null">
               <span *ngIf="item.Tagdetail[0].tagid != '5b0bfa1d3fe08865e7955f72' && item.Tagdetail[0].tagid != '5b0bfa1b3fe08865e7955f71'">
-                <p (click)="approveitmodal(item)">Approve</p><br/>
-                <p (click)="declineitmodal(item)">Reject</p>
+                <a class="tablebtn" (click)="approveitmodal(item)">Approve</a>
+                <a  class="tablebtn tablebtn2"(click)="declineitmodal(item)">Reject</a>
+                  <div class="clearfix"></div>
               </span>
               <span *ngIf="item.Tagdetail[0].tagid=='5b0bfa1d3fe08865e7955f72'">Rejected</span>
               <span *ngIf="item.Tagdetail[0].tagid=='5b0bfa1b3fe08865e7955f71'">Approved</span>
@@ -834,7 +838,7 @@
     <div class="modal-content">
       <div class="modal-header">
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="padding-bottom: 0px;">
         <img src="../../assets/images/adminlogo.png" alt="#" class="popup_logo1">
         <h1 class="text-center">You are about to approve {{patientnametoapproveordecline}}'s PPS.</h1>
       </div>
@@ -853,13 +857,13 @@
     <div class="modal-content">
       <div class="modal-header">
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="padding-bottom: 0px;">
         <img src="../../assets/images/adminlogo.png" alt="#" class="popup_logo1">
         <h1 class="text-center">You are about to reject {{patientnametoapproveordecline}}'s PPS.</h1>
       </div>
       <div class="modal-footer popupnewbtnwrapper">
-        <button (click)="declineit()">Confirm Rejection</button>
-        <button (click)="onHidden()">Cancel</button>
+        <button class="btn btn-primary popbtn2" (click)="declineit()">Confirm Rejection</button>
+        <button class="btn btn-primary popbtn2" (click)="onHidden()">Cancel</button>
       </div>
     </div>
   </div>

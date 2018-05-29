@@ -757,7 +757,7 @@ a:visited {	text-decoration: none;	outline: none;}
 .pateints_list_table_contain{ background: #ececec; font-size: 16px; color: #000; font-family: 'proximanova-regular'; border-bottom: solid 1px #fff; cursor: pointer;}
 
 .pateints_list_weraper span{ display: block; padding: 5px 0;}
-
+.pateints_list_weraper span span{ padding: 0px;}
 .pateints_list_weraper .div1{ width: 20%; padding: 10px;}
 .pateints_list_weraper .div2{ width: 20%;  padding: 10px;}
 .pateints_list_weraper .div3{ width: 20%;  padding: 10px;}
@@ -765,11 +765,16 @@ a:visited {	text-decoration: none;	outline: none;}
 .pateints_list_weraper .div5{ width: 20%;  padding: 10px;}
 
 
+.pateints_list_weraper .divnew{ width: 20%; padding: 10px;}
+
+
 .pateints_list_weraper4row .div1{ width: 25%; padding: 10px;}
 .pateints_list_weraper4row .div2{ width: 25%;  padding: 10px;}
 .pateints_list_weraper4row .div3{ width: 25%;  padding: 10px;}
 .pateints_list_weraper4row .div4{ width: 25%;  padding: 10px;}
 
+
+.pateints_list_weraper4row .divnew{ width: 20%; padding: 10px;}
 
 
 /*-----------------------------------------------------------*/
@@ -790,6 +795,8 @@ a:visited {	text-decoration: none;	outline: none;}
 
 
 .pateintdetail_left_formnew2 label{ display:block; width:25%; float: left; font-weight: normal; font-size: 16px; padding-top: 10px; text-align: right; padding-right: 5px;}
+
+.pateintdetail_left_formnew2 label span{ display: inline!important;}
 
 .pateintdetail_left_formnew2 .form-group {
     width: 48%!important;
@@ -1879,3 +1886,21 @@ a:visited {	text-decoration: none;	outline: none;}
 
 
 .patientinput{ background: #dadada!important; border: none!important;  width: 100px!important;}
+
+
+.clicklink{  color:#1f82ce;}
+
+
+.tablebtn{background-color: #209eff;
+  color: #fff!important;
+  padding: 5px 10px;
+  font-family: 'proximanova-regular'!important;
+  white-space: normal;
+  font-size: 16px;
+  line-height: 24px;
+  cursor: pointer; float: left;}
+
+.tablebtn2{ margin-left: 4px;}
+
+
+
