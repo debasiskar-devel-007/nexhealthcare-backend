@@ -355,39 +355,39 @@
                     <h3>PATIENT INFORMATION</h3>
 
                     <div class="form-group">
-                      <label>First Name: * </label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['firstname1']" />
+                      <label>First Name: <span>*</span> </label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['firstname1']" />
                       <div class="clearfix"></div>
                       <span class="has-error" *ngIf ="dataForm1.controls['firstname1'].touched && !dataForm1.controls['firstname1'].valid">First Name is required!</span>
                     </div>
 
                     <div class="form-group">
-                      <label>Last Name: *</label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['lastname1']"/>
+                      <label>Last Name: <span>*</span></label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['lastname1']"/>
                       <div class="clearfix"></div>
                       <span class="has-error" *ngIf ="dataForm1.controls['lastname1'].touched && !dataForm1.controls['lastname1'].valid">Last Name is required!</span>
                     </div>
 
                     <div class="form-group">
-                      <label>Best Phone #: *</label><input type="text"  appNumber class="form-control1_pq" [formControl]="dataForm1.controls['phone1']"/>
+                      <label>Best Phone #: <span>*</span></label><input type="text"  appNumber class="form-control1_pq" [formControl]="dataForm1.controls['phone1']"/>
                       <div class="clearfix"></div>
                       <span class="has-error" *ngIf ="dataForm1.controls['phone1'].touched && !dataForm1.controls['phone1'].valid">Phone no. length should be 10!</span>
                     </div>
 
 
                     <div class="form-group">
-                      <label>Address: *</label><textarea [formControl]="dataForm1.controls['address1']"></textarea>
+                      <label>Address: <span>*</span></label><textarea [formControl]="dataForm1.controls['address1']"></textarea>
                       <div class="clearfix"></div>
                       <span class="has-error" *ngIf ="dataForm1.controls['address1'].touched && !dataForm1.controls['address1'].valid">Address is required!</span>
                     </div>
 
 
                     <div class="form-group">
-                      <label>City: *</label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['city1']"/>
+                      <label>City: <span>*</span></label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['city1']"/>
                       <div class="clearfix"></div>
                       <span class="has-error" *ngIf ="dataForm1.controls['city1'].touched && !dataForm1.controls['city1'].valid">City is required!</span>
                     </div>
 
                     <div class="form-group">
-                      <label>State: *</label>
+                      <label>State: <span>*</span></label>
                       <select class="form-control" [formControl]="dataForm1.controls['state1']">
                         <option value="" disabled selected>Select State</option>
                         <option value="{{item.name}}" *ngFor="let item of usastates; let i = index">{{item.name}}</option>
@@ -396,19 +396,19 @@
                       <span class="has-error" *ngIf ="dataForm1.controls['state1'].touched && !dataForm1.controls['state1'].valid">State is required!</span>
                     </div>
                     <div class="form-group">
-                      <label>Zip: *</label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['zip1']"/>
+                      <label>Zip: <span>*</span></label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['zip1']"/>
                       <div class="clearfix"></div>
                       <span class="has-error" *ngIf ="dataForm1.controls['zip1'].touched && !dataForm1.controls['zip1'].valid">Zip is required!</span>
                     </div>
 
                     <div class="form-group">
-                      <label>Date of Birth: *</label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['dob1']"/>
+                      <label>Date of Birth: <span>*</span></label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['dob1']"/>
                       <div class="clearfix"></div>
                       <span class="has-error" *ngIf ="dataForm1.controls['dob1'].touched && !dataForm1.controls['dob1'].valid">Date of Birth is required!</span>
                     </div>
 
                     <div class="form-group">
-                      <label>Gender: *</label>
+                      <label>Gender: <span>*</span></label>
                       <input type="radio" name="gender1" value="male" class="inputradiocls" [formControl]="dataForm1.controls['gender1']"/>Male
                       <input type="radio" name="gender1" value="female" class="inputradiocls" [formControl]="dataForm1.controls['gender1']"/>Female
                       <div class="clearfix"></div>
@@ -416,26 +416,26 @@
                     </div>
 
                     <div class="form-group">
-                      <label>Race/Ethnicity: *</label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['race1']"/>
+                      <label>Race/Ethnicity: <span>*</span></label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['race1']"/>
                       <div class="clearfix"></div>
                       <span class="has-error" *ngIf ="dataForm1.controls['race1'].touched && !dataForm1.controls['race1'].valid">Race/Ethnicity is required!</span>
                     </div>
 
                     <div class="form-group">
-                      <label>HT/WT : *</label><input type="text"  class="form-control2_pq" [formControl]="dataForm1.controls['height1']"/> /<input type="text"  class="form-control2_pqr" [formControl]="dataForm1.controls['width1']"/>
+                      <label>HT/WT : <span>*</span></label><input type="text"  class="form-control2_pq" [formControl]="dataForm1.controls['height1']"/> /<input type="text"  class="form-control2_pqr" [formControl]="dataForm1.controls['width1']"/>
                       <div class="clearfix"></div>
                       <span class="has-error" *ngIf ="dataForm1.controls['height1'].touched && !dataForm1.controls['height1'].valid">Height is required!</span>
                       <span class="has-error" *ngIf ="dataForm1.controls['width1'].touched && !dataForm1.controls['width1'].valid">Width is required!</span>
                     </div>
 
                     <div class="form-group">
-                      <label>Allergies: *</label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['allergies1']"/>
+                      <label>Allergies:</label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['allergies1']"/>
                       <div class="clearfix"></div>
                       <span class="has-error" *ngIf ="dataForm1.controls['allergies1'].touched && !dataForm1.controls['allergies1'].valid">These is a required field!</span>
                     </div>
 
                     <div class="form-group">
-                      <label>Medicare Claim # *</label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['medicareclaim1']"/>
+                      <label>Medicare Claim # <span>*</span></label><input type="text"  class="form-control1_pq" [formControl]="dataForm1.controls['medicareclaim1']"/>
                       <span class="has-error" *ngIf ="dataForm1.controls['medicareclaim1'].touched && !dataForm1.controls['medicareclaim1'].valid">These is a required field!</span>
                       <div class="clearfix"></div>
                     </div>
@@ -521,9 +521,9 @@
 
                 <div class="pateintquestionire_div2">
 
-                  <div class="pateintquestionire_div2_left2">
+                  <div class="pateintquestionire_div2_left2 pateintquestionire_div2_left2new">
                     <div class="pateintquestionire_div2_left2_heading">
-                      <div class="left2_heading2"><h5><!--<span>CGX</span>--> (Questionnaire)</h5></div>
+                      <div class="left2_heading2"><h5><!--<span>CGX</span>--> Questionnaire</h5></div>
                       <div class="left2_heading3"><p>* TYPE</p></div>
                       <div class="left2_heading4"><p>TYPE</p></div>
                       <div class="left2_heading5"><p>AGE DIAGNOSED</p></div>
