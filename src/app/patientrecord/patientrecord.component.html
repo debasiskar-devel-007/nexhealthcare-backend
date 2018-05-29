@@ -98,7 +98,7 @@
               <div class="form-group">
                 <label>Patient ID</label>
 
-                <input type="text"  class="form-control"  placeholder="Patient ID"/>  <div class="clearfix"></div>
+                <input type="text"  class="form-control"  placeholder="Patient ID" value="{{patientuniqueid}}" readonly/>  <div class="clearfix" *ngIf="patientuniqueid"></div>
                 <span class="has-error hide" >Patient ID is required!</span></div>
 
 
@@ -211,7 +211,7 @@
 
 
           </div>
-          <div class="addbordertop"></div>
+        <!--  <div class="addbordertop"></div>
           <h6>Add Notes</h6>
           <div class="pateintdetail_left_form pateintdetail_left_formnew">
             <div class="addnoteblock">
@@ -243,7 +243,7 @@
             </div>
             <div class="clearfix"></div>
           </div>
-          <textarea placeholder="Only Notes" class="notes_textarea hidden"></textarea>
+          <textarea placeholder="Only Notes" class="notes_textarea hidden"></textarea>-->
         </div>
 
 
@@ -326,7 +326,7 @@
                       <td>
                         <div class="pateintquestionire_bottom_form pateintquestionire_top_form">
                           <label>Patient Id: </label>
-                          <input type="text" value="{{patientuniqueid}}" />
+                          <input type="text" value="{{patientuniqueid}}" readonly/>
 
                           <div class="clearfix"></div>
 

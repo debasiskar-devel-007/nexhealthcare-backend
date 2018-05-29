@@ -433,6 +433,17 @@ export class PateintsComponent implements OnInit {
   gotopatientrecord(id) {
     this.router.navigate(['/patientrecord', id]);
   }
+  /*gotopatientrecord(id, tagid) {
+    if (tagid == '5b0bfa1b3fe08865e7955f71') {
+      this.router.navigate(['/patientrecord', id, 1]);
+    }
+    if (tagid == '5b0bfa1d3fe08865e7955f72') {
+      this.router.navigate(['/patientrecord', id, 2]);
+    }
+    if ((tagid != '5b0bfa1b3fe08865e7955f71') && (tagid != '5b0bfa1d3fe08865e7955f72')) {
+      this.router.navigate(['/patientrecord', id, 3]);
+    }
+  }*/
   get4rowClass() {
     if (this.isthisadmin != 'admin') {
       return 'pateints_list_weraper4row';
@@ -457,6 +468,7 @@ export class PateintsComponent implements OnInit {
       .subscribe(res => {
         let result = res.json();
         if (result.status == 'success') {
+          this.openapprovemodal = true;
           if (this.isthisadmin == 'admin') {
             this.getPatient_addedbyList();
           }
@@ -477,6 +489,7 @@ export class PateintsComponent implements OnInit {
       .subscribe(res => {
         let result = res.json();
         if (result.status == 'success') {
+          this.opendeclinemodal = true;
           if (this.isthisadmin == 'admin') {
             this.getPatient_addedbyList();
           }
