@@ -4,7 +4,7 @@ import { Http } from '@angular/http';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'angular2-cookie/core';
-declare var $ : any;
+declare var $: any;
 @Component({
   selector: 'app-patientrecord',
   templateUrl: './patientrecord.component.html',
@@ -197,6 +197,7 @@ export class PatientrecordComponent implements OnInit {
       pgx18: [''],
       pgx19: ['']
     });
+   // this.dataForm1.value.cgx1.value = true;
   }
 
   getusastates() {

@@ -254,7 +254,7 @@
 
             <input type="button"  value="Patient Profile Sheet" class="btn2" (click)="openquesmodal()" *ngIf="iscompletedpatientrecord==0"/>
             <input type="button"  value="View PPS" class="btn2" (click)="openquesmodalreadonly()" *ngIf="iscompletedpatientrecord==1"/>
-            <input type="button"  value="Download PPS" class="btn2" download *ngIf="iscompletedpatientrecord==1"/>
+            <input type="button"  value="Download PPS" class="btn2" *ngIf="iscompletedpatientrecord==1"/>
           </div>
         </div>
 

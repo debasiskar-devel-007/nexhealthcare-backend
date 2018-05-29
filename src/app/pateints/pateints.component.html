@@ -69,10 +69,13 @@
           <div class="div5" *ngIf="isthisadmin=='admin'">
             <span>View PPS</span>
           </div>
-          <div class="div6 " >
-            <span>Tags</span>
+          <div class="div6" *ngIf="isthisadmin=='admin'">
+            <span>Download PPS</span>
           </div>
-          <div class="div7 " *ngIf="isthisadmin=='admin'">
+          <div class="div7 " >
+            <span>Status</span>
+          </div>
+          <div class="div8 " *ngIf="isthisadmin=='admin'">
             <span>Action</span>
           </div>
          <!-- <div class="div6 " *ngIf="isthisadmin=='admin'">
@@ -118,14 +121,17 @@
           <div class="div5"  *ngIf="isthisadmin=='admin'">
             <span (click)="showquestionaryform(item._id)">Click to view</span>
           </div>
+          <div class="div6"  *ngIf="isthisadmin=='admin'">
+            <span>Click to download</span>
+          </div>
 
           <!--<div class="div5" *ngIf="isthisadmin=='admin' ">
             <span *ngIf="item.Addedbydetail[0]!=null">{{item.Addedbydetail[0].email}}</span>
           </div>-->
-          <div class="div6 ">
+          <div class="div7 ">
             <span *ngIf="item.Tagdetail[0]!=null">{{showtagnme(item.Tagdetail[0].tagid)}}</span>
           </div>
-          <div class="div7" *ngIf="isthisadmin=='admin'">
+          <div class="div8" *ngIf="isthisadmin=='admin'">
             <span>
               <p (click)="approveit(item._id)">Click to Approve</p>
               <br/>
@@ -220,7 +226,7 @@
 
 
             <div class="pateints_list_weraper">
-              <form role="form" novalidate [formGroup]="dataForm1" (ngSubmit)="dosubmit1(dataForm1.value)" id="formquestionary" name="formquestionary">
+              <form role="form" novalidate [formGroup]="dataForm1" id="formquestionary" name="formquestionary">
 
                 <div class="pateintquestionire_div1">
                   <table>
@@ -235,7 +241,7 @@
                       <td>
                         <div class="pateintquestionire_bottom_form pateintquestionire_top_form">
                           <label>Patient Id: </label>
-                          <input type="text" value="{{patientuniqueid}}" />
+                          <input type="text" value="{{patientuniqueid}}"  *ngIf="patientuniqueid"/>
 
                           <div class="clearfix"></div>
 
@@ -790,13 +796,6 @@
                     <div class="clearfix"></div>
 
                   </div>
-
-                  <input type="button"  value="Cancel" class="pateintquestionirebtn pateintquestionirebtn2" (click)="onHidden()"/>
-                  <input type="submit"  value="Submit" class="pateintquestionirebtn" (click)="submitpateintquestionire()"/>
-                  <input type="submit"  value="Save" class="pateintquestionirebtn" (click)="savepateintquestionire()"/>
-
-
-
 
                   <div class="clearfix"></div>
 

@@ -4,6 +4,7 @@ import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'angular2-cookie/core';
+declare var $: any;
 
 @Component({
   selector: 'app-pateints',
@@ -23,6 +24,8 @@ export class PateintsComponent implements OnInit {
   public dataForm1: FormGroup ;
   public pateintquestioniremodal: boolean = false;
   public fb;
+  public patientuniqueid;
+  public cookieuniqueid;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices, private route: ActivatedRoute) {
         this.serverurl = _commonservices.url;
@@ -33,11 +36,163 @@ export class PateintsComponent implements OnInit {
     //  if (this.isthisadmin != 'admin') {
       this.addcookie = addcookie ;
       this.cookiedetails = this.addcookie.getObject('cookiedetails');
+      this.callcookiedetails();
     //  console.log(this.cookiedetails);
      // this.getpatientlistunderthisid();
     //  }
       this.alltags();
+      this.dataForm1 = this.fb.group({
+        cgx1: [''],
+        firstname1: [''],
+        lastname1: [''],
+        phone1: [''],
+        address1: [''],
+        city1: [''],
+        state1: [''],
+        zip1: [''],
+        dob1: [''],
+        gender1: [''],
+        race1: [''],
+        height1: [''],
+        width1: [''],
+        allergies1: [''],
+        medicareclaim1: [''],
+        notes1: [''],
+        notes2: [''],
+        notes3: [''],
+        notes4: [''],
+        pharmacyinsurancename: [''],
+        pharmacyid: [''],
+        pharmacybin: [''],
+        pharmacypcn: [''],
+        pharmacygroup: [''],
+        pharmacyhistory: [''],
+        pharmacyissue: [''],
+        pharmacytreatment: [''],
+        topicalpain: [''],
+        oralpain: [''],
+        derma: [''],
+        migrane: [''],
+        phtype1: [''],
+        phtype2: [''],
+        phage: [''],
+        motype1: [''],
+        motype2: [''],
+        moage: [''],
+        modead: [''],
+        fatype1: [''],
+        fatype2: [''],
+        faage: [''],
+        fadead: [''],
+        dautype1: [''],
+        dautype2: [''],
+        dauage: [''],
+        daudead: [''],
+        sontype1: [''],
+        sontype2: [''],
+        sonage: [''],
+        sondead: [''],
+        brotype1: [''],
+        brotype2: [''],
+        broage: [''],
+        brodead: [''],
+        sistype1: [''],
+        sistype2: [''],
+        sisage: [''],
+        sisdead: [''],
+        neptype1: [''],
+        neptype2: [''],
+        nepage: [''],
+        nepdead: [''],
+        niecetype1: [''],
+        niecetype2: [''],
+        nieceage: [''],
+        niecedead: [''],
+        unctype1: [''],
+        unctype2: [''],
+        uncage: [''],
+        uncdead: [''],
+        autntype1: [''],
+        autntype2: [''],
+        autnage: [''],
+        autndead: [''],
+        moftype1: [''],
+        moftype2: [''],
+        mofage: [''],
+        mofdead: [''],
+        momotype1: [''],
+        momotype2: [''],
+        momoage: [''],
+        momodead: [''],
+        daftype1: [''],
+        daftype2: [''],
+        dafage: [''],
+        dafdead: [''],
+        damtype1: [''],
+        damtype2: [''],
+        damage: [''],
+        damdead: [''],
+        oth1type1: [''],
+        oth1type2: [''],
+        oth1age: [''],
+        oth1dead: [''],
+        oth2type1: [''],
+        oth2type2: [''],
+        oth2age: [''],
+        oth2dead: [''],
+        oth3type1: [''],
+        oth3type2: [''],
+        oth3age: [''],
+        oth3dead: [''],
+        pgx1: [''],
+        pgx2: [''],
+        pgx3: [''],
+        pgx4: [''],
+        pgx5: [''],
+        pgx6: [''],
+        pgx7: [''],
+        pgx8: [''],
+        pgx9: [''],
+        pgx10: [''],
+        pgx11: [''],
+        pgx12: [''],
+        pgx13: [''],
+        pgx14: [''],
+        pgx15: [''],
+        pgx16: [''],
+        pgx17: [''],
+        pgx18: [''],
+        pgx19: ['']
+      });
     }
+  callcookiedetails() {
+    let link = this.serverurl + 'getuserdetails';
+    let data = {userid : this.cookiedetails.id};
+    this._http.post(link, data)
+      .subscribe(res => {
+        let result = res.json();
+        if (result.status == 'success' && typeof(result.id) != 'undefined') {
+          this.cookieuniqueid = result.id.uniqueid;
+        } else {
+        }
+      }, error => {
+        console.log('Ooops');
+      });
+  }
+  getpatientuniqueid(patientid) {
+    let link = this.serverurl + 'getpatientdetails';
+    let data = {_id : patientid};
+    this._http.post(link, data)
+      .subscribe(res => {
+        let result = res.json();
+        if (result.status == 'success' && typeof(result.item) != 'undefined') {
+          this.patientuniqueid = result.item.uniqueid;
+        } else {
+        }
+      }, error => {
+        console.log('Ooops');
+      });
+  }
   showquestionaryform(itemid) {
     let link = this.serverurl + 'getpatientdetailsbypatientid';
     let data = {patientid : itemid};
@@ -45,8 +200,10 @@ export class PateintsComponent implements OnInit {
       .subscribe(res => {
         let result = res.json();
         if (result.status == 'success' && typeof(result.id) != 'undefined') {
+          console.log('===========');
           console.log(result.id);
           let userdet = result.id;
+          this.getpatientuniqueid(result.id.patientid);
           this.dataForm1 = this.fb.group({
             cgx1: [userdet.cgx],
             firstname1: [userdet.firstname],
@@ -171,12 +328,16 @@ export class PateintsComponent implements OnInit {
             pgx19: [userdet.pgx19]
           });
         } else {
-          // this.router.navigate(['/patient-list']);
         }
       }, error => {
         console.log('Ooops');
       });
     this.pateintquestioniremodal = true;
+    setTimeout(() => {
+      $( '#formquestionary' ).find('input').each(function() {
+        $(this).attr( 'disabled', 'disabled' );
+      });
+    }, 500);
   }
   onHidden() {
     this.pateintquestioniremodal = false;
