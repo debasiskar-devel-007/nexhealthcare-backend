@@ -88,7 +88,7 @@ export class PatientrecordComponent implements OnInit {
       race1: ['', Validators.required],
       height1: ['', Validators.required],
       width1: ['', Validators.required],
-      allergies1: ['', Validators.required],
+      allergies1: [''],
       medicareclaim1: ['', Validators.required],
       notes1: [''],
       notes2: [''],
@@ -219,10 +219,11 @@ export class PatientrecordComponent implements OnInit {
       .subscribe(res => {
         let result = res.json();
         if (result.status == 'success' && typeof(result.item) != 'undefined') {
-          // console.log(result);
+           console.log('getpatientdetails-------');
+           console.log(result);
           let userdet = result.item;
           this.patientuniqueid = result.item.uniqueid;
-          console.log('patientuniqueid' +this.patientuniqueid);
+          console.log('patientuniqueid' + this.patientuniqueid); // add this <input type="text"  class="form-control"  placeholder="Patient ID"/>
           this.dataForm = this.fb.group({
             firstname: [userdet.firstname, Validators.required],
             lastname: [userdet.lastname, Validators.required],
@@ -336,7 +337,7 @@ export class PatientrecordComponent implements OnInit {
             race1: [userdet.race, Validators.required],
             height1: [userdet.height, Validators.required],
             width1: [userdet.width, Validators.required],
-            allergies1: [userdet.allergies, Validators.required],
+            allergies1: [userdet.allergies],
             medicareclaim1: [userdet.medecareclaim, Validators.required],
             notes1: [userdet.notes1],
             notes2: [userdet.notes2],
@@ -620,6 +621,7 @@ export class PatientrecordComponent implements OnInit {
               this.opensaveorsubmitmodal = true;
               setTimeout(() => {
                 this.opensaveorsubmitmodal = false;
+                this.pateintquestioniremodal = false;
               }, 2000);
             }
           }, error => {
@@ -765,6 +767,7 @@ export class PatientrecordComponent implements OnInit {
             this.opensaveorsubmitmodal = true;
             setTimeout(() => {
               this.opensaveorsubmitmodal = false;
+              this.pateintquestioniremodal = false;
             }, 2000);
           }
         }, error => {
