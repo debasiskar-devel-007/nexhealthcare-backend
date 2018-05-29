@@ -23,6 +23,7 @@ export class PateintdetailComponent implements OnInit {
     static invalidemail;
     static blankemail;
     public opensuccessmodal: boolean = false;
+  public uniquepatientid;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.fb = fb;
@@ -30,6 +31,7 @@ export class PateintdetailComponent implements OnInit {
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
         this.getusastates();
+      this.getuniquepatientid();
     }
     getusastates() {
         let link = this.serverurl + 'getusastates';
@@ -43,6 +45,17 @@ export class PateintdetailComponent implements OnInit {
                 console.log('Oooops!');
             });
     }
+  getuniquepatientid() {
+    let link = this.serverurl + 'getuniquerepid';
+    this._http.get(link)
+      .subscribe(res => {
+        let result = res.json();
+        console.log(result);
+        this.uniquepatientid = result.id;
+      }, error => {
+        console.log('Oooops!');
+      });
+  }
     ngOnInit() {
        /* this.dataForm = this.fb.group({
             firstname: ['', Validators.required],
@@ -125,6 +138,7 @@ export class PateintdetailComponent implements OnInit {
                 city: formval.city,
                 state: formval.state,
                 addedby: this.cookiedetails.id,
+              uniqueid: this.uniquepatientid,
                 /*zip: formval.zip,
                 gender: formval.gender,
                 dob: formval.dob,

@@ -168,13 +168,25 @@ export class TrainingstepComponent implements OnInit {
             }
         }
         else if (this.cookiedetails.type == 'corporate' || 'leadmanager' || 'masteraccount') {
+           // this.router.navigate(['/rep-dashboard']);
+          if (this.webinar == 0) {
+            this.router.navigate(['/completewebinar']);
+          }
+          else {
             this.router.navigate(['/rep-dashboard']);
+          }
         }
         else if (this.cookiedetails.type == 'recruiter') {
-            this.router.navigate(['/recruiterdashboard']);
+          //  this.router.navigate(['/recruiterdashboard']);
+          if (this.webinar == 0) {
+            this.router.navigate(['/completewebinar']);
+          }
+          else {
+            this.router.navigate(['/rep-dashboard']);
+          }
         }
-        else { // admin
-            this.router.navigate(['/dashboard']);
+        else { // superadmin
+            this.router.navigate(['/rep-dashboard']);
         }
     }
 }

@@ -86,8 +86,16 @@ export class AutologinComponent implements OnInit {
                         else if (result.msg.signup_step == '2') {
                             this.router.navigate(['/trainingstep']);
                         }
-                        else if (result.msg.signup_step == '3') {
+                        /*else if (result.msg.signup_step == '3') {
                             this.router.navigate(['/rep-dashboard']);
+                        }*/
+                        else if (result.msg.signup_step == '3') {
+                          if (result.msg.iswebinarchekced == 0 || result.msg.iswebinarchekced == null) {
+                            this.router.navigate(['/completewebinar']);
+                          }
+                          else {
+                            this.router.navigate(['/rep-dashboard']);
+                          }
                         }
                     }
                     else if (result.msg.type == 'recruiter') {
@@ -98,8 +106,16 @@ export class AutologinComponent implements OnInit {
                         else if (result.msg.signup_step == '2') {
                             this.router.navigate(['/trainingstep']);
                         }
-                        else if (result.msg.signup_step == '3') {
+                        /*else if (result.msg.signup_step == '3') {
                             this.router.navigate(['/recruiterdashboard']);
+                        }*/
+                        else if (result.msg.signup_step == '3') {
+                          if (result.msg.iswebinarchekced == 0 || result.msg.iswebinarchekced == null) {
+                            this.router.navigate(['/completewebinar']);
+                          }
+                          else {
+                            this.router.navigate(['/rep-dashboard']);
+                          }
                         }
                     }
                    else {  // superadmin

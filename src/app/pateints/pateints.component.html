@@ -35,25 +35,17 @@
         <!--<button [routerLink]="['/add-patient']" class="btn btn-primary patients_btn">Add Patients</button>-->
       </div>
       <div class="clearfix"></div>
-
-
     </div>
-<!-- Patient ID, Patient Name, Enroller ID, View PPS, Download PPS, Status, Action-->
-    <div class="pateints_list_weraper "  [ngClass]="get4rowClass()">
 
+    <div class="pateints_list_weraper "  [ngClass]="get4rowClass()">
       <div class="pateints_list_table_header">
         <div class="row row-eq-height">
           <div class="div1 ">
             <span>Patient ID</span>
-
-          <!--  <span>&lt;!&ndash;TAG &ndash;&gt;status</span>-->
           </div>
           <div class="div2 ">
             <span>Patient Name </span>
           </div>
-        <!--  <div class="div3">
-            <span> Last Name </span>
-          </div>-->
           <div class="div3 " *ngIf="isthisadmin!='admin'">
             <span>Email Address    </span>
           </div>
@@ -72,15 +64,12 @@
           <div class="div6" *ngIf="isthisadmin=='admin'">
             <span>Download PPS</span>
           </div>
-          <div class="div7 " >
+          <div class="div7 ">
             <span>Status</span>
           </div>
           <div class="div8 " *ngIf="isthisadmin=='admin'">
             <span>Action</span>
           </div>
-         <!-- <div class="div6 " *ngIf="isthisadmin=='admin'">
-            <span>Action</span>
-          </div>-->
            <div class="clearfix"></div>
         </div>
 
@@ -91,16 +80,11 @@
         <div class="row row-eq-height" >
           <div class="div1 " (click)="gotopatientrecord(item._id)">
             <span>{{item.uniqueid}}</span>
-
-          <!--  <span>{{item.tag}}</span>-->
           </div>
 
           <div class="div2 " (click)="gotopatientrecord(item._id)">
             <span>{{item.firstname}} {{item.lastname}}</span>
           </div>
-          <!--<div class="div3">
-            <span>{{item.lastname}} </span>
-          </div>-->
 
           <div class="div3 " (click)="gotopatientrecord(item._id)" *ngIf="isthisadmin!='admin'">
             <span> {{item.email}}      </span>
@@ -128,25 +112,33 @@
           <!--<div class="div5" *ngIf="isthisadmin=='admin' ">
             <span *ngIf="item.Addedbydetail[0]!=null">{{item.Addedbydetail[0].email}}</span>
           </div>-->
-          <div class="div7 ">
+
+          <!--Other than admin can see this status-->
+          <div class="div7 " *ngIf="isthisadmin!='admin'">
             <span *ngIf="item.Tagdetail[0]!=null">{{showtagnme(item.Tagdetail[0].tagid)}}</span>
           </div>
-          <div class="div8" *ngIf="isthisadmin=='admin'">
-            <span>
-              <p (click)="approveit(item._id)">Click to Approve</p>
-              <br/>
-              <p (click)="declineit(item._id)">Click to Decline</p>
+          <!--only admin can see this status-->
+          <div class="div7" *ngIf="isthisadmin=='admin'">
+            <span *ngIf="item.Tagdetail[0]!=null">
+              <span *ngIf="item.Tagdetail[0].tagid != '5b0bfa1d3fe08865e7955f72' && item.Tagdetail[0].tagid != '5b0bfa1b3fe08865e7955f71'">Action Required</span>
+
+              <span *ngIf="item.Tagdetail[0].tagid=='5b0bfa1d3fe08865e7955f72'">PPS Declined</span>
+              <span *ngIf="item.Tagdetail[0].tagid=='5b0bfa1b3fe08865e7955f71'">PPS Accepted</span>
             </span>
           </div>
 
-         <!-- <div class="div6" *ngIf="isthisadmin=='admin'">
-            <span >Approve</span>
-          </div>-->
-
+          <div class="div8" *ngIf="isthisadmin=='admin'">
+            <span *ngIf="item.Tagdetail[0]!=null">
+              <span *ngIf="item.Tagdetail[0].tagid != '5b0bfa1d3fe08865e7955f72' && item.Tagdetail[0].tagid != '5b0bfa1b3fe08865e7955f71'">
+                <p (click)="approveitmodal(item)">Approve</p><br/>
+                <p (click)="declineitmodal(item)">Reject</p>
+              </span>
+              <span *ngIf="item.Tagdetail[0].tagid=='5b0bfa1d3fe08865e7955f72'">Rejected</span>
+              <span *ngIf="item.Tagdetail[0].tagid=='5b0bfa1b3fe08865e7955f71'">Approved</span>
+            </span>
+          </div>
           <div class="clearfix"></div>
         </div>
-
-
       </div>
 
       <div class="pagination_wrapper">
@@ -831,6 +823,44 @@
         <button type="button" class="btn btn-default popbtn1" data-dismiss="modal" (click)="onHidden()">Cancel</button>
         <button type="button" class="btn btn-primary popbtn2" data-dismiss="modal" (click)="savepateintquestionire()">Agree</button>
       </div>-->
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="openapprovemodal" class=" sign_modal modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <img src="../../assets/images/adminlogo.png" alt="#" class="popup_logo1">
+        <h1 class="text-center">You are about to approve {{patientnametoapproveordecline}}'s PPS.</h1>
+      </div>
+      <div class="modal-footer popupnewbtnwrapper">
+        <button type="button" class="btn btn-primary popbtn2" data-dismiss="modal" (click)="approveit()">Confirm Approval</button>
+        <button type="button" class="btn btn-primary popbtn2" data-dismiss="modal" (click)="onHidden()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="opendeclinemodal" class=" sign_modal modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <img src="../../assets/images/adminlogo.png" alt="#" class="popup_logo1">
+        <h1 class="text-center">You are about to reject {{patientnametoapproveordecline}}'s PPS.</h1>
+      </div>
+      <div class="modal-footer popupnewbtnwrapper">
+        <button (click)="declineit()">Confirm Rejection</button>
+        <button (click)="onHidden()">Cancel</button>
+      </div>
     </div>
   </div>
 </div>

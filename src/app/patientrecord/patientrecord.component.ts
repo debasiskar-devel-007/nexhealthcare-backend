@@ -287,8 +287,13 @@ export class PatientrecordComponent implements OnInit {
       this._http.post(link, data)
         .subscribe(data => {
           //  this.pateintquestioniremodal = true;
+          if (this.cookiedetails.type == 'superadmin') {
+            this.router.navigate(['/patient-list' , 'admin']);
+          }
+          else {
           this.router.navigate(['/patient-list']);
-        }, error => {
+          }
+          }, error => {
           console.log('Oooops!');
         });
     }

@@ -14,6 +14,7 @@ declare var $: any;
 })
 export class PateintsComponent implements OnInit {
     public serverurl;
+    public idtoapproveordecline;
     public datalist;
     public isthisadmin;
     public p: number = 1;
@@ -23,9 +24,12 @@ export class PateintsComponent implements OnInit {
   public patientlist: any = [];
   public dataForm1: FormGroup ;
   public pateintquestioniremodal: boolean = false;
+  public openapprovemodal: boolean = false;
+  public opendeclinemodal: boolean = false;
   public fb;
   public patientuniqueid;
   public cookieuniqueid;
+  public patientnametoapproveordecline;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices, private route: ActivatedRoute) {
         this.serverurl = _commonservices.url;
@@ -37,7 +41,7 @@ export class PateintsComponent implements OnInit {
       this.addcookie = addcookie ;
       this.cookiedetails = this.addcookie.getObject('cookiedetails');
       this.callcookiedetails();
-    //  console.log(this.cookiedetails);
+      console.log(this.cookiedetails);
      // this.getpatientlistunderthisid();
     //  }
       this.alltags();
@@ -341,6 +345,8 @@ export class PateintsComponent implements OnInit {
   }
   onHidden() {
     this.pateintquestioniremodal = false;
+    this.openapprovemodal = false;
+    this.opendeclinemodal = false;
   }
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -432,10 +438,20 @@ export class PateintsComponent implements OnInit {
       return 'pateints_list_weraper4row';
     }
   }
-  approveit(patientid) {
+  approveitmodal(itemtoapprove) {
+    this.openapprovemodal = true;
+    this.idtoapproveordecline = itemtoapprove._id;
+    this.patientnametoapproveordecline = itemtoapprove.firstname + ' ' + itemtoapprove.lastname;
+  }
+  declineitmodal(itemtodecline) {
+    this.opendeclinemodal = true;
+    this.idtoapproveordecline = itemtodecline._id;
+    this.patientnametoapproveordecline = itemtodecline.firstname + ' ' + itemtodecline.lastname;
+  }
+  approveit() {
     let link = this.serverurl + 'patientapprove';
     let data = {
-      patientid: patientid,
+      patientid: this.idtoapproveordecline,
     };
     this._http.post(link, data)
       .subscribe(res => {
@@ -452,10 +468,10 @@ export class PateintsComponent implements OnInit {
         console.log('Oooops!');
       });
   }
-  declineit(patientid) {
+  declineit() {
     let link = this.serverurl + 'patientdecline';
     let data = {
-      patientid: patientid,
+      patientid: this.idtoapproveordecline,
     };
     this._http.post(link, data)
       .subscribe(res => {
