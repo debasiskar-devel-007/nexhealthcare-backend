@@ -55,7 +55,7 @@ const appRoutes: Routes = [
     { path: 'compensationmodifier', component: CompensationmodifierComponent},
     { path: 'myaccount', component: MyaccountComponent},
     { path: 'patientrecord/:id', component: PatientrecordComponent},
-  /*  { path: 'patientrecord/:id/:type', component: PatientrecordComponent},*/
+    { path: 'patientrecord/:id/:type', component: PatientrecordComponent},
     { path: 'userrecruiterlist/:id', component: UserrecruiterlistComponent},
     { path: 'userrecruiteredit/:id', component: UserrecruitereditComponent},
     { path: 'userrecruiterdetail/:id', component: UserrecruiterdetailComponent},

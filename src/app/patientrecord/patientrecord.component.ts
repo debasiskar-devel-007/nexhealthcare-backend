@@ -5,6 +5,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'angular2-cookie/core';
 declare var $: any;
+declare var moment: any;
+
 @Component({
   selector: 'app-patientrecord',
   templateUrl: './patientrecord.component.html',
@@ -16,8 +18,12 @@ export class PatientrecordComponent implements OnInit {
   public dataForm1: FormGroup ;
   public fb;
   public fb1;
+  public type;
+  public patientdetails;
   public usastates;
   public issubmit;
+  public tagstatus;
+  public patient_added_on;
   public opensaveorsubmitmodal: boolean = false;
   id: number;
   public serverurl;
@@ -64,6 +70,20 @@ export class PatientrecordComponent implements OnInit {
       console.log(this.id);
       this.getdetails();
       this.getpatientrecord();
+    });
+    this.route.params.subscribe(params => {
+      this.type = params['type'];
+      console.log('this.type___________');
+      console.log(this.type);
+      if (this.type == 1) {
+        this.tagstatus = 'PPS Accepted';
+      }
+      else if (this.type == 2) {
+        this.tagstatus = 'PPS Declined';
+      }
+      else {
+        this.tagstatus = 'Action Required';
+      }
     });
     this.dataForm = this.fb.group({
       firstname: ['', Validators.required],
@@ -221,9 +241,12 @@ export class PatientrecordComponent implements OnInit {
         if (result.status == 'success' && typeof(result.item) != 'undefined') {
            console.log('getpatientdetails-------');
            console.log(result);
+           this.patientdetails = result.item;
           let userdet = result.item;
+          console.log(userdet.added_on);
+          this.patient_added_on = moment(userdet.added_on).format('DD-MM-YYYY');
           this.patientuniqueid = result.item.uniqueid;
-          console.log('patientuniqueid' + this.patientuniqueid); // add this <input type="text"  class="form-control"  placeholder="Patient ID"/>
+          console.log('patientuniqueid' + this.patientuniqueid);
           this.dataForm = this.fb.group({
             firstname: [userdet.firstname, Validators.required],
             lastname: [userdet.lastname, Validators.required],
@@ -302,6 +325,131 @@ export class PatientrecordComponent implements OnInit {
   openquesmodal() {
     this.getpatientdetailsbypatientid();
     this.pateintquestioniremodal = true;
+    console.log('this.patientdetails--------------');
+    console.log(this.patientdetails);
+    this.dataForm1 = this.fb.group({
+      firstname1: [this.patientdetails.firstname, Validators.required],
+      lastname1: [this.patientdetails.lastname, Validators.required],
+      phone1: [this.patientdetails.phone, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
+      city1: [this.patientdetails.city, Validators.required],
+      state1: [this.patientdetails.state, Validators.required],
+      cgx1: [true],
+      address1: ['', Validators.required],
+      zip1: ['', Validators.required],
+      dob1: ['', Validators.required],
+      gender1: ['', Validators.required],
+      race1: ['', Validators.required],
+      height1: ['', Validators.required],
+      width1: ['', Validators.required],
+      allergies1: [''],
+      medicareclaim1: ['', Validators.required],
+      notes1: [''],
+      notes2: [''],
+      notes3: [''],
+      notes4: [''],
+      pharmacyinsurancename: [''],
+      pharmacyid: [''],
+      pharmacybin: [''],
+      pharmacypcn: [''],
+      pharmacygroup: [''],
+      pharmacyhistory: [''],
+      pharmacyissue: [''],
+      pharmacytreatment: [''],
+      topicalpain: [''],
+      oralpain: [''],
+      derma: [''],
+      migrane: [''],
+      phtype1: [''],
+      phtype2: [''],
+      phage: [''],
+      motype1: [''],
+      motype2: [''],
+      moage: [''],
+      modead: [''],
+      fatype1: [''],
+      fatype2: [''],
+      faage: [''],
+      fadead: [''],
+      dautype1: [''],
+      dautype2: [''],
+      dauage: [''],
+      daudead: [''],
+      sontype1: [''],
+      sontype2: [''],
+      sonage: [''],
+      sondead: [''],
+      brotype1: [''],
+      brotype2: [''],
+      broage: [''],
+      brodead: [''],
+      sistype1: [''],
+      sistype2: [''],
+      sisage: [''],
+      sisdead: [''],
+      neptype1: [''],
+      neptype2: [''],
+      nepage: [''],
+      nepdead: [''],
+      niecetype1: [''],
+      niecetype2: [''],
+      nieceage: [''],
+      niecedead: [''],
+      unctype1: [''],
+      unctype2: [''],
+      uncage: [''],
+      uncdead: [''],
+      autntype1: [''],
+      autntype2: [''],
+      autnage: [''],
+      autndead: [''],
+      moftype1: [''],
+      moftype2: [''],
+      mofage: [''],
+      mofdead: [''],
+      momotype1: [''],
+      momotype2: [''],
+      momoage: [''],
+      momodead: [''],
+      daftype1: [''],
+      daftype2: [''],
+      dafage: [''],
+      dafdead: [''],
+      damtype1: [''],
+      damtype2: [''],
+      damage: [''],
+      damdead: [''],
+      oth1type1: [''],
+      oth1type2: [''],
+      oth1age: [''],
+      oth1dead: [''],
+      oth2type1: [''],
+      oth2type2: [''],
+      oth2age: [''],
+      oth2dead: [''],
+      oth3type1: [''],
+      oth3type2: [''],
+      oth3age: [''],
+      oth3dead: [''],
+      pgx1: [''],
+      pgx2: [''],
+      pgx3: [''],
+      pgx4: [''],
+      pgx5: [''],
+      pgx6: [''],
+      pgx7: [''],
+      pgx8: [''],
+      pgx9: [''],
+      pgx10: [''],
+      pgx11: [''],
+      pgx12: [''],
+      pgx13: [''],
+      pgx14: [''],
+      pgx15: [''],
+      pgx16: [''],
+      pgx17: [''],
+      pgx18: [''],
+      pgx19: ['']
+    });
   }
   openquesmodalreadonly() {
     this.getpatientdetailsbypatientid();
@@ -314,6 +462,7 @@ export class PatientrecordComponent implements OnInit {
       });
     }, 500);
   }
+  // after save when we are trying to get the saved values
   getpatientdetailsbypatientid() {
     let link = this.serverurl + 'getpatientdetailsbypatientid';
     let data = {patientid : this.id};
@@ -321,6 +470,7 @@ export class PatientrecordComponent implements OnInit {
       .subscribe(res => {
         let result = res.json();
         if (result.status == 'success' && typeof(result.id) != 'undefined') {
+          console.log('PATIENTRECORD VALUES---------');
           console.log(result.id);
           let userdet = result.id;
           this.dataForm1 = this.fb.group({
@@ -338,7 +488,7 @@ export class PatientrecordComponent implements OnInit {
             height1: [userdet.height, Validators.required],
             width1: [userdet.width, Validators.required],
             allergies1: [userdet.allergies],
-            medicareclaim1: [userdet.medecareclaim, Validators.required],
+            medicareclaim1: [userdet.medicareclaim, Validators.required],
             notes1: [userdet.notes1],
             notes2: [userdet.notes2],
             notes3: [userdet.notes3],
@@ -622,6 +772,7 @@ export class PatientrecordComponent implements OnInit {
               setTimeout(() => {
                 this.opensaveorsubmitmodal = false;
                 this.pateintquestioniremodal = false;
+                this.getpatientrecord();
               }, 2000);
             }
           }, error => {

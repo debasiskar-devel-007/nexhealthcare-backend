@@ -81,22 +81,22 @@
 
       <div class="pateints_list_table_contain" *ngFor="let item of patientlist | orderBy:'_id':'reverse' | usersearch:listFilter.value| paginate: { itemsPerPage: 25, currentPage: p }; let i = index">
         <div class="row row-eq-height" >
-          <div class="divnew " (click)="gotopatientrecord(item._id)">
+          <div class="divnew " (click)="gotopatientrecord(item._id, item.Tagdetail[0].tagid)">
             <span>{{item.uniqueid}}</span>
           </div>
           <!--Other than admin can see this status-->
-          <div class="divnew " *ngIf="isthisadmin!='admin'">
+          <div class="divnew " *ngIf="isthisadmin!='admin'" (click)="gotopatientrecord(item._id, item.Tagdetail[0].tagid)">
             <span *ngIf="item.Tagdetail[0]!=null">{{showtagnme(item.Tagdetail[0].tagid)}}</span>
           </div>
-          <div class="divnew " (click)="gotopatientrecord(item._id)">
+          <div class="divnew " (click)="gotopatientrecord(item._id, item.Tagdetail[0].tagid)">
             <span>{{item.firstname}} {{item.lastname}}</span>
           </div>
 
-          <div class="divnew " (click)="gotopatientrecord(item._id)" *ngIf="isthisadmin!='admin'">
+          <div class="divnew " (click)="gotopatientrecord(item._id, item.Tagdetail[0].tagid)" *ngIf="isthisadmin!='admin'">
             <span> {{item.email}}      </span>
           </div>
 
-          <div class="divnew " (click)="gotopatientrecord(item._id)" *ngIf="isthisadmin=='admin'">
+          <div class="divnew " (click)="gotopatientrecord(item._id, item.Tagdetail[0].tagid)" *ngIf="isthisadmin=='admin'">
             <span *ngIf="item.Addedbydetail[0]!=null"> {{item.Addedbydetail[0].uniqueid}}      </span>
           </div>
 
@@ -121,7 +121,7 @@
 
 
           <!--only admin can see this status-->
-          <div class="divnew" *ngIf="isthisadmin=='admin'">
+          <div class="divnew" *ngIf="isthisadmin=='admin'" (click)="gotopatientrecord(item._id, item.Tagdetail[0].tagid)">
             <span *ngIf="item.Tagdetail[0]!=null">
               <span *ngIf="item.Tagdetail[0].tagid != '5b0bfa1d3fe08865e7955f72' && item.Tagdetail[0].tagid != '5b0bfa1b3fe08865e7955f71'">Action Required</span>
 
@@ -134,7 +134,7 @@
             <span *ngIf="item.Tagdetail[0]!=null">
               <span *ngIf="item.Tagdetail[0].tagid != '5b0bfa1d3fe08865e7955f72' && item.Tagdetail[0].tagid != '5b0bfa1b3fe08865e7955f71'">
                 <a class="tablebtn" (click)="approveitmodal(item)">Approve</a>
-                <a  class="tablebtn tablebtn2"(click)="declineitmodal(item)">Reject</a>
+                <a  class="tablebtn tablebtn2" (click)="declineitmodal(item)">Reject</a>
                   <div class="clearfix"></div>
               </span>
               <span *ngIf="item.Tagdetail[0].tagid=='5b0bfa1d3fe08865e7955f72'">Rejected</span>

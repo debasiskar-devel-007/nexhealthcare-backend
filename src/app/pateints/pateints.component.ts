@@ -14,6 +14,7 @@ declare var $: any;
 })
 export class PateintsComponent implements OnInit {
     public serverurl;
+  public usastates;
     public idtoapproveordecline;
     public datalist;
     public isthisadmin;
@@ -34,6 +35,7 @@ export class PateintsComponent implements OnInit {
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices, private route: ActivatedRoute) {
         this.serverurl = _commonservices.url;
       this.fb = fb;
+      this.getusastates();
        // this.getPatientList();
      // console.log('this.isthisadmin**************');
      // console.log(this.isthisadmin);
@@ -169,6 +171,18 @@ export class PateintsComponent implements OnInit {
         pgx19: ['']
       });
     }
+  getusastates() {
+    let link = this.serverurl + 'getusastates';
+    this._http.get(link)
+      .subscribe(res => {
+        let result = res.json();
+        console.log(result);
+        this.usastates = result;
+
+      }, error => {
+        console.log('Oooops!');
+      });
+  }
   callcookiedetails() {
     let link = this.serverurl + 'getuserdetails';
     let data = {userid : this.cookiedetails.id};
@@ -223,7 +237,7 @@ export class PateintsComponent implements OnInit {
             height1: [userdet.height],
             width1: [userdet.width],
             allergies1: [userdet.allergies],
-            medicareclaim1: [userdet.medecareclaim],
+            medicareclaim1: [userdet.medicareclaim],
             notes1: [userdet.notes1],
             notes2: [userdet.notes2],
             notes3: [userdet.notes3],
@@ -430,10 +444,10 @@ export class PateintsComponent implements OnInit {
         console.log('this.patientlist----------');
         console.log(this.patientlist);
   }
-  gotopatientrecord(id) {
+ /* gotopatientrecord(id) {
     this.router.navigate(['/patientrecord', id]);
-  }
-  /*gotopatientrecord(id, tagid) {
+  }*/
+  gotopatientrecord(id, tagid) {
     if (tagid == '5b0bfa1b3fe08865e7955f71') {
       this.router.navigate(['/patientrecord', id, 1]);
     }
@@ -443,7 +457,7 @@ export class PateintsComponent implements OnInit {
     if ((tagid != '5b0bfa1b3fe08865e7955f71') && (tagid != '5b0bfa1d3fe08865e7955f72')) {
       this.router.navigate(['/patientrecord', id, 3]);
     }
-  }*/
+  }
   get4rowClass() {
     if (this.isthisadmin != 'admin') {
       return 'pateints_list_weraper4row';
@@ -468,7 +482,7 @@ export class PateintsComponent implements OnInit {
       .subscribe(res => {
         let result = res.json();
         if (result.status == 'success') {
-          this.openapprovemodal = true;
+          this.openapprovemodal = false;
           if (this.isthisadmin == 'admin') {
             this.getPatient_addedbyList();
           }
@@ -489,7 +503,7 @@ export class PateintsComponent implements OnInit {
       .subscribe(res => {
         let result = res.json();
         if (result.status == 'success') {
-          this.opendeclinemodal = true;
+          this.opendeclinemodal = false;
           if (this.isthisadmin == 'admin') {
             this.getPatient_addedbyList();
           }
