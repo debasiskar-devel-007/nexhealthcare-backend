@@ -112,7 +112,7 @@
             <span class="clicklink" (click)="showquestionaryform(item._id)">Click to view</span>
           </div>
           <div class="divnew"  *ngIf="isthisadmin=='admin'">
-            <span  class="clicklink">Click to download</span>
+            <span  class="clicklink" (click)="gotopdf(item._id)">Click to download</span>
           </div>
 
           <!--<div class="div5" *ngIf="isthisadmin=='admin' ">

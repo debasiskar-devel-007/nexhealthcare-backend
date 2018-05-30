@@ -417,7 +417,10 @@ export class PateintsComponent implements OnInit {
                 console.log('Oooops!');
             });
     }*/
-
+  gotopdf(id) {
+    var url = 'http://nexhealthtoday.com/testpdf/html2pdf/ppqformpdf.php?id=' + id;
+    window.location.href = url;
+   }
   // admin call to patientlist
   getPatient_addedbyList() {
     this.patientlist = [];
