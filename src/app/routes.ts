@@ -32,6 +32,7 @@ import { CgxComponent } from './cgx/cgx.component';
 import { CompletewebinarComponent } from './completewebinar/completewebinar.component';
 import { TrainingcenterComponent } from './trainingcenter/trainingcenter.component';
 import {ResourceComponent} from './resource/resource.component';
+import {WebinarComponent} from './webinar/webinar.component';
 
 
 const appRoutes: Routes = [
@@ -69,6 +70,7 @@ const appRoutes: Routes = [
     { path: 'completewebinar', component: CompletewebinarComponent},
     { path: 'trainingcenter', component: TrainingcenterComponent},
     { path: 'resource', component: ResourceComponent},
+    { path: 'webinar', component: WebinarComponent},
 
 
    // { path: 'content', component: ContentComponent,outlet:'content'},

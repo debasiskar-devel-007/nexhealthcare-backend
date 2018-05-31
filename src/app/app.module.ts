@@ -43,6 +43,7 @@ import { NumberDirective } from './number.directive';
 import { CompletewebinarComponent } from './completewebinar/completewebinar.component';
 import { TrainingcenterComponent } from './trainingcenter/trainingcenter.component';
 import { ResourceComponent } from './resource/resource.component';
+import { WebinarComponent } from './webinar/webinar.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { ResourceComponent } from './resource/resource.component';
       NumberDirective,
       CompletewebinarComponent,
       TrainingcenterComponent,
-      ResourceComponent
+      ResourceComponent,
+      WebinarComponent
   ],
   imports: [
     BrowserModule,

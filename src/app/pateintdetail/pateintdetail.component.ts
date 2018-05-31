@@ -197,7 +197,7 @@ export class PateintdetailComponent implements OnInit {
         this.router.navigate(['/patientrecord', this.newinstertedid, 5]); // pf submitted
       }
       }, 1500);
-   // this.router.navigate(['/patientrecord', this.newinstertedid , this.tagid]);
+   // this.router.navigate(['/patientrecord', this.newinstertedid]);
     }
   gettagvalue(id) {
     let link = this.serverurl + 'gettagvalue';
