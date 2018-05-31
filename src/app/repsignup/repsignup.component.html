@@ -92,7 +92,7 @@
         <div class="row">
            <div class="col-md-12">
                <div class="form-group">
-                   <label>Username</label>
+                   <label>Username <span>*</span></label>
                    <input type="text"   [formControl]="dataForm.controls['username']" (keyup)="showvalidationerror=0">
                    <span class="has-error" *ngIf ="dataForm.controls['username'].touched && !dataForm.controls['username'].valid && showvalidationerror==1">Invalid User Name.</span>
                    <span class="has-error" *ngIf ="dataForm.controls['username'].touched && !dataForm.controls['username'].valid && getusername('invalid')==true && showvalidationerror==1">Username must contain at least 3 characters, and it should be alphanumeric!</span>
@@ -102,7 +102,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Password</label> <!--account information-->
+                    <label>Password <span>*</span></label> <!--account information-->
                     <input type="password"  [formControl]="dataForm.controls['password']" (keyup)="showvalidationerror=0">
                     <span class="passspan">Password must include at least 1 uppercase, one lowercase, and a number/special character.</span>
                     <span class="has-error" *ngIf ="dataForm.controls['password'].touched && !dataForm.controls['password'].valid && showvalidationerror==1">Invalid Password.</span>
@@ -111,7 +111,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Confirm Password</label>
+                    <label>Confirm Password <span>*</span></label>
                     <input type="password" [formControl]="dataForm.controls['confpassword']" (keyup)="showvalidationerror=0">
                     <span class="has-error" *ngIf ="dataForm.controls['confpassword'].touched && !dataForm.controls['confpassword'].valid && showvalidationerror==1">Please fill in the required field.</span>
                     <div class="has-error" *ngIf ="dataForm.hasError('mismatchedPasswords') && dataForm.controls['confpassword'].valid && showvalidationerror==1 ">
@@ -138,14 +138,14 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-            <label> First Name</label>
+            <label> First Name <span>*</span></label>
             <input type="text"   [formControl]="dataForm.controls['firstname']" (keyup)="showvalidationerror=0">
             <span class="has-error" *ngIf ="dataForm.controls['firstname'].touched && !dataForm.controls['firstname'].valid && showvalidationerror==1">Invalid First Name!</span>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-            <label> Last Name</label>
+            <label> Last Name <span>*</span></label>
             <input type="text"  [formControl]="dataForm.controls['lastname']" (keyup)="showvalidationerror=0">
             <span class="has-error" *ngIf ="dataForm.controls['lastname'].touched && !dataForm.controls['lastname'].valid && showvalidationerror==1">Invalid Last Name!</span>
                 </div>
@@ -154,7 +154,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-            <label> Address</label>
+            <label> Address <span>*</span></label>
             <textarea   [formControl]="dataForm.controls['address']" (keyup)="showvalidationerror=0"></textarea>
             <span class="has-error" *ngIf ="dataForm.controls['address'].touched && !dataForm.controls['address'].valid && showvalidationerror==1">Invalid Address!</span>
                 </div>
@@ -169,14 +169,14 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-            <label> City</label>
+            <label> City <span>*</span></label>
             <input type="text"  [formControl]="dataForm.controls['city']" (keyup)="showvalidationerror=0">
             <span class="has-error" *ngIf ="dataForm.controls['city'].touched && !dataForm.controls['city'].valid && showvalidationerror==1">Invalid City!</span>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label> State</label>
+                    <label> State <span>*</span></label>
                  <!--   <input type="text" [formControl]="dataForm.controls['state']">-->
                     <select class="form-group" [formControl]="dataForm.controls['state']" (keyup)="showvalidationerror=0">
                         <option value="" disabled selected>Select State</option>
@@ -187,7 +187,7 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label> Zip</label>
+                    <label> Zip <span>*</span></label>
                     <input type="text"   [formControl]="dataForm.controls['zip']" (keyup)="showvalidationerror=0">
                     <span class="has-error" *ngIf ="dataForm.controls['zip'].touched && !dataForm.controls['zip'].valid && showvalidationerror==1">Invalid Zip!</span>
                 </div>
@@ -197,7 +197,7 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-            <label> Phone Number</label>
+            <label> Phone Number <span>*</span></label>
             <input type="text" appNumber [formControl]="dataForm.controls['phone']" (keyup)="showvalidationerror=0">
             <span class="has-error" *ngIf ="dataForm.controls['phone'].touched && !dataForm.controls['phone'].valid && showvalidationerror==1">Phone No must be 10 numbers!</span>
             </div>
@@ -207,7 +207,7 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Email Address</label>
+                    <label>Email Address <span>*</span></label>
 
                     <input type="text" [formControl]="dataForm.controls['email']" (keyup)="showvalidationerror=0">
                     <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('blank')==true && showvalidationerror==1">Emailid is Required !</span>
@@ -227,7 +227,7 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label> Gender</label>
+                    <label> Gender <span>*</span></label>
                     <select [formControl]="dataForm.controls['gender']" (keyup)="showvalidationerror=0">
                         <option value="" disabled>Gender </option>
                         <option value="male" name="gender">Male </option>
@@ -240,7 +240,7 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label> Date Of Birth</label>
+                    <label> Date Of Birth <span>*</span></label>
                     <input type="text" placeholder="MM/DD/YYYY" [formControl]="dataForm.controls['dob']" (keyup)="showvalidationerror=0">
                     <span class="has-error" *ngIf ="dataForm.controls['dob'].touched && !dataForm.controls['dob'].valid && showvalidationerror==1">Invalid Date of Birth!</span>
                 </div>
@@ -256,7 +256,7 @@
           <div class="row">
               <div class="col-md-12">
                   <h2 class="h2minheight" style="padding: 20px 0 0 0;">Experience </h2>
-                  <label>How many years have you been an insurance agent?</label>
+                  <label>How many years have you been an insurance agent? <span>*</span></label>
               </div>
           </div>
           <div class="row">
@@ -276,12 +276,12 @@
 
                   </div>
 
-                  <label>What number of your clients are 65 or older?</label>
+                  <label>What number of your clients are 65 or older? <span>*</span></label>
 
                   <input type="text" [formControl]="dataForm.controls['olderclients']" (keyup)="showvalidationerror=0">
                   <span class="has-error" *ngIf ="dataForm.controls['olderclients'].touched && !dataForm.controls['olderclients'].valid && showvalidationerror==1"> Please provide the number!</span>
 
-                  <label>In your estimate, what percentage of your clients have their Medicare Plan B Card?</label>
+                  <label>In your estimate, what percentage of your clients have their Medicare Plan B Card? <span>*</span></label>
 
                   <input type="text" [formControl]="dataForm.controls['noofplanBcard']" (keyup)="showvalidationerror=0">
                   <span class="has-error" *ngIf ="dataForm.controls['noofplanBcard'].touched && !dataForm.controls['noofplanBcard'].valid && showvalidationerror==1"> Please provide the number!</span>
@@ -315,7 +315,7 @@
           <div class="row">
               <div class="col-md-12">
 
-                    <label>You will need to choose one of our live onboarding calls to get started with this NexHealthcare program. Please choose a day and time that will work best for you</label>
+                    <label>You will need to choose one of our live onboarding calls to get started with this NexHealthcare program. Please choose a day and time that will work best for you <span>*</span></label>
 
                   <select>
                       <option>Fri, May 25, 2018 5:00 PM - 6:00 PM PDT</option>
