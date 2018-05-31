@@ -28,7 +28,8 @@ export class PatientrecordComponent implements OnInit {
   id: number;
   public serverurl;
   public patientuniqueid;
-  public cookieuniqueid;
+  public repuniqueid;
+ // public cookieuniqueid;
   public pateintquestioniremodal: boolean = false;
   private addcookie: CookieService;
   private cookiedetails;
@@ -44,11 +45,12 @@ export class PatientrecordComponent implements OnInit {
     this.cookiedetails = this.addcookie.getObject('cookiedetails');
     console.log('this.cookiedetails');
     console.log(this.cookiedetails);
-    this.callcookiedetails();
+  //  this.callcookiedetails();
   }
-  callcookiedetails() {
+
+/*  callcookiedetails() {
     let link = this.serverurl + 'getuserdetails';
-    let data = {userid : this.cookiedetails.id};
+    let data = {userid: this.cookiedetails.id};
     this._http.post(link, data)
       .subscribe(res => {
         let result = res.json();
@@ -62,7 +64,7 @@ export class PatientrecordComponent implements OnInit {
       }, error => {
         console.log('Ooops');
       });
-  }
+  }*/
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.id = params['id'];
@@ -244,7 +246,7 @@ export class PatientrecordComponent implements OnInit {
            this.patientdetails = result.item;
           let userdet = result.item;
           console.log(userdet.added_on);
-          this.patient_added_on = moment(userdet.added_on).format('DD-MM-YYYY');
+          this.patient_added_on = moment(userdet.added_on).format('MM-DD-YYYY');
           this.patientuniqueid = result.item.uniqueid;
           console.log('patientuniqueid' + this.patientuniqueid);
           this.dataForm = this.fb.group({
@@ -255,6 +257,7 @@ export class PatientrecordComponent implements OnInit {
             city: [userdet.city, Validators.required],
             state: [userdet.state, Validators.required]
           });
+          this.getrepid(result.item.addedby);
         } else {
           this.router.navigate(['/patient-list']);
         }
@@ -262,7 +265,20 @@ export class PatientrecordComponent implements OnInit {
         console.log('Ooops');
       });
   }
-
+  getrepid(itemid) {
+    let link = this.serverurl + 'getrepdetails';
+    let data = {_id : itemid};
+    this._http.post(link, data)
+      .subscribe(res => {
+        let result = res.json();
+        if (result.status == 'success' && typeof(result.item) != 'undefined') {
+          this.repuniqueid = result.item.uniqueid;
+        } else {
+        }
+      }, error => {
+        console.log('Ooops');
+      });
+  }
   getpatientrecord() {
     let link = this.serverurl + 'getpatientrecord';
     let data = {_id : this.id};

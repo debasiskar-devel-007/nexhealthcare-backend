@@ -22,6 +22,7 @@ export class PateintsComponent implements OnInit {
   public addcookie: CookieService;
   public cookiedetails;
   public tags;
+  public repuniqueid;
   public patientlist: any = [];
   public dataForm1: FormGroup ;
   public pateintquestioniremodal: boolean = false;
@@ -29,7 +30,7 @@ export class PateintsComponent implements OnInit {
   public opendeclinemodal: boolean = false;
   public fb;
   public patientuniqueid;
-  public cookieuniqueid;
+ // public cookieuniqueid;
   public patientnametoapproveordecline;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices, private route: ActivatedRoute) {
@@ -42,7 +43,7 @@ export class PateintsComponent implements OnInit {
     //  if (this.isthisadmin != 'admin') {
       this.addcookie = addcookie ;
       this.cookiedetails = this.addcookie.getObject('cookiedetails');
-      this.callcookiedetails();
+    //  this.callcookiedetails();
       console.log(this.cookiedetails);
      // this.getpatientlistunderthisid();
     //  }
@@ -183,7 +184,7 @@ export class PateintsComponent implements OnInit {
         console.log('Oooops!');
       });
   }
-  callcookiedetails() {
+ /* callcookiedetails() {
     let link = this.serverurl + 'getuserdetails';
     let data = {userid : this.cookiedetails.id};
     this._http.post(link, data)
@@ -196,7 +197,7 @@ export class PateintsComponent implements OnInit {
       }, error => {
         console.log('Ooops');
       });
-  }
+  }*/
   getpatientuniqueid(patientid) {
     let link = this.serverurl + 'getpatientdetails';
     let data = {_id : patientid};
@@ -205,6 +206,21 @@ export class PateintsComponent implements OnInit {
         let result = res.json();
         if (result.status == 'success' && typeof(result.item) != 'undefined') {
           this.patientuniqueid = result.item.uniqueid;
+          this.getrepid(result.item.addedby);
+        } else {
+        }
+      }, error => {
+        console.log('Ooops');
+      });
+  }
+  getrepid(itemid) {
+    let link = this.serverurl + 'getrepdetails';
+    let data = {_id : itemid};
+    this._http.post(link, data)
+      .subscribe(res => {
+        let result = res.json();
+        if (result.status == 'success' && typeof(result.item) != 'undefined') {
+          this.repuniqueid = result.item.uniqueid;
         } else {
         }
       }, error => {
@@ -419,8 +435,9 @@ export class PateintsComponent implements OnInit {
     }*/
   gotopdf(id) {
     var url = 'http://nexhealthtoday.com/testpdf/html2pdf/ppqformpdf.php?id=' + id;
-    window.location.href = url;
-   }
+  //  window.location.href = (url , '_blank');
+    window.open(url, '_blank');
+  }
   // admin call to patientlist
   getPatient_addedbyList() {
     this.patientlist = [];

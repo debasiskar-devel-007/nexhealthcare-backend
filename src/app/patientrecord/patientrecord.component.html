@@ -61,7 +61,7 @@
 
               <div class="form-group">
                 <label>Email Address</label>
-                <input type="email"  class="form-control"  placeholder="Email Address" [formControl]="dataForm.controls['email']" readonly/>  <div class="clearfix"></div>
+                <input type="email"  class="form-control"  placeholder="Email Address" [formControl]="dataForm.controls['email']" />  <div class="clearfix"></div>
                 <!-- <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('blank')==true">Emailid is Required !</span>
               <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('invalid')==true">Invalid Emailid!</span>-->
               </div>
@@ -388,7 +388,7 @@
 
                     <div class="form-group">
                       <label>State: <span>*</span></label>
-                      <select class="form-control" [formControl]="dataForm1.controls['state1']">
+                      <select class="form-control" [formControl]="dataForm1.controls['state1']" disabled="disabled">
                         <option value="" disabled selected>Select State</option>
                         <option value="{{item.name}}" *ngFor="let item of usastates; let i = index">{{item.name}}</option>
                       </select>
@@ -876,7 +876,7 @@
 
                   <div class="pateintquestionire_bottom_form">
                     <label>Rep ID: </label>
-                    <input type="text" value="{{cookieuniqueid}}"/>
+                    <input type="text" value="{{repuniqueid}}" *ngIf="repuniqueid"/>
 
                     <div class="clearfix"></div>
 
