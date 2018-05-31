@@ -469,14 +469,23 @@ export class PateintsComponent implements OnInit {
   }*/
   gotopatientrecord(id, tagid) {
     if (tagid == '5b0bfa1b3fe08865e7955f71') {
-      this.router.navigate(['/patientrecord', id, 1]);
+      this.router.navigate(['/patientrecord', id, 1]); // accept
     }
     if (tagid == '5b0bfa1d3fe08865e7955f72') {
-      this.router.navigate(['/patientrecord', id, 2]);
+      this.router.navigate(['/patientrecord', id, 2]); // decline
     }
-    if ((tagid != '5b0bfa1b3fe08865e7955f71') && (tagid != '5b0bfa1d3fe08865e7955f72')) {
+    if (tagid == '5b0cda8121eaaa0244d52b9e') {
+      this.router.navigate(['/patientrecord', id, 3]); // lead
+    }
+    if (tagid == '5b0b9235b33cbc2d4af08dd9') {
+      this.router.navigate(['/patientrecord', id, 4]); // pps submitted
+    }
+    if (tagid == '5afad90dde56b53d10e2ab4d') {
+      this.router.navigate(['/patientrecord', id, 5]); // pf submitted
+    }
+   /* if ((tagid != '5b0bfa1b3fe08865e7955f71') && (tagid != '5b0bfa1d3fe08865e7955f72')) {
       this.router.navigate(['/patientrecord', id, 3]);
-    }
+    }*/
   }
   get4rowClass() {
     if (this.isthisadmin != 'admin') {

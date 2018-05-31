@@ -251,6 +251,7 @@
           <div class="pateints_btn_wrapper">
             <input type="submit"  value="Save" class="btn1" />
             <input type="button"  value="Cancel" class="btn2" (click)="cancel()"/>
+            <input type="button"  value="Back - List View" class="btn2" (click)="backtolistview()"/>
 
             <input type="button"  value="Patient Profile Sheet" class="btn2" (click)="openquesmodal()" *ngIf="iscompletedpatientrecord==0"/>
             <input type="button"  value="View PPS" class="btn2" (click)="openquesmodalreadonly()" *ngIf="iscompletedpatientrecord==1"/>

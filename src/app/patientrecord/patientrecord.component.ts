@@ -83,8 +83,17 @@ export class PatientrecordComponent implements OnInit {
       else if (this.type == 2) {
         this.tagstatus = 'PPS Declined';
       }
+      else if (this.type == 3) {
+        this.tagstatus = 'Lead';
+      }
+      else if (this.type == 4) {
+        this.tagstatus = 'PPS Submitted';
+      }
+      else if (this.type == 5) {
+        this.tagstatus = 'PF submitted';
+      }
       else {
-        this.tagstatus = 'Action Required';
+        this.tagstatus = '';
       }
     });
     this.dataForm = this.fb.group({
@@ -327,12 +336,12 @@ export class PatientrecordComponent implements OnInit {
       this._http.post(link, data)
         .subscribe(data => {
           //  this.pateintquestioniremodal = true;
-          if (this.cookiedetails.type == 'superadmin') {
+         /* if (this.cookiedetails.type == 'superadmin') {
             this.router.navigate(['/patient-list' , 'admin']);
           }
           else {
           this.router.navigate(['/patient-list']);
-          }
+          }*/
           }, error => {
           console.log('Oooops!');
         });
@@ -942,9 +951,18 @@ export class PatientrecordComponent implements OnInit {
         });
     }
   }
+  backtolistview() {
+    if (this.cookiedetails.type == 'superadmin') {
+      this.router.navigate(['/patient-list' , 'admin']);
+    }
+    else {
+      this.router.navigate(['/patient-list']);
+    }
+  }
   cancel() {
-    this.dataForm.reset();
-    this.router.navigate(['/patient-list']);
+    this.getdetails();
+   // this.dataForm.reset();
+   // this.router.navigate(['/patient-list']);
   }
   onHidden() {
     this.pateintquestioniremodal = false;
