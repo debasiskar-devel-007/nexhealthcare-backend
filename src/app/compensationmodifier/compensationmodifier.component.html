@@ -36,9 +36,9 @@
 
         <div class="compensationmodifier_table_wrapper">
 
-         <table>
+         <table class="pateints_list_weraper_table">
            <tr>
-             <th>COMPENSATION AMOUNT</th>
+             <th>CGX AMOUNT</th>
              <th>PGX AMOUNT</th>
              <th>SHARELINK ASSOCIATED WITH COMPENSATION AMOUNT
              </th>
@@ -171,16 +171,17 @@
       <div class="modal-header">
       </div>
       <div class="modal-body">
-        <img src="../../assets/images/adminlogo.png" alt="#" class="popup_logo1">
-        <label>Compensation Amount:</label>
-        <input class="popupinputnew1" type="text" [(ngModel)]="compensationamount">
+        <img src="../../assets/images/adminlogo.png" alt="#" class="popup_logo1" style="margin-bottom: 20px;">
+        <label>CGX Amount:</label>
+        <input class="popupinputnew1" type="text" [(ngModel)]="compensationamount" style="margin-top: 10px;">
         <span class="has-error" *ngIf="compensationerror" style="margin-top: 8px;">{{compensationerror}}</span>
-        <label>PGX Amount:</label>
-        <input class="popupinputnew1" type="text" [(ngModel)]="pgxvalue">
+
+        <label style="display: block; padding-top: 20px;">PGX Amount:</label>
+        <input class="popupinputnew1" type="text" [(ngModel)]="pgxvalue" style="margin-top: 10px;">
         <span class="has-error" *ngIf="pgxerror" style="margin-top: 8px;">{{pgxerror}}</span>
       </div>
       <div class="modal-footer popupnewbtnwrapper">
-        <button type="button" class="btn btn-primary popbtn2" data-dismiss="modal" (click)="addcompensation()">Add</button>
+        <button type="button" class="btn btn-primary popbtn2" data-dismiss="modal" (click)="addcompensation()">Add Compensations</button>
         <button type="button" class="btn btn-default popbtn1" data-dismiss="modal" (click)="onHidden()">Cancel</button>
       </div>
     </div>
