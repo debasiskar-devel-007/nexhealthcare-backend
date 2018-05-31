@@ -537,6 +537,7 @@
                     <div class="pateintquestionire_div2_left2_contain">
                       <div class="left2_heading2"><p><strong>PERSONAL HISTORY:</strong></p></div>
                       <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['phtype1']"/></div>
+                      <span class="has-error" *ngIf ="dataForm1.controls['height1'].touched && !dataForm1.controls['height1'].valid">This is required!</span>
                       <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['phtype2']"/></div>
                       <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['phage']"/></div>
                       <div class="left2_heading6"><p>AGE AT<br/>
