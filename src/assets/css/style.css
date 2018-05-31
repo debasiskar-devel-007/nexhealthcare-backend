@@ -1686,6 +1686,9 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .repsignup_mainbody .form_wrapper label{ margin: 7px 0 2px 0; padding: 0px;    font-family: 'proximanova-regular'!important; font-size: 16px;}
 
+
+.repsignup_mainbody .form_wrapper label span{ color: #ff0000; display: inline;}
+
 .h2minheight{    padding-top: 28px!important;}
 
 .repsignup_mainbody .h2minheight{ color: #29aae1 !important; padding-top: 18px!important;}
@@ -1908,4 +1911,6 @@ a:visited {	text-decoration: none;	outline: none;}
 .tablebtn2{ margin-left: 4px;}
 
 .pateintquestionire_div2_left2new{ width: 724px!important;}
+
+
 
