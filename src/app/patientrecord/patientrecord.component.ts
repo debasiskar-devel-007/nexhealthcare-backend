@@ -350,8 +350,10 @@ export class PatientrecordComponent implements OnInit {
   openquesmodal() {
     this.getpatientdetailsbypatientid();
     this.pateintquestioniremodal = true;
-    console.log('this.patientdetails--------------');
-    console.log(this.patientdetails);
+    this.getdetails();
+    setTimeout(() => {
+      console.log('this.patientdetails-----after---------');
+      console.log(this.patientdetails);
     this.dataForm1 = this.fb.group({
       firstname1: [this.patientdetails.firstname, Validators.required],
       lastname1: [this.patientdetails.lastname, Validators.required],
@@ -475,6 +477,7 @@ export class PatientrecordComponent implements OnInit {
       pgx18: [''],
       pgx19: ['']
     });
+    }, 1000);
   }
   openquesmodalreadonly() {
     this.getpatientdetailsbypatientid();
