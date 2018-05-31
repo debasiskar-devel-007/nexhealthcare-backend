@@ -24,6 +24,7 @@ export class PateintdetailComponent implements OnInit {
     static blankemail;
     public opensuccessmodal: boolean = false;
   public uniquepatientid;
+  public tagid;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.fb = fb;
@@ -177,9 +178,43 @@ export class PateintdetailComponent implements OnInit {
     }
 
     gotopatientrecord() {
-    this.router.navigate(['/patientrecord', this.newinstertedid]);
+      this.gettagvalue(this.newinstertedid);
+      setTimeout(() => {
+        console.log(this.tagid);
+      if (this.tagid == '5b0bfa1b3fe08865e7955f71') {
+        this.router.navigate(['/patientrecord', this.newinstertedid, 1]); // accept
+      }
+      if (this.tagid == '5b0bfa1d3fe08865e7955f72') {
+        this.router.navigate(['/patientrecord', this.newinstertedid, 2]); // decline
+      }
+      if (this.tagid == '5b0cda8121eaaa0244d52b9e') {
+        this.router.navigate(['/patientrecord', this.newinstertedid, 3]); // lead
+      }
+      if (this.tagid == '5b0b9235b33cbc2d4af08dd9') {
+        this.router.navigate(['/patientrecord', this.newinstertedid, 4]); // pps submitted
+      }
+      if (this.tagid == '5afad90dde56b53d10e2ab4d') {
+        this.router.navigate(['/patientrecord', this.newinstertedid, 5]); // pf submitted
+      }
+      }, 1500);
+   // this.router.navigate(['/patientrecord', this.newinstertedid , this.tagid]);
     }
-
+  gettagvalue(id) {
+    let link = this.serverurl + 'gettagvalue';
+    let data = {
+      userid: id,
+    }
+    this._http.post(link, data)
+      .subscribe(res => {
+        let result = res.json();
+        console.log(result);
+        if (result.status == 'success') {
+          this.tagid = result.id[0].tagid;
+        }
+      }, error => {
+        console.log('Oooops!');
+      });
+  }
     onHidden() {
         this.opensuccessmodal = false;
 
