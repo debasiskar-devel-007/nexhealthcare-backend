@@ -40,6 +40,10 @@ export class CompensationmodifierComponent implements OnInit {
       //  return 'https://' + this.serverhost + '/#/sign-up/' + token;
         return this.serverhost + '/#/sign-up/' + token;
     }
+    callfunc1(token) {
+      //  return 'https://' + this.serverhost + '/#/sign-up/' + token;
+        return 'http://nexhealthtoday.com/#/cgx/' + token;
+    }
     showcopied() {
           this.copiedmodal = true;
          setTimeout(() => {
@@ -78,6 +82,7 @@ export class CompensationmodifierComponent implements OnInit {
         if (this.compensationamount > 0 && this.compensationamount < 201 && this.compensationamount != '' && this.compensationamount != null) {
             this.compensationerror = null;
             if (this.pgxvalue > 0 && this.pgxvalue < 101 && this.pgxvalue != '' && this.pgxvalue != null) {
+              this.pgxerror = null;
               let link = this.serverurl + 'getcompensationdetailsbyusernameandamount';
               let data = {
                 userid: this.cookiedetails.id,
@@ -110,9 +115,9 @@ export class CompensationmodifierComponent implements OnInit {
                         if (result.status == 'success') {
                           this.compensationerror = null;
                           this.pgxerror = null;
-                          this.compensationmodal = false;
                           this.compensationamount = null;
                           this.pgxvalue = null;
+                          this.compensationmodal = false;
                           this.getcompensationlist();
                         }
                         else if (result.status == 'error') {

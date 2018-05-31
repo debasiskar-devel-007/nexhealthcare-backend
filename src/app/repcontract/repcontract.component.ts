@@ -101,6 +101,7 @@ export class RepcontractComponent implements OnInit {
                 console.log(result);
                 if (result.status == 'success' && typeof(result.id) != 'undefined') {
                     this.cgxvalue = result.id.cgxamountoflead;
+                    this.pgxvalue = result.id.pgxvalueoflead;
                 }
             }, error => {
                 console.log('Oooops!');

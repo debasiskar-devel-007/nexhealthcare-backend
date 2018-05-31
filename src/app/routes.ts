@@ -64,6 +64,7 @@ const appRoutes: Routes = [
     { path: 'resetpassword/:id', component: ResetpasswordComponent},
     { path: 'autologin/:id', component: AutologinComponent},
     { path: 'cgx', component: CgxComponent},
+    { path: 'cgx/:id', component: CgxComponent},
     { path: 'completewebinar', component: CompletewebinarComponent},
     { path: 'trainingcenter', component: TrainingcenterComponent},
 
