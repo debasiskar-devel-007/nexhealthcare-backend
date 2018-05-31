@@ -20,6 +20,7 @@ export class RepsignupComponent implements OnInit {
     static invalidusername;
     private passmatchvalidate;
     public alreadyexist: any;
+    public pgxvalue: any;
     public serverurl;
     private addcookie: CookieService;
     private cookiedetails;
@@ -86,7 +87,8 @@ export class RepsignupComponent implements OnInit {
                             });
                         }if (result.id.type == 'masteraccount') {
                             this.type = 'salesrep';
-                            this.cgxamount = 150 - result.id.cgxamountoflead;
+                            this.cgxamount = 200 - result.id.cgxamountoflead;
+                            this.pgxvalue = 100 - result.id.pgxvalueoflead;
                         }
                     }
                 }, error => {
@@ -261,6 +263,7 @@ export class RepsignupComponent implements OnInit {
                 type: this.type,
                 signup_step: 1,
                 cgxamountoflead: this.cgxamount,
+                pgxvalueoflead: this.pgxvalue,
                 addedby: this.addedby,
                 iswebinarchekced: 0,
               uniqueid: this.uniquerepid,
@@ -316,6 +319,7 @@ export class RepsignupComponent implements OnInit {
                 console.log(result);
                 if (result.status == 'success' && typeof(result.id) != 'undefined') {
                     this.cgxamount  = result.id.amount;
+                    this.pgxvalue  = result.id.pgxvalue;
                 } else {
                  console.log('Sorry ! You have to signup with proper url.');
                     this.wrongtokenforleadrolemodal = true;

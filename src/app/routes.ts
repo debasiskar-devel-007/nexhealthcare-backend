@@ -30,6 +30,7 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
 import { AutologinComponent } from './autologin/autologin.component';
 import { CgxComponent } from './cgx/cgx.component';
 import { CompletewebinarComponent } from './completewebinar/completewebinar.component';
+import { TrainingcenterComponent } from './trainingcenter/trainingcenter.component';
 
 
 const appRoutes: Routes = [
@@ -64,6 +65,7 @@ const appRoutes: Routes = [
     { path: 'autologin/:id', component: AutologinComponent},
     { path: 'cgx', component: CgxComponent},
     { path: 'completewebinar', component: CompletewebinarComponent},
+    { path: 'trainingcenter', component: TrainingcenterComponent},
 
 
    // { path: 'content', component: ContentComponent,outlet:'content'},

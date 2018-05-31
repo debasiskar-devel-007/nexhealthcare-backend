@@ -39,6 +39,7 @@
          <table>
            <tr>
              <th>COMPENSATION AMOUNT</th>
+             <th>PGX AMOUNT</th>
              <th>SHARELINK ASSOCIATED WITH COMPENSATION AMOUNT
              </th>
 
@@ -46,6 +47,7 @@
 
            <tr *ngFor="let item of compensationList | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
              <td>${{item.amount}}</td>
+             <td>${{item.pgxvalue}}</td>
              <td>
                <span>{{serverhost}}/#/sign-up/{{item.token}}</span>
                <input type="button" value="Copy Url" class="copyurlbtn" ngxClipboard [cbContent]='callfunc(item.token)' (click)="showcopied()">

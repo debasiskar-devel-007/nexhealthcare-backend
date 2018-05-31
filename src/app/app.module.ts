@@ -41,6 +41,7 @@ import { CgxComponent } from './cgx/cgx.component';
 import { OrderBy } from './orderby';
 import { NumberDirective } from './number.directive';
 import { CompletewebinarComponent } from './completewebinar/completewebinar.component';
+import { TrainingcenterComponent } from './trainingcenter/trainingcenter.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { CompletewebinarComponent } from './completewebinar/completewebinar.comp
       CgxComponent,
       OrderBy,
       NumberDirective,
-      CompletewebinarComponent
+      CompletewebinarComponent,
+      TrainingcenterComponent
   ],
   imports: [
     BrowserModule,
