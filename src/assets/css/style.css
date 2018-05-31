@@ -339,6 +339,9 @@ a:visited {	text-decoration: none;	outline: none;}
 .admin_inner_heading h2{ margin: 0px; text-align: center; display: inline-block; margin: 0 auto; background: #295b73 url("../images/training_page_icon1.png") no-repeat  3px center;  padding: 2px 16px 0px 90px; font-size: 58px; line-height: 63px; color: #fefefe; text-transform: uppercase; font-family: 'proximanova-bold'; }
 
 
+.admin_inner_heading h3{ margin: 0px; text-align: center; display: inline-block; margin: 0 auto; background: #295b73 url("../images/training_page_videoicon.jpg") no-repeat  3px center;  padding: 2px 16px 0px 90px; font-size: 58px; line-height: 63px; color: #fefefe; text-transform: uppercase; font-family: 'proximanova-bold'; }
+
+
 .admin_inner_body h3{ margin: 0px; padding: 30px 0; font-size: 36px; color: #142c37; font-family: 'proximanova-bold';  line-height: 36px;}
 
 .admin_inner_body h3 span{ color: #29aae1;}
@@ -1914,3 +1917,12 @@ a:visited {	text-decoration: none;	outline: none;}
 
 
 
+
+
+.pateints_list_weraper_table th:nth-of-type(1){ width: 20%;}
+.pateints_list_weraper_table th:nth-of-type(2){ width: 20%;}
+.pateints_list_weraper_table th:nth-of-type(3){ width: 60%;}
+
+.pateints_list_weraper_table td:nth-of-type(1){ width: 20%;}
+.pateints_list_weraper_table td:nth-of-type(2){ width: 20%;}
+.pateints_list_weraper_table td:nth-of-type(3){ width: 60%;}
