@@ -42,6 +42,7 @@ import { OrderBy } from './orderby';
 import { NumberDirective } from './number.directive';
 import { CompletewebinarComponent } from './completewebinar/completewebinar.component';
 import { TrainingcenterComponent } from './trainingcenter/trainingcenter.component';
+import { ResourceComponent } from './resource/resource.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { TrainingcenterComponent } from './trainingcenter/trainingcenter.compone
       OrderBy,
       NumberDirective,
       CompletewebinarComponent,
-      TrainingcenterComponent
+      TrainingcenterComponent,
+      ResourceComponent
   ],
   imports: [
     BrowserModule,
@@ -93,3 +95,4 @@ import { TrainingcenterComponent } from './trainingcenter/trainingcenter.compone
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
