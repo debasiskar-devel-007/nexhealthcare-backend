@@ -168,11 +168,15 @@
       </div>
       <div class="modal-body">
         <img src="../../assets/images/adminlogo.png" alt="#" class="popup_logo1">
+        <label>Compensation Amount:</label>
         <input class="popupinputnew1" type="text" [(ngModel)]="compensationamount">
         <span class="has-error" *ngIf="compensationerror" style="margin-top: 8px;">{{compensationerror}}</span>
+        <label>PGX Amount:</label>
+        <input class="popupinputnew1" type="text" [(ngModel)]="pgxvalue">
+        <span class="has-error" *ngIf="pgxerror" style="margin-top: 8px;">{{pgxerror}}</span>
       </div>
       <div class="modal-footer popupnewbtnwrapper">
-        <button type="button" class="btn btn-primary popbtn2" data-dismiss="modal" (click)="addcompensation()">Add Compensation</button>
+        <button type="button" class="btn btn-primary popbtn2" data-dismiss="modal" (click)="addcompensation()">Add</button>
         <button type="button" class="btn btn-default popbtn1" data-dismiss="modal" (click)="onHidden()">Cancel</button>
       </div>
     </div>

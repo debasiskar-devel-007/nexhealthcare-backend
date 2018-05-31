@@ -18,7 +18,9 @@ export class CompensationmodifierComponent implements OnInit {
     public serverurl;
     public serverhost;
     public compensationamount;
+    public pgxvalue;
     public compensationerror;
+    public pgxerror;
     public compensationList;
     public p: number = 1;
 
@@ -69,52 +71,65 @@ export class CompensationmodifierComponent implements OnInit {
         this.compensationmodal = false;
       //  this.copiedmodal = false;
         this.compensationamount = null;
+        this.pgxvalue = null;
     }
 
     addcompensation() {
-        if (this.compensationamount > 0 && this.compensationamount < 150 && this.compensationamount != '' && this.compensationamount != null) {
+        if (this.compensationamount > 0 && this.compensationamount < 201 && this.compensationamount != '' && this.compensationamount != null) {
             this.compensationerror = null;
-            let link = this.serverurl + 'getcompensationdetailsbyusernameandamount';
-            let data = {
+            if (this.pgxvalue > 0 && this.pgxvalue < 101 && this.pgxvalue != '' && this.pgxvalue != null) {
+              let link = this.serverurl + 'getcompensationdetailsbyusernameandamount';
+              let data = {
                 userid: this.cookiedetails.id,
                 amount: this.compensationamount,
-            };
-            this._http.post(link, data)
+                pgxvalue: this.pgxvalue,
+              };
+              this._http.post(link, data)
                 .subscribe(res => {
-                    let result = res.json();
-                   // console.log(result);
-                    if (result.status == 'success') {
-                        this.compensationerror = 'You already added same compensation amount earlier.';
-                    }
-                    else {
-                        let link = this.serverurl + 'addcompensation';
-                        let data = {
-                            userid: this.cookiedetails.id,
-                            amount: this.compensationamount,
-                        };
-                      //  console.log('addcompensation-------');
-                       // console.log(data);
-                        this._http.post(link, data)
-                            .subscribe(res => {
-                                let result = res.json();
-                                console.log(result);
-                                if (result.status == 'success') {
-                                    this.compensationerror = null;
-                                    this.compensationmodal = false;
-                                    this.compensationamount = null;
-                                    this. getcompensationlist();
-                                }
-                                else if (result.status == 'error') {
-                                    this.compensationerror = 'Some server issues! Please try again later.';
-                                }
-                            }, error => {
-                                console.log('Oooops!');
-                            });
-                    }
+                  let result = res.json();
+                  // console.log(result);
+                  if (result.status == 'alreadyhavecgx') {
+                    this.compensationerror = 'You already added same compensation amount earlier.';
+                  }
+                  if (result.status == 'alreadyhavepgx') {
+                    this.pgxerror = 'You already added same Pgx amount earlier.';
+                  }
+                  if (result.status != 'alreadyhavecgx' && result.status != 'alreadyhavepgx' ) {
+                    let link = this.serverurl + 'addcompensation';
+                    let data = {
+                      userid: this.cookiedetails.id,
+                      amount: this.compensationamount,
+                      pgxvalue: this.pgxvalue,
+                    };
+                    //  console.log('addcompensation-------');
+                    // console.log(data);
+                    this._http.post(link, data)
+                      .subscribe(res => {
+                        let result = res.json();
+                        console.log(result);
+                        if (result.status == 'success') {
+                          this.compensationerror = null;
+                          this.pgxerror = null;
+                          this.compensationmodal = false;
+                          this.compensationamount = null;
+                          this.pgxvalue = null;
+                          this.getcompensationlist();
+                        }
+                        else if (result.status == 'error') {
+                          this.compensationerror = 'Some server issues! Please try again later.';
+                        }
+                      }, error => {
+                        console.log('Oooops!');
+                      });
+                  }
                 });
+            }
+            else {
+              this.pgxerror = 'PGX amount must be between $1 - $100';
+            }
         }
          else {
-             this.compensationerror = 'Amount must be between $1 - $150';
+             this.compensationerror = 'CGX amount must be between $1 - $200';
          }
     }
 }

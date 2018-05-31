@@ -22,6 +22,7 @@ export class RepcontractComponent implements OnInit {
     public showtoday;
     public showafteryear;
     public cgxvalue: any = 0;
+    public pgxvalue: any = 0;
 
     constructor(addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.serverurl = _commonservices.url;
@@ -35,6 +36,7 @@ export class RepcontractComponent implements OnInit {
         this.showafteryear = moment().format('D') + ' day of ' + moment().format('MMM') + ', ' + moment().add(1, 'years').format('YYYY');
         if (this.cookiedetails.type == 'leadmanager') {
             this.cgxvalue = 10;
+            this.pgxvalue = 0;
         }
         else {
             this.getuserdetails();
@@ -70,19 +72,20 @@ export class RepcontractComponent implements OnInit {
         else {
             let link = this.serverurl + 'repcontract';
             let data = {
-                name: this.signaturename,
-                addedby: this.cookiedetails.id,
-                compensationgrade: this.cgxvalue,
+              name: this.signaturename,
+              addedby: this.cookiedetails.id,
+              compensationgrade: this.cgxvalue,
+              pgxvalue: this.pgxvalue,
             };
-            this._http.post(link, data)
-                .subscribe(res => {
-                    let result = res.json();
-                    console.log(result);
-                    if (result.status == 'success') {
-                        this.router.navigate(['/trainingstep']);
-                    }
-                }, error => {
-                    console.log('Oooops!');
+          this._http.post(link, data)
+            .subscribe(res => {
+              let result = res.json();
+              console.log(result);
+              if (result.status == 'success') {
+                this.router.navigate(['/trainingstep']);
+              }
+            }, error => {
+              console.log('Oooops!');
                 });
             this.errorblank = null;
         }
