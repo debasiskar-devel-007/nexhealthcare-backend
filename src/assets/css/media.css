@@ -214,6 +214,18 @@
 }
 
 @media(max-width:1199px) {
+
+    .admin_footer2 .row{ width: 96%;}
+
+    .webinar_wrapper{ width: 96%; margin: 35px auto;}
+
+
+    .trainingcentercontentleft .videoWrapper {padding-bottom: 54.25%; padding-top: 26px;}
+    .trainingcenter_mainwrapper .row-eq-height{display: block !important; margin: 0 auto;}
+    .trainingcentercontentleft {width: 100%;margin-right: 0px !important;}
+    .trainingcentercontentright {width: 100%; margin-left: 0px !important;}
+
+
     .repsignup_mainbody .form_wrapper_text h3 {
         font-size: 16px;
     }
@@ -237,6 +249,12 @@
 }
 
 @media(max-width:991px) {
+
+    .admin_footer2 p{ text-align: center;}
+    .webinar_wrapper_context_block{ background-image: none; padding: 34px;}
+
+    .trainingcentercontentleft .videoWrapper {padding-top: 18px;}
+
     .repsignup_mainbody .form_wrapper_text h3 {
         font-size: 25px;
     }
@@ -293,6 +311,9 @@
 
 
 @media(max-width:767px) {
+    .trainingcentercontentleft .videoWrapper {
+        padding-top: 16px;
+    }
 
     .admindashboardcon2_sub_condiv_heading div{ display: block; width: 100%; text-align: center;}
     .admindashboardcon2_sub_condiv_heading .col-xl-4 {
@@ -304,6 +325,45 @@
 
 
 }
+
+
+
+
+@media(max-width:540px) {
+    .trainingcentercontentleft .videoWrapper {
+        padding-top: 10px;
+    }
+}
+
+@media(max-width:480px) {
+    .trainingcentercontentleft .videoWrapper {
+        padding-top: 9px;
+    }
+
+    .trainingcentercontentrightblock {
+        display: block;
+        text-align: center;
+    }
+    .videorightWrapper {
+        margin: 10px auto;
+    }
+    .trainingcentercontentrightbtn a {
+        float: none;
+    }
+    .trainingcentercontentrightbtn {
+        float: none;
+        text-align: center;
+    }
+    .btnviewmore {
+        float: none;
+        margin: 20px auto 0px;
+        text-align: center;
+        width: 171px;
+        display: block;
+    }
+}
+
+
 
 @media(max-width:400px) {
     .admindashboardcon2_sub_condiv{ width: 96%; float: none; margin: 5px auto;}
@@ -322,4 +382,24 @@
     .pateintquestioniremodal .modal-sm {
         width: 100%;
     }
+}
+
+
+
+@media (min-width: 320px) {
+    .col-xs-15 {width:100%; float: left; margin-bottom: 20px;}
+}
+
+@media (min-width: 600px) {
+    .col-xs-15 {width: 50%; float: left; margin-bottom: 20px;}
+}
+
+@media (min-width: 768px) {
+    .col-sm-15 {width: 33.33%; float: left;  margin-bottom: 20px;}
+}
+@media (min-width: 992px) {
+    .col-md-15 {width: 25%; float: left;}
+}
+@media (min-width: 1200px) {
+    .col-lg-15 {width: 20%; float: left;}
 }

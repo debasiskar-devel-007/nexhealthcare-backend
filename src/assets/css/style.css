@@ -342,6 +342,12 @@ a:visited {	text-decoration: none;	outline: none;}
 .admin_inner_heading h3{ margin: 0px; text-align: center; display: inline-block; margin: 0 auto; background: #295b73 url("../images/training_page_videoicon.jpg") no-repeat  3px center;  padding: 2px 16px 0px 90px; font-size: 58px; line-height: 63px; color: #fefefe; text-transform: uppercase; font-family: 'proximanova-bold'; }
 
 
+.admin_inner_heading h4{ margin: 0px; text-align: center; display: inline-block; margin: 0 auto; background: #295b73 url("../images/resource_top_icon.png") no-repeat  3px center;  padding: 2px 16px 0px 90px; font-size: 58px; line-height: 63px; color: #fefefe; text-transform: uppercase; font-family: 'proximanova-bold'; }
+
+
+.admin_inner_heading h5{ margin: 0px; text-align: center; display: inline-block; margin: 0 auto; background: #295b73 url("../images/webinar_page_icon.jpg") no-repeat  3px center;  padding: 2px 16px 0px 90px; font-size: 58px; line-height: 63px; color: #fefefe; text-transform: uppercase; font-family: 'proximanova-bold'; }
+
+
 .admin_inner_body h3{ margin: 0px; padding: 30px 0; font-size: 36px; color: #142c37; font-family: 'proximanova-bold';  line-height: 36px;}
 
 .admin_inner_body h3 span{ color: #29aae1;}
@@ -2027,53 +2033,79 @@ a:visited {	text-decoration: none;	outline: none;}
 
 
 
-@media(max-width:1199px) {
-    .trainingcentercontentleft .videoWrapper {padding-bottom: 54.25%; padding-top: 26px;}
-    .trainingcenter_mainwrapper .row-eq-height{display: block !important; margin: 0 auto;}
-    .trainingcentercontentleft {width: 100%;margin-right: 0px !important;}
-    .trainingcentercontentright {width: 100%; margin-left: 0px !important;}
+
+.webinar_wrapper{ width: 1199px; margin: 35px auto; min-height: 640px;}
+
+.webinar_wrapper h2{ margin: 0; padding: 0; text-align: center; font-size: 38px; color: #1a77bc; text-transform: uppercase;  font-family: "proximanova-bold";}
+
+.webinar_wrapper h3{ margin: 65px 0 35px 0; padding: 0;  font-size: 36px; color: #142c37;  font-family: "proximanova-bold";}
+
+.webinar_wrapper h3 span{ color: #29bbe2;}
+
+.webinar_wrapper_context{ background: rgba(255,255,255,1);
+    background: -moz-linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 24%, rgba(206,230,240,1) 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(255,255,255,1)), color-stop(24%, rgba(255,255,255,1)), color-stop(100%, rgba(206,230,240,1)));
+    background: -webkit-linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 24%, rgba(206,230,240,1) 100%);
+    background: -o-linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 24%, rgba(206,230,240,1) 100%);
+    background: -ms-linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 24%, rgba(206,230,240,1) 100%);
+    background: linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 24%, rgba(206,230,240,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cee6f0', GradientType=1 ); width: 100%; padding: 1px;}
+
+.webinar_wrapper_context_block{ padding: 34px;  background: url("../images/webinar_bg.png") no-repeat right bottom; background-size: 590px; padding-right: 235px; }
+
+.webinar_wrapper_context_block h4{ margin: 0; padding: 0 0 34px 0;  font-size: 26px; color: #1a77bc; text-transform: uppercase;  font-family: "proximanova-bold";}
+.webinar_wrapper_context_block h5{ margin: 0 0 24px 0; padding: 0 0 0 15px;  font-size: 18px; line-height: 28px; color: #5a5a5a; font-family: "proximanova-regular"; border-left: solid 1px #01aefb;}
+
+.webinar_wrapper_context_block label{ margin: 0 0 24px 0; padding: 0 0 0 15px; font-size: 18px; line-height: 28px; color: #142c37; font-family: "proximanova-regular"; border-left: solid 1px #a5a5a5; font-weight: normal; display: block;}
+
+.webinar_wrapper_context_block label a{ cursor:pointer; color: #02a7f1;}
+
+.webinar_wrapper_context_block label:last-of-type{ margin-bottom: 0px;}
+
+
+
+.resourcesblock{background-color: #ebecee; padding-top: 12px; padding-bottom: 12px;}
+.resourcesblock_mainwrapper{max-width: 1199px; margin:  0 auto; display: block;}
+
+.resourcesblock_mainwrapper h2{padding: 0; margin: 33px auto 49px;  font-family: "proximanova-bold"; font-size: 36px; line-height: 36px;  color: #29bbe2; text-align: center; max-width: 80%;  display: block;}
+.resourcesblock_mainwrapper h2 span{color:#142c37;}
+
+
+.resourcesblockcontent{background-color: #fff; padding: 20px 35px; margin: 0px;}
+.resourcesblockcontentinner{display: inline-flex; flex-wrap: wrap; max-width: 100%; height: auto; margin: 0px;}
+
+.resourcessingleblock{ padding: 1px; border:1px solid #dfe1e1;-webkit-box-shadow: 0 0 20px rgba(0,0,0, .25);
+    -moz-box-shadow: 0 0 20px rgba(0,0,0, .25);
+    box-shadow: 0 0 20px rgba(0,0,0, .25);}
+
+.resourcessingletopblockinner{text-align: center; border:1px solid #dfe1e1;}
+.resourcessingletopblock{padding: 30px 24px 0px;}
+
+.resourcessingleimgblock{margin-top: 10px; margin-bottom: 32px;}
+.resourcessingletopblock h3{padding: 0; margin: 0; font-family: "proximanova-regular"; font-size: 14px; line-height: 24px; color:#142c37; margin-bottom: 10px !important;}
+.resourcessingletbottomblock{background-color: #29abe1; display: inline-flex; width: 100%;}
+
+.resourcessingletbottomblock .row-eq-height{margin-right: 0px;  margin-left: 0px;    width: 100%;}
+
+.btnbottomv{color:#fff; font-family: "proximanova-semibold"; font-size: 14px; line-height: 30px; color:#fff; text-transform: capitalize; padding: 5px;}
+.btnbottomvcol{padding: 0px !important; border: 1px solid #fff;}
+
+.col-xs-15 {width: 20%; float: left; margin-bottom: 20px;}
+
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 14px;
+    padding-left: 14px;
 }
 
-@media(max-width:991px) {
-    .trainingcentercontentleft .videoWrapper {padding-top: 18px;}
-}
 
-@media(max-width:767px) {
-    .trainingcentercontentleft .videoWrapper {
-        padding-top: 16px;
-    }
-}
 
-@media(max-width:540px) {
-    .trainingcentercontentleft .videoWrapper {
-        padding-top: 10px;
-    }
-}
 
-@media(max-width:480px) {
-    .trainingcentercontentleft .videoWrapper {
-        padding-top: 9px;
-    }
+.admin_footer2{padding: 30px 0; margin-top: 15px; background: #373c40;}
+.admin_footer2 .row{ margin: 0 auto; width: 1199px; padding: 0px; }
 
-    .trainingcentercontentrightblock {
-        display: block;
-        text-align: center;
-    }
-    .videorightWrapper {
-        margin: 10px auto;
-    }
-    .trainingcentercontentrightbtn a {
-        float: none;
-    }
-    .trainingcentercontentrightbtn {
-        float: none;
-        text-align: center;
-    }
-    .btnviewmore {
-        float: none;
-        margin: 20px auto 0px;
-        text-align: center;
-        width: 171px;
-        display: block;
-    }
-}
+.admin_footer2 p{ text-align: right; margin: 0; padding: 0; font-size: 13px; color: #fefefe; font-family: 'proximanova-regular';}
