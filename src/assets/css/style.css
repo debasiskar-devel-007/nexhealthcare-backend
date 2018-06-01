@@ -241,7 +241,7 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .repsignup_mainbody .form_wrapper .form_div_row{ width:100%; position: relative;float: left;}
 
-.repsignup_mainbody .form_wrapper .form_div_row h2{ margin: 0; padding: 0px; font-size: 27px; color: #454646; text-transform: uppercase; font-family: 'proximanova-bold';}
+.repsignup_mainbody .form_wrapper .form_div_row h2{ margin: 0; padding: 0px; font-size: 27px; color: #454646; text-transform: uppercase; font-family: 'proximanova-bold'; text-align: center;}
 
 .repsignup_mainbody .form_wrapper .form_div_row h6{ margin: 0; padding:11px 0 2px 0; font-size: 22px; color: #454646; font-family: 'proximanova-regular';}
 .repsignup_mainbody .form_wrapper .form_div_row h3{ margin: 0; padding:20px 0 10px 0; font-size: 17px; color: #454646; font-family: 'proximanova-regular';}
