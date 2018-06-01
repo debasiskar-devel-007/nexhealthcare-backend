@@ -50,11 +50,11 @@ export class ResetpasswordComponent implements OnInit {
             .subscribe(res => {
                 let result = res.json();
                 console.log(result);
-                if (result.status == 'success') {
+                if (result.status == 'success'&& typeof(result.id) != 'undefined') {
                      console.log(result.id);
                      this.userdetails = result.id;
                 } else {
-                    this.router.navigate(['/patient-list']);
+                    this.router.navigate(['/log-in']);
                 }
             }, error => {
                 console.log('Ooops');
@@ -112,7 +112,7 @@ export class ResetpasswordComponent implements OnInit {
                     if (result.status == 'success') {
                         this.modalpasswordupdated = true;
                         setTimeout(() => {
-                            this.router.navigate(['/']);
+                            this.router.navigate(['/log-in']);
                         }, 3000);
                     }
                     else {

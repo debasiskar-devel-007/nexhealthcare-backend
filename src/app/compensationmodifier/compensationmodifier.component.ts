@@ -31,7 +31,12 @@ export class CompensationmodifierComponent implements OnInit {
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
         console.log('this.cookiedetails');
         console.log(this.cookiedetails);
-        this. getcompensationlist();
+        if (this.cookiedetails == null) {
+            this.router.navigate(['/log-in']);
+        } else {
+            this. getcompensationlist();
+        }
+
     }
 
     ngOnInit() {

@@ -13,6 +13,9 @@ export class CompletewebinarComponent implements OnInit {
     constructor( addcookie: CookieService, private router: Router) {
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
+        if (this.cookiedetails == null) {
+            this.router.navigate(['/log-in']);
+        } else {}
     }
 
   ngOnInit() {

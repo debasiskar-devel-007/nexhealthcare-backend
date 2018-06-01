@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';
 import { Http } from '@angular/http';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import {CookieService} from 'angular2-cookie/core';
 
 @Component({
   selector: 'app-cgx',
@@ -10,7 +11,15 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class CgxComponent implements OnInit {
   id: number;
-  constructor( private _http: Http, private router: Router, private route: ActivatedRoute) {
+    private addcookie: CookieService;
+    private cookiedetails;
+
+  constructor( addcookie: CookieService, private _http: Http, private router: Router, private route: ActivatedRoute) {
+      this.addcookie = addcookie ;
+      this.cookiedetails = this.addcookie.getObject('cookiedetails');
+      if (this.cookiedetails == null) {
+          this.router.navigate(['/log-in']);
+      } else {}
   }
 
   ngOnInit() {
