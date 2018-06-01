@@ -2106,7 +2106,7 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .admindashboardbody{ min-height: 810px;}
 
-.admin_footer2{padding: 30px 0; margin-top: 15px; background: #373c40;}
+.admin_footer2{padding: 30px 0; background: #373c40;}
 .admin_footer2 .row{ margin: 0 auto; width: 98%; padding: 0px; }
 
 .admin_footer2 p{ text-align: right; margin: 0; padding: 0; font-size: 13px; color: #fefefe; font-family: 'proximanova-regular';}
