@@ -44,6 +44,9 @@ import { CompletewebinarComponent } from './completewebinar/completewebinar.comp
 import { TrainingcenterComponent } from './trainingcenter/trainingcenter.component';
 import { ResourceComponent } from './resource/resource.component';
 import { WebinarComponent } from './webinar/webinar.component';
+import { ReportsComponent } from './reports/reports.component';
+import { CommissionsComponent } from './commissions/commissions.component';
+import { SharelinkComponent } from './sharelink/sharelink.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +82,10 @@ import { WebinarComponent } from './webinar/webinar.component';
       CompletewebinarComponent,
       TrainingcenterComponent,
       ResourceComponent,
-      WebinarComponent
+      WebinarComponent,
+      ReportsComponent,
+      CommissionsComponent,
+      SharelinkComponent
   ],
   imports: [
     BrowserModule,

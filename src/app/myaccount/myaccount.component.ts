@@ -28,8 +28,12 @@ export class MyaccountComponent implements OnInit {
     this.cookiedetails = this.addcookie.getObject('cookiedetails');
     console.log('this.cookiedetails');
     console.log(this.cookiedetails);
-    this. getaccountdetails();
-    this.getusastates();
+      if (this.cookiedetails == null) {
+          this.router.navigate(['/log-in']);
+      } else {
+          this. getaccountdetails();
+          this.getusastates();
+      }
   }
 
   ngOnInit() {

@@ -17,9 +17,9 @@ export class CgxComponent implements OnInit {
   constructor( addcookie: CookieService, private _http: Http, private router: Router, private route: ActivatedRoute) {
       this.addcookie = addcookie ;
       this.cookiedetails = this.addcookie.getObject('cookiedetails');
-      if (this.cookiedetails == null) {
+      /*if (this.cookiedetails == null) {
           this.router.navigate(['/log-in']);
-      } else {}
+      } else {}*/
   }
 
   ngOnInit() {
