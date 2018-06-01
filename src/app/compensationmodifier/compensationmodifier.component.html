@@ -50,13 +50,13 @@
              <td>${{item.pgxvalue}}</td>
              <td>
                <div>
-               <span>{{serverhost}}/#/sign-up/{{item.token}}</span>
+               <span>http://{{serverhost}}/#/sign-up/{{item.token}}</span>
                <input type="button" value="Copy Url" class="copyurlbtn" ngxClipboard [cbContent]='callfunc(item.token)' (click)="showcopied()">
                  <div class="clearfix"></div>
                </div>
                <div>
 
-               <span>http://nexhealthtoday.com/#/cgx/{{item.token}}</span>
+               <span>http://{{serverhost}}/#/cgx/{{item.token}}</span>
                <input type="button" value="Copy Url" class="copyurlbtn" ngxClipboard [cbContent]='callfunc1(item.token)' (click)="showcopied()">
                  <div class="clearfix"></div>
         </div>

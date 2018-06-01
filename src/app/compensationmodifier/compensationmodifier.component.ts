@@ -38,11 +38,11 @@ export class CompensationmodifierComponent implements OnInit {
     }
     callfunc(token) {
       //  return 'https://' + this.serverhost + '/#/sign-up/' + token;
-        return this.serverhost + '/#/sign-up/' + token;
+        return 'http://' + this.serverhost + '/#/sign-up/' + token;
     }
     callfunc1(token) {
       //  return 'https://' + this.serverhost + '/#/sign-up/' + token;
-        return 'http://nexhealthtoday.com/#/cgx/' + token;
+        return 'http://' + this.serverhost + '/#/cgx/' + token;
     }
     showcopied() {
           this.copiedmodal = true;
