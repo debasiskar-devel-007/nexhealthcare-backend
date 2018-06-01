@@ -20,6 +20,9 @@ export class FrontheaderComponent implements OnInit {
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
         console.log('from frontheader');
         console.log(this.cookiedetails);
+        if (this.cookiedetails == null) {
+            this.router.navigate(['/log-in']);
+        }
     }
 
   ngOnInit() {
