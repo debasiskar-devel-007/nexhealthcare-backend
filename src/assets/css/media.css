@@ -71,6 +71,8 @@
     .pateintdetail_left_formnew .form-group .form-control {
         width: 66%!important;
     }
+
+    .webinar_wrapper{width: 98%;}
     .userrecruiterlist_table_wrapper{width: 98%;}
     .pateints_searchdiv_wrapper{width: 98%;}
     .admindashboardwrapper{width: 98%;}
@@ -138,6 +140,8 @@
 }
 
 @media(max-width:1500px) {
+
+
     .sharelinkblock_mainwrapper {
         max-width: 96%;
     }
