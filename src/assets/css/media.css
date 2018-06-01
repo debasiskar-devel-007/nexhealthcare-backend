@@ -411,3 +411,37 @@
 @media (min-width: 1200px) {
     .col-lg-15 {width: 20%; float: left;}
 }
+
+
+
+@media(max-width:1199px) {
+    .sharelinkblock_mainwrapper {
+        max-width: 96%;
+    }
+}
+
+@media(max-width:767px) {
+    .sharelinkblock_mainwrapper h2 {
+        max-width: 94%;
+    }
+    .sharelinkblockcontentleft {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .sharelinkblockcontentright {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+
+    .sharelinkblocksingle{
+        display: block !important;
+        text-align: center;
+    }
+    .sharelinkblockcontent h2{
+        margin: 15px auto 10px;
+        text-align: center;
+    }
+
+}
