@@ -215,6 +215,7 @@
 
 @media(max-width:1199px) {
 
+    .btnviewmore{ position: inherit;}
     .admin_footer2 .row{ width: 96%;}
 
     .webinar_wrapper{ width: 96%; margin: 35px auto;}
@@ -261,6 +262,7 @@
 
 
     .pateintdetail_left_form .form-group .form-control {
+
         width: 64%;
     }
     .pateintdetail_left_formnew2 label {
@@ -386,7 +388,7 @@
 
 
 
-@media (min-width: 320px) {
+@media (min-width: 100px) {
     .col-xs-15 {width:100%; float: left; margin-bottom: 20px;}
 }
 
