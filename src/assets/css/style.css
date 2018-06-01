@@ -2037,7 +2037,7 @@ a:visited {	text-decoration: none;	outline: none;}
 
 
 
-.webinar_wrapper{ width: 1199px; margin: 35px auto; min-height: 640px;}
+.webinar_wrapper{ width:1500px; margin: 35px auto; min-height: 640px;}
 
 .webinar_wrapper h2{ margin: 0; padding: 0 0 35px 0; text-align: center; font-size: 38px; color: #1a77bc; text-transform: uppercase;  font-family: "proximanova-bold";}
 
@@ -2203,3 +2203,10 @@ a:visited {	text-decoration: none;	outline: none;}
 
 
 .compensationmodifier_table_wrapper table td h4{ text-align: left; color: #29abe1; margin: 0; padding: 15px 0;}
+
+
+.rep-dashboard_new_wrapper{ width: 1500px; margin:0 auto;}
+
+.rep-dashboard_new_block1{ margin-top: 14px;}
+
+.rep-dashboard_new_block1 .col-md-4{ border: solid 1px #fff;}
