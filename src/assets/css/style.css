@@ -1627,7 +1627,9 @@ a:visited {	text-decoration: none;	outline: none;}
     background: -o-linear-gradient(top, rgba(253,253,253,1) 0%, rgba(225,225,225,1) 100%);
     background: -ms-linear-gradient(top, rgba(253,253,253,1) 0%, rgba(225,225,225,1) 100%);
     background: linear-gradient(to bottom, rgba(253,253,253,1) 0%, rgba(225,225,225,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#e1e1e1', GradientType=0 );  border-radius: 25px; padding: 14px 0; margin-top: 30px; font-size:30px; color: #161616; font-family: 'proximanova-bold'; display: block; width: 580px; text-align: center;}
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#e1e1e1', GradientType=0 );  border-radius: 25px; padding: 14px 0; margin-top: 30px; font-size:30px; color: #161616; font-family: 'proximanova-bold'; display: block; width: 580px; text-align: center; cursor: pointer;}
+
+
 
 
 
@@ -2199,3 +2201,4 @@ a:visited {	text-decoration: none;	outline: none;}
 .sharelinkblockcontentright{padding-right: 0px;}
 
 
+.compensationmodifier_table_wrapper table td h4{ text-align: left; color: #29abe1; margin: 0; padding: 15px 0;}
