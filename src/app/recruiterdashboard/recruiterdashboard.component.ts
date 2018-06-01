@@ -25,7 +25,11 @@ export class RecruiterdashboardComponent implements OnInit {
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
        // console.log(this.cookiedetails);
         this.serverurl = _commonservices.url;
-        this.getrecdetails();
+        if (this.cookiedetails == null) {
+            this.router.navigate(['/log-in']);
+        } else {
+            this.getrecdetails();
+        }
     }
 
     ngOnInit() {

@@ -35,7 +35,7 @@ export class RepcontractComponent implements OnInit {
         this.showtoday = moment().format('D') + ' day of ' + moment().format('MMM') + ', ' + moment().format('YYYY');
         this.showafteryear = moment().format('D') + ' day of ' + moment().format('MMM') + ', ' + moment().add(1, 'years').format('YYYY');
         if (this.cookiedetails == null) {
-           // this.router.navigate(['/log-in']);
+            this.router.navigate(['/log-in']);
         }
         else{
         if (this.cookiedetails.type == 'leadmanager') {
