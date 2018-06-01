@@ -1942,10 +1942,11 @@ a:visited {	text-decoration: none;	outline: none;}
 /*-----------*/
 
 .trainingcenterblock{background-color: #ebecee; padding-top: 12px; padding-bottom: 12px;}
-.trainingcenter_mainwrapper{max-width: 1199px; margin:  0 auto; display: block;}
+.trainingcenter_mainwrapper{max-width: 1500px; margin:  0 auto; display: block;}
+.trainingcenter_mainwrapper .row{margin-left: 0px !important; margin-right: 0px !important;}
 .trainingcentercontent{background-color: #fff; margin-right:6px; margin-left: 6px;}
-.trainingcentercontentleft{margin-left: 0px !important; padding: 25px 34px 30px; width: 752px;}
-.trainingcentercontentright{margin-right: 0px !important; padding: 20px 26px 23px; width: 435px; position: relative;}
+.trainingcentercontentleft{margin-left: 0px !important; padding: 25px 34px 30px;}
+.trainingcentercontentright{margin-right: 0px !important; padding: 20px 26px 23px; position: relative;}
 
 
 .trainingcentercontentleft h2{padding: 0; margin: 0; font-family: "proximanova-bold"; font-size: 36px; line-height: 36px; color:#29bbe2; margin-bottom: 23px !important;}
@@ -2067,13 +2068,13 @@ a:visited {	text-decoration: none;	outline: none;}
 
 
 .resourcesblock{background-color: #ebecee; padding-top: 12px; padding-bottom: 12px;}
-.resourcesblock_mainwrapper{max-width: 1199px; margin:  0 auto; display: block;}
+.resourcesblock_mainwrapper{max-width: 1500px; margin:  0 auto; display: block;}
 
 .resourcesblock_mainwrapper h2{padding: 0; margin: 33px auto 35px;  font-family: "proximanova-bold"; font-size: 36px; line-height: 36px;  color: #29bbe2; text-align: center; max-width: 80%;  display: block;}
 .resourcesblock_mainwrapper h2 span{color:#142c37;}
 
 
-.resourcesblockcontent{ padding: 0px 35px; margin: 0px;}
+.resourcesblockcontent{ padding: 0px 0px; margin: 0px;}
 .resourcesblockcontentinner{display: inline-flex; flex-wrap: wrap; max-width: 100%; height: auto; margin: 0px;}
 
 .resourcessingleblock{ padding: 1px; border:1px solid #dfe1e1;-webkit-box-shadow: 0 0 20px rgba(0,0,0, .25);
@@ -2135,7 +2136,7 @@ a:visited {	text-decoration: none;	outline: none;}
 /*------sharelink block ------*/
 
 .sharelinkblock{background-color: #ebecee; padding-top: 12px; padding-bottom: 12px;}
-.sharelinkblock_mainwrapper{max-width: 1199px; margin:  0 auto; display: block;}
+.sharelinkblock_mainwrapper{max-width: 1500px; margin:  0 auto; display: block;}
 
 .sharelinkblock .image_block {
     border: solid 5px #e3e3e3;
