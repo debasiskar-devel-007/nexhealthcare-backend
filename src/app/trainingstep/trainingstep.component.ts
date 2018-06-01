@@ -26,8 +26,12 @@ export class TrainingstepComponent implements OnInit {
         console.log('trainingstep get cookie');
         console.log(this.cookiedetails);
         this.serverurl = _commonservices.url;
+        if (this.cookiedetails == null) {
+          //  this.router.navigate(['/log-in']);
+        } else {
         this.callit();
         this.getuserdetails();
+    }
     }
 
     ngOnInit() {

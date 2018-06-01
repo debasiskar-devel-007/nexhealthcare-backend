@@ -34,12 +34,17 @@ export class RepcontractComponent implements OnInit {
         this.today = moment().format('MMM') + ' ' + moment().format('D') + ', ' + moment().format('YYYY') + ' ' + moment().format('h') + ':' + moment().format('mm') + ' ' + moment().format('A');
         this.showtoday = moment().format('D') + ' day of ' + moment().format('MMM') + ', ' + moment().format('YYYY');
         this.showafteryear = moment().format('D') + ' day of ' + moment().format('MMM') + ', ' + moment().add(1, 'years').format('YYYY');
+        if (this.cookiedetails == null) {
+           // this.router.navigate(['/log-in']);
+        }
+        else{
         if (this.cookiedetails.type == 'leadmanager') {
             this.cgxvalue = 10;
             this.pgxvalue = 0;
         }
         else {
             this.getuserdetails();
+        }
         }
     }
 
