@@ -131,6 +131,12 @@
 
 }
 
+
+@media(max-width:1540px) {
+
+    .admin_footer2 .row{ width: 98%;}
+}
+
 @media(max-width:1400px) {
     .pateintdetail_left_formnew .form-group .form-control {
         width: 65%!important;
