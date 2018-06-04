@@ -291,8 +291,8 @@
                 <td><label>{{item.note}}</label></td>
                 <td><span>{{showname(item.added_by)}}</span></td>
                 <td><span>{{showtime(item.added_on)}}</span></td>
-                <td><span (click)="editnote(item)">Edit</span></td>
-                <td><span (click)="deletenote(item._id)">Delete</span></td>
+                <td><span (click)="editnote(item)" class="note_link">Edit</span>
+               <span (click)="deletenote(item._id)" class="note_link">Delete</span></td>
               </tr>
              <!-- <tr>
                 <td><label>note</label></td>
