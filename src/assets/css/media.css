@@ -235,12 +235,40 @@
     .rep-dashboard_new_block3 .colmd4_3rd .rep-dashboard_new_block3_wrapper .wrapper3_sub_link{ font-size: 18px;  padding: 5px 0;}
 
     .videoWrapperblockdiv {
-        width: 85%;
+        width: 79%;
         margin: 0 auto;
     }
+
+    .rep-dashboard_new_block3 .colmd4_1st .rep-dashboard_new_block3_wrapper h2 {
+       padding: 0 0.5% 5px 0.5%;}
+
+    .rep-dashboard_new_block3 .colmd4_1st .rep-dashboard_new_block3_wrapper {
+        padding: 10px;
+    }
+    .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper {
+        padding: 10px;
+    }
+    .rep-dashboard_new_block3 .colmd4_3rd .rep-dashboard_new_block3_wrapper {
+        padding: 10px;
+    }
+
+    .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper .wrapper3_sub_link{left: 10px; bottom: 10px;}
     .admin_footer2 {
         padding: 10px 0;
         background: #373c40;
+    }
+
+    .rep-dashboard_new_block1 {
+        margin-top: 12px;
+        padding: 0px;
+    }
+
+    .rep-dashboard_new_block2 {
+        margin: 12px 0;
+        padding: 0px;
+    }
+    .rep-dashboard_new_block3 {
+        padding: 0 0 12px 0;
     }
 
     .rep-dashboard_new_block2 .colmd3_1st .rep-dashboard_new_block2_wrapper1 .form-group label{ width: 67%;}
