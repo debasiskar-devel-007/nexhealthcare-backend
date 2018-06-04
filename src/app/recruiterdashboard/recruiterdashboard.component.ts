@@ -6,9 +6,9 @@ import {Http} from '@angular/http';
 declare var moment: any;
 
 @Component({
-  selector: 'app-recruiterdashboard',
-  templateUrl: './recruiterdashboard.component.html',
-  styleUrls: ['./recruiterdashboard.component.css'],
+    selector: 'app-recruiterdashboard',
+    templateUrl: './recruiterdashboard.component.html',
+    styleUrls: ['./recruiterdashboard.component.css'],
     providers: [Commonservices],
 })
 export class RecruiterdashboardComponent implements OnInit {
@@ -23,7 +23,7 @@ export class RecruiterdashboardComponent implements OnInit {
     constructor( addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
-       // console.log(this.cookiedetails);
+        // console.log(this.cookiedetails);
         this.serverurl = _commonservices.url;
         if (this.cookiedetails == null) {
             this.router.navigate(['/log-in']);

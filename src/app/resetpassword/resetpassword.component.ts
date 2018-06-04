@@ -6,9 +6,9 @@ import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'angular2-cookie/core';
 
 @Component({
-  selector: 'app-resetpassword',
-  templateUrl: './resetpassword.component.html',
-  styleUrls: ['./resetpassword.component.css'],
+    selector: 'app-resetpassword',
+    templateUrl: './resetpassword.component.html',
+    styleUrls: ['./resetpassword.component.css'],
     providers: [Commonservices],
 })
 export class ResetpasswordComponent implements OnInit {
@@ -51,8 +51,8 @@ export class ResetpasswordComponent implements OnInit {
                 let result = res.json();
                 console.log(result);
                 if (result.status == 'success'&& typeof(result.id) != 'undefined') {
-                     console.log(result.id);
-                     this.userdetails = result.id;
+                    console.log(result.id);
+                    this.userdetails = result.id;
                 } else {
                     this.router.navigate(['/log-in']);
                 }
@@ -101,27 +101,27 @@ export class ResetpasswordComponent implements OnInit {
             this.dataForm.controls[x].markAsTouched();
         }
         this.is_error = 0;
-       // if (this.dataForm.valid ) {
-            console.log('hi');
-            let link = this.serverurl + 'newpassword';
-            let data = {id: this.cookiedetails._id, password: formval.password};
-            this._http.post(link, data)
-                .subscribe(res => {
-                    let result = res.json();
-                    console.log(result);
-                    if (result.status == 'success') {
-                        this.modalpasswordupdated = true;
-                        setTimeout(() => {
-                            this.router.navigate(['/log-in']);
-                        }, 3000);
-                    }
-                    else {
-                        this.is_error = 'Some internal problem happened! Please try again later.';
-                    }
-                }, error => {
-                    console.log('Oooops!');
-                });
-      //  }
+        // if (this.dataForm.valid ) {
+        console.log('hi');
+        let link = this.serverurl + 'newpassword';
+        let data = {id: this.cookiedetails._id, password: formval.password};
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                console.log(result);
+                if (result.status == 'success') {
+                    this.modalpasswordupdated = true;
+                    setTimeout(() => {
+                        this.router.navigate(['/log-in']);
+                    }, 3000);
+                }
+                else {
+                    this.is_error = 'Some internal problem happened! Please try again later.';
+                }
+            }, error => {
+                console.log('Oooops!');
+            });
+        //  }
 
 
     }

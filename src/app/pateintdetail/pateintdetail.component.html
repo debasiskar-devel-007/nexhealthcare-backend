@@ -27,13 +27,13 @@
       <h6> Before you submit this patient, please make sure they are: </h6>
 
       <div class="pateints_headerptext">
-      <p>1. 65 years of age or older </p>
-      <p> 2. Have had cancer and/or anyone else in their family has been diagnosed with any type of cancer<br/>
+        <p>1. 65 years of age or older </p>
+        <p> 2. Have had cancer and/or anyone else in their family has been diagnosed with any type of cancer<br/>
 
-        <span>This includes biological grandparents, parents, aunts/uncles, nieces/nephews</span> </p>
+          <span>This includes biological grandparents, parents, aunts/uncles, nieces/nephews</span> </p>
 
-      <p>  3. Currently have the red, white, and blue Medicare Part-B card
-      </p>
+        <p>  3. Currently have the red, white, and blue Medicare Part-B card
+        </p>
       </div>
 
       <div class="pateints_header_left"><h2>Patient <span>Information</span></h2></div>
@@ -88,7 +88,7 @@
               <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('invalid')==true">Invalid Emailid!</span>-->
             </div>
             <div class="clearfix"></div>
-<!--
+            <!--
             <div class="form-group"><textarea  placeholder="Address" [formControl]="dataForm.controls['address']"></textarea>
               <span class="has-error" *ngIf ="dataForm.controls['address'].touched && !dataForm.controls['address'].valid">Address is required!</span></div>-->
 
@@ -105,11 +105,11 @@
                 <option value="" disabled selected>Select State</option>
                 <option value="{{item.name}}" *ngFor="let item of usastates; let i = index">{{item.name}}</option>
               </select>
-           <!--   <input type="text"  class="form-control"  placeholder="State" [formControl]="dataForm.controls['state']"/>-->
+              <!--   <input type="text"  class="form-control"  placeholder="State" [formControl]="dataForm.controls['state']"/>-->
               <div class="clearfix"></div>
               <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid">State is required!</span></div>
 
-           <!-- <div class="form-group"><input type="text"  class="form-control"  placeholder="Zip" [formControl]="dataForm.controls['zip']"/>
+            <!-- <div class="form-group"><input type="text"  class="form-control"  placeholder="Zip" [formControl]="dataForm.controls['zip']"/>
               <span class="has-error" *ngIf ="dataForm.controls['zip'].touched && !dataForm.controls['zip'].valid">Zip is required!</span></div>
 
             <div class="form-group"><input type="text"  class="form-control"  placeholder="Date of Birth" [formControl]="dataForm.controls['dob']"/>
@@ -202,7 +202,7 @@
           </div>
 
 
-        <!--  <textarea placeholder="Only Notes" class="notes_textarea"></textarea>-->
+          <!--  <textarea placeholder="Only Notes" class="notes_textarea"></textarea>-->
 
           <div class="clearfix"></div>
 
@@ -250,8 +250,8 @@
 <app-frontfooter></app-frontfooter>
 
 
-  <div *ngIf="opensuccessmodal" class=" sign_modal modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
-       tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div *ngIf="opensuccessmodal" class=" sign_modal modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
@@ -259,7 +259,7 @@
       <div class="modal-body">
         <a href="javascript:void(0)"><img src="../../assets/images/adminlogo.png" alt="#" style="display: block; margin: 0 auto; margin-bottom: 15px;"></a>
         <p class="copiedtext">{{newinsertedname}} has been successfully added. </p>
-      <!--  <button class="btn btn-primary" (click)="closemodal()">Add Patient</button>
+        <!--  <button class="btn btn-primary" (click)="closemodal()">Add Patient</button>
         <button class="btn btn-primary" [routerLink]="['/patient-list']">View Patient List</button>-->
       </div>
       <div class="modal-footer popupnewbtnwrapper">

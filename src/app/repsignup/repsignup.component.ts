@@ -54,8 +54,8 @@ export class RepsignupComponent implements OnInit {
         }
         else {
             var splitvalue = this.hostname.split('.');
-          //  console.log(splitvalue);
-          //  console.log(splitvalue[0]);
+            //  console.log(splitvalue);
+            //  console.log(splitvalue[0]);
             if (splitvalue[2] == null) {
                 this.type = 'corporate';
                 this.neededhost = 'nexhealthtoday.com';
@@ -63,38 +63,38 @@ export class RepsignupComponent implements OnInit {
             }
             else {
                 this.addedby = splitvalue[0];
-            let link = this.serverurl + 'getuserdetailsbyuserid';
-            let data = {
-                username: splitvalue[0],
-            };
-            this._http.post(link, data)
-                .subscribe(res => {
-                    let result = res.json();
-                    console.log(result);
-                    if (result.status == 'success') {
-                        console.log(result.id.type);
-                        console.log(result.id._id);
-                        this.roleid = result.id._id;
-                        if (result.id.type == 'corporate') {
-                            this.type = 'leadmanager';
+                let link = this.serverurl + 'getuserdetailsbyuserid';
+                let data = {
+                    username: splitvalue[0],
+                };
+                this._http.post(link, data)
+                    .subscribe(res => {
+                        let result = res.json();
+                        console.log(result);
+                        if (result.status == 'success') {
+                            console.log(result.id.type);
+                            console.log(result.id._id);
+                            this.roleid = result.id._id;
+                            if (result.id.type == 'corporate') {
+                                this.type = 'leadmanager';
+                            }
+                            else if (result.id.type == 'leadmanager') {
+                                this.type = 'masteraccount';
+                                this.route.params.subscribe(params => {
+                                    this.compensationtokenvalue = params['id'];
+                                    //  console.log(this.compensationtokenvalue);
+                                    this.getdetailsbycompensationtokenvalue();
+                                });
+                            }if (result.id.type == 'masteraccount') {
+                                this.type = 'salesrep';
+                                this.cgxamount = 200 - result.id.cgxamountoflead;
+                                this.pgxvalue = 100 - result.id.pgxvalueoflead;
+                            }
                         }
-                        else if (result.id.type == 'leadmanager') {
-                            this.type = 'masteraccount';
-                            this.route.params.subscribe(params => {
-                                this.compensationtokenvalue = params['id'];
-                              //  console.log(this.compensationtokenvalue);
-                                this.getdetailsbycompensationtokenvalue();
-                            });
-                        }if (result.id.type == 'masteraccount') {
-                            this.type = 'salesrep';
-                            this.cgxamount = 200 - result.id.cgxamountoflead;
-                            this.pgxvalue = 100 - result.id.pgxvalueoflead;
-                        }
-                    }
-                }, error => {
-                    console.log('Oooops!');
-                });
-        }
+                    }, error => {
+                        console.log('Oooops!');
+                    });
+            }
         }
         this.getusastates();
         this.getuniquerepid();
@@ -128,25 +128,25 @@ export class RepsignupComponent implements OnInit {
         this._http.get(link)
             .subscribe(res => {
                 let result = res.json();
-                    console.log(result);
-                    this.usastates = result;
+                console.log(result);
+                this.usastates = result;
 
             }, error => {
                 console.log('Oooops!');
             });
     }
 
-  getuniquerepid() {
-    let link = this.serverurl + 'getuniquerepid';
-    this._http.get(link)
-      .subscribe(res => {
-        let result = res.json();
-        console.log(result);
-        this.uniquerepid = result.id;
-      }, error => {
-        console.log('Oooops!');
-      });
-  }
+    getuniquerepid() {
+        let link = this.serverurl + 'getuniquerepid';
+        this._http.get(link)
+            .subscribe(res => {
+                let result = res.json();
+                console.log(result);
+                this.uniquerepid = result.id;
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
     static validateEmail(control: FormControl) {
         RepsignupComponent.blankemail = false;
         RepsignupComponent.invalidemail = false;
@@ -175,10 +175,10 @@ export class RepsignupComponent implements OnInit {
 
     static validateUsername(control: FormControl) {
         RepsignupComponent.invalidusername = false;
-      //  console.log('control.value');
-      //  console.log(control.value);
+        //  console.log('control.value');
+        //  console.log(control.value);
         if (control.value == '' || control.value == null) {
-         //   console.log('control.value null');
+            //   console.log('control.value null');
             return {'invalidusername': false};
         }
         if (!control.value.match(/^([a-zA-Z0-9]{3,})*$/)) {
@@ -215,7 +215,7 @@ export class RepsignupComponent implements OnInit {
             let confirmPassword = group.controls[confirmPasswordKey];
 
             if (password.value !== confirmPassword.value) {
-              //  console.log('mismatch');
+                //  console.log('mismatch');
                 return {
                     mismatchedPasswords: true
                 };
@@ -233,15 +233,15 @@ export class RepsignupComponent implements OnInit {
       }
     }
   }*/
-  dosubmit(formval) {
-    this.showvalidationerror = 1;
-    let x: any;
-    for (x in this.dataForm.controls) {
-      this.dataForm.controls[x].markAsTouched();
-    }
+    dosubmit(formval) {
+        this.showvalidationerror = 1;
+        let x: any;
+        for (x in this.dataForm.controls) {
+            this.dataForm.controls[x].markAsTouched();
+        }
 
-    if (this.dataForm.valid && this.passmatchvalidate && (RepsignupComponent.invalidemail == false || RepsignupComponent.blankemail == false) && RepsignupComponent.invalidusername == false && RepsignupComponent.invalidpassword == false) {
-      let link = this.serverurl + 'signup';
+        if (this.dataForm.valid && this.passmatchvalidate && (RepsignupComponent.invalidemail == false || RepsignupComponent.blankemail == false) && RepsignupComponent.invalidusername == false && RepsignupComponent.invalidpassword == false) {
+            let link = this.serverurl + 'signup';
             let data = {
                 firstname: formval.firstname,
                 lastname: formval.lastname,
@@ -266,7 +266,7 @@ export class RepsignupComponent implements OnInit {
                 pgxvalueoflead: this.pgxvalue,
                 addedby: this.addedby,
                 iswebinarchekced: 0,
-              uniqueid: this.uniquerepid,
+                uniqueid: this.uniquerepid,
             };
             console.log('data-------');
             console.log(data);
@@ -274,17 +274,17 @@ export class RepsignupComponent implements OnInit {
                 .subscribe(res => {
                     let result = res.json();
                     if (result.status == 'error' && result.id == '-1') {
-                      //  console.log('inside mail exists');
+                        //  console.log('inside mail exists');
                         this.alreadyexist = 'Emailid already exists';
                     }
                     if (result.status == 'error' && result.id == '-2') {
-                      //  console.log('inside Username exists');
+                        //  console.log('inside Username exists');
                         this.alreadyexist = 'Username already exists';
                     }
                     if (result.status == 'success') {
                         //   console.log('success');
                         this.alreadyexist = null;
-                      /*  let addresultforcookie = {
+                        /*  let addresultforcookie = {
                             id : result.id._id,
                             firstname : formval.firstname,
                             lastname : formval.lastname,
@@ -321,7 +321,7 @@ export class RepsignupComponent implements OnInit {
                     this.cgxamount  = result.id.amount;
                     this.pgxvalue  = result.id.pgxvalue;
                 } else {
-                 console.log('Sorry ! You have to signup with proper url.');
+                    console.log('Sorry ! You have to signup with proper url.');
                     this.wrongtokenforleadrolemodal = true;
 
                 }

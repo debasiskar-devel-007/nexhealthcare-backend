@@ -270,41 +270,41 @@
 
 
       <div class="notes_divwrapper">
-      <h6 class="h6_texthading">Add Notes</h6>
-      <div class="pateintdetail_left_form pateintdetail_left_formnew">
-        <div class="addnoteblock">
-          <div class="form-group form-group_autowidth">
-            <h3 style="cursor: pointer;" class="addnote" (click)="show_div_to_add_note()">+ Add a simple note</h3>
-            <div class="addnote-textarea" *ngIf="divaddnote">
-              <textarea placeholder="Notes" [(ngModel)]="addnote"></textarea>
+        <h6 class="h6_texthading">Add Notes</h6>
+        <div class="pateintdetail_left_form pateintdetail_left_formnew">
+          <div class="addnoteblock">
+            <div class="form-group form-group_autowidth">
+              <h3 style="cursor: pointer;" class="addnote" (click)="show_div_to_add_note()">+ Add a simple note</h3>
+              <div class="addnote-textarea" *ngIf="divaddnote">
+                <textarea placeholder="Notes" [(ngModel)]="addnote"></textarea>
 
-              <button type="button" class="btn btn-primary btnsave" (click)="addsimplenote()" *ngIf="addit==1">Save</button> <!-- 1 for add-->
-              <button type="button" class="btn btn-primary btnsave" (click)="updatesimplenote()" *ngIf="addit==0">Update</button> <!-- 2 for update -->
-              <button type="button" class="btn btn-primary btncancel" (click)="cancelnote()">Cancel </button>
+                <button type="button" class="btn btn-primary btnsave" (click)="addsimplenote()" *ngIf="addit==1">Save</button> <!-- 1 for add-->
+                <button type="button" class="btn btn-primary btnsave" (click)="updatesimplenote()" *ngIf="addit==0">Update</button> <!-- 2 for update -->
+                <button type="button" class="btn btn-primary btncancel" (click)="cancelnote()">Cancel </button>
+              </div>
+              <span class="has-error" *ngIf="shownoteerror">Note is required!</span>
             </div>
-            <span class="has-error" *ngIf="shownoteerror">Note is required!</span>
-          </div>
-          <div class="addnote_textarea_table" *ngIf="noteslist">
-            <table class="table table-striped">
-          <!--    <tbody *ngFor="let item of allnotearr; let i = index">-->
-              <tr *ngFor="let item of noteslist | paginate: { itemsPerPage: 5, currentPage: p }; let j = index">
-                <td><label>{{item.note}}</label></td>
-                <td><span>{{showname(item.added_by)}}</span></td>
-                <td><span>{{showtime(item.added_on)}}</span></td>
-                <td><span (click)="editnote(item)" class="note_link">Edit</span>
-               <span (click)="deletenote(item._id)" class="note_link">Delete</span></td>
-              </tr>
-             <!-- <tr>
+            <div class="addnote_textarea_table" *ngIf="noteslist">
+              <table class="table table-striped">
+                <!--    <tbody *ngFor="let item of allnotearr; let i = index">-->
+                <tr *ngFor="let item of noteslist | paginate: { itemsPerPage: 5, currentPage: p }; let j = index">
+                  <td><label>{{item.note}}</label></td>
+                  <td><span>{{showname(item.added_by)}}</span></td>
+                  <td><span>{{showtime(item.added_on)}}</span></td>
+                  <td><span (click)="editnote(item)" class="note_link">Edit</span>
+                    <span (click)="deletenote(item._id)" class="note_link">Delete</span></td>
+                </tr>
+                <!-- <tr>
                 <td><label>note</label></td>
                 <td><span>John Test</span></td>
                 <td><span>May 24, 2018</span></td>
               </tr>-->
-            <!--  </tbody>-->
-            </table>
+                <!--  </tbody>-->
+              </table>
+            </div>
           </div>
+          <div class="clearfix"></div>
         </div>
-        <div class="clearfix"></div>
-      </div>
 
       </div>
     </div>

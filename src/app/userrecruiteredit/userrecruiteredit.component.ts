@@ -5,9 +5,9 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
 
 @Component({
-  selector: 'app-userrecruiteredit',
-  templateUrl: './userrecruiteredit.component.html',
-  styleUrls: ['./userrecruiteredit.component.css'],
+    selector: 'app-userrecruiteredit',
+    templateUrl: './userrecruiteredit.component.html',
+    styleUrls: ['./userrecruiteredit.component.css'],
     providers: [Commonservices],
 })
 export class UserrecruitereditComponent implements OnInit {
@@ -64,16 +64,16 @@ export class UserrecruitereditComponent implements OnInit {
             zip: ['', Validators.required],
             subdomain: ['', Validators.required],
         });
-  }
+    }
     getdetailsbyid() {
         let link = this.serverurl + 'getuserdetails';
         let data = {userid : this.id};
         this._http.post(link, data)
             .subscribe(res => {
                 let result = res.json();
-             //   console.log(result);
+                //   console.log(result);
                 if (result.status == 'success' && typeof(result.id) != 'undefined') {
-                     console.log(result.id);
+                    console.log(result.id);
                     let userdet = result.id;
                     this.type = userdet.type;
                     this.dataForm = this.fb.group({
@@ -86,7 +86,7 @@ export class UserrecruitereditComponent implements OnInit {
                         address: [userdet.address, Validators.required],
                         address2: [userdet.address2],
                         email: [userdet.email],
-                     //   phone: [userdet.phone, Validators.required],
+                        //   phone: [userdet.phone, Validators.required],
                         phone: [userdet.phone, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
                         city: [userdet.city, Validators.required],
                         state: [userdet.state, Validators.required],
@@ -94,13 +94,13 @@ export class UserrecruitereditComponent implements OnInit {
                         dob: [userdet.dob, Validators.required],
                         type: [userdet.type, Validators.required],
                         addedby: [userdet.addedby],
-                       /* notes: [userdet.notes, Validators.required],
+                        /* notes: [userdet.notes, Validators.required],
                         status: [userdet.status, Validators.required],*/
                         zip: [userdet.zip, Validators.required],
                         subdomain: [userdet.username],
                     });
                 } else {
-                   // this.router.navigate(['/patient-list']);
+                    // this.router.navigate(['/patient-list']);
                 }
             }, error => {
                 console.log('Ooops');
@@ -140,90 +140,90 @@ export class UserrecruitereditComponent implements OnInit {
     }*/
     dosubmit(formval) {
         this.passerror = null;
-      console.log(this.dataForm.valid);
-      console.log(formval.password);
-      if (formval.password == null || formval.password == '') {
-        console.log('pass null');
-      //  if (this.dataForm.valid && this.passmatchvalidate && UserrecruitereditComponent.invalidpassword == false) {
-        if (this.dataForm.valid) {
-            let link= this.serverurl + 'edituserdetails';
-            let data = {
-                id: this.id,
-                firstname: formval.firstname,
-                lastname: formval.lastname,
-                address: formval.address,
-                address2: formval.address2,
-                phone: formval.phone,
-                city: formval.city,
-                state: formval.state,
-                zip: formval.zip,
-                gender: formval.gender,
-                dob: formval.dob,
-                type: formval.type
-            };
-            console.log(data);
-            this._http.post(link, data)
-                .subscribe(data => {
-                   this.router.navigate(['/userrecruiterlist', formval.type]);
-                }, error => {
-                    console.log('Oooops!');
-                });
-        }
-      }
-      else {
-        console.log('pass givrn');
+        console.log(this.dataForm.valid);
         console.log(formval.password);
-          this.passerror = null;
-          if (formval.password == formval.confpassword) {
-              console.log('1 step ahd');
-              console.log(formval.password.length);
-              if (formval.password.length >= 8) {
-                  console.log('2 step ahd');
-                   if (!formval.password.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/)) {
-                      this.passerror = 'Password must contain at least 8 characters,one lower case character , one upper case character , one number, one special character';
-                       console.log('3 step ahd');
-                  }
-                  else {
-                      this.passerror = null;
-                      console.log('4 step ahd');
-                    // if (this.dataForm.valid) {
-                          console.log('yo');
-                          let link= this.serverurl + 'edituserdetails';
-                          let data = {
-                              id: this.id,
-                              firstname: formval.firstname,
-                              lastname: formval.lastname,
-                              password: formval.password,
-                              address: formval.address,
-                              address2: formval.address2,
-                              phone: formval.phone,
-                              city: formval.city,
-                              state: formval.state,
-                              zip: formval.zip,
-                              gender: formval.gender,
-                              dob: formval.dob,
-                              type: formval.type
-                          };
-                          console.log(data);
-                          this._http.post(link, data)
-                              .subscribe(data => {
-                                    this.router.navigate(['/userrecruiterlist', formval.type]);
-                              }, error => {
-                                  console.log('Oooops!');
-                              });
-                   //   }
-                  }
-              }
-              else {
-                  this.passerror = 'Password must contain at least 8 characters';
-              }
-          }
-          else {
-            this.passerror = 'Passwords must match';
-          }
-      }
+        if (formval.password == null || formval.password == '') {
+            console.log('pass null');
+            //  if (this.dataForm.valid && this.passmatchvalidate && UserrecruitereditComponent.invalidpassword == false) {
+            if (this.dataForm.valid) {
+                let link= this.serverurl + 'edituserdetails';
+                let data = {
+                    id: this.id,
+                    firstname: formval.firstname,
+                    lastname: formval.lastname,
+                    address: formval.address,
+                    address2: formval.address2,
+                    phone: formval.phone,
+                    city: formval.city,
+                    state: formval.state,
+                    zip: formval.zip,
+                    gender: formval.gender,
+                    dob: formval.dob,
+                    type: formval.type
+                };
+                console.log(data);
+                this._http.post(link, data)
+                    .subscribe(data => {
+                        this.router.navigate(['/userrecruiterlist', formval.type]);
+                    }, error => {
+                        console.log('Oooops!');
+                    });
+            }
+        }
+        else {
+            console.log('pass givrn');
+            console.log(formval.password);
+            this.passerror = null;
+            if (formval.password == formval.confpassword) {
+                console.log('1 step ahd');
+                console.log(formval.password.length);
+                if (formval.password.length >= 8) {
+                    console.log('2 step ahd');
+                    if (!formval.password.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/)) {
+                        this.passerror = 'Password must contain at least 8 characters,one lower case character , one upper case character , one number, one special character';
+                        console.log('3 step ahd');
+                    }
+                    else {
+                        this.passerror = null;
+                        console.log('4 step ahd');
+                        // if (this.dataForm.valid) {
+                        console.log('yo');
+                        let link= this.serverurl + 'edituserdetails';
+                        let data = {
+                            id: this.id,
+                            firstname: formval.firstname,
+                            lastname: formval.lastname,
+                            password: formval.password,
+                            address: formval.address,
+                            address2: formval.address2,
+                            phone: formval.phone,
+                            city: formval.city,
+                            state: formval.state,
+                            zip: formval.zip,
+                            gender: formval.gender,
+                            dob: formval.dob,
+                            type: formval.type
+                        };
+                        console.log(data);
+                        this._http.post(link, data)
+                            .subscribe(data => {
+                                this.router.navigate(['/userrecruiterlist', formval.type]);
+                            }, error => {
+                                console.log('Oooops!');
+                            });
+                        //   }
+                    }
+                }
+                else {
+                    this.passerror = 'Password must contain at least 8 characters';
+                }
+            }
+            else {
+                this.passerror = 'Passwords must match';
+            }
+        }
     }
-cancelit() {
-    this.router.navigate(['/userrecruiterlist', this.type]);
-}
+    cancelit() {
+        this.router.navigate(['/userrecruiterlist', this.type]);
+    }
 }

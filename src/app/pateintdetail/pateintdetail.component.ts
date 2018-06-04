@@ -6,9 +6,9 @@ import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'angular2-cookie/core';
 
 @Component({
-  selector: 'app-pateintdetail',
-  templateUrl: './pateintdetail.component.html',
-  styleUrls: ['./pateintdetail.component.css'],
+    selector: 'app-pateintdetail',
+    templateUrl: './pateintdetail.component.html',
+    styleUrls: ['./pateintdetail.component.css'],
     providers: [Commonservices],
 })
 export class PateintdetailComponent implements OnInit {
@@ -23,8 +23,8 @@ export class PateintdetailComponent implements OnInit {
     static invalidemail;
     static blankemail;
     public opensuccessmodal: boolean = false;
-  public uniquepatientid;
-  public tagid;
+    public uniquepatientid;
+    public tagid;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.fb = fb;
@@ -32,7 +32,7 @@ export class PateintdetailComponent implements OnInit {
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
         this.getusastates();
-      this.getuniquepatientid();
+        this.getuniquepatientid();
     }
     getusastates() {
         let link = this.serverurl + 'getusastates';
@@ -46,19 +46,19 @@ export class PateintdetailComponent implements OnInit {
                 console.log('Oooops!');
             });
     }
-  getuniquepatientid() {
-    let link = this.serverurl + 'getuniquerepid';
-    this._http.get(link)
-      .subscribe(res => {
-        let result = res.json();
-        console.log(result);
-        this.uniquepatientid = result.id;
-      }, error => {
-        console.log('Oooops!');
-      });
-  }
+    getuniquepatientid() {
+        let link = this.serverurl + 'getuniquerepid';
+        this._http.get(link)
+            .subscribe(res => {
+                let result = res.json();
+                console.log(result);
+                this.uniquepatientid = result.id;
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
     ngOnInit() {
-       /* this.dataForm = this.fb.group({
+        /* this.dataForm = this.fb.group({
             firstname: ['', Validators.required],
             lastname: ['', Validators.required],
             email: ['', Validators.compose([Validators.required, PateintdetailComponent.validateEmail])],
@@ -84,7 +84,7 @@ export class PateintdetailComponent implements OnInit {
         this.dataForm = this.fb.group({
             firstname: ['', Validators.required],
             lastname: ['', Validators.required],
-          //  email: ['', Validators.compose([Validators.required, PateintdetailComponent.validateEmail])],
+            //  email: ['', Validators.compose([Validators.required, PateintdetailComponent.validateEmail])],
             email: [''],
             phone: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
             city: ['', Validators.required],
@@ -118,28 +118,28 @@ export class PateintdetailComponent implements OnInit {
     clearit() {
         this.dataForm.reset();
         console.log(this.dataForm.value);
-      //  this.dataForm.value.state = null;
+        //  this.dataForm.value.state = null;
     }
     dosubmit(formval) {
         let x: any;
         for (x in this.dataForm.controls) {
             this.dataForm.controls[x].markAsTouched();
         }
-       // if (this.dataForm.valid && (PateintdetailComponent.invalidemail == false || PateintdetailComponent.blankemail == false))
+        // if (this.dataForm.valid && (PateintdetailComponent.invalidemail == false || PateintdetailComponent.blankemail == false))
         if (this.dataForm.valid )
         {
-          console.log('inside');
+            console.log('inside');
             let link = this.serverurl + 'patientdetail';
             let data = {
                 firstname: formval.firstname,
                 lastname: formval.lastname,
                 email: formval.email,
                 phone: formval.phone,
-              //  address: formval.address,
+                //  address: formval.address,
                 city: formval.city,
                 state: formval.state,
                 addedby: this.cookiedetails.id,
-              uniqueid: this.uniquepatientid,
+                uniqueid: this.uniquepatientid,
                 /*zip: formval.zip,
                 gender: formval.gender,
                 dob: formval.dob,
@@ -158,14 +158,14 @@ export class PateintdetailComponent implements OnInit {
             this._http.post(link, data)
                 .subscribe(res => {
                     let result = res.json();
-                      console.log(result);
+                    console.log(result);
                     if (result.status == 'success') {
                         this.dataForm.reset();
                         this.opensuccessmodal = true;
                         this.newinstertedid = result.id;
                         this.newinsertedname = formval.firstname + ' ' + formval.lastname;
                         this.newinstertedid = result.id;
-                       // this.router.navigate(['/patient-list']);
+                        // this.router.navigate(['/patient-list']);
                     }
                 }, error => {
                     console.log('Oooops!');
@@ -178,50 +178,50 @@ export class PateintdetailComponent implements OnInit {
     }
 
     gotopatientrecord() {
-      this.gettagvalue(this.newinstertedid);
-      setTimeout(() => {
-        console.log(this.tagid);
-      if (this.tagid == '5b0bfa1b3fe08865e7955f71') {
-        this.router.navigate(['/patientrecord', this.newinstertedid, 1]); // accept
-      }
-      if (this.tagid == '5b0bfa1d3fe08865e7955f72') {
-        this.router.navigate(['/patientrecord', this.newinstertedid, 2]); // decline
-      }
-      if (this.tagid == '5b0cda8121eaaa0244d52b9e') {
-        this.router.navigate(['/patientrecord', this.newinstertedid, 3]); // lead
-      }
-      if (this.tagid == '5b0b9235b33cbc2d4af08dd9') {
-        this.router.navigate(['/patientrecord', this.newinstertedid, 4]); // pps submitted
-      }
-      if (this.tagid == '5afad90dde56b53d10e2ab4d') {
-        this.router.navigate(['/patientrecord', this.newinstertedid, 5]); // pf submitted
-      }
-      }, 1500);
-   // this.router.navigate(['/patientrecord', this.newinstertedid]);
+        this.gettagvalue(this.newinstertedid);
+        setTimeout(() => {
+            console.log(this.tagid);
+            if (this.tagid == '5b0bfa1b3fe08865e7955f71') {
+                this.router.navigate(['/patientrecord', this.newinstertedid, 1]); // accept
+            }
+            if (this.tagid == '5b0bfa1d3fe08865e7955f72') {
+                this.router.navigate(['/patientrecord', this.newinstertedid, 2]); // decline
+            }
+            if (this.tagid == '5b0cda8121eaaa0244d52b9e') {
+                this.router.navigate(['/patientrecord', this.newinstertedid, 3]); // lead
+            }
+            if (this.tagid == '5b0b9235b33cbc2d4af08dd9') {
+                this.router.navigate(['/patientrecord', this.newinstertedid, 4]); // pps submitted
+            }
+            if (this.tagid == '5afad90dde56b53d10e2ab4d') {
+                this.router.navigate(['/patientrecord', this.newinstertedid, 5]); // pf submitted
+            }
+        }, 1500);
+        // this.router.navigate(['/patientrecord', this.newinstertedid]);
     }
-  gettagvalue(id) {
-    let link = this.serverurl + 'gettagvalue';
-    let data = {
-      userid: id,
-    }
-    this._http.post(link, data)
-      .subscribe(res => {
-        let result = res.json();
-        console.log(result);
-        if (result.status == 'success') {
-          this.tagid = result.id[0].tagid;
+    gettagvalue(id) {
+        let link = this.serverurl + 'gettagvalue';
+        let data = {
+            userid: id,
         }
-      }, error => {
-        console.log('Oooops!');
-      });
-  }
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                console.log(result);
+                if (result.status == 'success') {
+                    this.tagid = result.id[0].tagid;
+                }
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
     onHidden() {
         this.opensuccessmodal = false;
 
     }
 
     cancel() {
-      this.dataForm.reset();
+        this.dataForm.reset();
         this.router.navigate(['/patient-list']);
     }
 }

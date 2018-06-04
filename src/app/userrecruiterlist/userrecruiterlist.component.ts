@@ -6,9 +6,9 @@ import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'angular2-cookie/core';
 
 @Component({
-  selector: 'app-userrecruiterlist',
-  templateUrl: './userrecruiterlist.component.html',
-  styleUrls: ['./userrecruiterlist.component.css'],
+    selector: 'app-userrecruiterlist',
+    templateUrl: './userrecruiterlist.component.html',
+    styleUrls: ['./userrecruiterlist.component.css'],
     providers: [Commonservices],
 })
 export class UserrecruiterlistComponent implements OnInit {
@@ -21,13 +21,13 @@ export class UserrecruiterlistComponent implements OnInit {
     constructor(private _http: Http, private router: Router, private _commonservices: Commonservices,  private route: ActivatedRoute) {
         this.serverurl = _commonservices.url;
     }
-  ngOnInit() {
-      this.route.params.subscribe(params => {
-          this.typeis = params['id'];
-          console.log(this.typeis);
-          this.getUserList();
-      });
-  }
+    ngOnInit() {
+        this.route.params.subscribe(params => {
+            this.typeis = params['id'];
+            console.log(this.typeis);
+            this.getUserList();
+        });
+    }
     markasdone(itemid) {
         let link = this.serverurl + 'markasdone';
         let data = {

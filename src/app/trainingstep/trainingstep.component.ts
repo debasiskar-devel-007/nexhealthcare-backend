@@ -6,13 +6,13 @@ import {Commonservices} from '../app.commonservices';
 declare var $: any;
 
 @Component({
-  selector: 'app-trainingstep',
-  templateUrl: './trainingstep.component.html',
-  styleUrls: ['./trainingstep.component.css'],
+    selector: 'app-trainingstep',
+    templateUrl: './trainingstep.component.html',
+    styleUrls: ['./trainingstep.component.css'],
     providers: [Commonservices],
 })
 export class TrainingstepComponent implements OnInit {
-  public vindex: any = 0;
+    public vindex: any = 0;
     private addcookie: CookieService;
     private cookiedetails;
     public serverurl;
@@ -29,9 +29,9 @@ export class TrainingstepComponent implements OnInit {
         if (this.cookiedetails == null) {
             this.router.navigate(['/log-in']);
         } else {
-        this.callit();
-        this.getuserdetails();
-    }
+            this.callit();
+            this.getuserdetails();
+        }
     }
 
     ngOnInit() {
@@ -70,41 +70,41 @@ export class TrainingstepComponent implements OnInit {
     ngAfterViewChecked() {
 
         setTimeout(() => {
-    var curval=this.trainingvideolist;
-    console.log('curvval '+ this.trainingvideolist );
-    console.log('curvval '+ curval );
-      let vindex=this.vindex;
-       /* console.log("$('#tspan').text()");
+            var curval=this.trainingvideolist;
+            console.log('curvval '+ this.trainingvideolist );
+            console.log('curvval '+ curval );
+            let vindex=this.vindex;
+            /* console.log("$('#tspan').text()");
         console.log($('#tspan').text());
         console.log($('#tspan').html());*/
-        document.getElementById('video1').addEventListener('loadedmetadata', function() {
+            document.getElementById('video1').addEventListener('loadedmetadata', function() {
 
-          console.log('vindex');
-          console.log(vindex);
-           if(vindex==1) $('video').get(0).currentTime = curval;
-           else $('video').get(0).pause();
-        }, true);
+                console.log('vindex');
+                console.log(vindex);
+                if(vindex==1) $('video').get(0).currentTime = curval;
+                else $('video').get(0).pause();
+            }, true);
 
-        vindex++;
-        var aud = document.getElementById('video1');
-        aud.onended = function(e) {
-            console.log('The audio has ended');
-            setTimeout(()=> {
-                $('video').get(0).pause();
-                // $('video').get(1).pause();
-              $('video').get(0).load();
-              $('video').get(0).pause();
-                // aud.currentTime=58;
-              $('video').get(0).pause();
-                $('video').find('source').attr('src', '');
-              //  this.gonextmodal = true;
-                $('#modalcall').click();
-                console.log('aud');
-                console.log(aud);
-            }, 1000);
-        };
-        $('video').get(0).play();
-    }, 1000);
+            vindex++;
+            var aud = document.getElementById('video1');
+            aud.onended = function(e) {
+                console.log('The audio has ended');
+                setTimeout(()=> {
+                    $('video').get(0).pause();
+                    // $('video').get(1).pause();
+                    $('video').get(0).load();
+                    $('video').get(0).pause();
+                    // aud.currentTime=58;
+                    $('video').get(0).pause();
+                    $('video').find('source').attr('src', '');
+                    //  this.gonextmodal = true;
+                    $('#modalcall').click();
+                    console.log('aud');
+                    console.log(aud);
+                }, 1000);
+            };
+            $('video').get(0).play();
+        }, 1000);
     }
 
     calllogout() {
@@ -147,7 +147,7 @@ export class TrainingstepComponent implements OnInit {
             });
     }
     demomodal() {
-    this.gonextmodal = true;
+        this.gonextmodal = true;
     }
     calldashboard() {
         let link = this.serverurl + 'dashboardtrainingvideostatus';
@@ -172,22 +172,22 @@ export class TrainingstepComponent implements OnInit {
             }
         }
         else if (this.cookiedetails.type == 'corporate' || 'leadmanager' || 'masteraccount') {
-           // this.router.navigate(['/rep-dashboard']);
-          if (this.webinar == 0) {
-            this.router.navigate(['/completewebinar']);
-          }
-          else {
-            this.router.navigate(['/rep-dashboard']);
-          }
+            // this.router.navigate(['/rep-dashboard']);
+            if (this.webinar == 0) {
+                this.router.navigate(['/completewebinar']);
+            }
+            else {
+                this.router.navigate(['/rep-dashboard']);
+            }
         }
         else if (this.cookiedetails.type == 'recruiter') {
-          //  this.router.navigate(['/recruiterdashboard']);
-          if (this.webinar == 0) {
-            this.router.navigate(['/completewebinar']);
-          }
-          else {
-            this.router.navigate(['/rep-dashboard']);
-          }
+            //  this.router.navigate(['/recruiterdashboard']);
+            if (this.webinar == 0) {
+                this.router.navigate(['/completewebinar']);
+            }
+            else {
+                this.router.navigate(['/rep-dashboard']);
+            }
         }
         else { // superadmin
             this.router.navigate(['/rep-dashboard']);

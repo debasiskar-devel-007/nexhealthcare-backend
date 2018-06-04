@@ -28,7 +28,7 @@ export class RepcontractComponent implements OnInit {
         this.serverurl = _commonservices.url;
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
-       // console.log('repcontract get ');
+        // console.log('repcontract get ');
         console.log('this.cookiedetails');
         console.log(this.cookiedetails);
         this.today = moment().format('MMM') + ' ' + moment().format('D') + ', ' + moment().format('YYYY') + ' ' + moment().format('h') + ':' + moment().format('mm') + ' ' + moment().format('A');
@@ -38,13 +38,13 @@ export class RepcontractComponent implements OnInit {
             this.router.navigate(['/log-in']);
         }
         else{
-        if (this.cookiedetails.type == 'leadmanager') {
-            this.cgxvalue = 10;
-            this.pgxvalue = 0;
-        }
-        else {
-            this.getuserdetails();
-        }
+            if (this.cookiedetails.type == 'leadmanager') {
+                this.cgxvalue = 10;
+                this.pgxvalue = 0;
+            }
+            else {
+                this.getuserdetails();
+            }
         }
     }
 
@@ -77,20 +77,20 @@ export class RepcontractComponent implements OnInit {
         else {
             let link = this.serverurl + 'repcontract';
             let data = {
-              name: this.signaturename,
-              addedby: this.cookiedetails.id,
-              compensationgrade: this.cgxvalue,
-              pgxvalue: this.pgxvalue,
+                name: this.signaturename,
+                addedby: this.cookiedetails.id,
+                compensationgrade: this.cgxvalue,
+                pgxvalue: this.pgxvalue,
             };
-          this._http.post(link, data)
-            .subscribe(res => {
-              let result = res.json();
-              console.log(result);
-              if (result.status == 'success') {
-                this.router.navigate(['/trainingstep']);
-              }
-            }, error => {
-              console.log('Oooops!');
+            this._http.post(link, data)
+                .subscribe(res => {
+                    let result = res.json();
+                    console.log(result);
+                    if (result.status == 'success') {
+                        this.router.navigate(['/trainingstep']);
+                    }
+                }, error => {
+                    console.log('Oooops!');
                 });
             this.errorblank = null;
         }

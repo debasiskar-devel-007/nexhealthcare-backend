@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-frontfooter',
-  templateUrl: './frontfooter.component.html',
-  styleUrls: ['./frontfooter.component.css']
+    selector: 'app-frontfooter',
+    templateUrl: './frontfooter.component.html',
+    styleUrls: ['./frontfooter.component.css']
 })
 export class FrontfooterComponent implements OnInit {
     public termsmodal: boolean = false;
     public policymodal: boolean = false;
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
     callterms() {
         this.termsmodal = true;
     }

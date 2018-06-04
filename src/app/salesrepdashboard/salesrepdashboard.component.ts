@@ -6,9 +6,9 @@ import {Http} from '@angular/http';
 declare var moment: any;
 
 @Component({
-  selector: 'app-salesrepdashboard',
-  templateUrl: './salesrepdashboard.component.html',
-  styleUrls: ['./salesrepdashboard.component.css'],
+    selector: 'app-salesrepdashboard',
+    templateUrl: './salesrepdashboard.component.html',
+    styleUrls: ['./salesrepdashboard.component.css'],
     providers: [Commonservices],
 })
 export class SalesrepdashboardComponent implements OnInit {
@@ -33,12 +33,12 @@ export class SalesrepdashboardComponent implements OnInit {
 
     }
 
-  ngOnInit() {
-  }
-calllogout() {
-    this.addcookie.removeAll();
-    this.router.navigate(['/log-in']);
-}
+    ngOnInit() {
+    }
+    calllogout() {
+        this.addcookie.removeAll();
+        this.router.navigate(['/log-in']);
+    }
     onHidden() {
         this.comingsoonmodal = false;
 
@@ -58,14 +58,14 @@ calllogout() {
                 console.log(result);
                 if (result.status == 'success') {
                     this.recdetails = result.id;
-                   // console.log(this.recdetails);
-                   // console.log(this.recdetails.logintime);
-                  setTimeout(() => {
-                    if (this.recdetails.logintime != null) {
-                    this.logintime = moment(this.recdetails.logintime).format('DD-MM-YYYY');
-                    this.signuptime = moment(this.recdetails.signuptime).format('DD-MM-YYYY');
-                    }
-                  }, 500);
+                    // console.log(this.recdetails);
+                    // console.log(this.recdetails.logintime);
+                    setTimeout(() => {
+                        if (this.recdetails.logintime != null) {
+                            this.logintime = moment(this.recdetails.logintime).format('DD-MM-YYYY');
+                            this.signuptime = moment(this.recdetails.signuptime).format('DD-MM-YYYY');
+                        }
+                    }, 500);
                 }
             }, error => {
                 console.log('Oooops!');

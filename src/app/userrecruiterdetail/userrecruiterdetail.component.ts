@@ -5,9 +5,9 @@ import {Commonservices} from '../app.commonservices' ;
 import {Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-userrecruiterdetail',
-  templateUrl: './userrecruiterdetail.component.html',
-  styleUrls: ['./userrecruiterdetail.component.css'],
+    selector: 'app-userrecruiterdetail',
+    templateUrl: './userrecruiterdetail.component.html',
+    styleUrls: ['./userrecruiterdetail.component.css'],
     providers: [Commonservices],
 })
 export class UserrecruiterdetailComponent implements OnInit {
@@ -16,17 +16,17 @@ export class UserrecruiterdetailComponent implements OnInit {
     public id;
     public type;
 
-  constructor( private _http: Http, private router: Router, private route: ActivatedRoute, private _commonservices: Commonservices) {
-      this.serverurl = _commonservices.url;
-  }
+    constructor( private _http: Http, private router: Router, private route: ActivatedRoute, private _commonservices: Commonservices) {
+        this.serverurl = _commonservices.url;
+    }
 
-  ngOnInit() {
-      this.route.params.subscribe(params => {
-          this.id = params['id'];
-          console.log(this.id);
-          this.getdetailsbyid();
-      });
-  }
+    ngOnInit() {
+        this.route.params.subscribe(params => {
+            this.id = params['id'];
+            console.log(this.id);
+            this.getdetailsbyid();
+        });
+    }
     getdetailsbyid() {
         let link = this.serverurl + 'getuserdetails';
         let data = {userid : this.id};
