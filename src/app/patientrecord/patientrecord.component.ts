@@ -18,6 +18,7 @@ export class PatientrecordComponent implements OnInit {
   public dataForm1: FormGroup ;
   public fb;
   public fb1;
+  public deleteid;
   public editnoteid;
   public type;
   public patientdetails;
@@ -32,6 +33,8 @@ export class PatientrecordComponent implements OnInit {
   public allnotearr: any =[];
   public patient_added_on;
   public opensaveorsubmitmodal: boolean = false;
+  public showdeletenotemodal: boolean = false;
+  public showdeletesuccessmodal: boolean = false;
   id: number;
     public p: number = 1;
   public serverurl;
@@ -40,6 +43,8 @@ export class PatientrecordComponent implements OnInit {
   public repuniqueid;
  // public cookieuniqueid;
   public pateintquestioniremodal: boolean = false;
+  public successfuladdnotemodal: boolean = false;
+  public successfulupdatenotemodal: boolean = false;
   private addcookie: CookieService;
   private cookiedetails;
   public iscompletedpatientrecord=0;
@@ -258,6 +263,10 @@ export class PatientrecordComponent implements OnInit {
                     if (result.status == 'success') {
                         this.addnote = null;
                         this.divaddnote = false;
+                        this.successfuladdnotemodal = true;
+                        setTimeout(() => {
+                            this.successfuladdnotemodal = false;
+                        }, 2000);
                         this.getnotes();
                     }
                 }, error => {
@@ -273,21 +282,32 @@ export class PatientrecordComponent implements OnInit {
         this.addnote = null;
         this.divaddnote = false;
     }
-    deletenote(id) {
+    deletethisnote() {
         let link = this.serverurl + 'notedelete';
         let data = {
-            _id: id,
+            _id: this.deleteid,
         };
         this._http.post(link, data)
             .subscribe(res => {
                 let result = res.json();
                 if (result.status == 'success') {
+                    this.showdeletenotemodal = false;
+                    this.showdeletesuccessmodal = true;
+                    setTimeout(() => {
+                        this.showdeletesuccessmodal = false;
+                    }, 2000);
                     this.getnotes();
                 }
             }, error => {
                 console.log('Oooops!');
             });
     }
+
+    deletenote(id) {
+        this.deleteid = id;
+    this.showdeletenotemodal = true;
+    }
+
     updatesimplenote() {
         let link = this.serverurl + 'noteupdate';
         let data = {
@@ -302,6 +322,10 @@ export class PatientrecordComponent implements OnInit {
                     this.addnote = null;
                     this.addit = 1;
                     this.getnotes();
+                    this.successfulupdatenotemodal = true;
+                    setTimeout(() => {
+                        this.successfulupdatenotemodal = false;
+                    }, 2000);
                 }
             }, error => {
                 console.log('Oooops!');
@@ -1098,6 +1122,7 @@ export class PatientrecordComponent implements OnInit {
   onHidden() {
     this.pateintquestioniremodal = false;
     this.opensaveorsubmitmodal = false;
+    this.showdeletenotemodal = false;
   }
   savepateintquestionire() {
     this.issubmit = false;
