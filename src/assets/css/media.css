@@ -56,6 +56,15 @@
 
 }
 
+@media(max-width:1680px) {
+
+    .rep-dashboard_new_block2 .colmd3_1st .rep-dashboard_new_block2_wrapper1 .form-group{ padding: 1px 0;}
+    .rep-dashboard_new_block2 .colmd3_2nd .rep-dashboard_new_block2_wrapper2 .form-group{ padding: 1px 0;}
+
+    .admindashboardbody3{ min-height: inherit;}
+    .rep-dashboard_new_block2 .colmd3_2nd .rep-dashboard_new_block2_wrapper2{ background-position: right top!important;}
+}
+
 @media(max-width:1640px) {
 
     .videoWrapper_div{ width: 50%; margin: 0 auto;}
@@ -67,7 +76,68 @@
 
     }
 
+@media(max-width:1600px) {
+    .rep-dashboard_new_block1 .col-md-5{ width: 30%;}
+    .rep-dashboard_new_block1 .col-md-7{ width: 70%;}
+
+    .rep-dashboard_new_block1 .col-md-7 .rep-dashboard_new_text1{ padding: 10px 2%;}
+
+    .rep-dashboard_new_block1 .col-md-7 .rep-dashboard_new_text1_con{ width: 96%;}
+
+    .rep-dashboard_new_block1 .col-md-7 .rep-dashboard_new_text1 strong{ padding: 0px; font-size: 20px;}
+
+    .rep-dashboard_new_block1 .col-md-7 .rep-dashboard_new_text1 p{ font-size: 16px; line-height: 22px;}
+
+    .admindashboardmenublock .col-sm-2 {
+        width:86px;
+        margin: 8px 0;
+        padding: 0px;
+    }
+
+    .admindashboardmenublock .col-lg-7 {
+        width: auto;
+        margin-top: 8px;
+    }
+
+    .admindashboardmenublock .col-sm-3 {
+        width: 52px;
+        float: right;
+        padding: 0px;
+        margin-top: 12px;
+    }
+
+    .admin_footer2 {
+        padding: 12px 0;
+        background: #373c40;
+    }
+
+    .rep-dashboard_new_block3 .colmd4_1st .rep-dashboard_new_block3_wrapper .rep-dashboard_new_block3_wrapper_sub .wrapper3_sub_con span{ padding: 5px;}
+
+    .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper h2{ font-size: 24px; }
+
+    .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper h3{  padding:10px 0 0 0; font-size: 18px; line-height: 18px;}
+
+    .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper h4{  font-size:50px;  line-height:40px;}
+
+    .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper h5{  font-size:30px;  line-height:20px;}
+
+    .videoWrapperblockdiv {
+        width: 67%;
+        margin: 0 auto;
+    }
+
+    .rep-dashboard_new_block3 .colmd4_1st .rep-dashboard_new_block3_wrapper .wrapper3_sub_link{ font-size: 18px;}
+    .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper .wrapper3_sub_link{ font-size: 18px;}
+    .rep-dashboard_new_block3 .colmd4_3rd .rep-dashboard_new_block3_wrapper .wrapper3_sub_link{ font-size: 18px;}
+
+    .rep-dashboard_new_block2 .colmd3_1st .rep-dashboard_new_block2_wrapper1{ padding: 10px;}
+    .rep-dashboard_new_block2 .colmd3_2nd .rep-dashboard_new_block2_wrapper2{ padding: 10px;}
+
+}
+
 @media(max-width:1540px) {
+
+    .admindashboardcon3{ width: 98%;}
     .pateintdetail_left_formnew .form-group .form-control {
         width: 66%!important;
     }
@@ -153,6 +223,36 @@
     }
 }
 
+
+@media(max-width:1440px) {
+    .rep-dashboard_new_wrapper{ width: 96%;}
+
+    .rep-dashboard_new_block3 .colmd4_1st .rep-dashboard_new_block3_wrapper .rep-dashboard_new_block3_wrapper_sub .wrapper3_sub_con span {
+        padding: 10px;
+    }
+    .rep-dashboard_new_block3 .colmd4_1st .rep-dashboard_new_block3_wrapper .wrapper3_sub_link{ font-size: 18px; padding: 5px 0;}
+    .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper .wrapper3_sub_link{ font-size: 18px; padding: 5px 0;}
+    .rep-dashboard_new_block3 .colmd4_3rd .rep-dashboard_new_block3_wrapper .wrapper3_sub_link{ font-size: 18px;  padding: 5px 0;}
+
+    .videoWrapperblockdiv {
+        width: 85%;
+        margin: 0 auto;
+    }
+    .admin_footer2 {
+        padding: 10px 0;
+        background: #373c40;
+    }
+
+    .rep-dashboard_new_block2 .colmd3_1st .rep-dashboard_new_block2_wrapper1 .form-group label{ width: 67%;}
+
+    .rep-dashboard_new_block2 .colmd3_1st .rep-dashboard_new_block2_wrapper1 .form-group input {
+        width: 32%;}
+
+    .rep-dashboard_new_block2 .colmd3_2nd .rep-dashboard_new_block2_wrapper2 .form-group label{ width: 42%;}
+    .rep-dashboard_new_block2 .colmd3_2nd .rep-dashboard_new_block2_wrapper2 .form-group input {
+        width: 58%;}
+}
+
 @media(max-width:1400px) {
     .pateintdetail_left_formnew .form-group .form-control {
         width: 65%!important;
@@ -167,10 +267,107 @@
 
     .repsignup_mainbody .form_wrapper_text h4{ font-size: 26px;}
 
-    .admindashboardcon2_sub_condiv_heading h2{ font-size: 20px;}
+
 
     .form_wrapper_text_subdiv3 span{ width: 40%;}
 }
+
+@media(max-width:1366px) {
+
+    .rep-dashboard_new_block1 .col-md-7 .rep-dashboard_new_text1 p {
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    .rep-dashboard_new_block2 .colmd3_1st .rep-dashboard_new_block2_wrapper1 .form-group label {
+        width: 64%; font-size: 16px;
+    }
+    .rep-dashboard_new_block2 .colmd3_1st .rep-dashboard_new_block2_wrapper1 .form-group input {
+        width: 36%;
+    }
+
+    .rep-dashboard_new_block2 .colmd3_1st .rep-dashboard_new_block2_wrapper1 .form-group {
+        padding: 2px 0;
+    }
+
+    .rep-dashboard_new_block2 .colmd3_2nd .rep-dashboard_new_block2_wrapper2 .form-group {
+        padding: 2px 0;
+    }
+
+    .rep-dashboard_new_block2 .colmd3_2nd .rep-dashboard_new_block2_wrapper2 .form-group label{ font-size: 16px;}
+    .rep-dashboard_new_block3 .colmd4_1st .rep-dashboard_new_block3_wrapper .rep-dashboard_new_block3_wrapper_sub .wrapper3_sub_con label{ font-size: 14px;}
+
+    .rep-dashboard_new_block3 .colmd4_1st .rep-dashboard_new_block3_wrapper .rep-dashboard_new_block3_wrapper_sub .wrapper3_sub_con span {
+        padding: 5px;
+    }
+
+    .rep-dashboard_new_block2 .colmd3_1st .rep-dashboard_new_block2_wrapper1 h2{ font-size: 18px;}
+    .rep-dashboard_new_block2 .colmd3_2nd .rep-dashboard_new_block2_wrapper2 h2{ font-size: 18px;}
+
+    .rep-dashboard_new_block2 .colmd3_1st .viewbtn1{ font-size: 14px; padding: 4px 0;}
+    .rep-dashboard_new_block2 .colmd3_2nd .viewbtn2{ font-size: 14px; padding: 4px 0;}
+
+    .rep-dashboard_new_block3 .colmd4_1st .rep-dashboard_new_block3_wrapper .wrapper3_sub_link{ font-size: 16px; padding: 4px 0;}
+    .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper .wrapper3_sub_link{ font-size: 16px; padding: 4px 0;}
+    .rep-dashboard_new_block3 .colmd4_3rd .rep-dashboard_new_block3_wrapper .wrapper3_sub_link{ font-size: 16px; padding: 4px 0;}
+
+    .videoWrapperblockdiv {
+        width: 75%;
+        margin: 0 auto;
+    }
+
+    .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper h2 {
+        font-size: 20px;
+    }
+
+    .rep-dashboard_new_block3 .colmd4_1st .rep-dashboard_new_block3_wrapper h2 {
+        margin: 0;
+        padding: 0 0.5% 6px 0.5%;}
+
+    .rep-dashboard_new_block1 .col-md-5{ width: 24%;}
+    .rep-dashboard_new_block1 .col-md-7{ width: 76%;}
+
+    .rep-dashboard_new_block1 .col-md-7 .rep-dashboard_new_text1{ padding: 6px 1%;}
+
+    .rep-dashboard_new_block1 .col-md-7 .rep-dashboard_new_text1_con{ width: 98%;}
+
+    .admindashboardmenublock .col-sm-2 {
+        width: 60px;
+        margin: 8px 0;
+        padding: 0px;
+    }
+
+    .admindashboardmenublock .col-lg-7 {
+        width: auto;
+        margin-top: 2px;
+    }
+
+    .admindashboardmenublock .col-sm-3 {
+        width: 52px;
+        float: right;
+        padding: 0px;
+        margin-top: 7px;
+    }
+
+    .rep-dashboard_new_block1 {
+        margin-top: 10px;
+        padding: 0px;
+    }
+
+    .rep-dashboard_new_block2 {
+        margin: 10px 0;
+        padding: 0px;
+    }
+    .rep-dashboard_new_block3 {
+        padding: 0 0 10px 0;
+    }
+    .rep-dashboard_new_block3 .colmd4_1st .rep-dashboard_new_block3_wrapper{ padding: 8px;}
+    .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper{ padding: 8px;}
+    .rep-dashboard_new_block3 .colmd4_3rd .rep-dashboard_new_block3_wrapper{ padding:8px;}
+    .rep-dashboard_new_block2 .colmd3_1st .rep-dashboard_new_block2_wrapper1{ padding: 8px;}
+    .rep-dashboard_new_block2 .colmd3_2nd .rep-dashboard_new_block2_wrapper2{ padding: 8px;}
+}
+
 @media(max-width:1360px) {
 
   /*  .repsignup_mainbody .form_wrapper {
