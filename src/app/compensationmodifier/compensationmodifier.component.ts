@@ -83,12 +83,12 @@ export class CompensationmodifierComponent implements OnInit {
         this.pgxvalue = null;
     }
 
-    addcompensation() {
+   /* addcompensation() {
         if (this.compensationamount > 0 && this.compensationamount < 201 && this.compensationamount != '' && this.compensationamount != null) {
             this.compensationerror = null;
             if (this.pgxvalue > 0 && this.pgxvalue < 101 && this.pgxvalue != '' && this.pgxvalue != null) {
               this.pgxerror = null;
-              let link = this.serverurl + 'getcompensationdetailsbyusernameandamount';
+       /!*       let link = this.serverurl + 'getcompensationdetailsbyusernameandamount';
               let data = {
                 userid: this.cookiedetails.id,
                 amount: this.compensationamount,
@@ -97,14 +97,13 @@ export class CompensationmodifierComponent implements OnInit {
               this._http.post(link, data)
                 .subscribe(res => {
                   let result = res.json();
-                  // console.log(result);
                   if (result.status == 'alreadyhavecgx') {
                     this.compensationerror = 'You already added same compensation amount earlier.';
                   }
                   if (result.status == 'alreadyhavepgx') {
                     this.pgxerror = 'You already added same Pgx amount earlier.';
                   }
-                  if (result.status != 'alreadyhavecgx' && result.status != 'alreadyhavepgx' ) {
+                  if (result.status != 'alreadyhavecgx' && result.status != 'alreadyhavepgx' ) {*!/
                     let link = this.serverurl + 'addcompensation';
                     let data = {
                       userid: this.cookiedetails.id,
@@ -131,8 +130,8 @@ export class CompensationmodifierComponent implements OnInit {
                       }, error => {
                         console.log('Oooops!');
                       });
-                  }
-                });
+                /!*  }
+                });*!/
             }
             else {
               this.pgxerror = 'PGX amount must be between $1 - $100';
@@ -141,5 +140,47 @@ export class CompensationmodifierComponent implements OnInit {
          else {
              this.compensationerror = 'CGX amount must be between $1 - $200';
          }
+    }*/
+
+
+    addcompensation() {
+        if (this.compensationamount > 0 && this.compensationamount < 201 && this.compensationamount != '' && this.compensationamount != null) {
+            this.compensationerror = null;
+        }
+        else {
+            this.compensationerror = 'CGX amount must be between $1 - $200';
+        }
+        if (this.pgxvalue > 0 && this.pgxvalue < 101 && this.pgxvalue != '' && this.pgxvalue != null) {
+            this.pgxerror = null;
+        }
+        else {
+            this.pgxerror = 'PGX amount must be between $1 - $100';
+        }
+        if (this.pgxerror == null && this.compensationerror == null) {
+            let link = this.serverurl + 'addcompensation';
+            let data = {
+                userid: this.cookiedetails.id,
+                amount: this.compensationamount,
+                pgxvalue: this.pgxvalue,
+            };
+            this._http.post(link, data)
+                .subscribe(res => {
+                    let result = res.json();
+                    console.log(result);
+                    if (result.status == 'success') {
+                        this.compensationerror = null;
+                        this.pgxerror = null;
+                        this.compensationamount = null;
+                        this.pgxvalue = null;
+                        this.compensationmodal = false;
+                        this.getcompensationlist();
+                    }
+                    else if (result.status == 'error') {
+                        this.compensationerror = 'Some server issues! Please try again later.';
+                    }
+                }, error => {
+                    console.log('Oooops!');
+                });
+        }
     }
 }

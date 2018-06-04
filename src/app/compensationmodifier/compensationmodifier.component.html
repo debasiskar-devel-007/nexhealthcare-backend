@@ -45,7 +45,7 @@
 
            </tr>
 
-           <tr *ngFor="let item of compensationList | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+           <tr *ngFor="let item of compensationList | orderBy:'_id':'reverse' | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
              <td>${{item.amount}}</td>
              <td>${{item.pgxvalue}}</td>
              <td>

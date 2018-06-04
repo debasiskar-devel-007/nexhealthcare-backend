@@ -18,19 +18,33 @@ export class PatientrecordComponent implements OnInit {
   public dataForm1: FormGroup ;
   public fb;
   public fb1;
+  public deleteid;
+  public editnoteid;
   public type;
   public patientdetails;
   public usastates;
   public issubmit;
   public tagstatus;
+  public shownoteerror;
+  public divaddnote;
+  public addnote;
+  public noteslist;
+  public addit = 1;
+  public allnotearr: any =[];
   public patient_added_on;
   public opensaveorsubmitmodal: boolean = false;
+  public showdeletenotemodal: boolean = false;
+  public showdeletesuccessmodal: boolean = false;
   id: number;
+    public p: number = 1;
   public serverurl;
+  public allusers;
   public patientuniqueid;
   public repuniqueid;
  // public cookieuniqueid;
   public pateintquestioniremodal: boolean = false;
+  public successfuladdnotemodal: boolean = false;
+  public successfulupdatenotemodal: boolean = false;
   private addcookie: CookieService;
   private cookiedetails;
   public iscompletedpatientrecord=0;
@@ -41,6 +55,7 @@ export class PatientrecordComponent implements OnInit {
     this.fb1 = fb1;
     this.serverurl = _commonservices.url;
     this.getusastates();
+    this.getallusers();
     this.addcookie = addcookie ;
     this.cookiedetails = this.addcookie.getObject('cookiedetails');
     console.log('this.cookiedetails');
@@ -71,6 +86,7 @@ export class PatientrecordComponent implements OnInit {
       console.log('this.id________');
       console.log(this.id);
       this.getdetails();
+      this.getnotes();
       this.getpatientrecord();
     });
     this.route.params.subscribe(params => {
@@ -231,13 +247,108 @@ export class PatientrecordComponent implements OnInit {
    // this.dataForm1.value.cgx1.value = true;
   }
 
-  getusastates() {
+    addsimplenote() {
+        let data;
+        let link = this.serverurl + 'noteadd';
+        if (this.addnote != null) {
+            data = {
+                patientid: this.id,
+                added_by: this.cookiedetails.id,
+                note: this.addnote,
+              //  added_on: this.getdate(),
+            };
+            this._http.post(link, data)
+                .subscribe(res => {
+                    let result = res.json();
+                    if (result.status == 'success') {
+                        this.addnote = null;
+                        this.divaddnote = false;
+                        this.successfuladdnotemodal = true;
+                        setTimeout(() => {
+                            this.successfuladdnotemodal = false;
+                        }, 2000);
+                        this.getnotes();
+                    }
+                }, error => {
+                    console.log('Oooops!');
+                });
+            // }
+        }
+        else {
+            this.shownoteerror = true;
+        }
+    }
+    cancelnote() {
+        this.addnote = null;
+        this.divaddnote = false;
+    }
+    deletethisnote() {
+        let link = this.serverurl + 'notedelete';
+        let data = {
+            _id: this.deleteid,
+        };
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                if (result.status == 'success') {
+                    this.showdeletenotemodal = false;
+                    this.showdeletesuccessmodal = true;
+                    setTimeout(() => {
+                        this.showdeletesuccessmodal = false;
+                    }, 2000);
+                    this.getnotes();
+                }
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
+
+    deletenote(id) {
+        this.deleteid = id;
+    this.showdeletenotemodal = true;
+    }
+
+    updatesimplenote() {
+        let link = this.serverurl + 'noteupdate';
+        let data = {
+            _id: this.editnoteid,
+            note: this.addnote,
+        };
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                if (result.status == 'success') {
+                    this.divaddnote = false;
+                    this.addnote = null;
+                    this.addit = 1;
+                    this.getnotes();
+                    this.successfulupdatenotemodal = true;
+                    setTimeout(() => {
+                        this.successfulupdatenotemodal = false;
+                    }, 2000);
+                }
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
+    getusastates() {
     let link = this.serverurl + 'getusastates';
     this._http.get(link)
       .subscribe(res => {
         let result = res.json();
         console.log(result);
         this.usastates = result;
+
+      }, error => {
+        console.log('Oooops!');
+      });
+  }
+    getallusers() {
+    let link = this.serverurl + 'getallusers';
+    this._http.get(link)
+      .subscribe(res => {
+        let result = res.json();
+        this.allusers = result.id;
 
       }, error => {
         console.log('Oooops!');
@@ -269,6 +380,44 @@ export class PatientrecordComponent implements OnInit {
           this.getrepid(result.item.addedby);
         } else {
           this.router.navigate(['/patient-list']);
+        }
+      }, error => {
+        console.log('Ooops');
+      });
+  }
+  showname(id) {
+      for (let i in this.allusers) {
+        if (this.allusers[i]._id == id) {
+          return this.allusers[i].firstname + ' ' + this.allusers[i].lastname;
+        }
+      }
+  }
+    showtime(time) {
+    return moment(time).format('MMM Do, YYYY');
+    }
+    editnote(item) {
+    this.editnoteid=item._id;
+        this.divaddnote = true;
+        this.addnote = item.note;
+        this.addit = 0; // edit
+    }
+    getnotes() {
+    this.allnotearr = [];
+    let link = this.serverurl + 'getnotes';
+    let data = {patientid : this.id};
+    this._http.post(link, data)
+      .subscribe(res => {
+        let result = res.json();
+        if (result.status == 'success' && typeof(result.id) != 'undefined') {
+         //  console.log('getnotes-------');
+         //  console.log(result);
+           this.noteslist = result.id;
+           console.log('this.noteslist----');
+           console.log(this.noteslist);
+           /*for (let j in this.noteslist) {
+            this.allnotearr.push(this.noteslist[j].note);
+           }*/
+        } else {
         }
       }, error => {
         console.log('Ooops');
@@ -479,6 +628,9 @@ export class PatientrecordComponent implements OnInit {
     });
     }, 1000);
   }
+    show_div_to_add_note() {
+        this.divaddnote = true;
+    }
   openquesmodalreadonly() {
     this.getpatientdetailsbypatientid();
     this.pateintquestioniremodal = true;
@@ -970,6 +1122,7 @@ export class PatientrecordComponent implements OnInit {
   onHidden() {
     this.pateintquestioniremodal = false;
     this.opensaveorsubmitmodal = false;
+    this.showdeletenotemodal = false;
   }
   savepateintquestionire() {
     this.issubmit = false;
