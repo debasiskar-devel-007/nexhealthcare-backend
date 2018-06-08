@@ -36,11 +36,13 @@ import {WebinarComponent} from './webinar/webinar.component';
 import {ReportsComponent} from './reports/reports.component';
 import {CommissionsComponent} from './commissions/commissions.component';
 import {SharelinkComponent} from './sharelink/sharelink.component';
+import {HomeComponent} from './home/home.component';
+import {ContactComponent} from './contact/contact.component';
 
 
 const appRoutes: Routes = [
-    // { path: '/**',component: AppComponent},
-    // { path: '/*',component: AppComponent},
+
+    { path: '', component: HomeComponent},
     { path: 'log-in', component: LoginComponent},
     { path: 'dashboard', component: DashboardComponent},
     { path: 'recruiterdashboard', component: RecruiterdashboardComponent},
@@ -77,6 +79,7 @@ const appRoutes: Routes = [
     { path: 'reports', component: ReportsComponent},
     { path: 'commissions', component: CommissionsComponent},
     { path: 'sharelink', component: SharelinkComponent},
+    { path: 'contact', component: ContactComponent},
 
 
    // { path: 'content', component: ContentComponent,outlet:'content'},

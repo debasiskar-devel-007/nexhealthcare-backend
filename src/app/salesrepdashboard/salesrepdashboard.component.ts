@@ -19,6 +19,9 @@ export class SalesrepdashboardComponent implements OnInit {
     public recdetails;
     public logintime;
     public signuptime;
+    public patientaccepted;
+    public patientdeclined ;
+    public patientsubmitted ;
 
     constructor( addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.addcookie = addcookie ;
@@ -29,6 +32,7 @@ export class SalesrepdashboardComponent implements OnInit {
             this.router.navigate(['/log-in']);
         } else {
             this.getrecdetails();
+            this.totalnoofpatients();
         }
 
     }
@@ -66,6 +70,23 @@ export class SalesrepdashboardComponent implements OnInit {
                             this.signuptime = moment(this.recdetails.signuptime).format('DD-MM-YYYY');
                         }
                     }, 500);
+                }
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
+
+    totalnoofpatients() {
+        let link = this.serverurl + 'gettotalnoofpatients';
+        this._http.get(link)
+            .subscribe(res => {
+                let result = res.json();
+                console.log('result');
+                console.log(result);
+                if (result.status == 'success') {
+                    this.patientaccepted = result.accepted;
+                    this.patientdeclined = result.declined;
+                    this.patientsubmitted = result.submitted;
                 }
             }, error => {
                 console.log('Oooops!');
