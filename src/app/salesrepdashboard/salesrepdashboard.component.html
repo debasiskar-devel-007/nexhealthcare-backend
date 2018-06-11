@@ -4,7 +4,7 @@
 <div class="container-fluid admindashboardbody3">
 
 
-<div class="container-fluid admindashboardcon1" *ngIf="cookiedetails.type=='superadmin'">
+<!--<div class="container-fluid admindashboardcon1" *ngIf="cookiedetails.type=='superadmin'">
 
   <div class="row">
 
@@ -203,10 +203,11 @@
 
     <div class="clearfix"></div>
   </div>
-</div>
+</div>-->
 
 
- <div class="rep-dashboard_new_wrapper" *ngIf="cookiedetails.type!='superadmin'">
+ <!--<div class="rep-dashboard_new_wrapper" *ngIf="cookiedetails.type!='superadmin'">-->
+ <div class="rep-dashboard_new_wrapper">
 
 
    <div class="container-fluid rep-dashboard_new_block1">
@@ -280,7 +281,7 @@
 
                      <h2>Patients  </h2>
 
-                     <form>
+                     <form *ngIf="cookiedetails.type=='superadmin'">
 
                          <div class="form-group">
                              <label>PPS Submitted:</label><input type="text" value="{{patientsubmitted}}">
@@ -295,6 +296,30 @@
 
                          <div class="form-group">
                              <label>PPS Declined: </label><input type="text" value="{{patientdeclined}}">
+                             <div class="clearfix"></div>
+
+                         </div>
+
+                         <input type="button" value="View All Patients" class="viewbtn2" [routerLink]="['/patient-list']">
+
+
+                     </form>
+
+                     <form *ngIf="cookiedetails.type!='superadmin'">
+
+                         <div class="form-group">
+                             <label>PPS Submitted:</label><input type="text" value="{{patientsubmittednumber}}">
+                             <div class="clearfix"></div>
+
+                         </div>
+                         <div class="form-group">
+                             <label>PPS Approved:</label><input type="text" value="{{patientacceptednumber}}">
+                             <div class="clearfix"></div>
+
+                         </div>
+
+                         <div class="form-group">
+                             <label>PPS Declined: </label><input type="text" value="{{patientdeclinednumber}}">
                              <div class="clearfix"></div>
 
                          </div>

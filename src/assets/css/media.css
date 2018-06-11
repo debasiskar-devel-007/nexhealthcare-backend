@@ -724,7 +724,7 @@
     .rephome_top_menu2 .topmenu2_left{ padding-left: 20px;}
     .repportal_btn {
         position: absolute;
-        left: 65%;
+        left: 48%;
     }
 }
 
@@ -732,10 +732,6 @@
 
 @media(max-width:1199px) {
     .repportal_btn{ float: right; margin-right: 40px;}
-    .repportal_btn {
-        position: absolute;
-        left: 65%;
-    }
 }
 
 
@@ -756,7 +752,7 @@
     .loginadminblock_middlewrapper img {
         position: inherit;
         top: 0;
-        left: -18%;
+        left: 0%;
         right: 0;
         bottom: 0;
         margin: auto;

@@ -22,17 +22,27 @@ export class SalesrepdashboardComponent implements OnInit {
     public patientaccepted;
     public patientdeclined ;
     public patientsubmitted ;
+    public patientlist ;
+    public patientacceptednumber: number = 0;
+    public patientdeclinednumber: number = 0;
+    public patientsubmittednumber: number = 0;
 
     constructor( addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
+        console.log('this.cookiedetails+++++++++++');
         console.log(this.cookiedetails);
         this.serverurl = _commonservices.url;
         if (this.cookiedetails == null) {
             this.router.navigate(['/log-in']);
         } else {
             this.getrecdetails();
-            this.totalnoofpatients();
+            if (this.cookiedetails.type == 'superadmin') {
+                this.totalnoofpatients();
+            }
+            else {
+                this.getpatientlistunderthisid();
+            }
         }
 
     }
@@ -75,7 +85,7 @@ export class SalesrepdashboardComponent implements OnInit {
                 console.log('Oooops!');
             });
     }
-
+    // for admin
     totalnoofpatients() {
         let link = this.serverurl + 'gettotalnoofpatients';
         this._http.get(link)
@@ -87,6 +97,38 @@ export class SalesrepdashboardComponent implements OnInit {
                     this.patientaccepted = result.accepted;
                     this.patientdeclined = result.declined;
                     this.patientsubmitted = result.submitted;
+                }
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
+
+    // user call to patientlist
+    getpatientlistunderthisid() {
+        let link = this.serverurl + 'getpatientlistunderthisid1';
+        let data = {
+            userid: this.cookiedetails.id,
+        };
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                if (result.status == 'success') {
+                    this.patientlist = result.id;
+                    console.log('this.patientlist under this userid');
+                    console.log(this.patientlist);
+                    for (let i in this.patientlist) {
+                        if (this.patientlist[i].Tagdetail[0] != null) {
+                        if (this.patientlist[i].Tagdetail[0].tagid == '5b0bfa1b3fe08865e7955f71') {
+                            this.patientacceptednumber = this.patientacceptednumber + 1;
+                        }
+                        if (this.patientlist[i].Tagdetail[0].tagid == '5b0bfa1d3fe08865e7955f72') {
+                            this.patientdeclinednumber = this.patientdeclinednumber + 1;
+                        }
+                        if (this.patientlist[i].Tagdetail[0].tagid == '5b0b9235b33cbc2d4af08dd9') {
+                            this.patientsubmittednumber = this.patientsubmittednumber + 1;
+                        }
+                    }
+                    }
                 }
             }, error => {
                 console.log('Oooops!');
