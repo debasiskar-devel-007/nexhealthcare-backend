@@ -234,6 +234,8 @@ a:visited {	text-decoration: none;	outline: none;}
 .repsignup_topblock_menudiv .navbar .active{ color: #29aae2!important;}
 
 .repsignup_footer{border-top: solid 10px #29aae2; padding: 15px 0;}
+
+.repsignup_footer .col-sm-4 img{ width: 130px;}
 .repsignup_footer .row{ margin: 0 auto; padding:8px 10px; }
 
 .repsignup_footer .col-xl-8 p{ text-align: right; margin: 0; padding: 15px 0 0 0; font-size: 15px; color: #575057; font-family: 'proximanova-regular';}
