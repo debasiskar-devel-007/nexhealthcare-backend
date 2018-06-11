@@ -468,7 +468,7 @@
 
 @media(max-width:1199px) {
 
-    .btnviewmore{ position: inherit;}
+    .btnviewmore{ position: inherit; right: 0; bottom: 0;}
     .admin_footer2 .row{ width: 96%;}
 
     .webinar_wrapper{ width: 96%; margin: 35px auto;}
