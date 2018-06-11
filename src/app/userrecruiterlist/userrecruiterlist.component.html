@@ -25,124 +25,57 @@
   </div>
 
   <div class="userrecruiterlist_table_wrapper">
-  <table>
-    <tr>
+    <table>
+      <tr>
 
-      <th>User/Rep ID</th>
-      <th>Username</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Account Type</th>
-      <th>Owner</th>
-      <th>Cgx Amount</th>
-      <th>Pgx Amount</th>
-     <!-- <th *ngIf="typeis=='salesrep'">Webinar Completed</th>-->
-      <th>Webinar Completed</th>
-     <!-- <th>Action</th>-->
-    </tr>
+        <th>User ID</th>
+      <!--  <th>Username</th>-->
+        <th>Employment Status</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Account Type</th>
+        <th>Enroller</th>
+        <th>Cgx Amount</th>
+        <th>Pgx Amount</th>
+        <th>Webinar Completed</th>
+      </tr>
 
-    <tr *ngFor="let item of specificlist | orderBy:'_id':'reverse' | usersearch:listFilter.value | paginate: { itemsPerPage: 25, currentPage: p }; let i = index">
+      <tr *ngFor="let item of specificlist | orderBy:'_id':'reverse' | usersearch:listFilter.value | paginate: { itemsPerPage: 25, currentPage: p }; let i = index">
 
-      <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.uniqueid}}</td>
-      <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.username}}</td>
-      <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.firstname}}</td>
-      <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.lastname}}</td>
-      <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.type}}</td>
-      <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.addedby}}</td>
-      <td [routerLink]="['/userrecruiterdetail',item._id]">
-        <p *ngIf="item.Repcontractdetail[0]">{{item.Repcontractdetail[0].compensationgrade}}</p>
-        <p *ngIf="!item.Repcontractdetail[0]">No amount given</p>
-      </td>
-      <td [routerLink]="['/userrecruiterdetail',item._id]">
-        <p *ngIf="item.Repcontractdetail[0]">{{item.Repcontractdetail[0].pgxvalue}}</p>
-        <p *ngIf="!item.Repcontractdetail[0]">No amount given</p>
-      </td>
-       <!-- <td *ngIf="typeis=='salesrep'">-->
+        <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.uniqueid}}</td>
+     <!--   <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.username}}</td>-->
+        <td>status</td>
+        <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.firstname}}</td>
+        <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.lastname}}</td>
+        <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.type}}</td>
+        <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.addedby}}</td>
+        <td [routerLink]="['/userrecruiterdetail',item._id]">
+          <p *ngIf="item.Repcontractdetail[0]">{{item.Repcontractdetail[0].compensationgrade}}</p>
+          <p *ngIf="!item.Repcontractdetail[0]">No amount given</p>
+        </td>
+        <td [routerLink]="['/userrecruiterdetail',item._id]">
+          <p *ngIf="item.Repcontractdetail[0]">{{item.Repcontractdetail[0].pgxvalue}}</p>
+          <p *ngIf="!item.Repcontractdetail[0]">No amount given</p>
+        </td>
         <td>
           <p *ngIf="item.iswebinarchekced == 0 || item.iswebinarchekced== null">No
-          <br/><small (click)="markasdone(item._id)">Mark as Done</small>
+            <br/><small (click)="markasdone(item._id)">Mark as Done</small>
           </p>
           <p *ngIf="item.iswebinarchekced == 1">Yes</p>
         </td>
-      <!-- <td *ngIf="!item.Repcontractdetail[0] || item.Repcontractdetail[0].compensationgrade==''">No amount given</td>-->
-      <!--  <td><a href="javascript:void(0)" [routerLink]="['/userrecruiteredit',item._id]">Edit</a></td>-->
+        <!-- <td *ngIf="!item.Repcontractdetail[0] || item.Repcontractdetail[0].compensationgrade==''">No amount given</td>-->
+        <!--  <td><a href="javascript:void(0)" [routerLink]="['/userrecruiteredit',item._id]">Edit</a></td>-->
 
-    </tr>
-
-    <!--   <tr>
-
-      <td>10338</td>
-      <td>Switch nadeemhusainzsa2na3u1k
-      <td>Nadeem</td>
-      <td>Husain</td>
-      <td>Doc</td>
-      <td>BethKelley</td>
-      <td><a href="javascript:void(0)">Edit</a></td>
-    </tr>
-    <tr>
-
-      <td>10338</td>
-      <td>Switch nadeemhusainzsa2na3u1k
-      <td>Nadeem</td>
-      <td>Husain</td>
-      <td>Doc</td>
-      <td>BethKelley</td>
-      <td><a href="javascript:void(0)">Edit</a></td>
-    </tr>
-
-    <tr>
-
-      <td>10338</td>
-      <td>Switch nadeemhusainzsa2na3u1k
-      <td>Nadeem</td>
-      <td>Husain</td>
-      <td>Doc</td>
-      <td>BethKelley</td>
-      <td><a href="javascript:void(0)">Edit</a></td>
-    </tr>
-
-    <tr>
-
-      <td>10338</td>
-      <td>Switch nadeemhusainzsa2na3u1k
-      <td>Nadeem</td>
-      <td>Husain</td>
-      <td>Doc</td>
-      <td>BethKelley</td>
-      <td><a href="javascript:void(0)">Edit</a></td>
-    </tr>
-
-    <tr>
-
-      <td>10338</td>
-      <td>Switch nadeemhusainzsa2na3u1k
-      <td>Nadeem</td>
-      <td>Husain</td>
-      <td>Doc</td>
-      <td>BethKelley</td>
-      <td><a href="javascript:void(0)">Edit</a></td>
-    </tr>-->
+      </tr>
 
 
-  </table>
+
+    </table>
     <div class="pagination_wrapper">
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
 
 </div>
-
-
-
-
-<!--
-<div class="container-fluid admin_inner_footer">
-  <div class="container admininnerwrappe">
-    <p>Copyright &copy; 2017-2018 Nex Healthcare . All rights reserved.</p>
-
-  </div>
-
-</div>
--->
 
 <app-frontfooter></app-frontfooter>

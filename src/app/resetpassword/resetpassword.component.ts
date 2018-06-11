@@ -4,11 +4,12 @@ import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'angular2-cookie/core';
+import {RepsignupComponent} from '../repsignup/repsignup.component';
 
 @Component({
-  selector: 'app-resetpassword',
-  templateUrl: './resetpassword.component.html',
-  styleUrls: ['./resetpassword.component.css'],
+    selector: 'app-resetpassword',
+    templateUrl: './resetpassword.component.html',
+    styleUrls: ['./resetpassword.component.css'],
     providers: [Commonservices],
 })
 export class ResetpasswordComponent implements OnInit {
@@ -23,12 +24,13 @@ export class ResetpasswordComponent implements OnInit {
     public accesscode;
     public userdetails;
     public modalpasswordupdated;
+    public id;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices, private route: ActivatedRoute) {
         this.fb = fb;
         this.serverurl = _commonservices.url;
-        this.addcookie = addcookie ;
-        this.cookiedetails = this.addcookie.getObject('cookiedetails');
+     //   this.addcookie = addcookie ;
+     //   this.cookiedetails = this.addcookie.getObject('cookiedetails');
     }
 
     ngOnInit() {
@@ -42,6 +44,10 @@ export class ResetpasswordComponent implements OnInit {
             password: ['', Validators.compose([Validators.required, ResetpasswordComponent.validatePassword])],
             confpassword: ['', Validators.required],
         }, {validator: this.matchingPasswords('password', 'confpassword')});
+       /* this.dataForm = this.fb.group({
+            password: ['', Validators.required],
+            confpassword: ['', Validators.required],
+        });*/
     }
     getuserdetails() {
         let link = this.serverurl + 'getuserdetailsbyaccesscode';
@@ -51,8 +57,9 @@ export class ResetpasswordComponent implements OnInit {
                 let result = res.json();
                 console.log(result);
                 if (result.status == 'success'&& typeof(result.id) != 'undefined') {
-                     console.log(result.id);
-                     this.userdetails = result.id;
+                    console.log(result.id);
+                    this.userdetails = result.id;
+                    this.id = this.userdetails._id;
                 } else {
                     this.router.navigate(['/log-in']);
                 }
@@ -96,32 +103,34 @@ export class ResetpasswordComponent implements OnInit {
     dosubmit(formval) {
         console.log('hi');
         console.log(this.dataForm.valid);
+        console.log(this.passmatchvalidate);
+        console.log(ResetpasswordComponent.invalidpassword);
         let x: any;
         for (x in this.dataForm.controls) {
             this.dataForm.controls[x].markAsTouched();
         }
         this.is_error = 0;
-       // if (this.dataForm.valid ) {
-            console.log('hi');
-            let link = this.serverurl + 'newpassword';
-            let data = {id: this.cookiedetails._id, password: formval.password};
-            this._http.post(link, data)
-                .subscribe(res => {
-                    let result = res.json();
-                    console.log(result);
-                    if (result.status == 'success') {
-                        this.modalpasswordupdated = true;
-                        setTimeout(() => {
-                            this.router.navigate(['/log-in']);
-                        }, 3000);
-                    }
-                    else {
-                        this.is_error = 'Some internal problem happened! Please try again later.';
-                    }
-                }, error => {
-                    console.log('Oooops!');
-                });
-      //  }
+         if (this.dataForm.valid && this.passmatchvalidate && ResetpasswordComponent.invalidpassword == false ) {
+        console.log('hi');
+        let link = this.serverurl + 'newpassword';
+        let data = {id: this.id, password: formval.password};
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                console.log(result);
+                if (result.status == 'success') {
+                    this.modalpasswordupdated = true;
+                    setTimeout(() => {
+                        this.router.navigate(['/log-in']);
+                    }, 3000);
+                }
+                else {
+                    this.is_error = 'Some internal problem happened! Please try again later.';
+                }
+            }, error => {
+                console.log('Oooops!');
+            });
+         }
 
 
     }

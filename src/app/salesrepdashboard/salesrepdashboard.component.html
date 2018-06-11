@@ -4,7 +4,7 @@
 <div class="container-fluid admindashboardbody3">
 
 
-<!--<div class="container-fluid admindashboardcon1">
+<!--<div class="container-fluid admindashboardcon1" *ngIf="cookiedetails.type=='superadmin'">
 
   <div class="row">
 
@@ -95,7 +95,7 @@
 
 
 
-<div class="container-fluid admindashboardcon2">
+<div class="container-fluid admindashboardcon2" *ngIf="cookiedetails.type=='superadmin'">
 
   <div class="row row-eq-height">
 
@@ -206,6 +206,7 @@
 </div>-->
 
 
+ <!--<div class="rep-dashboard_new_wrapper" *ngIf="cookiedetails.type!='superadmin'">-->
  <div class="rep-dashboard_new_wrapper">
 
 
@@ -251,23 +252,23 @@
                      <form>
 
                          <div class="form-group">
-                             <label>Commissions Pending this Month</label><input type="text">
+                             <label>Commissions Pending this Month:</label><input type="text">
                              <div class="clearfix"></div>
 
                          </div>
                          <div class="form-group">
-                             <label>Commissions Paid Last Month</label><input type="text">
+                             <label>Commissions Paid Last Month:</label><input type="text">
                              <div class="clearfix"></div>
 
                          </div>
 
                          <div class="form-group">
-                             <label>Total Commissions paid (YTD)</label><input type="text">
+                             <label>Total Commissions paid (YTD):</label><input type="text">
                              <div class="clearfix"></div>
 
                          </div>
 
-                         <input type="button" value="View Commissions Report" class="viewbtn1">
+                         <input type="button" value="View Commissions Report" class="viewbtn1"  [routerLink]="['/commissions']">
 
 
                      </form>
@@ -280,26 +281,50 @@
 
                      <h2>Patients  </h2>
 
-                     <form>
+                     <form *ngIf="cookiedetails.type=='superadmin'">
 
                          <div class="form-group">
-                             <label>PPS Submitted</label><input type="text">
+                             <label>PPS Submitted:</label><input type="text" value="{{patientsubmitted}}">
                              <div class="clearfix"></div>
 
                          </div>
                          <div class="form-group">
-                             <label>PPS Approved</label><input type="text">
+                             <label>PPS Approved:</label><input type="text" value="{{patientaccepted}}">
                              <div class="clearfix"></div>
 
                          </div>
 
                          <div class="form-group">
-                             <label>PPS Declined </label><input type="text">
+                             <label>PPS Declined: </label><input type="text" value="{{patientdeclined}}">
                              <div class="clearfix"></div>
 
                          </div>
 
-                         <input type="button" value="View All Patients" class="viewbtn2">
+                         <input type="button" value="View All Patients" class="viewbtn2" [routerLink]="['/patient-list']">
+
+
+                     </form>
+
+                     <form *ngIf="cookiedetails.type!='superadmin'">
+
+                         <div class="form-group">
+                             <label>PPS Submitted:</label><input type="text" value="{{patientsubmittednumber}}">
+                             <div class="clearfix"></div>
+
+                         </div>
+                         <div class="form-group">
+                             <label>PPS Approved:</label><input type="text" value="{{patientacceptednumber}}">
+                             <div class="clearfix"></div>
+
+                         </div>
+
+                         <div class="form-group">
+                             <label>PPS Declined: </label><input type="text" value="{{patientdeclinednumber}}">
+                             <div class="clearfix"></div>
+
+                         </div>
+
+                         <input type="button" value="View All Patients" class="viewbtn2" [routerLink]="['/patient-list']">
 
 
                      </form>
@@ -402,7 +427,7 @@
                      </div>
                      </div>
 
-                     <a href="javascript:void(0)" class="wrapper3_sub_link">View All Training Videos</a>
+                     <a href="javascript:void(0)" class="wrapper3_sub_link" [routerLink]="['/trainingcenter']">View All Training Videos</a>
                  </div>
 
              </div>

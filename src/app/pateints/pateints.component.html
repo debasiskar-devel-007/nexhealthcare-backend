@@ -24,14 +24,14 @@
 
       <div class="pateints_header_left"><!--<h2>Patients <span>List View</span></h2>--></div>
       <div class="pateints_header_right">
-       <!-- <div class="pateints_searchdiv pateints_searchdiv2">-->
+        <!-- <div class="pateints_searchdiv pateints_searchdiv2">-->
         <div class="pateints_searchdiv ">
-        <form>
-          <input type="text" placeholder="Search..." #listFilter (keyup)="0">
-          <input type="button">
-          <div class="clearfix"></div>
-        </form>
-      </div>
+          <form>
+            <input type="text" placeholder="Search..." #listFilter (keyup)="0">
+            <input type="button">
+            <div class="clearfix"></div>
+          </form>
+        </div>
         <!--<button [routerLink]="['/add-patient']" class="btn btn-primary patients_btn">Add Patients</button>-->
       </div>
       <div class="clearfix"></div>
@@ -58,7 +58,7 @@
           <div class="divnew " *ngIf="isthisadmin!='admin'">
             <span>Phone Number</span>
           </div>
-         <!-- <div class="divnew" *ngIf="isthisadmin=='admin'">
+          <!-- <div class="divnew" *ngIf="isthisadmin=='admin'">
             <span>Added By</span>
           </div>-->
           <div class="divnew" *ngIf="isthisadmin=='admin'">
@@ -73,7 +73,7 @@
           <div class="divnew " *ngIf="isthisadmin=='admin'">
             <span>Action</span>
           </div>
-           <div class="clearfix"></div>
+          <div class="clearfix"></div>
         </div>
 
 
@@ -104,7 +104,7 @@
             <span>{{item.phone}}</span>
           </div>
 
-        <!--  <div class="divnew"  *ngIf="isthisadmin=='admin'" (click)="gotopatientrecord(item._id)">
+          <!--  <div class="divnew"  *ngIf="isthisadmin=='admin'" (click)="gotopatientrecord(item._id)">
             <span *ngIf="item.Addedbydetail[0]!=null">{{item.Addedbydetail[0].firstname}} {{item.Addedbydetail[0].lastname}}</span>
           </div>
 -->
@@ -135,7 +135,7 @@
               <span *ngIf="item.Tagdetail[0].tagid != '5b0bfa1d3fe08865e7955f72' && item.Tagdetail[0].tagid != '5b0bfa1b3fe08865e7955f71'">
                 <a class="tablebtn" (click)="approveitmodal(item)">Approve</a>
                 <a  class="tablebtn tablebtn2" (click)="declineitmodal(item)">Reject</a>
-                  <div class="clearfix"></div>
+                <div class="clearfix"></div>
               </span>
               <span *ngIf="item.Tagdetail[0].tagid=='5b0bfa1d3fe08865e7955f72'">Rejected</span>
               <span *ngIf="item.Tagdetail[0].tagid=='5b0bfa1b3fe08865e7955f71'">Approved</span>
@@ -146,7 +146,7 @@
       </div>
 
       <div class="pagination_wrapper">
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
       <!--<div class="pateints_list_table_contain">
         <div class="row row-eq-height">
@@ -710,67 +710,67 @@
                           <div class="clearfix"></div>
                         </div>
                         <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
-                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx4']"/></div>
+                          <div class="left2_heading1"><span>4.</span> <input type="text" [formControl]="dataForm1.controls['pgx4']"/></div>
                           <div class="clearfix"></div>
                         </div>
                         <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
-                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx5']"/></div>
+                          <div class="left2_heading1"><span>5.</span> <input type="text" [formControl]="dataForm1.controls['pgx5']"/></div>
                           <div class="clearfix"></div>
                         </div>
                         <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
-                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx6']"/></div>
+                          <div class="left2_heading1"><span>6.</span> <input type="text" [formControl]="dataForm1.controls['pgx6']"/></div>
                           <div class="clearfix"></div>
                         </div>
                         <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
-                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx7']"/></div>
+                          <div class="left2_heading1"><span>7.</span> <input type="text" [formControl]="dataForm1.controls['pgx7']"/></div>
                           <div class="clearfix"></div>
                         </div>
                         <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
-                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx8']"/></div>
+                          <div class="left2_heading1"><span>8.</span> <input type="text" [formControl]="dataForm1.controls['pgx8']"/></div>
                           <div class="clearfix"></div>
                         </div>
                         <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
-                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx9']"/></div>
+                          <div class="left2_heading1"><span>9.</span> <input type="text" [formControl]="dataForm1.controls['pgx9']"/></div>
                           <div class="clearfix"></div>
                         </div>
                         <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
-                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx10']"/></div>
+                          <div class="left2_heading1"><span>10.</span> <input type="text" [formControl]="dataForm1.controls['pgx10']"/></div>
                           <div class="clearfix"></div>
                         </div>
                         <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
-                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx11']"/></div>
+                          <div class="left2_heading1"><span>11.</span> <input type="text" [formControl]="dataForm1.controls['pgx11']"/></div>
                           <div class="clearfix"></div>
                         </div>
                         <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
-                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx12']"/></div>
+                          <div class="left2_heading1"><span>12.</span> <input type="text" [formControl]="dataForm1.controls['pgx12']"/></div>
                           <div class="clearfix"></div>
                         </div>
                         <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
-                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx13']"/></div>
+                          <div class="left2_heading1"><span>13.</span> <input type="text" [formControl]="dataForm1.controls['pgx13']"/></div>
                           <div class="clearfix"></div>
                         </div>
                         <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
-                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx14']"/></div>
+                          <div class="left2_heading1"><span>14.</span> <input type="text" [formControl]="dataForm1.controls['pgx14']"/></div>
                           <div class="clearfix"></div>
                         </div>
                         <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
-                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx15']"/></div>
+                          <div class="left2_heading1"><span>15.</span> <input type="text" [formControl]="dataForm1.controls['pgx15']"/></div>
                           <div class="clearfix"></div>
                         </div>
                         <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
-                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx16']"/></div>
+                          <div class="left2_heading1"><span>16.</span> <input type="text" [formControl]="dataForm1.controls['pgx16']"/></div>
                           <div class="clearfix"></div>
                         </div>
                         <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
-                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx17']"/></div>
+                          <div class="left2_heading1"><span>17.</span> <input type="text" [formControl]="dataForm1.controls['pgx17']"/></div>
                           <div class="clearfix"></div>
                         </div>
                         <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
-                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx18']"/></div>
+                          <div class="left2_heading1"><span>18.</span> <input type="text" [formControl]="dataForm1.controls['pgx18']"/></div>
                           <div class="clearfix"></div>
                         </div>
                         <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
-                          <div class="left2_heading1"><span>+</span> <input type="text" [formControl]="dataForm1.controls['pgx19']"/></div>
+                          <div class="left2_heading1"><span>19.</span> <input type="text" [formControl]="dataForm1.controls['pgx19']"/></div>
                           <div class="clearfix"></div>
                         </div>
                       </div>

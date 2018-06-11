@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-trainingcenter',
-  templateUrl: './trainingcenter.component.html',
-  styleUrls: ['./trainingcenter.component.css']
+    selector: 'app-trainingcenter',
+    templateUrl: './trainingcenter.component.html',
+    styleUrls: ['./trainingcenter.component.css']
 })
 export class TrainingcenterComponent implements OnInit {
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 
 

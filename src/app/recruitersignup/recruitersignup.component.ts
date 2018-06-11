@@ -6,9 +6,9 @@ import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'angular2-cookie/core';
 
 @Component({
-  selector: 'app-recruitersignup',
-  templateUrl: './recruitersignup.component.html',
-  styleUrls: ['./recruitersignup.component.css'],
+    selector: 'app-recruitersignup',
+    templateUrl: './recruitersignup.component.html',
+    styleUrls: ['./recruitersignup.component.css'],
     providers: [Commonservices],
 })
 export class RecruitersignupComponent implements OnInit {
@@ -136,8 +136,8 @@ export class RecruitersignupComponent implements OnInit {
             this.dataForm.controls[x].markAsTouched();
         }
         if (this.dataForm.valid && this.passmatchvalidate && (RecruitersignupComponent.invalidemail == false || RecruitersignupComponent.blankemail == false) && RecruitersignupComponent.invalidusername == false && RecruitersignupComponent.invalidpassword == false) {
-          //  console.log('inside dataformvalid');
-          //  console.log(formval);
+            //  console.log('inside dataformvalid');
+            //  console.log(formval);
             let link = this.serverurl + 'signup';
             let data = {
                 firstname: formval.firstname,
@@ -159,7 +159,7 @@ export class RecruitersignupComponent implements OnInit {
             this._http.post(link, data)
                 .subscribe(res => {
                     let result = res.json();
-                  //  console.log(result);
+                    //  console.log(result);
                     if (result.status == 'error' && result.id == '-1') {
                         console.log('inside mailexists');
                         this.alreadyexist = 'Emailid already exists';

@@ -5,9 +5,9 @@ import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'angular2-cookie/core';
 
 @Component({
-  selector: 'app-compensationmodifier',
-  templateUrl: './compensationmodifier.component.html',
-  styleUrls: ['./compensationmodifier.component.css'],
+    selector: 'app-compensationmodifier',
+    templateUrl: './compensationmodifier.component.html',
+    styleUrls: ['./compensationmodifier.component.css'],
     providers: [Commonservices],
 })
 export class CompensationmodifierComponent implements OnInit {
@@ -42,23 +42,23 @@ export class CompensationmodifierComponent implements OnInit {
     ngOnInit() {
     }
     callfunc(token) {
-      //  return 'https://' + this.serverhost + '/#/sign-up/' + token;
+        //  return 'https://' + this.serverhost + '/#/sign-up/' + token;
         return 'http://' + this.serverhost + '/#/sign-up/' + token;
     }
     callfunc1(token) {
-      //  return 'https://' + this.serverhost + '/#/sign-up/' + token;
+        //  return 'https://' + this.serverhost + '/#/sign-up/' + token;
         return 'http://' + this.serverhost + '/#/cgx/' + token;
     }
     showcopied() {
-          this.copiedmodal = true;
-         setTimeout(() => {
-             this.copiedmodal = false;
-         }, 2000);
+        this.copiedmodal = true;
+        setTimeout(() => {
+            this.copiedmodal = false;
+        }, 2000);
     }
     getcompensationlist() {
         let link = this.serverurl + 'compensationlistbyuserid';
         let data = {
-          userid: this.cookiedetails.id
+            userid: this.cookiedetails.id
         }
         this._http.post(link, data)
             .subscribe(res => {
@@ -78,12 +78,12 @@ export class CompensationmodifierComponent implements OnInit {
     onHidden() {
         this.compensationerror = null;
         this.compensationmodal = false;
-      //  this.copiedmodal = false;
+        //  this.copiedmodal = false;
         this.compensationamount = null;
         this.pgxvalue = null;
     }
 
-   /* addcompensation() {
+    /* addcompensation() {
         if (this.compensationamount > 0 && this.compensationamount < 201 && this.compensationamount != '' && this.compensationamount != null) {
             this.compensationerror = null;
             if (this.pgxvalue > 0 && this.pgxvalue < 101 && this.pgxvalue != '' && this.pgxvalue != null) {

@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-webinar',
-  templateUrl: './webinar.component.html',
-  styleUrls: ['./webinar.component.css']
+    selector: 'app-webinar',
+    templateUrl: './webinar.component.html',
+    styleUrls: ['./webinar.component.css']
 })
 export class WebinarComponent implements OnInit {
 
-  constructor() { }
+    constructor() {
 
-  ngOnInit() {
-  }
+    }
+
+    ngOnInit() {
+    }
 
 }

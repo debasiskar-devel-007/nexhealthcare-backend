@@ -989,25 +989,25 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .pateintquestionire_div1 td{ vertical-align:middle;}
 
-.pateintquestionire_div1 td h2{ margin:0; padding:0; font-size:24px; color:#295b73; font-family: 'proximanova-regular'; }
+.pateintquestionire_div1 td h2{ margin:0; padding:0; font-size:18px; color:#295b73; font-family: 'proximanova-regular'; }
 
 .pateintquestionire_div1 td span{ display:inline-block; font-size:18px; color:#295b73; font-family: 'proximanova-regular'; margin:0px; padding:0 0 0 5px;}
 
-.pateintquestionire_div1 td h3{ margin:0; padding:0; font-size:24px; color:#295b73; font-family: 'proximanova-regular'; }
+.pateintquestionire_div1 td h3{ margin:0; padding:0; font-size:28px; color:#295b73; font-family: 'proximanova-regular'; }
 
 .pateintquestionire_div1 td:nth-of-type(1){ width:20%;}
 
-.pateintquestionire_div1 td:nth-of-type(2){ width:30%;}
+.pateintquestionire_div1 td:nth-of-type(2){ width:10%;}
 
-.pateintquestionire_div1 td:nth-of-type(3){ width:20%;}
+.pateintquestionire_div1 td:nth-of-type(3){ width:10%;}
 
-.pateintquestionire_div1 td:nth-of-type(4){ width:30%;}
+.pateintquestionire_div1 td:nth-of-type(4){ width:52%;}
 
 
 
-.pateintquestioniremodal .pateintquestionire_bottom_form.pateintquestionire_top_form label{width: 110px !important;}
+.pateintquestioniremodal .pateintquestionire_bottom_form.pateintquestionire_top_form label{width: 90px !important;}
 .pateintquestioniremodal .pateintquestionire_bottom_form.pateintquestionire_top_form input {
-    width: 120px !important;
+    width: 170px !important;
 }
 
 .pateintquestionire_div2{ width:100%; border-top:solid 2px #a3a8a9; padding:26px 0; }
@@ -1127,7 +1127,7 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .pateintquestionire_div2 .pateintquestionire_div2_left2_contain .left2_heading2 label{ text-align:right; color:#545656;}
 
-.pateintquestionire_bottom_form{ width:390px; margin:0 auto;}
+.pateintquestionire_bottom_form{ width:280px; margin:0 auto;}
 
 .pateintquestionire_bottom_form label {
     display: block;
@@ -1331,21 +1331,22 @@ a:visited {	text-decoration: none;	outline: none;}
 .pateintquestioniremodal  .pateintquestionire_div1 td h2 {
     margin: 0!important;
     padding: 0!important;
-    font-size: 24px!important;
+    font-size: 18px!important;
     color: #295b73!important;
     font-family: 'proximanova-regular'!important; background: none!important;
 }
 
-
+.pateintquestioniremodal  .pateintquestionire_div1 td h2 br{ display: none;}
 
 .pateintquestioniremodal  .pateintquestionire_div1 td h3 {
     margin: 0!important;
     padding: 0!important;
-    font-size: 24px!important;
+    font-size: 18px!important;
     color: #295b73!important;
-    font-family: 'proximanova-regular'!important; border: none!important; line-height: inherit;
+    font-family: 'proximanova-regular'!important; border: none!important; line-height: inherit; text-align: center;
 }
 
+.pateintquestioniremodal  .pateintquestionire_div1 td h3 br{ display: none;}
 
 .pateintquestioniremodal .pateintswrappe {
     width: 100%!important;
@@ -1379,7 +1380,7 @@ a:visited {	text-decoration: none;	outline: none;}
 
 
 .pateintquestioniremodal .pateintquestionire_bottom_form input {
-    width: 280px!important;
+    width: 210px!important;
     background: #fff!important;
     border: none!important;
     border-bottom: solid 1px #646666!important;
@@ -1391,16 +1392,16 @@ a:visited {	text-decoration: none;	outline: none;}
     font-family: 'proximanova-regular'!important;
     padding: 0 5px!important;
     float: left!important;
-    margin-top: 6px!important;
+    margin-top: 0px!important;
 }
 
 .pateintquestioniremodal .pateintquestionire_bottom_form label {
     display: block!important;
-    width: 90px!important;
+    width: 68px!important;
     float: left!important;
     margin: 0px!important;
     padding: 0px!important;
-    font-size: 24px!important;
+    font-size: 18px!important;
     color: #295b73!important;
     font-weight: normal!important;
     font-family: 'proximanova-regular'!important;}
@@ -2383,3 +2384,222 @@ a:visited {	text-decoration: none;	outline: none;}
     width: 100%;
     height: 100%;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*----KOUSHIK rephome----*/
+
+.loginadminblock{padding: 0;}
+.loginadminblockwrapper{position: relative; overflow: hidden;}
+.loginadminblock_topwrapper{
+    width: 100%;
+    position: absolute;
+    z-index: 99;
+    color: #fff;
+    text-align: center;
+    border-top: 10px solid #29aae2;
+    background-color: #fff;
+}
+
+.topwrapperhomebottomborder{ border-bottom: 5px solid #29aae2;}
+
+.rephome_bannertext{text-align: center;}
+.rephome_bannertext h2{margin: 0; padding: 5px 10px 0px; font-family: 'proximanova-semibold'; text-transform: uppercase; color: #fff; font-size: 48px;}
+
+.rephome_bannertext h3{ margin: 0; padding:2px 10px; padding-bottom: 5px;  font-family: 'proximanova-semibold'; font-size: 24px; color: #ffffff;}
+
+
+
+.loginadminblock_middlewrapperouter{
+    height: 731px;
+}
+
+.loginadminblock_middlewrapper{
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+}
+
+.loginadminblock_middlewrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-width: 50%;
+    min-height: 50%;
+}
+
+
+.transparentbgwrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-width: 100%;
+    min-height: 100%;
+    background-color: rgba(32, 32, 37, 0.3);
+}
+
+
+.loginadminblock_bottomwrapper{
+    padding: 0px;
+    width: 100%;
+    position: absolute;
+    z-index: 999;
+    bottom: 0px;
+    color: #fff;
+    background-color: #fff;
+}
+
+.loginadminblock_bottomwrapper span{
+    text-align: right;
+    float: right;
+}
+
+
+
+
+.repportal_btn{
+    background: url(../images/temp-repportal-home_btnimg2.png) no-repeat left top;
+    width: 400px;
+    height: 107px;
+    position: relative;
+    z-index: 999999999999;
+    top: 50%;
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.repportal_btn a{ font-size: 36px; color: #ffffff!important; text-transform: uppercase; text-decoration:none!important;    font-family: 'proximanova-semibold'; display: block; padding: 30px 0 0 112px;
+    height: 100%;}
+
+
+.modal-backdrop {
+    z-index: 99;
+}
+
+
+
+
+
+
+
+.repcontactblockmain{padding-right: 0px; padding-left: 0px;}
+.repcontactblockwrapper{padding-right: 0px; padding-left: 0px;}
+.repcontactblock{ width: 1200px!important; margin: 80px auto; padding: 0px!important;}
+.repcontactblock .repcontactblock_right{ width: 410px; float: right;  padding: 0px!important;}
+
+.repcontactblock .repcontactblock_left{ width: 750px; float: left;  padding: 0px!important;}
+
+.repcontactblock .repcontactblock_left .form-control{ width: 100%; height: 48px; padding: 0 10px; background: #e5e9ec; border: solid 1px #d1dee7; font-size: 18px; color: #434343; font-family: 'proximanova-regular'; margin-bottom: 20px; border-radius: 0px; }
+.repcontactblock .repcontactblock_left .form-control2{ width: 100%; height: 210px; padding: 10px; background: #e5e9ec; border: solid 1px #d1dee7; font-size: 18px; color: #434343; font-family: 'proximanova-regular'; resize: none; margin-bottom: 20px; }
+
+
+
+
+.new_chakebox_con{ width: 236px; border: solid 1px #c1c1c1; border-radius: 2px; padding:18px 0 12px 0; font-family: 'proximanova-regular';  margin: 0 0 20px 0;}
+
+
+/*
+.new_chakebox_con input[type=checkbox]:not(old){
+    width   : 28px;
+    margin  : 0;
+    padding : 0;
+    opacity : 0;
+}
+
+.new_chakebox_con input[type=checkbox]:not(old) + label{
+    display      : inline-block;
+    margin-left  : 0px;
+    padding-left : 40px;
+    background   : url('../images/rep_new_chakebox.png') no-repeat 0 0;
+    line-height  : 28px; font-size: 18px; font-weight: normal;
+}
+
+.new_chakebox_con input[type=checkbox]:not(old):checked + label{
+    background-position : 0 -28px;
+}*/
+
+
+
+
+
+
+
+.repcontactblock ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #484848!important; opacity: 10!important;
+}
+.repcontactblock ::-moz-placeholder { /* Firefox 19+ */
+    color: #484848!important; opacity: 10!important;
+}
+.repcontactblock :-ms-input-placeholder { /* IE 10+ */
+    color: #484848!important; opacity: 10!important;
+}
+.repcontactblock :-moz-placeholder { /* Firefox 18- */
+    color: #484848!important; opacity: 10!important;
+}
+
+
+.repconsubbtn{ border-radius: 0px!important; width: 236px!important; height: 56px!important; text-align: center!important; line-height: 48px!important; cursor: pointer!important; background-image: none!important; box-shadow:none!important; background: #1b75bb!important; border: solid 1px #135c94!important; font-family: 'proximanova-regular'!important;  font-size: 19px!important; color: #fff!important; text-transform: uppercase!important; margin-top: 15px!important;}
+
+.btnGetNew {
+    background-color: #1b75bb!important;
+    background-image: none!important;
+    font-size: 18px!important;
+    height: 40px!important;
+    margin: 1px 0 0 0!important;
+    width: 162px!important;
+    border-radius: 0px;
+    color:#fff;
+    border: 0px;
+    font-family: 'proximanova-bold';
+    text-transform: uppercase;
+}
+
+
+.repcontactblock input[type="text"]{ height:40px;  background: #dcdcdc none repeat scroll 0 0;
+    border: 1px solid #cfcfcf;}
+
+.repcontactblock_img1{ width: 100%;}
+
+.repcontactblock_right h2{ font-size: 24px; color: #353535;  font-family: 'proximanova-regular'; line-height: 26px; padding: 10px 0 0 60px; background: url("../images/repcontact_icon1.png") no-repeat left center; text-transform: capitalize;word-wrap: break-word;}
+/*.repcontactblock_right h5{ font-size: 24px; color: #353535;  font-family: 'proximanova-regular'; line-height: 26px; padding: 10px 0 0 60px; background: url("../images/repcontact_icon5.png") no-repeat left center; text-transform: capitalize;}*/
+.repcontactblock_right h3{ font-size: 24px; color: #353535;  font-family: 'proximanova-regular'; line-height: 26px; padding: 10px 0 0 60px; background: url("../images/repcontact_icon3.png") no-repeat left center; text-transform: capitalize;word-wrap: break-word;}
+.repcontactblock_right h4{ font-size: 24px; color: #353535;  font-family: 'proxima_nova_rgregular'; line-height: 26px; padding: 10px 0 0 60px; background: url("../images/repcontact_icon2.png") no-repeat left center; text-transform: capitalize;word-wrap: break-word;}
+
+.repcontactblock_right a{ color: #353535!important; text-decoration: none!important;}
+
+
+
+.vcode_container p{margin: 10px 0 14px; font-size: 18px; color: #5a5a5a;  font-family: 'proximanova-regular'; line-height: 20px;}
+.vcode_container input[type="text"]{width: 200px;}
+
+.repcontact_img1{max-width: 100%;}
+
+
+
+
+
+/*----KOUSHIK rephome----*/
+
+
+.pateints_list_werapernewdiv .pateintdetail_left_form{  min-height: 206px;}
+.pateints_list_werapernewdiv .pateintdetail_right{  min-height: 206px;}
+
+.notes_divwrapper{ width: 80%;}

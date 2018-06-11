@@ -6,9 +6,9 @@ import {CookieService} from 'angular2-cookie/core';
 import {Commonservices} from '../app.commonservices' ;
 
 @Component({
-  selector: 'app-forgetpassword',
-  templateUrl: './forgetpassword.component.html',
-  styleUrls: ['./forgetpassword.component.css'],
+    selector: 'app-forgetpassword',
+    templateUrl: './forgetpassword.component.html',
+    styleUrls: ['./forgetpassword.component.css'],
     providers: [Commonservices],
 })
 export class ForgetpasswordComponent implements OnInit {
@@ -84,7 +84,7 @@ export class ForgetpasswordComponent implements OnInit {
                     console.log(result.msg);
                     if (result.status == 'success') {
                         this.addcookie.putObject('cookiedetails', result.msg);
-                       // this.cookiedetails = this.addcookie.getObject('cookiedetails');
+                        // this.cookiedetails = this.addcookie.getObject('cookiedetails');
                         this.showmessage = 'Success! The Email should be arriving shortly.';
                     }
                     else {

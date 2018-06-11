@@ -96,13 +96,14 @@
                 <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Training Center</a></li>
                 <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Resources</a></li>
                 <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Webinars</a></li>
-                <li role="menuitem" *ngIf="cookiedetails.type=='leadmanager' || cookiedetails.type=='salesrep'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/compensationmodifier']" >Sharelink</a></li>
+                <!--<li role="menuitem" *ngIf="cookiedetails.type=='leadmanager' || cookiedetails.type=='salesrep'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/compensationmodifier']" >Sharelink</a></li>-->
+                <li role="menuitem" *ngIf="cookiedetails.type=='leadmanager'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/compensationmodifier']" >Sharelink</a></li>
                 <li role="menuitem" *ngIf="cookiedetails.type=='masteraccount'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/sharelink']" >Sharelink</a></li>
 
 
                 <li><a href="javascript:void(0)" [routerLink]="['/reports']">Reports </a></li>
                 <li><a href="javascript:void(0)" [routerLink]="['/commissions']">Commissions </a></li>
-               <!-- <li *ngIf="cookiedetails.type=='leadmanager'"><a href="javascript:void(0)" [routerLink]="['/compensationmodifier']">Compensation Modifier </a></li>-->
+                <!-- <li *ngIf="cookiedetails.type=='leadmanager'"><a href="javascript:void(0)" [routerLink]="['/compensationmodifier']">Compensation Modifier </a></li>-->
               </ul>
 
 

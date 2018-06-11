@@ -682,3 +682,197 @@
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*----KOUSHIK rephome----*/
+
+
+
+@media only screen and (max-width: 1600px) {
+    .rephome_top_menu2 .container{
+        width: 100% !important;
+    }
+    .rephome_bannertext{ padding-top: 4px!important; padding-bottom: 6px!important;}
+    .rephome_bannertext h2{ font-size: 40px;}
+    .rephome_bannertext h3{ font-size: 28px;}
+
+}
+
+@media only screen and (max-width: 1280px) {
+    .rephome_top_menu2 .container{ width: 100%; margin: 0 auto; padding: 0px;}
+    .rephome_top_menu2 .topmenu2_right .navbar a{  padding: 19px 19px;}
+    .rephome_top_menu2 .topmenu2_left{ padding-left: 20px;}
+    .repportal_btn {
+        position: absolute;
+        left: 48%;
+    }
+}
+
+
+
+@media(max-width:1199px) {
+    .repportal_btn{ float: right; margin-right: 40px;}
+}
+
+
+
+@media(max-width:991px) {
+    .loginadminblock_topwrapper {
+        position: inherit;
+    }
+
+    .loginadminblock_middlewrapper {
+        position: inherit;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 00%;
+    }
+
+    .loginadminblock_middlewrapper img {
+        position: inherit;
+        top: 0;
+        left: 0%;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        min-width: 0%;
+        min-height: 0%;
+    }
+    .loginadminblock_bottomwrapper {
+        position: inherit;
+    }
+    .repportal_btn {
+        position: absolute;
+        top: 80%;
+        left: 50%;
+    }
+}
+
+@media(max-width:767px) {
+
+    .repportal_btn {
+        width: 280px;
+        height: 75px;
+        background-size: cover;
+        margin-right: 15px;
+    }
+
+    .repportal_btn a {
+        font-size: 20px;
+        padding: 25px 0 0 82px;
+    }
+    .loginadminblock_middlewrapper img {
+        left: -30%;
+    }
+
+}
+
+
+@media(max-width:640px) {
+    .loginadminblock_middlewrapper img {
+        left: -40%;
+        width:300%;
+    }
+}
+
+
+@media only screen and (max-width: 530px) {
+    .repportal_btn{ float: none; margin: 0 auto; margin-bottom: 10px;}
+
+}
+
+
+
+@media only screen and (max-width: 1199px) {
+
+    .repcontactblock {
+        width: 100% !important;
+        margin: 40px auto;
+        padding: 0px !important;
+    }
+    .repcontactblock .repcontactblock_left {
+        width: 56%;
+    }
+    .repcontactblock .repcontactblock_right {
+        width: 40%;
+    }
+    .repcontactblockmain {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+    .repcontactblock .repcontactblock_left {
+        width: 100%;
+    }
+    .repcontactblock .repcontactblock_right {
+        width: 100%;
+        float: left;
+        padding: 0px!important;
+        margin: 40px auto 0px;
+    }
+    .repcontact_img1 {
+        width: 100%;
+        max-width: inherit;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .repcontactblock_right h2 {
+        text-align: center;
+        background-position: center top;
+        padding: 40px 0 0 0;
+        margin-bottom: 15px;
+        margin-top: 15px;
+        font-size: 20px;
+    }
+
+    .repcontactblock_right h3 {
+        text-align: center;
+        background-position: center top;
+        padding: 40px 0 0 0;
+        margin-bottom: 15px;
+        margin-top: 15px;
+        font-size: 20px;
+    }
+
+    .repcontactblock_right h4 {
+        text-align: center;
+        background-position: center top;
+        padding: 40px 0 0 0;
+        margin-bottom: 15px;
+        margin-top: 15px;
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .btnGetNew {
+        margin: 15px 0 0 0 !important;
+    }
+}
+
+/*----KOUSHIK rephome----*/

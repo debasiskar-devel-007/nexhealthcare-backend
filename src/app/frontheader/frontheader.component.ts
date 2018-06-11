@@ -5,9 +5,9 @@ import {Commonservices} from '../app.commonservices';
 import {Http} from '@angular/http';
 
 @Component({
-  selector: 'app-frontheader',
-  templateUrl: './frontheader.component.html',
-  styleUrls: ['./frontheader.component.css'],
+    selector: 'app-frontheader',
+    templateUrl: './frontheader.component.html',
+    styleUrls: ['./frontheader.component.css'],
     providers: [Commonservices],
 })
 export class FrontheaderComponent implements OnInit {
@@ -25,8 +25,8 @@ export class FrontheaderComponent implements OnInit {
         }
     }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
     onHidden() {
         this.comingsoonmodal = false;
 

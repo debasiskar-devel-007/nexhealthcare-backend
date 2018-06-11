@@ -3,9 +3,9 @@ import {CookieService} from 'angular2-cookie/core';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-completewebinar',
-  templateUrl: './completewebinar.component.html',
-  styleUrls: ['./completewebinar.component.css']
+    selector: 'app-completewebinar',
+    templateUrl: './completewebinar.component.html',
+    styleUrls: ['./completewebinar.component.css']
 })
 export class CompletewebinarComponent implements OnInit {
     private addcookie: CookieService;
@@ -18,8 +18,8 @@ export class CompletewebinarComponent implements OnInit {
         } else {}
     }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
     callogout() {
         this.addcookie.removeAll();
         this.router.navigate(['/log-in']);
