@@ -32,6 +32,7 @@ export class PateintsComponent implements OnInit {
     public patientuniqueid;
     // public cookieuniqueid;
     public patientnametoapproveordecline;
+    public pgxval : boolean = false;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices, private route: ActivatedRoute) {
         this.serverurl = _commonservices.url;
@@ -50,6 +51,7 @@ export class PateintsComponent implements OnInit {
         this.alltags();
         this.dataForm1 = this.fb.group({
             cgx1: [''],
+            pgxval: [''],
             firstname1: [''],
             lastname1: [''],
             phone1: [''],
@@ -240,6 +242,7 @@ export class PateintsComponent implements OnInit {
                     this.getpatientuniqueid(result.id.patientid);
                     this.dataForm1 = this.fb.group({
                         cgx1: [userdet.cgx],
+                        pgxval: [userdet.pgxval],
                         firstname1: [userdet.firstname],
                         lastname1: [userdet.lastname],
                         phone1: [userdet.phone],
