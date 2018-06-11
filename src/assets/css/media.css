@@ -117,9 +117,9 @@
 
     .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper h3{  padding:10px 0 0 0; font-size: 18px; line-height: 18px;}
 
-    .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper h4{  font-size:50px;  line-height:40px;}
+   /* .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper h4{  font-size:50px;  line-height:40px;}
 
-    .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper h5{  font-size:30px;  line-height:20px;}
+    .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper h5{  font-size:30px;  line-height:20px;}*/
 
     .videoWrapperblockdiv {
         width: 67%;
@@ -225,6 +225,9 @@
 
 
 @media(max-width:1440px) {
+
+
+    .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper{ background-size: 230px!important; background-position: 0 56px!important;}
     .rep-dashboard_new_wrapper{ width: 96%;}
 
     .rep-dashboard_new_block3 .colmd4_1st .rep-dashboard_new_block3_wrapper .rep-dashboard_new_block3_wrapper_sub .wrapper3_sub_con span {
@@ -397,6 +400,9 @@
 }
 
 @media(max-width:1360px) {
+
+    .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper{     background-position: 0px 52px!important;
+        background-size: 210px!important;  }
 
   /*  .repsignup_mainbody .form_wrapper {
         width: 68%;
