@@ -4,6 +4,7 @@ import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'angular2-cookie/core';
+declare var moment: any;
 
 @Component({
     selector: 'app-repsignup',
@@ -35,6 +36,7 @@ export class RepsignupComponent implements OnInit {
     public addedby;
     public usastates;
     public uniquerepid;
+    public webinarlist = [];
     public wrongtokenforleadrolemodal: boolean = false;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices, private route: ActivatedRoute) {
@@ -98,6 +100,7 @@ export class RepsignupComponent implements OnInit {
         }
         this.getusastates();
         this.getuniquerepid();
+        this.getwebinarlist();
     }
 
     ngOnInit() {
@@ -119,6 +122,7 @@ export class RepsignupComponent implements OnInit {
             agentexperience: ['', Validators.required],
             olderclients: ['', Validators.required],
             noofplanBcard: ['', Validators.required],
+            webinarkey: ['', Validators.required],
             phone: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
         }, {validator: this.matchingPasswords('password', 'confpassword')});
     }
@@ -233,6 +237,7 @@ export class RepsignupComponent implements OnInit {
       }
     }
   }*/
+
     dosubmit(formval) {
         this.showvalidationerror = 1;
         let x: any;
@@ -259,6 +264,7 @@ export class RepsignupComponent implements OnInit {
                 agentexperience: formval.agentexperience,
                 olderclients: formval.olderclients,
                 noofplanBcard: formval.noofplanBcard,
+                webinarkey: formval.webinarkey,
                 //  type: 'salesrep',
                 type: this.type,
                 signup_step: 1,
@@ -304,6 +310,9 @@ export class RepsignupComponent implements OnInit {
                         }
                         console.log(newurl);
                         window.location.href = newurl;
+                        console.log('callcreateregistratsphppage  result.id');
+                        console.log(result.id._id);
+                        this.callcreateregistratsphppage(result.id._id);
                     }
                 }, error => {
                     console.log('Oooops!');
@@ -325,6 +334,64 @@ export class RepsignupComponent implements OnInit {
                     this.wrongtokenforleadrolemodal = true;
 
                 }
+            }, error => {
+                console.log('Ooops');
+            });
+    }
+
+    getwebinarlist() {
+        this.webinarlist = [];
+        let link = 'http://nexhealthtoday.com/getwebinarlist.php';
+        this._http.get(link)
+            .subscribe(res => {
+               // let result = res.json();
+                let results = res.json();
+              /*  console.log('webinar result ????');
+                console.log(results);
+                console.log(res);
+                console.log(res._body);
+                console.log('res._body .... ???');
+                console.log(JSON.parse(res._body));*/
+                for (let i in results) {
+                    if (results[i].registrationUrl == 'https://attendee.gotowebinar.com/rt/647150944609692929') {
+                        this.webinarlist.push(results[i]);
+                    }
+                }
+                /* if (result.status == 'success' && typeof(result.id) != 'undefined') {
+
+                } else {
+                }*/
+                console.log('this.webinarlist');
+                console.log(this.webinarlist);
+            }, error => {
+                console.log('Ooops');
+            });
+    }
+
+    showdateproperly(stdate , enddate) {
+      /* return moment(stdate).format('ddd') + ', ' + moment(stdate).format('MMM') + ' ' + moment(stdate).format('D') + ', ' + moment(stdate).format('YYYY') + ' ' + moment(stdate).format('h') + ':' + moment(stdate).format('mm') + ' ' + moment(stdate).format('A') + ' - ' + moment(enddate).format('h') + ':' + moment(enddate).format('mm') + ' ' + moment(enddate).format('A');*/
+
+        return moment(stdate).format('ddd') + ', ' + moment(stdate).format('MMM') + ' ' + moment(stdate).format('D') + ', ' + moment(stdate).format('YYYY') + ' 5:00 PM - 6:00 PM PDT';
+    }
+
+    callcreateregistratsphppage(id) {
+        let link = 'http://nexhealthtoday.com/createregistrants.php?id=' + id;
+        this._http.get(link)
+            .subscribe(res => {
+                let result = res.json();
+                console.log('result++++++++++');
+                console.log(result);
+              /*  for (let i in result) {
+                    if (result[i].registrationUrl == 'https://attendee.gotowebinar.com/rt/647150944609692929') {
+                        this.webinarlist.push(result[i]);
+                    }
+                }
+                /!* if (result.status == 'success' && typeof(result.id) != 'undefined') {
+
+                } else {
+                }*!/
+                console.log('this.webinarlist');
+                console.log(this.webinarlist);*/
             }, error => {
                 console.log('Ooops');
             });

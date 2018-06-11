@@ -315,9 +315,12 @@
                     <div class="row">
                         <div class="col-md-12">
 
-                            <label>You will need to choose one of our live onboarding calls to get started with this NexHealthcare program. Please choose a day and time that will work best for you <span>*</span></label>
+                            <label>You will need to choose one of our live onboarding calls to get started with this Altushealth program. Please choose a day and time that will work best for you <span>*</span></label>
 
-                            <select>
+                            <select [formControl]="dataForm.controls['webinarkey']">
+                                <option value="" disabled selected>Select Time</option>
+                                <option *ngFor="let item of webinarlist; let i = index" value="{{item.webinark}}">{{showdateproperly(item.times[0].startTime, item.times[0].endTime)}}</option>
+
                               <!--  <option>Fri, May 25, 2018 5:00 PM - 6:00 PM PDT</option>
                                 <option>Sat, May 26, 2018 5:00 PM - 6:00 PM PDT</option>
                                 <option>Sun, May 27, 2018 5:00 PM - 6:00 PM PDT</option>
@@ -330,7 +333,7 @@
                                 <option>Tue, Jun 5, 2018 5:00 PM - 6:00 PM PDT</option>
                                 <option>Wed, Jun 6, 2018 5:00 PM - 6:00 PM PDT</option>
                                 <option>Thu, Jun 7, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Fri, Jun 8, 2018 5:00 PM - 6:00 PM PDT</option>-->
+                                <option>Fri, Jun 8, 2018 5:00 PM - 6:00 PM PDT</option>
                                 <option>Mon, Jun 11, 2018 5:00 PM - 6:00 PM PDT</option>
                                 <option>Tue, Jun 12, 2018 5:00 PM - 6:00 PM PDT</option>
                                 <option>Wed, Jun 13, 2018 5:00 PM - 6:00 PM PDT</option>
@@ -349,10 +352,11 @@
                                 <option>Thu, Jun 28, 2018 5:00 PM - 6:00 PM PDT</option>
                                 <option>Fri, Jun 29, 2018 5:00 PM - 6:00 PM PDT</option>
                                 <option>Sat, Jun 30, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Sun, Jul 1, 2018 5:00 PM - 6:00 PM PDT</option>
+                                <option>Sun, Jul 1, 2018 5:00 PM - 6:00 PM PDT</option>-->
                             </select>
 
                             <div class="clearfix"></div>
+                            <span class="has-error" *ngIf ="dataForm.controls['webinarkey'].touched && !dataForm.controls['webinarkey'].valid"> This is required!</span>
                         </div>
                         <div class="clearfix"></div>
 
