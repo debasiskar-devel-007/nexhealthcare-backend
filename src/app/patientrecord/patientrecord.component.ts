@@ -18,6 +18,7 @@ export class PatientrecordComponent implements OnInit {
     public dataForm1: FormGroup ;
     public fb;
     public fb1;
+    public pgxval : boolean = false;
     public deleteid;
     public editnoteid;
     public type;
@@ -123,6 +124,7 @@ export class PatientrecordComponent implements OnInit {
 
         this.dataForm1 = this.fb.group({
             cgx1: [''],
+            pgxval: [''],
             firstname1: ['', Validators.required],
             lastname1: ['', Validators.required],
             phone1: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
@@ -244,7 +246,6 @@ export class PatientrecordComponent implements OnInit {
             pgx18: [''],
             pgx19: ['']
         });
-        // this.dataForm1.value.cgx1.value = true;
     }
 
     addsimplenote() {
@@ -497,7 +498,6 @@ export class PatientrecordComponent implements OnInit {
         }
     }
     openquesmodal() {
-        this.getpatientdetailsbypatientid();
         this.pateintquestioniremodal = true;
         this.getdetails();
         setTimeout(() => {
@@ -510,6 +510,7 @@ export class PatientrecordComponent implements OnInit {
                 city1: [this.patientdetails.city, Validators.required],
                 state1: [this.patientdetails.state, Validators.required],
                 cgx1: [true],
+                pgxval: [''],
                 address1: ['', Validators.required],
                 zip1: ['', Validators.required],
                 dob1: ['', Validators.required],
@@ -626,6 +627,7 @@ export class PatientrecordComponent implements OnInit {
                 pgx18: [''],
                 pgx19: ['']
             });
+            this.getpatientdetailsbypatientid();
         }, 1000);
     }
     show_div_to_add_note() {
@@ -655,6 +657,7 @@ export class PatientrecordComponent implements OnInit {
                     let userdet = result.id;
                     this.dataForm1 = this.fb.group({
                         cgx1: [userdet.cgx],
+                        pgxval: [userdet.pgxval],
                         firstname1: [userdet.firstname, Validators.required],
                         lastname1: [userdet.lastname, Validators.required],
                         phone1: [userdet.phone, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
@@ -777,18 +780,25 @@ export class PatientrecordComponent implements OnInit {
                         pgx19: [userdet.pgx19]
                     });
                 } else {
-                    // this.router.navigate(['/patient-list']);
                 }
             }, error => {
                 console.log('Ooops');
             });
     }
+
     dosubmit1(formval) {
         console.log('? ' + this.dataForm1.valid);
         if (formval.cgx1 == true) {
             var putcgx = 1;
-        }if (formval.cgx1 != true) {
-            var putcgx= 0;
+        }
+        if (formval.cgx1 != true) {
+            var putcgx = 0;
+        }
+        if (this.pgxval == true) {
+            var putpgx = 1;
+        }
+        if (this.pgxval != true) {
+            var putpgx = 0;
         }
         if (formval.topicalpain == true) {
             var puttopicalpain = 1;
@@ -820,6 +830,7 @@ export class PatientrecordComponent implements OnInit {
                 let data = {
                     patientid: this.id,
                     cgx1: putcgx,
+                    pgxval: putpgx,
                     firstname1: formval.firstname1,
                     lastname1: formval.lastname1,
                     phone1: formval.phone1,
@@ -967,6 +978,7 @@ export class PatientrecordComponent implements OnInit {
             let data = {
                 patientid: this.id,
                 cgx1: putcgx,
+                pgxval: putpgx,
                 firstname1: formval.firstname1,
                 lastname1: formval.lastname1,
                 phone1: formval.phone1,
@@ -1106,6 +1118,18 @@ export class PatientrecordComponent implements OnInit {
                 });
         }
     }
+    checkpgx(val) {
+        console.log(val);
+        console.log(this.pgxval);
+        if (this.pgxval != true) {
+        if (val != null) {
+            this.pgxval = true;
+          //  $('#formquestionary .pgxvalclass').attr('checked', true);
+            $('#formquestionary .pgxvalclass').prop('checked', true);
+        }
+        }
+    }
+
     backtolistview() {
         if (this.cookiedetails.type == 'superadmin') {
             this.router.navigate(['/patient-list' , 'admin']);

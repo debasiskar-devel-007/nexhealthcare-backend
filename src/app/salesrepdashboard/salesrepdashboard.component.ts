@@ -105,7 +105,7 @@ export class SalesrepdashboardComponent implements OnInit {
 
     // user call to patientlist
     getpatientlistunderthisid() {
-        let link = this.serverurl + 'getpatientlistunderthisid1';
+        let link = this.serverurl + 'getpatientlistunderthisid';
         let data = {
             userid: this.cookiedetails.id,
         };
