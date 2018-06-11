@@ -2050,7 +2050,7 @@ a:visited {	text-decoration: none;	outline: none;}
 .trainingcentercontentrightblockright .viewsdiv label{padding: 0; margin: 0; font-family: "proximanova-regular"; font-size: 14px; line-height: 18px; color:#8a8b8c;}
 
 
-.btnviewmore{display: inline-block; font-family: "proximanova-semibold"; font-size: 18px; line-height: 30px; color:#fff; text-transform: uppercase; background-color: #29abe1; padding: 12px 36px; margin-top: 20px; float: right; position: absolute; right: 0; bottom: 0;}
+.btnviewmore{display: inline-block; font-family: "proximanova-semibold"; font-size: 18px; line-height: 30px; color:#fff; text-transform: uppercase; background-color: #29abe1; padding: 12px 36px; margin-top: 20px; float: right; position: absolute; right: 25px; bottom:25px;}
 .btnviewmore:hover{color:#fff!important;}
 
 
@@ -2990,3 +2990,9 @@ a:visited {	text-decoration: none;	outline: none;}
 .landing_top2_div2_wrapper_video_com ul li{ list-style: none; font-size: 18px; color: #333232;  font-family: 'proximanova-regular'; background: url("../images/landing_block2_libg.jpg") no-repeat  left 7px!important; padding: 0 0 0 22px; margin: 2px 0;}
 
 /*------------------------landing page----------------------*/
+
+
+
+.trainingcenter_mainwrapper h1{ margin: 0; padding: 0 0 20px 0; color: #0392d8; font-family: 'proximanova-semibold';      font-size: 36px}
+
+.trainingcenter_mainwrapper h1:after{ content: ""; width: 100%; display: block; height: 2px; background: #0392d8; margin: 10px 0 0 0;}
