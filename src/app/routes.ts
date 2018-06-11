@@ -38,6 +38,8 @@ import {CommissionsComponent} from './commissions/commissions.component';
 import {SharelinkComponent} from './sharelink/sharelink.component';
 import {HomeComponent} from './home/home.component';
 import {ContactComponent} from './contact/contact.component';
+import {LandingComponent} from './landing/landing.component';
+import {Landing2Component} from './landing2/landing2.component';
 
 
 const appRoutes: Routes = [
@@ -80,6 +82,8 @@ const appRoutes: Routes = [
     { path: 'commissions', component: CommissionsComponent},
     { path: 'sharelink', component: SharelinkComponent},
     { path: 'contact', component: ContactComponent},
+    { path: 'landing', component: LandingComponent},
+    { path: 'landing2', component: LandingComponent},
 
 
    // { path: 'content', component: ContentComponent,outlet:'content'},
