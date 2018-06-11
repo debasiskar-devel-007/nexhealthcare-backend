@@ -49,6 +49,8 @@ import { CommissionsComponent } from './commissions/commissions.component';
 import { SharelinkComponent } from './sharelink/sharelink.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
+import { LandingComponent } from './landing/landing.component';
+import { Landing2Component } from './landing2/landing2.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +91,9 @@ import { ContactComponent } from './contact/contact.component';
       CommissionsComponent,
       SharelinkComponent,
       HomeComponent,
-      ContactComponent
+      ContactComponent,
+      LandingComponent,
+      Landing2Component
   ],
   imports: [
     BrowserModule,
