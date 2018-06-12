@@ -353,7 +353,14 @@
 
                      <div class="rep-dashboard_new_block3_wrapper_sub">
 
-                         <div class="wrapper3_sub_con">
+                         <div class="wrapper3_sub_con" *ngFor="let item of patientlist | orderBy:'_id':'reverse' ; let i = index">
+                             <div *ngIf="i<6">
+                             <span><img src="../../assets/images/rep-dashboard_new_block3_img1.png" alt="#"></span>
+                             <label>{{item.firstname}} {{item.lastname}}</label>
+
+                         </div>
+                         </div>
+                        <!-- <div class="wrapper3_sub_con">
                              <span><img src="../../assets/images/rep-dashboard_new_block3_img1.png" alt="#"></span>
                              <label>Lorem Ipsum</label>
 
@@ -377,12 +384,7 @@
                              <span><img src="../../assets/images/rep-dashboard_new_block3_img1.png" alt="#"></span>
                              <label>Lorem Ipsum</label>
 
-                         </div>
-                         <div class="wrapper3_sub_con">
-                             <span><img src="../../assets/images/rep-dashboard_new_block3_img1.png" alt="#"></span>
-                             <label>Lorem Ipsum</label>
-
-                         </div>
+                         </div>-->
 
 
                          <div class="clearfix"></div>

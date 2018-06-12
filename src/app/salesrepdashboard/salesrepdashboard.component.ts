@@ -17,6 +17,7 @@ export class SalesrepdashboardComponent implements OnInit {
     public comingsoonmodal;
     public serverurl;
     public recdetails;
+    public datalist;
     public logintime;
     public signuptime;
     public patientaccepted;
@@ -39,6 +40,7 @@ export class SalesrepdashboardComponent implements OnInit {
             this.getrecdetails();
             if (this.cookiedetails.type == 'superadmin') {
                 this.totalnoofpatients();
+                this.getPatient_addedbyList();
             }
             else {
                 this.getpatientlistunderthisid();
@@ -59,6 +61,53 @@ export class SalesrepdashboardComponent implements OnInit {
     }
     openmodal() {
         this.comingsoonmodal = true;
+    }
+    // admin call to patientlist
+    getPatient_addedbyList() {
+        this.patientlist = [];
+        let link = this.serverurl + 'patient_addedbylist';
+        this._http.get(link)
+            .subscribe(res => {
+                let result = res.json();
+                if (result.status == 'success') {
+                    console.log(result.id);
+                    this.datalist = result.id;
+                    for (let j in this.datalist) {
+                        if (this.datalist[j].PatientRecordCompletedOrNot.length > 0) {
+                            console.log('inside');
+                            if (this.datalist[j].PatientRecordCompletedOrNot[0].iscompleted == 1) {
+                                this.patientlist.push(this.datalist[j]);
+                            }
+                        }
+                    }
+                }
+
+            }, error => {
+                console.log('Oooops!');
+            });
+        console.log('this.patientlist----------');
+        console.log(this.patientlist);
+    }
+    // user call to patientlist
+    getpatientlistunderthisid() {
+        let link = this.serverurl + 'getpatientlistunderthisid';
+        let data = {
+            userid: this.cookiedetails.id,
+        };
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                // console.log('result');
+                //  console.log(result);
+                if (result.status == 'success') {
+                    this.datalist = result.id;
+                    this.patientlist = this.datalist;
+                    console.log('this.patientlist under this userid');
+                    console.log(this.patientlist);
+                }
+            }, error => {
+                console.log('Oooops!');
+            });
     }
     getrecdetails() {
         let link = this.serverurl + 'getuserdetails';
@@ -103,9 +152,9 @@ export class SalesrepdashboardComponent implements OnInit {
             });
     }
 
-    // user call to patientlist
+/*    // user call to patientlist
     getpatientlistunderthisid() {
-        let link = this.serverurl + 'getpatientlistunderthisid';
+        let link = this.serverurl + 'getpatientlistunderthisid1';
         let data = {
             userid: this.cookiedetails.id,
         };
@@ -113,6 +162,7 @@ export class SalesrepdashboardComponent implements OnInit {
             .subscribe(res => {
                 let result = res.json();
                 if (result.status == 'success') {
+                    this.datalist = result.id;
                     this.patientlist = result.id;
                     console.log('this.patientlist under this userid');
                     console.log(this.patientlist);
@@ -133,5 +183,5 @@ export class SalesrepdashboardComponent implements OnInit {
             }, error => {
                 console.log('Oooops!');
             });
-    }
+    }*/
 }
