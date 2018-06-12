@@ -384,7 +384,7 @@ export class PateintsComponent implements OnInit {
     ngOnInit() {
         this.route.params.subscribe(params => {
             this.isthisadmin = params['id'];
-            // console.log(this.isthisadmin);
+             console.log(this.isthisadmin);
         });
         if (this.isthisadmin == 'admin') {
             console.log('this.isthisadmin**************');
