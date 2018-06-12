@@ -437,8 +437,8 @@ export class PateintsComponent implements OnInit {
             });
     }*/
     gotopdf(id) {
-        var url = 'http://nexhealthtoday.com/testpdf/html2pdf/ppqformpdf.php?id=' + id;
-        //  window.location.href = (url , '_blank');
+    //    var url = 'http://nexhealthtoday.com/testpdf/html2pdf/ppqformpdf.php?id=' + id;
+        var url = 'http://altushealthgroup.com/testpdf/html2pdf/ppqformpdf.php?id=' + id;
         window.open(url, '_blank');
     }
     // admin call to patientlist

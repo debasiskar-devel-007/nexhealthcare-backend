@@ -60,7 +60,7 @@ export class RepsignupComponent implements OnInit {
             //  console.log(splitvalue[0]);
             if (splitvalue[2] == null) {
                 this.type = 'corporate';
-                this.neededhost = 'nexhealthtoday.com';
+                this.neededhost = 'altushealthgroup.com';
                 this.addedby = 'corporate';
             }
             else {
