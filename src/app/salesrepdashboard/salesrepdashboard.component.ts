@@ -104,11 +104,78 @@ export class SalesrepdashboardComponent implements OnInit {
                     this.patientlist = this.datalist;
                     console.log('this.patientlist under this userid');
                     console.log(this.patientlist);
+
+                    for (let i in this.patientlist) {
+                        if (this.patientlist[i].Tagdetail[0] != null) {
+                            if (this.patientlist[i].Tagdetail[0].tagid == '5b0bfa1b3fe08865e7955f71') {
+                                this.patientacceptednumber = this.patientacceptednumber + 1;
+                            }
+                            if (this.patientlist[i].Tagdetail[0].tagid == '5b0bfa1d3fe08865e7955f72') {
+                                this.patientdeclinednumber = this.patientdeclinednumber + 1;
+                            }
+                            if (this.patientlist[i].Tagdetail[0].tagid == '5b0b9235b33cbc2d4af08dd9') {
+                                this.patientsubmittednumber = this.patientsubmittednumber + 1;
+                            }
+                        }
+                    }
                 }
             }, error => {
                 console.log('Oooops!');
             });
     }
+
+    // user call to patientlist for patient tags numbers
+   /* totalnoofpatientsunderthisid() {
+        let link = this.serverurl + 'gettotalnoofpatientsunderthisid';
+        let data = {
+            userid: this.cookiedetails.id,
+        };
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                if (result.status == 'success') {
+                    this.datalist = result.id;
+                    this.patientlist = this.datalist;
+                    for (let i in this.patientlist) {
+                        if (this.patientlist[i].Tagdetail[0] != null) {
+                            if (this.patientlist[i].Tagdetail[0].tagid == '5b0bfa1b3fe08865e7955f71') {
+                                this.patientacceptednumber = this.patientacceptednumber + 1;
+                            }
+                            if (this.patientlist[i].Tagdetail[0].tagid == '5b0bfa1d3fe08865e7955f72') {
+                                this.patientdeclinednumber = this.patientdeclinednumber + 1;
+                            }
+                            if (this.patientlist[i].Tagdetail[0].tagid == '5b0b9235b33cbc2d4af08dd9') {
+                                this.patientsubmittednumber = this.patientsubmittednumber + 1;
+                            }
+                        }
+                    }
+                }
+            }, error => {
+                console.log('Oooops!');
+            });
+    }*/
+
+    gotopatientrecord(id, tagid) {
+        if (tagid == '5b0bfa1b3fe08865e7955f71') {
+            this.router.navigate(['/patientrecord', id, 1]); // accept
+        }
+        if (tagid == '5b0bfa1d3fe08865e7955f72') {
+            this.router.navigate(['/patientrecord', id, 2]); // decline
+        }
+        if (tagid == '5b0cda8121eaaa0244d52b9e') {
+            this.router.navigate(['/patientrecord', id, 3]); // lead
+        }
+        if (tagid == '5b0b9235b33cbc2d4af08dd9') {
+            this.router.navigate(['/patientrecord', id, 4]); // pps submitted
+        }
+        if (tagid == '5afad90dde56b53d10e2ab4d') {
+            this.router.navigate(['/patientrecord', id, 5]); // pf submitted
+        }
+        /* if ((tagid != '5b0bfa1b3fe08865e7955f71') && (tagid != '5b0bfa1d3fe08865e7955f72')) {
+      this.router.navigate(['/patientrecord', id, 3]);
+    }*/
+    }
+
     getrecdetails() {
         let link = this.serverurl + 'getuserdetails';
         let data = {

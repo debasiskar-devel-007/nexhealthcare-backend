@@ -282,23 +282,24 @@
                      <form *ngIf="cookiedetails.type=='superadmin'">
 
                          <div class="form-group">
-                             <label>PPS Submitted:</label><input type="text" value="{{patientsubmitted}}" readonly>
+                             <label>Patient Profile Sheet Submitted:</label><input type="text" value="{{patientsubmitted}}" readonly>
                              <div class="clearfix"></div>
 
                          </div>
                          <div class="form-group">
-                             <label>PPS Approved:</label><input type="text" value="{{patientaccepted}}" readonly>
+                             <label>Patient Profile Sheet Approved:</label><input type="text" value="{{patientaccepted}}" readonly>
                              <div class="clearfix"></div>
 
                          </div>
 
                          <div class="form-group">
-                             <label>PPS Declined: </label><input type="text" value="{{patientdeclined}}" readonly>
+                             <label>Patient Profile Sheet Declined: </label><input type="text" value="{{patientdeclined}}" readonly>
                              <div class="clearfix"></div>
 
                          </div>
 
-                         <input type="button" value="View All Patients" class="viewbtn2" [routerLink]="['/patient-list']">
+                         <input type="button" value="View All Patients" class="viewbtn2" *ngIf="cookiedetails.type!='superadmin'" [routerLink]="['/patient-list']">
+                         <input type="button" value="View All Patients" class="viewbtn2" *ngIf="cookiedetails.type=='superadmin'" [routerLink]="['/patient-list','admin']">
 
 
                      </form>
@@ -352,14 +353,13 @@
                      <h2>Recently added Patients  </h2>
 
                      <div class="rep-dashboard_new_block3_wrapper_sub">
-
-                         <div class="wrapper3_sub_con" *ngFor="let item of patientlist | orderBy:'_id':'reverse' ; let i = index">
-                             <div *ngIf="i<6">
+<div *ngFor="let item of patientlist | orderBy:'_id':'reverse' ; let i = index">
+                         <div class="wrapper3_sub_con" *ngIf="i<8" (click)="gotopatientrecord(item._id, item.Tagdetail[0].tagid)">
                              <span><img src="../../assets/images/rep-dashboard_new_block3_img1.png" alt="#"></span>
-                             <label>{{item.firstname}} {{item.lastname}}</label>
+                             <label >{{item.firstname}} {{item.lastname}}</label>
 
                          </div>
-                         </div>
+</div>
                         <!-- <div class="wrapper3_sub_con">
                              <span><img src="../../assets/images/rep-dashboard_new_block3_img1.png" alt="#"></span>
                              <label>Lorem Ipsum</label>
@@ -390,7 +390,8 @@
                          <div class="clearfix"></div>
                      </div>
 
-                     <a href="javascript:void(0)" class="wrapper3_sub_link">View All Patients</a>
+                     <a href="javascript:void(0)" class="wrapper3_sub_link" *ngIf="cookiedetails.type=='superadmin'" [routerLink]="['/patient-list','admin']">View All Patients</a>
+                     <a href="javascript:void(0)" class="wrapper3_sub_link" *ngIf="cookiedetails.type!='superadmin'" [routerLink]="['/patient-list']">View All Patients</a>
 
 
                  </div>
@@ -401,11 +402,12 @@
                  <div class="rep-dashboard_new_block3_wrapper">
 
                      <h2>Upcoming Webinars</h2>
-                     <h3>Time</h3>
-                     <h4><!--6 PM-->Monday </h4>
-                     <h5><!--2018-->June 18th,<br/> 2018 7:00 PM EST</h5>
+                     <h3>Coming Soon!</h3>
+                     <!--<h3>Time</h3>
+                     <h4>&lt;!&ndash;6 PM&ndash;&gt;Monday </h4>
+                     <h5>&lt;!&ndash;2018&ndash;&gt;June 18th,<br/> 2018 7:00 PM EST</h5>
 
-                     <a href="javascript:void(0)" class="wrapper3_signup_link">sign up</a>
+                     <a href="javascript:void(0)" class="wrapper3_signup_link">sign up</a>-->
 
                      <a href="javascript:void(0)" class="wrapper3_sub_link">View All Webinars</a>
 
