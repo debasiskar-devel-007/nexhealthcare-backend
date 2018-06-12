@@ -1012,12 +1012,12 @@ a:visited {	text-decoration: none;	outline: none;}
     width: 170px !important;
 }
 
-.pateintquestionire_div2{ width:100%; border-top:solid 2px #a3a8a9; padding:26px 0; }
+.pateintquestionire_div2{ width:100%; border-top:solid 2px #a3a8a9; padding:15px 0; }
 
-.pateintquestionire_div2:nth-of-type(2){margin-top:26px;}
+.pateintquestionire_div2:nth-of-type(2){margin-top:15px;}
 
 
-.pateintquestionire_div3{ width:100%; border-top:solid 2px #a3a8a9; padding:26px 0 0 0; }
+.pateintquestionire_div3{ width:100%; border-top:solid 2px #a3a8a9; padding:15px 0 0 0; }
 
 .pateintquestionire_div2 .pateintquestionire_div2_left{ width:48%; float:left;}
 
@@ -1147,8 +1147,8 @@ a:visited {	text-decoration: none;	outline: none;}
 .pateintquestionire_bottom_form  input{ width:280px;  background:#fff; border:none; border-bottom:solid 1px #646666; border-radius:0px; box-shadow:none; outline:none; font-size: 14px; color: #000; font-family: 'proximanova-regular'; padding:0 5px; float:left; margin-top:6px;}
 
 
-.pateintquestionirebtn { width: 210px;  background: #089cd3; text-align: center; font-size: 30px; color: #fff; font-family: 'proximanova-bold'; text-transform: uppercase; border: none; box-shadow: none; line-height: 44px; float:right; margin-top:20px; }
-.pateintquestionirebtn2 { width: 210px;  background: #646666; text-align: center; font-size: 30px; color: #fff; font-family: 'proximanova-bold'; text-transform: uppercase; border: none; box-shadow: none; line-height: 44px; float:right; margin: 0 10px; margin-top:20px; }
+.pateintquestionirebtn { width: 210px;  background: #089cd3; text-align: center; font-size: 30px; color: #fff; font-family: 'proximanova-bold'; text-transform: uppercase; border: none; box-shadow: none; line-height: 44px; float:right; margin-top:15px; }
+.pateintquestionirebtn2 { width: 210px;  background: #646666; text-align: center; font-size: 30px; color: #fff; font-family: 'proximanova-bold'; text-transform: uppercase; border: none; box-shadow: none; line-height: 44px; float:right; margin: 0 10px; margin-top:15px; }
 
 .callsignautre {
     margin: 0;
@@ -1314,9 +1314,9 @@ a:visited {	text-decoration: none;	outline: none;}
 
 
 .compensationmodifier_table_wrapper table td span {
-    display: inline-block;
+   /* display: inline-block;
     float: left;
-    padding: 7px 0;
+    padding: 7px 0;*/
 }
 
 
@@ -1358,7 +1358,7 @@ a:visited {	text-decoration: none;	outline: none;}
 }
 
 .pateintquestioniremodal  .pateintquestionire_div2 h3 {
-    margin: 0 0 12px 0!important;
+    margin: 0 0 0 0!important;
     padding: 0!important;
     font-size: 18px!important;
     color: #295b73!important; border-left: none!important;
@@ -2227,8 +2227,11 @@ a:visited {	text-decoration: none;	outline: none;}
 .sharelinkblockcontentright{padding-right: 0px;}
 
 
-.compensationmodifier_table_wrapper table td h4{ text-align: left; color: #29abe1; margin: 0; padding: 15px 0;}
+.compensationmodifier_table_wrapper table td h4{ text-align: left; color: #29abe1; margin: 0;}
 
+.compensationmodifierlinkdiv{ padding: 5px 0;}
+
+.compensationmodifier_table_wrapper table td h4 span{ display: inline-block!important; float: none!important; padding-left: 10px!important; color: #333!important;}
 
 .notes_divwrapper{ margin-top: 20px;}
 .h6_texthading{padding: 14px 20px;
@@ -3006,3 +3009,15 @@ a:visited {	text-decoration: none;	outline: none;}
 
 
 .pateintquestioniremodal .has-error{ display: inline-block!important; color: #ff0000!important; font-size: 12px!important;}
+
+
+.compensationmodifier_subtable td{ border: none!important; padding:10px 5px!important; text-align: left;!important; vertical-align: middle!important;}
+
+.compensationmodifier_subtable td h4{ display: inline-block; padding-right: 10px;}
+
+.compensationmodifier_subtable td span{ display: inline!important;}
+.compensationmodifier_subtable td:nth-of-type(2){ text-align: right!important; width: 110px!important; }
+.compensationmodifier_subtable td:nth-of-type(1){ text-align: left!important; width: 80%!important;}
+
+
+.pateintquestioniremodal  .pateints_list_weraper{  margin-bottom: 5px; margin-top: 15px;}
