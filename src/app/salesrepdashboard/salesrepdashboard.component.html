@@ -353,7 +353,7 @@
                      <h2>Recently added Patients  </h2>
 
                      <div class="rep-dashboard_new_block3_wrapper_sub">
-<div *ngFor="let item of patientlist | orderBy:'_id':'reverse' ; let i = index">
+<div class="wrapper3_sub_conbody" *ngFor="let item of patientlist | orderBy:'_id':'reverse' ; let i = index">
                          <div class="wrapper3_sub_con" *ngIf="i<8" (click)="gotopatientrecord(item._id, item.Tagdetail[0].tagid)">
                              <span><img src="../../assets/images/rep-dashboard_new_block3_img1.png" alt="#"></span>
                              <label >{{item.firstname}} {{item.lastname}}</label>
@@ -402,7 +402,7 @@
                  <div class="rep-dashboard_new_block3_wrapper">
 
                      <h2>Upcoming Webinars</h2>
-                     <h3>Coming Soon!</h3>
+                     <h4 style="padding-top: 20px;">Coming Soon!</h4>
                      <!--<h3>Time</h3>
                      <h4>&lt;!&ndash;6 PM&ndash;&gt;Monday </h4>
                      <h5>&lt;!&ndash;2018&ndash;&gt;June 18th,<br/> 2018 7:00 PM EST</h5>
@@ -458,7 +458,7 @@
       <div class="modal-header">
       </div>
       <div class="modal-body">
-        <img src="../../assets/images/adminlogo.png" alt="#" class="popup_logo1">
+        <img src="../../assets/images/completewebinarlogo.png" alt="#" class="popup_logo1">
         <h1 class="text-center">Coming Soon</h1>
       </div>
     </div>
