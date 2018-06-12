@@ -1,3 +1,4 @@
+<!--
 
 <app-frontheader></app-frontheader>
 <div class="container-fluid admin_inner_heading">
@@ -254,4 +255,216 @@
 
   </div>
 </div>
+<app-frontfooter></app-frontfooter>-->
+
+
+
+
+
+
+
+
+<!--<div class="container-fluid admin_inner_top">
+  <div class="container admininnerwrappe">
+    <a href="javascript:void(0)"><img src="../../assets/images/adminlogo.png" alt="#"></a>
+    &lt;!&ndash; <a href="javascript:void(0)"><img src="images/adminlogo.png" alt="#"></a>&ndash;&gt;
+
+  </div>
+
+</div>-->
+
+<app-frontheader></app-frontheader>
+
+<div class="container-fluid admin_inner_heading">
+
+  <h2><span>User Record</span></h2>
+
+</div>
+
+
+
+<div class="container-fluid pateints_inner_body">
+  <div class="container pateintswrappe">
+
+    <div class="pateints_list_weraper pateints_list_werapernewdiv">
+
+      <form role="form" class="form-inline" novalidate [formGroup]="dataForm" (ngSubmit)="dosubmit(dataForm.value)">
+
+        <div class="pateintdetail_left">
+          <h6>Record Details</h6>
+          <div class="pateintdetail_left_form pateintdetail_left_formnew">
+
+
+            <div class="pateintdetail_left_formnew_left">
+
+
+              <div class="form-group hide">
+                <label>Password :</label>
+                <input type="password" class="form-control" [formControl]="dataForm.controls['password']"/>
+                <div class="clearfix"></div>
+
+              </div>
+
+              <div class="form-group hide">
+                <label>Confirm  Password:</label>
+                <input type="password" class="form-control" [formControl]="dataForm.controls['confpassword']"/>
+                <div class="clearfix"></div>
+                <span class="has-error" *ngIf="passerror">{{passerror}}</span>
+              </div>
+
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text"  class="form-control" placeholder="First Name" [formControl]="dataForm.controls['firstname']"/>  <div class="clearfix"></div>
+                <span class="has-error" *ngIf ="dataForm.controls['firstname'].touched && !dataForm.controls['firstname'].valid">Firstname is required!</span></div>
+
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text"  class="form-control"  placeholder="Last Name" [formControl]="dataForm.controls['lastname']"/>  <div class="clearfix"></div>
+                <span class="has-error" *ngIf ="dataForm.controls['lastname'].touched && !dataForm.controls['lastname'].valid">Lastname is required!</span></div>
+
+
+              <div class="form-group">
+                <label>Address  :</label>
+                <textarea [formControl]="dataForm.controls['address']"></textarea>
+                <div class="clearfix"></div>
+                <span class="has-error" *ngIf ="dataForm.controls['address'].touched && !dataForm.controls['address'].valid">Invalid Address!</span>
+              </div>
+
+              <div class="form-group">
+                <label>Address2  :</label>
+                <textarea [formControl]="dataForm.controls['address2']"></textarea>
+                <div class="clearfix"></div>
+              </div>
+
+              <div class="form-group">
+                <label>City</label>
+                <input type="text"  class="form-control"  placeholder="City" [formControl]="dataForm.controls['city']"/>  <div class="clearfix"></div>
+                <span class="has-error" *ngIf ="dataForm.controls['city'].touched && !dataForm.controls['city'].valid">City is required!</span></div>
+
+              <div class="form-group">
+                <label>State</label>
+                <select class="form-control" [formControl]="dataForm.controls['state']">
+                  <option value="" disabled selected>Select State</option>
+                  <option value="{{item.name}}" *ngFor="let item of usastates; let i = index">{{item.name}}</option>
+                </select>
+                <div class="clearfix"></div>
+                <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid">State is required!</span></div>
+
+              <div class="form-group">
+                <label>Zip    :</label>
+                <input type="text" class="form-control" [formControl]="dataForm.controls['zip']">
+                <div class="clearfix"></div>
+                <span class="has-error" *ngIf ="dataForm.controls['zip'].touched && !dataForm.controls['zip'].valid">Invalid Zip!</span>
+              </div>
+
+
+              <div class="form-group">
+                <label>Email Address:</label>
+                <input type="email" class="form-control" [formControl]="dataForm.controls['email']" readonly>
+                <div class="clearfix"></div>
+              </div>
+
+              <div class="form-group">
+                <label>Phone Number:</label>
+                <input type="text" class="form-control" appNumber [formControl]="dataForm.controls['phone']">
+                <span class="has-error" *ngIf ="dataForm.controls['phone'].touched && !dataForm.controls['phone'].valid">Phone No must be 10 numbers!</span>
+                <div class="clearfix"></div>
+              </div>
+
+
+              <div class="form-group">
+                <label>Gender  :</label>
+                <select class="form-control2" [formControl]="dataForm.controls['gender']">
+                  <span class="has-error" *ngIf ="dataForm.controls['gender'].touched && !dataForm.controls['gender'].valid"> You must choose your gender!</span>
+                  <option value="male" name="gender">Male </option>
+                  <option value="female" name="gender">Female </option>
+                </select>
+                <div class="clearfix"></div>
+              </div>
+
+              <div class="form-group">
+                <label>Date Of birth :</label>
+                <input type="text" class="form-control" [formControl]="dataForm.controls['dob']">
+                <div class="clearfix"></div>
+                <span class="has-error" *ngIf ="dataForm.controls['dob'].touched && !dataForm.controls['dob'].valid">Invalid Date of Birth!</span>
+              </div>
+
+              <div class="form-group">
+                <label>How many years have you been an insurance agent? </label>
+                <input type="text" class="form-control" [formControl]="dataForm.controls['agentexperience']">
+                <div class="clearfix"></div>
+                <span class="has-error" *ngIf ="dataForm.controls['agentexperience'].touched && !dataForm.controls['agentexperience'].valid">Invalid Value!</span>
+              </div>
+
+              <div class="form-group">
+                <label>What number of your clients are 65 or older?</label>
+                <input type="text" class="form-control" [formControl]="dataForm.controls['olderclients']">
+                <div class="clearfix"></div>
+                <span class="has-error" *ngIf ="dataForm.controls['olderclients'].touched && !dataForm.controls['olderclients'].valid">Invalid Value!</span>
+              </div>
+
+              <div class="form-group">
+                <label>In your estimate, what percentage of your clients have their Medicare Plan B Card? </label>
+                <input type="text" class="form-control" [formControl]="dataForm.controls['noofplanBcard']">
+                <div class="clearfix"></div>
+                <span class="has-error" *ngIf ="dataForm.controls['noofplanBcard'].touched && !dataForm.controls['noofplanBcard'].valid">Invalid Value!</span>
+              </div>
+
+              <div class="clearfix"></div>
+              <div class="clearfix"></div>
+            </div>
+
+
+            <div class="pateintdetail_left_formnew_right">
+
+              <div class="form-group">
+                <label>Username : </label>
+                <input type="text" class="form-control" [formControl]="dataForm.controls['username']" readonly/>
+                <div class="clearfix"></div>
+              </div>
+
+              <div class="form-group">
+                <label>Rep ID: </label>
+                <input type="text" class="form-control" [formControl]="dataForm.controls['uniqueid']" readonly/>
+                <div class="clearfix"></div>
+              </div>
+
+              <div *ngIf="getdetailsbyidis!=null">
+                <div class="form-group" *ngIf="getdetailsbyidis.signuptime!=null">
+                  <label>Date Added</label>
+                  <input type="text"  class="form-control"  placeholder="Date Added" value="{{showtime(getdetailsbyidis.signuptime)}}" readonly/>  <div class="clearfix"></div>
+                </div>
+
+                <div class="form-group"  *ngIf="getdetailsbyidis.addedby!=null">
+                  <label>Enroller</label>
+                  <input type="text"  class="form-control"  placeholder="Enroller" readonly value="{{getdetailsbyidis.addedby}}"/>  <div class="clearfix"></div>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+
+          </div>
+          <div class="addbordertop"></div>
+
+          <textarea placeholder="Only Notes" class="notes_textarea hidden"></textarea>
+        </div>
+
+
+        <div class="pateintdetail_right">
+          <div class="pateints_btn_wrapper">
+            <input type="submit"  value="Save" class="btn1" />
+            <input type="button"  value="Cancel" class="btn2" (click)="cancelit()"/>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+      </form>
+    </div>
+
+  </div>
+</div>
+
 <app-frontfooter></app-frontfooter>
