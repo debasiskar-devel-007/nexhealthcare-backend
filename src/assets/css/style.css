@@ -2306,9 +2306,9 @@ a:visited {	text-decoration: none;	outline: none;}
 
 .rep-dashboard_new_block2 .colmd3_2nd .rep-dashboard_new_block2_wrapper2 .form-group{ margin: 0px; padding: 6px 0;}
 
-.rep-dashboard_new_block2 .colmd3_2nd .rep-dashboard_new_block2_wrapper2 .form-group label{ display: block; width: 39%; float: left; font-size: 18px; color: #092412; margin: 0; padding: 0px; font-family: 'proximanova-regular'; font-weight: normal;}
+.rep-dashboard_new_block2 .colmd3_2nd .rep-dashboard_new_block2_wrapper2 .form-group label{ display: block; width: 80%; float: left; font-size: 18px; color: #092412; margin: 0; padding: 0px; font-family: 'proximanova-regular'; font-weight: normal;}
 
-.rep-dashboard_new_block2 .colmd3_2nd .rep-dashboard_new_block2_wrapper2 .form-group input{ width:61%; float: right; background: none; border: none; border-bottom: solid 1px #092412; outline: none; }
+.rep-dashboard_new_block2 .colmd3_2nd .rep-dashboard_new_block2_wrapper2 .form-group input{ width:19%; float: right; background: none; border: none; border-bottom: solid 1px #092412; outline: none; }
 
 .rep-dashboard_new_block2 .colmd3_2nd .viewbtn2{ width: 100%; background: #f4f0e8; border-radius: 6px; text-align: center; font-size: 18px; color: #3f3c3c;  font-family: "proximanova-bold"; cursor: pointer; outline: none;  border: none; text-transform: uppercase;     padding: 6px 0;
     margin: 7px 0 0 0;}
