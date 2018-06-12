@@ -220,11 +220,9 @@
         <div class="col-sm-7 col-md-7 col-lg-7 col-xl-7">
           <div class="rep-dashboard_new_text1">
             <div class="rep-dashboard_new_text1_con">
-            <strong>Corporate Announcements</strong>
-            <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-              printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, </p>
-
+            <strong>Welcome Altus Health Rep!</strong>
+            <p>We’re so excited you’ve join us! Our easy-to-use CRM will allow you to add and track your qualified clients. We also hold training calls and national sales calls where we continue to provide you with support and up-to-date information. </p><br/>
+<p>If you have any questions, feel free to contact us at support@altushealthgroup.com.</p>
 
             </div>
           </div>
@@ -252,18 +250,18 @@
                      <form>
 
                          <div class="form-group">
-                             <label>Commissions Pending this Month:</label><input type="text">
+                             <label>Commissions Pending this Month:</label><input type="text" readonly>
                              <div class="clearfix"></div>
 
                          </div>
                          <div class="form-group">
-                             <label>Commissions Paid Last Month:</label><input type="text">
+                             <label>Commissions Paid Last Month:</label><input type="text" readonly>
                              <div class="clearfix"></div>
 
                          </div>
 
                          <div class="form-group">
-                             <label>Total Commissions paid (YTD):</label><input type="text">
+                             <label>Total Commissions paid (YTD):</label><input type="text" readonly>
                              <div class="clearfix"></div>
 
                          </div>
@@ -284,18 +282,18 @@
                      <form *ngIf="cookiedetails.type=='superadmin'">
 
                          <div class="form-group">
-                             <label>PPS Submitted:</label><input type="text" value="{{patientsubmitted}}">
+                             <label>PPS Submitted:</label><input type="text" value="{{patientsubmitted}}" readonly>
                              <div class="clearfix"></div>
 
                          </div>
                          <div class="form-group">
-                             <label>PPS Approved:</label><input type="text" value="{{patientaccepted}}">
+                             <label>PPS Approved:</label><input type="text" value="{{patientaccepted}}" readonly>
                              <div class="clearfix"></div>
 
                          </div>
 
                          <div class="form-group">
-                             <label>PPS Declined: </label><input type="text" value="{{patientdeclined}}">
+                             <label>PPS Declined: </label><input type="text" value="{{patientdeclined}}" readonly>
                              <div class="clearfix"></div>
 
                          </div>
@@ -308,18 +306,18 @@
                      <form *ngIf="cookiedetails.type!='superadmin'">
 
                          <div class="form-group">
-                             <label>PPS Submitted:</label><input type="text" value="{{patientsubmittednumber}}">
+                             <label>Patient Profile Sheet Submitted:</label><input type="text" value="{{patientsubmittednumber}}" readonly>
                              <div class="clearfix"></div>
 
                          </div>
                          <div class="form-group">
-                             <label>PPS Approved:</label><input type="text" value="{{patientacceptednumber}}">
+                             <label>Patient Profile Sheet Approved:</label><input type="text" value="{{patientacceptednumber}}" readonly>
                              <div class="clearfix"></div>
 
                          </div>
 
                          <div class="form-group">
-                             <label>PPS Declined: </label><input type="text" value="{{patientdeclinednumber}}">
+                             <label>Patient Profile Sheet Declined: </label><input type="text" value="{{patientdeclinednumber}}" readonly>
                              <div class="clearfix"></div>
 
                          </div>
