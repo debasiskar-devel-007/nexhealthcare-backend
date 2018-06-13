@@ -80,8 +80,38 @@ export class UserrecruiterdetailComponent implements OnInit {
         return '';
         }
     }
+    showtagname(tag) {
+        if (tag == '5af52976bdf5fa3d4f18aeaf') {
+            return 'Employment Contract Pending';
+        }
+        if (tag == '5af52980bdf5fa3d4f18aeb1') {
+            return 'Training Pending';
+        }
+        if (tag == '5af5297fbdf5fa3d4f18aeb0') {
+            return 'Webinar Pending';
+        }
+        if (tag == '5afad90dde56b53d10e2ab4d') {
+            return 'PF submitted';
+        }
+        if (tag == '5b0bfa1b3fe08865e7955f71') {
+            return 'PPS Accepted';
+        }
+        if (tag == '5b0bfa1d3fe08865e7955f72') {
+            return 'PPS Declined';
+        }
+        if (tag == '5b0cda8121eaaa0244d52b9e') {
+            return 'Lead';
+        }
+        if (tag == '5b0b9235b33cbc2d4af08dd9') {
+            return 'PPS Submitted';
+        }
+    }
+    gotoagreementpdf(id) {
+        var url = 'http://altushealthgroup.com/testpdf/html2pdf/employment-agreement.php?id=' + id;
+        window.open(url, '_blank');
+    }
     getdetailsbyid() {
-        let link = this.serverurl + 'getuserdetails';
+        let link = this.serverurl + 'getuserdetailswithtags';
         let data = {userid : this.id};
         this._http.post(link, data)
             .subscribe(res => {

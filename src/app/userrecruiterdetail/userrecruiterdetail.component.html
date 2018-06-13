@@ -439,6 +439,20 @@
                   <label>Enroller</label>
                   <input type="text"  class="form-control"  placeholder="Enroller" readonly value="{{getdetailsbyidis.addedby}}"/>  <div class="clearfix"></div>
                 </div>
+
+                <div class="form-group"  *ngIf="getdetailsbyidis.cgxamountoflead!=null">
+                  <label>CGX</label>
+                  <input type="text"  class="form-control"  placeholder="Enroller" readonly value="{{getdetailsbyidis.cgxamountoflead}}"/>  <div class="clearfix"></div>
+                </div>
+
+                <div class="form-group"  *ngIf="getdetailsbyidis.pgxvalueoflead!=null">
+                  <label>PGX</label>
+                  <input type="text"  class="form-control"  placeholder="Enroller" readonly value="{{getdetailsbyidis.pgxvalueoflead}}"/>  <div class="clearfix"></div>
+                </div>
+                <div class="form-group"  *ngIf="getdetailsbyidis.pgxvalueoflead!=null">
+                  <label>Status</label>
+                  <input type="text"  class="form-control"  placeholder="Enroller" readonly value="{{showtagname(getdetailsbyidis.Tagdetail[0].tagid)}}"/>  <div class="clearfix"></div>
+                </div>
               </div>
               <div class="clearfix"></div>
             </div>
@@ -456,6 +470,9 @@
           <div class="pateints_btn_wrapper">
             <input type="submit"  value="Save" class="btn1" />
             <input type="button"  value="Cancel" class="btn2" (click)="cancelit()"/>
+            <div *ngIf="getdetailsbyidis">
+              <input type="button"  value="Employment Contract" class="btn2" (click)="gotoagreementpdf(getdetailsbyidis._id)" *ngIf="getdetailsbyidis.signup_step>1"/>
+            </div>
           </div>
         </div>
 
