@@ -658,7 +658,7 @@
 
 
 
-@media (min-width: 100px) {
+/*@media (min-width: 100px) {
     .col-xs-15 {width:100%; float: left; margin-bottom: 20px;}
 }
 
@@ -667,14 +667,16 @@
 }
 
 @media (min-width: 768px) {
-    .col-sm-15 {width: 33.33%; float: left;  margin-bottom: 20px;}
-}
+    .col-sm-15 {width: 33.33%; float: left; margin-bottom: 20px;}
+}*/
+/*
 @media (min-width: 992px) {
     .col-md-15 {width: 25%; float: left;}
 }
 @media (min-width: 1200px) {
     .col-lg-15 {width: 20%; float: left;}
 }
+*/
 
 
 

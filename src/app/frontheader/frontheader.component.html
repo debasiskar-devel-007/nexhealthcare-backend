@@ -86,15 +86,15 @@
                   </button>
                   <ul id="dropdown-basic4" *dropdownMenu class="dropdown-menu"
                       role="menu" aria-labelledby="button-basic">
-                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Training Center</a></li>
+                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/trainingcenter']">Training Center</a></li>
                     <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Webinars</a></li>
-                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Resources</a></li>
+                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/resource']">Resources</a></li>
                   </ul>
                 </li>
 
 
-                <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Training Center</a></li>
-                <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Resources</a></li>
+                <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/trainingcenter']">Training Center</a></li>
+                <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/resource']">Resources</a></li>
                 <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Webinars</a></li>
                 <!--<li role="menuitem" *ngIf="cookiedetails.type=='leadmanager' || cookiedetails.type=='salesrep'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/compensationmodifier']" >Sharelink</a></li>-->
                 <li role="menuitem" *ngIf="cookiedetails.type=='leadmanager'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/compensationmodifier']" >Sharelink</a></li>

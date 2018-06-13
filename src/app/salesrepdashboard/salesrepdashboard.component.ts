@@ -65,21 +65,23 @@ export class SalesrepdashboardComponent implements OnInit {
     // admin call to patientlist
     getPatient_addedbyList() {
         this.patientlist = [];
-        let link = this.serverurl + 'patient_addedbylist';
+        let link = this.serverurl + 'patient_addedbylist_only6';
         this._http.get(link)
             .subscribe(res => {
                 let result = res.json();
                 if (result.status == 'success') {
+                    console.log('patient_addedbylist_only6++++++++++++++');
                     console.log(result.id);
                     this.datalist = result.id;
-                    for (let j in this.datalist) {
+                    this.patientlist = this.datalist;
+                    /*for (let j in this.datalist) {
                         if (this.datalist[j].PatientRecordCompletedOrNot.length > 0) {
                             console.log('inside');
                             if (this.datalist[j].PatientRecordCompletedOrNot[0].iscompleted == 1) {
                                 this.patientlist.push(this.datalist[j]);
                             }
                         }
-                    }
+                    }*/
                 }
 
             }, error => {
@@ -90,7 +92,7 @@ export class SalesrepdashboardComponent implements OnInit {
     }
     // user call to patientlist
     getpatientlistunderthisid() {
-        let link = this.serverurl + 'getpatientlistunderthisid';
+        let link = this.serverurl + 'getpatientlistunderthisid_only6';
         let data = {
             userid: this.cookiedetails.id,
         };

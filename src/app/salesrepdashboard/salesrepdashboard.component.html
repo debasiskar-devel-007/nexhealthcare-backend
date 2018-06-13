@@ -351,16 +351,17 @@
              <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 colmd4_1st">
                  <div class="rep-dashboard_new_block3_wrapper">
                      <h2>Recently added Patients  </h2>
+                     <div *ngIf="patientlist">
+                     <div *ngIf="patientlist.length>0">
+                         <div class="rep-dashboard_new_block3_wrapper_sub" >
+                             <div class="wrapper3_sub_conbody" *ngFor="let item of patientlist | orderBy:'_id':'reverse' ; let i = index">
+                                 <div class="wrapper3_sub_con" (click)="gotopatientrecord(item._id, item.Tagdetail[0].tagid)">
+                                     <span><img src="../../assets/images/rep-dashboard_new_block3_img1.png" alt="#"></span>
+                                     <label >{{item.firstname}} {{item.lastname}}</label>
 
-                     <div class="rep-dashboard_new_block3_wrapper_sub">
-<div class="wrapper3_sub_conbody" *ngFor="let item of patientlist | orderBy:'_id':'reverse' ; let i = index">
-                         <div class="wrapper3_sub_con" *ngIf="i<8" (click)="gotopatientrecord(item._id, item.Tagdetail[0].tagid)">
-                             <span><img src="../../assets/images/rep-dashboard_new_block3_img1.png" alt="#"></span>
-                             <label >{{item.firstname}} {{item.lastname}}</label>
-
-                         </div>
-</div>
-                        <!-- <div class="wrapper3_sub_con">
+                                 </div>
+                             </div>
+                             <!-- <div class="wrapper3_sub_con">
                              <span><img src="../../assets/images/rep-dashboard_new_block3_img1.png" alt="#"></span>
                              <label>Lorem Ipsum</label>
 
@@ -387,13 +388,14 @@
                          </div>-->
 
 
-                         <div class="clearfix"></div>
+                             <div class="clearfix"></div>
+                         </div>
+
+                         <a href="javascript:void(0)" class="wrapper3_sub_link" *ngIf="cookiedetails.type=='superadmin'" [routerLink]="['/patient-list','admin']">View All Patients</a>
+                         <a href="javascript:void(0)" class="wrapper3_sub_link" *ngIf="cookiedetails.type!='superadmin'" [routerLink]="['/patient-list']">View All Patients</a>
                      </div>
-
-                     <a href="javascript:void(0)" class="wrapper3_sub_link" *ngIf="cookiedetails.type=='superadmin'" [routerLink]="['/patient-list','admin']">View All Patients</a>
-                     <a href="javascript:void(0)" class="wrapper3_sub_link" *ngIf="cookiedetails.type!='superadmin'" [routerLink]="['/patient-list']">View All Patients</a>
-
-
+                     </div>
+<div><p>No patients added</p></div>
                  </div>
 
                </div>
@@ -425,7 +427,7 @@
                      <div class="videoWrapperblockdiv">
                      <div class="videoWrapper">
                      <video controls width="560" height="315" id="video1" preload="none" poster="../../assets/images/video_page_cover.jpg">
-                         <source src="../../assets/images/Harmonic.mp4" type="video/mp4">
+                         <source src="../../assets/images/Harmonic_training_step.mp4" type="video/mp4">
                      </video>
                      </div>
                      </div>

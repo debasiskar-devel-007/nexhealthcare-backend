@@ -75,6 +75,7 @@ export class RepsignupComponent implements OnInit {
                         console.log(result);
                         if (result.status == 'success') {
                             console.log(result.id.type);
+                            console.log('=======================================');
                             console.log(result.id._id);
                             this.roleid = result.id._id;
                             if (result.id.type == 'corporate') {
@@ -244,7 +245,7 @@ export class RepsignupComponent implements OnInit {
         for (x in this.dataForm.controls) {
             this.dataForm.controls[x].markAsTouched();
         }
-
+        console.log(this.type);
         if (this.dataForm.valid && this.passmatchvalidate && (RepsignupComponent.invalidemail == false || RepsignupComponent.blankemail == false) && RepsignupComponent.invalidusername == false && RepsignupComponent.invalidpassword == false) {
             let link = this.serverurl + 'signup';
             let data = {

@@ -451,14 +451,15 @@ export class PateintsComponent implements OnInit {
                 if (result.status == 'success') {
                     console.log(result.id);
                     this.datalist = result.id;
-                    for (let j in this.datalist) {
+                    this.patientlist = this.datalist;
+                   /* for (let j in this.datalist) {
                         if (this.datalist[j].PatientRecordCompletedOrNot.length > 0) {
                             console.log('inside');
                             if (this.datalist[j].PatientRecordCompletedOrNot[0].iscompleted == 1) {
                                 this.patientlist.push(this.datalist[j]);
                             }
                         }
-                    }
+                    }*/
                 }
 
             }, error => {
