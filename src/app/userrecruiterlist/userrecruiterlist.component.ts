@@ -14,12 +14,14 @@ import {CookieService} from 'angular2-cookie/core';
 export class UserrecruiterlistComponent implements OnInit {
     public serverurl;
     public datalist;
+    public tags;
     public typeis;
     public specificlist: any = [];
     public p: number = 1;
 
     constructor(private _http: Http, private router: Router, private _commonservices: Commonservices,  private route: ActivatedRoute) {
         this.serverurl = _commonservices.url;
+        this.alltags();
     }
     ngOnInit() {
         this.route.params.subscribe(params => {
@@ -44,6 +46,27 @@ export class UserrecruiterlistComponent implements OnInit {
             }, error => {
                 console.log('Oooops!');
             });
+    }
+    alltags() {
+        let link = this.serverurl + 'alltags';
+        this._http.get(link)
+            .subscribe(res => {
+                let result = res.json();
+                if (result.status == 'success') {
+                    console.log(result);
+                    this.tags = result.id;
+                }
+
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
+    showtagname(tagid) {
+        for (let i in this.tags) {
+            if (this.tags[i]._id == tagid) {
+                return this.tags[i].tagname;
+            }
+        }
     }
     getUserList() {
         let link = this.serverurl + 'user&repcontractList';

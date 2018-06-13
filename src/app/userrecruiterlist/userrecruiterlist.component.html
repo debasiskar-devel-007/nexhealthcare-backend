@@ -30,33 +30,39 @@
 
         <th>User ID</th>
       <!--  <th>Username</th>-->
-     <!--   <th>Employment Status</th>-->
+        <th>Employment Status</th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Account Type</th>
         <th>Enroller</th>
-        <th>Cgx Amount</th>
-        <th>Pgx Amount</th>
+       <!-- <th>Cgx Amount</th>
+        <th>Pgx Amount</th>-->
         <th>Webinar Completed</th>
       </tr>
-
+      <tbody *ngIf="tags?.length>0">
       <tr *ngFor="let item of specificlist | orderBy:'_id':'reverse' | usersearch:listFilter.value | paginate: { itemsPerPage: 25, currentPage: p }; let i = index">
 
         <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.uniqueid}}</td>
-     <!--   <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.username}}</td>-->
-      <!--  <td>status</td>-->
+        <!--   <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.username}}</td>-->
+          <td *ngIf="item.Tagdetail[0]">{{showtagname(item.Tagdetail[0].tagid)}}</td>
         <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.firstname}}</td>
         <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.lastname}}</td>
-        <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.type}}</td>
-        <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.addedby}}</td>
         <td [routerLink]="['/userrecruiterdetail',item._id]">
+          <p *ngIf="item.type=='masteraccount'">Master Account</p>
+          <p *ngIf="item.type=='salesrep'">Sales Rep</p>
+          <p *ngIf="item.type=='leadmanager'">Lead Manager</p>
+          <p *ngIf="item.type=='corporate'">Corporate</p>
+          <p *ngIf="item.type=='superadmin'">Super Admin</p>
+        </td>
+        <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.addedby}}</td>
+        <!--<td [routerLink]="['/userrecruiterdetail',item._id]">
           <p *ngIf="item.Repcontractdetail[0]">{{item.Repcontractdetail[0].compensationgrade}}</p>
           <p *ngIf="!item.Repcontractdetail[0]">No amount given</p>
         </td>
         <td [routerLink]="['/userrecruiterdetail',item._id]">
           <p *ngIf="item.Repcontractdetail[0]">{{item.Repcontractdetail[0].pgxvalue}}</p>
           <p *ngIf="!item.Repcontractdetail[0]">No amount given</p>
-        </td>
+        </td>-->
         <td>
           <p *ngIf="item.iswebinarchekced == 0 || item.iswebinarchekced== null">No
             <br/><small (click)="markasdone(item._id)">Mark as Done</small>
@@ -67,7 +73,7 @@
         <!--  <td><a href="javascript:void(0)" [routerLink]="['/userrecruiteredit',item._id]">Edit</a></td>-->
 
       </tr>
-
+</tbody>
 
 
     </table>
