@@ -395,10 +395,9 @@
                          <a href="javascript:void(0)" class="wrapper3_sub_link" *ngIf="cookiedetails.type!='superadmin'" [routerLink]="['/patient-list']">View All Patients</a>
                      </div>
                      </div>
-<div><p>No patients added</p></div>
+                     <div *ngIf="patientlist==null || patientlist==[] || patientlist.length==0"><p>No patients added</p></div>
                  </div>
-
-               </div>
+             </div>
 
              <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 colmd4_2nd">
                  <div class="rep-dashboard_new_block3_wrapper">
