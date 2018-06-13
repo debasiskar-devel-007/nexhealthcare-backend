@@ -138,9 +138,11 @@
 @media(max-width:1540px) {
 
     .admindashboardcon3{ width: 98%;}
+    /*
     .pateintdetail_left_formnew .form-group .form-control {
         width: 66%!important;
     }
+    */
 
     .webinar_wrapper{width: 98%;}
     .userrecruiterlist_table_wrapper{width: 98%;}
@@ -286,9 +288,9 @@
 }
 
 @media(max-width:1400px) {
-    .pateintdetail_left_formnew .form-group .form-control {
+/*    .pateintdetail_left_formnew .form-group .form-control {
         width: 65%!important;
-    }
+    }*/
     .repsignup_mainbody .form_wrapper_text h2 {
         font-size: 36px;
         line-height: 36px;
@@ -447,15 +449,15 @@
     .cgxwrapper_video_wrapper {
         width: 600px;
     }
-    .pateintdetail_left_formnew .form-group .form-control {
+/*    .pateintdetail_left_formnew .form-group .form-control {
         width: 63%!important;
-    }
+    }*/
     .pateintdetail_left_formnew2 .form-group {
         width: 47% !important;
     }
-    .pateintdetail_left_form .form-group .form-control {
+ /*   .pateintdetail_left_form .form-group .form-control {
         width: 70%;
-    }
+    }*/
     .pateintdetail_left_formnew2 label {
         width: 30%;
     }
@@ -469,15 +471,15 @@
         font-size: 18px;
     }
 
-    .pateintdetail_left_formnew .form-group .form-control {
+ /*   .pateintdetail_left_formnew .form-group .form-control {
         width: 61% !important;
-    }
-    .pateintdetail_left_formnew .form-group{
+    }*/
+/*    .pateintdetail_left_formnew .form-group{
         width: 46% !important;
-    }
-    .pateintdetail_left_formnew_right .form-group{
+    }*/
+ /*   .pateintdetail_left_formnew_right .form-group{
         width:100% !important;
-    }
+    }*/
     .pateintdetail_left_formnew .form-group.form-group_autowidth{
         width: 98% !important;
     }
@@ -501,12 +503,12 @@
         font-size: 16px;
     }
 
-    .pateintdetail_left_formnew .form-group .form-control {
+ /*   .pateintdetail_left_formnew .form-group .form-control {
         width: 58% !important;
     }
     .pateintdetail_left_formnew .form-group .form-control {
         width: 94% !important;
-    }
+    }*/
 
 .admindashboardcon2_sub:nth-of-type(2){ margin: 15px 0;}
     .repsignup_mainbodynew .row-eq-height{display: block !important;}
@@ -531,10 +533,10 @@
     }
 
 
-    .pateintdetail_left_form .form-group .form-control {
+ /*   .pateintdetail_left_form .form-group .form-control {
 
         width: 64%;
-    }
+    }*/
     .pateintdetail_left_formnew2 label {
         width: 36%;
     }
@@ -560,9 +562,9 @@
     .pateintdetail_left_formnew2 label {
         width: 30%;
     }
-    .pateintdetail_left_form .form-group .form-control {
+ /*   .pateintdetail_left_form .form-group .form-control {
         width: 70%;
-    }
+    }*/
     .completewebinarbg img {
         left: 0%;
         width: 100%;
