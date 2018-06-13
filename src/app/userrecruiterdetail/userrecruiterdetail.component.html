@@ -312,6 +312,8 @@
                 <span class="has-error" *ngIf="passerror">{{passerror}}</span>
               </div>
 
+              <div class="clearfix"></div>
+
               <div class="form-group">
                 <label>First Name</label>
                 <input type="text"  class="form-control" placeholder="First Name" [formControl]="dataForm.controls['firstname']"/>  <div class="clearfix"></div>
@@ -322,7 +324,7 @@
                 <input type="text"  class="form-control"  placeholder="Last Name" [formControl]="dataForm.controls['lastname']"/>  <div class="clearfix"></div>
                 <span class="has-error" *ngIf ="dataForm.controls['lastname'].touched && !dataForm.controls['lastname'].valid">Lastname is required!</span></div>
 
-
+              <div class="clearfix"></div>
               <div class="form-group">
                 <label>Address  :</label>
                 <textarea [formControl]="dataForm.controls['address']"></textarea>
@@ -335,7 +337,7 @@
                 <textarea [formControl]="dataForm.controls['address2']"></textarea>
                 <div class="clearfix"></div>
               </div>
-
+              <div class="clearfix"></div>
               <div class="form-group">
                 <label>City</label>
                 <input type="text"  class="form-control"  placeholder="City" [formControl]="dataForm.controls['city']"/>  <div class="clearfix"></div>
@@ -349,7 +351,7 @@
                 </select>
                 <div class="clearfix"></div>
                 <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid">State is required!</span></div>
-
+              <div class="clearfix"></div>
               <div class="form-group">
                 <label>Zip    :</label>
                 <input type="text" class="form-control" [formControl]="dataForm.controls['zip']">
@@ -363,7 +365,7 @@
                 <input type="email" class="form-control" [formControl]="dataForm.controls['email']" readonly>
                 <div class="clearfix"></div>
               </div>
-
+              <div class="clearfix"></div>
               <div class="form-group">
                 <label>Phone Number:</label>
                 <input type="text" class="form-control" appNumber [formControl]="dataForm.controls['phone']">
@@ -381,7 +383,7 @@
                 </select>
                 <div class="clearfix"></div>
               </div>
-
+              <div class="clearfix"></div>
               <div class="form-group">
                 <label>Date Of birth :</label>
                 <input type="text" class="form-control" [formControl]="dataForm.controls['dob']">
@@ -395,7 +397,7 @@
                 <div class="clearfix"></div>
                 <span class="has-error" *ngIf ="dataForm.controls['agentexperience'].touched && !dataForm.controls['agentexperience'].valid">Invalid Value!</span>
               </div>
-
+              <div class="clearfix"></div>
               <div class="form-group">
                 <label>What number of your clients are 65 or older?</label>
                 <input type="text" class="form-control" [formControl]="dataForm.controls['olderclients']">
@@ -409,9 +411,8 @@
                 <div class="clearfix"></div>
                 <span class="has-error" *ngIf ="dataForm.controls['noofplanBcard'].touched && !dataForm.controls['noofplanBcard'].valid">Invalid Value!</span>
               </div>
+              <div class="clearfix"></div>
 
-              <div class="clearfix"></div>
-              <div class="clearfix"></div>
             </div>
 
 
