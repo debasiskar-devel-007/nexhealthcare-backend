@@ -38,9 +38,6 @@ export class PateintsComponent implements OnInit {
         this.serverurl = _commonservices.url;
         this.fb = fb;
         this.getusastates();
-        // this.getPatientList();
-        // console.log('this.isthisadmin**************');
-        // console.log(this.isthisadmin);
         //  if (this.isthisadmin != 'admin') {
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
@@ -179,7 +176,6 @@ export class PateintsComponent implements OnInit {
         this._http.get(link)
             .subscribe(res => {
                 let result = res.json();
-                console.log(result);
                 this.usastates = result;
 
             }, error => {
@@ -200,6 +196,7 @@ export class PateintsComponent implements OnInit {
         console.log('Ooops');
       });
   }*/
+
     getpatientuniqueid(patientid) {
         let link = this.serverurl + 'getpatientdetails';
         let data = {_id : patientid};
@@ -436,6 +433,7 @@ export class PateintsComponent implements OnInit {
                 console.log('Oooops!');
             });
     }*/
+
     gotopdf(id) {
     //    var url = 'http://nexhealthtoday.com/testpdf/html2pdf/ppqformpdf.php?id=' + id;
         var url = 'http://altushealthgroup.com/testpdf/html2pdf/ppqformpdf.php?id=' + id;
@@ -468,9 +466,7 @@ export class PateintsComponent implements OnInit {
         console.log('this.patientlist----------');
         console.log(this.patientlist);
     }
-    /* gotopatientrecord(id) {
-    this.router.navigate(['/patientrecord', id]);
-  }*/
+
     gotopatientrecord(id, tagid) {
         if (tagid == '5b0bfa1b3fe08865e7955f71') {
             this.router.navigate(['/patientrecord', id, 1]); // accept
@@ -557,8 +553,6 @@ export class PateintsComponent implements OnInit {
         this._http.post(link, data)
             .subscribe(res => {
                 let result = res.json();
-                // console.log('result');
-                //  console.log(result);
                 if (result.status == 'success') {
                     this.datalist = result.id;
                     this.patientlist = this.datalist;

@@ -149,18 +149,16 @@
 
 
           <div class="form-group">
-            <label>Email Address:</label>
-            <input type="email" class="form-control" [formControl]="dataForm.controls['email']" readonly>
-            <div class="clearfix"></div>
-
-          </div>
-
-          <div class="form-group">
             <label>Phone Number:</label>
             <input type="text" class="form-control" appNumber [formControl]="dataForm.controls['phone']">
             <span class="has-error" *ngIf ="dataForm.controls['phone'].touched && !dataForm.controls['phone'].valid">Phone No must be 10 numbers!</span>
             <div class="clearfix"></div>
+          </div>
 
+          <div class="form-group">
+            <label>Email Address:</label>
+            <input type="email" class="form-control" [formControl]="dataForm.controls['email']" readonly>
+            <div class="clearfix"></div>
           </div>
 
 
@@ -175,8 +173,9 @@
             </select>
             <span class="has-error" *ngIf ="dataForm.controls['type'].touched && !dataForm.controls['type'].valid">Please choose any one!</span>
             <div class="clearfix"></div>
-
           </div>
+
+
           <div class="form-group">
             <label>Owner :</label>
             <input type="text" class="form-control" [formControl]="dataForm.controls['addedby']" readonly>

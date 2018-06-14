@@ -39,7 +39,6 @@ export class PateintdetailComponent implements OnInit {
         this._http.get(link)
             .subscribe(res => {
                 let result = res.json();
-                console.log(result);
                 this.usastates = result;
 
             }, error => {

@@ -20,18 +20,19 @@ export class UserrecruiterdetailComponent implements OnInit {
     public usastates;
     public passerror ;
     public getdetailsbyidis ;
+    public tags ;
 
     constructor( fb: FormBuilder, private _http: Http, private router: Router, private route: ActivatedRoute, private _commonservices: Commonservices) {
         this.fb = fb;
         this.serverurl = _commonservices.url;
         this.getusastates();
+        this.alltags();
     }
     getusastates() {
         let link = this.serverurl + 'getusastates';
         this._http.get(link)
             .subscribe(res => {
                 let result = res.json();
-                console.log(result);
                 this.usastates = result;
 
             }, error => {
@@ -80,36 +81,32 @@ export class UserrecruiterdetailComponent implements OnInit {
         return '';
         }
     }
-    showtagname(tag) {
-        if (tag == '5af52976bdf5fa3d4f18aeaf') {
-            return 'Employment Contract Pending';
-        }
-        if (tag == '5af52980bdf5fa3d4f18aeb1') {
-            return 'Training Pending';
-        }
-        if (tag == '5af5297fbdf5fa3d4f18aeb0') {
-            return 'Webinar Pending';
-        }
-        if (tag == '5afad90dde56b53d10e2ab4d') {
-            return 'PF submitted';
-        }
-        if (tag == '5b0bfa1b3fe08865e7955f71') {
-            return 'PPS Accepted';
-        }
-        if (tag == '5b0bfa1d3fe08865e7955f72') {
-            return 'PPS Declined';
-        }
-        if (tag == '5b0cda8121eaaa0244d52b9e') {
-            return 'Lead';
-        }
-        if (tag == '5b0b9235b33cbc2d4af08dd9') {
-            return 'PPS Submitted';
+    alltags() {
+        let link = this.serverurl + 'alltags';
+        this._http.get(link)
+            .subscribe(res => {
+                let result = res.json();
+                if (result.status == 'success') {
+                    this.tags = result.id;
+                }
+
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
+    showtagname(tagid) {
+        for (let i in this.tags) {
+            if (this.tags[i]._id == tagid) {
+                return this.tags[i].tagname;
+            }
         }
     }
+
     gotoagreementpdf(id) {
         var url = 'http://altushealthgroup.com/testpdf/html2pdf/employment-agreement.php?id=' + id;
         window.open(url, '_blank');
     }
+
     getdetailsbyid() {
         let link = this.serverurl + 'getuserdetailswithtags';
         let data = {userid : this.id};
@@ -145,15 +142,11 @@ export class UserrecruiterdetailComponent implements OnInit {
                         status: [userdet.status, Validators.required],*/
                         zip: [userdet.zip, Validators.required],
                         subdomain: [userdet.username],
-
-
-
                         agentexperience: [userdet.agentexperience, Validators.required],
                         olderclients: [userdet.olderclients, Validators.required],
                         noofplanBcard: [userdet.noofplanBcard, Validators.required],
                     });
                 } else {
-                    // this.router.navigate(['/patient-list']);
                 }
             }, error => {
                 console.log('Ooops');
@@ -162,11 +155,7 @@ export class UserrecruiterdetailComponent implements OnInit {
 
     dosubmit(formval) {
         this.passerror = null;
-        console.log(this.dataForm.valid);
-        console.log(formval.agentexperience);
-        console.log(formval.password);
         if (formval.password == null || formval.password == '') {
-            console.log('pass null');
             //  if (this.dataForm.valid && this.passmatchvalidate && UserrecruitereditComponent.invalidpassword == false) {
             if (this.dataForm.valid) {
                 let link= this.serverurl + 'edituserdetails';
@@ -183,14 +172,10 @@ export class UserrecruiterdetailComponent implements OnInit {
                     gender: formval.gender,
                     dob: formval.dob,
                     type: formval.type,
-
-
-
                     agentexperience: formval.agentexperience,
                     olderclients: formval.olderclients,
                     noofplanBcard: formval.noofplanBcard,
                 };
-                console.log(data);
                 this._http.post(link, data)
                     .subscribe(data => {
                         this.router.navigate(['/userrecruiterlist', formval.type]);
@@ -200,23 +185,16 @@ export class UserrecruiterdetailComponent implements OnInit {
             }
         }
         else {
-            console.log('pass givrn');
-            console.log(formval.password);
             this.passerror = null;
             if (formval.password == formval.confpassword) {
-                console.log('1 step ahd');
-                console.log(formval.password.length);
                 if (formval.password.length >= 8) {
                     console.log('2 step ahd');
                     if (!formval.password.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/)) {
                         this.passerror = 'Password must contain at least 8 characters,one lower case character , one upper case character , one number, one special character';
-                        console.log('3 step ahd');
                     }
                     else {
                         this.passerror = null;
-                        console.log('4 step ahd');
                         // if (this.dataForm.valid) {
-                        console.log('yo');
                         let link= this.serverurl + 'edituserdetails';
                         let data = {
                             id: this.id,
@@ -232,13 +210,10 @@ export class UserrecruiterdetailComponent implements OnInit {
                             gender: formval.gender,
                             dob: formval.dob,
                             type: formval.type,
-
-
                             agentexperience: formval.agentexperience,
                             olderclients: formval.olderclients,
                             noofplanBcard: formval.noofplanBcard,
                         };
-                        console.log(data);
                         this._http.post(link, data)
                             .subscribe(data => {
                                 this.router.navigate(['/userrecruiterlist', formval.type]);
