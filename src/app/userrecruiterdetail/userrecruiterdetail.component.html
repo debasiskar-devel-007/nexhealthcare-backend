@@ -325,6 +325,7 @@
                 <span class="has-error" *ngIf ="dataForm.controls['lastname'].touched && !dataForm.controls['lastname'].valid">Lastname is required!</span></div>
 
               <div class="clearfix"></div>
+
               <div class="form-group">
                 <label>Address  :</label>
                 <textarea [formControl]="dataForm.controls['address']"></textarea>
@@ -338,12 +339,12 @@
                 <div class="clearfix"></div>
               </div>
               <div class="clearfix"></div>
-              <div class="form-group">
+              <div class="form-group form-group3row">
                 <label>City</label>
                 <input type="text"  class="form-control"  placeholder="City" [formControl]="dataForm.controls['city']"/>  <div class="clearfix"></div>
                 <span class="has-error" *ngIf ="dataForm.controls['city'].touched && !dataForm.controls['city'].valid">City is required!</span></div>
 
-              <div class="form-group">
+              <div class="form-group form-group3row">
                 <label>State</label>
                 <select class="form-control" [formControl]="dataForm.controls['state']">
                   <option value="" disabled selected>Select State</option>
@@ -351,21 +352,16 @@
                 </select>
                 <div class="clearfix"></div>
                 <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid">State is required!</span></div>
-              <div class="clearfix"></div>
-              <div class="form-group">
+
+              <div class="form-group form-group3row">
                 <label>Zip    :</label>
                 <input type="text" class="form-control" [formControl]="dataForm.controls['zip']">
                 <div class="clearfix"></div>
                 <span class="has-error" *ngIf ="dataForm.controls['zip'].touched && !dataForm.controls['zip'].valid">Invalid Zip!</span>
               </div>
 
-
-              <div class="form-group">
-                <label>Email Address:</label>
-                <input type="email" class="form-control" [formControl]="dataForm.controls['email']" readonly>
-                <div class="clearfix"></div>
-              </div>
               <div class="clearfix"></div>
+
               <div class="form-group">
                 <label>Phone Number:</label>
                 <input type="text" class="form-control" appNumber [formControl]="dataForm.controls['phone']">
@@ -373,6 +369,16 @@
                 <div class="clearfix"></div>
               </div>
 
+              <div class="form-group">
+                <label>Email Address:</label>
+                <input type="email" class="form-control" [formControl]="dataForm.controls['email']" readonly>
+                <div class="clearfix"></div>
+              </div>
+              <div class="clearfix"></div>
+
+
+
+              <div class="clearfix"></div>
 
               <div class="form-group">
                 <label>Gender  :</label>
@@ -383,7 +389,7 @@
                 </select>
                 <div class="clearfix"></div>
               </div>
-              <div class="clearfix"></div>
+
               <div class="form-group">
                 <label>Date Of birth :</label>
                 <input type="text" class="form-control" [formControl]="dataForm.controls['dob']">
@@ -391,22 +397,25 @@
                 <span class="has-error" *ngIf ="dataForm.controls['dob'].touched && !dataForm.controls['dob'].valid">Invalid Date of Birth!</span>
               </div>
 
-              <div class="form-group">
-                <label>How many years have you been an insurance agent? </label>
+              <div class="clearfix"></div>
+
+              <div class="form-group form-group1row">
+                <label><!--How many years have you been an insurance agent?--> Years As An Agent  </label>
                 <input type="text" class="form-control" [formControl]="dataForm.controls['agentexperience']">
                 <div class="clearfix"></div>
                 <span class="has-error" *ngIf ="dataForm.controls['agentexperience'].touched && !dataForm.controls['agentexperience'].valid">Invalid Value!</span>
               </div>
-              <div class="clearfix"></div>
-              <div class="form-group">
-                <label>What number of your clients are 65 or older?</label>
+
+
+              <div class="form-group form-group1row">
+                <label><!--What number of your clients are 65 or older?-->Number Of Clients 65+?</label>
                 <input type="text" class="form-control" [formControl]="dataForm.controls['olderclients']">
                 <div class="clearfix"></div>
                 <span class="has-error" *ngIf ="dataForm.controls['olderclients'].touched && !dataForm.controls['olderclients'].valid">Invalid Value!</span>
               </div>
 
-              <div class="form-group">
-                <label>In your estimate, what percentage of your clients have their Medicare Plan B Card? </label>
+              <div class="form-group form-group1row">
+                <label><!--In your estimate, what percentage of your clients have their Medicare Plan B Card?--> % Of Client With Medicare Plan B Card? </label>
                 <input type="text" class="form-control" [formControl]="dataForm.controls['noofplanBcard']">
                 <div class="clearfix"></div>
                 <span class="has-error" *ngIf ="dataForm.controls['noofplanBcard'].touched && !dataForm.controls['noofplanBcard'].valid">Invalid Value!</span>
@@ -441,15 +450,16 @@
                   <input type="text"  class="form-control"  placeholder="Enroller" readonly value="{{getdetailsbyidis.addedby}}"/>  <div class="clearfix"></div>
                 </div>
 
-                <div class="form-group"  *ngIf="getdetailsbyidis.cgxamountoflead!=null">
+                <div class="form-group form-group2row"  *ngIf="getdetailsbyidis.cgxamountoflead!=null">
                   <label>CGX</label>
                   <input type="text"  class="form-control"  placeholder="Enroller" readonly value="{{getdetailsbyidis.cgxamountoflead}}"/>  <div class="clearfix"></div>
                 </div>
 
-                <div class="form-group"  *ngIf="getdetailsbyidis.pgxvalueoflead!=null">
+                <div class="form-group form-group2row"  *ngIf="getdetailsbyidis.pgxvalueoflead!=null">
                   <label>PGX</label>
                   <input type="text"  class="form-control"  placeholder="Enroller" readonly value="{{getdetailsbyidis.pgxvalueoflead}}"/>  <div class="clearfix"></div>
                 </div>
+                <div class="clearfix"></div>
                 <div class="form-group"  *ngIf="getdetailsbyidis.pgxvalueoflead!=null">
                   <label>Status</label>
                   <input type="text"  class="form-control"  placeholder="Enroller" readonly value="{{showtagname(getdetailsbyidis.Tagdetail[0].tagid)}}"/>  <div class="clearfix"></div>
