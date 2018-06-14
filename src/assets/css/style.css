@@ -1750,11 +1750,11 @@ a:visited {	text-decoration: none;	outline: none;}
 .form_div_rowbottom label{ font-size: 18px!important;}
 
 
-.pateintdetail_left_formnew_left{ width:68%; float: left;  border-right: solid 1px #a0a0a0;}
-.pateintdetail_left_formnew_right{ width: 32%; float: right;  padding-left: 1%;}
+.pateintdetail_left_formnew_left{ width:75%; float: left;  border-right: solid 1px #a0a0a0;}
+.pateintdetail_left_formnew_right{ width: 25%; float: right;  padding-left: 1%;}
 
-.pateintdetail_left_formnew_right .form-group{width: 98% !important;}
-.pateintdetail_left_formnew_right .form-group2row{width: 47.2% !important;}
+.pateintdetail_left_formnew_right .form-group{width: 98% !important; margin: 0 1%!important; margin-bottom: 10px!important;}
+.pateintdetail_left_formnew_right .form-group2row{width: 48% !important; margin: 0 1%!important; margin-bottom: 10px!important;}
 
 
 .pateintdetail_left_formnew_right .form-group .form-control {background: #d4d4d4;}
