@@ -863,6 +863,23 @@ a:visited {	text-decoration: none;	outline: none;}
 }
 
 
+.pateintdetail_left_formnew .form-group3row {
+    width: 31.7%!important;
+    float: left;
+    margin: 0 5px;
+    margin-bottom: 10px;
+}
+
+
+.pateintdetail_left_formnew .form-group1row {
+    width: 98%!important;
+    float: none;
+    margin: 0 5px;
+    margin-bottom: 10px;
+}
+
+
+
 .pateintdetail_left_formnew .form-group_autowidth {
     width: 98%!important;
     float: left;
@@ -1737,6 +1754,7 @@ a:visited {	text-decoration: none;	outline: none;}
 .pateintdetail_left_formnew_right{ width: 32%; float: right;  padding-left: 1%;}
 
 .pateintdetail_left_formnew_right .form-group{width: 98% !important;}
+.pateintdetail_left_formnew_right .form-group2row{width: 47.2% !important;}
 
 
 .pateintdetail_left_formnew_right .form-group .form-control {background: #d4d4d4;}
