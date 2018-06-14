@@ -15,11 +15,17 @@ export class UsermanagementlistComponent implements OnInit {
     public datalist;
     public specificlist: any = [];
     public tags;
+    public filterval;
+    public filterval1;
+    public filterval2;
+    public searchval: any = {addedby: ''};
 
     constructor(private _http: Http, private router: Router, private _commonservices: Commonservices,  private route: ActivatedRoute) {
         this.serverurl = _commonservices.url;
         this.getUserList();
         this.alltags();
+        this.filterval2 = '';
+
     }
     ngOnInit() {
 
@@ -99,5 +105,22 @@ export class UsermanagementlistComponent implements OnInit {
             }, error => {
                 console.log('Oooops!');
             });
+    }
+    searchbyval() {
+        this.filterval = '';
+        if (this.filterval1 != '' && this.filterval1 != null) {
+            this.filterval = this.filterval1 + '|';
+        }
+        if (this.filterval2 != '' && this.filterval2 != null) {
+            this.filterval += this.filterval2;
+        }
+    }
+    autocompleListFormatter = (data: any) => {
+        return data.addedby;
+    }
+    valueChanged(data: any): string {
+        console.log(data);
+        console.log('hi');
+        return data;
     }
 }

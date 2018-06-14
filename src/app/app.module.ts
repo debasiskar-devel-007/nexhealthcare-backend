@@ -53,6 +53,7 @@ import { LandingComponent } from './landing/landing.component';
 import { Landing2Component } from './landing2/landing2.component';
 import { PatientlistrecordviewComponent } from './patientlistrecordview/patientlistrecordview.component';
 import { UsermanagementlistComponent } from './usermanagementlist/usermanagementlist.component';
+import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,7 @@ import { UsermanagementlistComponent } from './usermanagementlist/usermanagement
       LandingComponent,
       Landing2Component,
       PatientlistrecordviewComponent,
-      UsermanagementlistComponent
+      UsermanagementlistComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,7 +110,8 @@ import { UsermanagementlistComponent } from './usermanagementlist/usermanagement
     AccordionModule.forRoot(),
       ModalModule.forRoot(),
       NgxPaginationModule,
-      ClipboardModule
+      ClipboardModule,
+      Ng2AutoCompleteModule
   ],
   providers: [appRoutingProviders, CookieService],
   bootstrap: [AppComponent]

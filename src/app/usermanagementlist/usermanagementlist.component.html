@@ -16,7 +16,8 @@
 <div class="container-fluid pateints_inner_body">
   <div class="pateints_searchdiv_wrapper">
     <div class="pateints_searchdiv">
-      <input type="text" placeholder="Search..." #listFilter (keyup)="0">
+      <input type="text" placeholder="Search..." [(ngModel)]="filterval" #listFilter (keyup)="0" class="hide">
+      <input type="text" placeholder="Search..." [(ngModel)]="filterval1" (keyup)="searchbyval()">
       <input type="button">
       <div class="clearfix"></div>
     </div>
@@ -24,7 +25,7 @@
 
   <div class="pateints_searchdiv_wrapper ">
     <div class="pateints_searchdiv newselectwrapper">
-      <select #listFilter>
+      <select [(ngModel)]="filterval2" (change)="searchbyval()" >
         <option value="" selected>Search by User Type</option>
         <option value="salesrep" >Sales Rep</option>
         <option value="leadmanager">Lead Manager</option>
@@ -35,6 +36,24 @@
 
     <div class="clearfix"></div>
   </div>
+
+  <!--<div class="pateints_searchdiv_wrapper ">
+    <div class="pateints_searchdiv newselectwrapper">
+      <label>Search by Enroller :</label> <input ng2-auto-complete
+                                                 [source]="specificlist"
+                                                 [(ngModel)]="searchval"
+                                                 [list-formatter]="autocompleListFormatter"
+                                                 value-property-name="addedby"
+                                                 display-property-name="addedby"
+                                                 (valueChanged)="valueChanged(searchval)"
+
+
+    />
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="clearfix"></div>
+  </div>-->
 
   <div class="userrecruiterlist_table_wrapper">
     <table>
@@ -52,7 +71,8 @@
       </tr>
 
       <tbody *ngIf="tags?.length>0">
-      <tr *ngFor="let item of specificlist | orderBy:'_id':'reverse' | usersearch:listFilter.value | paginate: { itemsPerPage: 25, currentPage: p }; let i = index">
+    <!--  <tr *ngFor="let item of specificlist | orderBy:'_id':'reverse' | usersearch:listFilter.value | usersearch: searchval.addedby | paginate: { itemsPerPage: 25, currentPage: p }; let i = index">-->
+    <tr *ngFor="let item of specificlist | orderBy:'_id':'reverse' | usersearch:listFilter.value | paginate: { itemsPerPage: 25, currentPage: p }; let i = index">
         <td>{{item.uniqueid}}</td>
         <td>{{item.username}}</td>
         <td>{{item.firstname}}</td>
