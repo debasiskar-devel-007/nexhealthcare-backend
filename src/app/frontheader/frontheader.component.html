@@ -20,7 +20,7 @@
               <ul class="nav navbar-nav">
                 <li><a href="javascript:void(0)" [routerLink]="['/rep-dashboard']">Dashboard</a></li>
                 <li><a href="javascript:void(0)" (click)="openmodal()" *ngIf="cookiedetails.type=='superadmin'">Genealogy </a></li>
-                <li  class="btn-group" dropdown *ngIf="cookiedetails.type=='superadmin'">
+                <!--<li  class="btn-group" dropdown *ngIf="cookiedetails.type=='superadmin'">
                   <button id="button-basic1" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
                           aria-controls="dropdown-basic1">
                     User Management <span class="caret"></span>
@@ -32,7 +32,8 @@
 
 
                   </ul>
-                </li>
+                </li>-->
+                <li><a href="javascript:void(0)" [routerLink]="['/userlist']" *ngIf="cookiedetails.type=='superadmin'">User Management </a></li>
                 <li  class="btn-group" dropdown>
                   <button id="button-basic2" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
                           aria-controls="dropdown-basic2">
@@ -44,7 +45,7 @@
                     <li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/userrecruiterlist','masteraccount']">Master Accounts</a></li>
                     <!--<li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Recruiters</a></li>-->
                     <li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/userrecruiterlist','salesrep']">Sales Reps</a></li>
-                    <!--<li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)"  [routerLink]="['/patient-list']">Patients</a></li>-->
+                    <li role="menuitem" *ngIf="cookiedetails.type=='superadmin'"><a class="dropdown-item" href="javascript:void(0)"  [routerLink]="['/patientlist']">Patients</a></li>
                     <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/add-patient']">Add Patient</a></li>
                     <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/patient-list']">Patient List </a></li>
 

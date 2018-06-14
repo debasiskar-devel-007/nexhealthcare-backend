@@ -40,6 +40,8 @@ import {HomeComponent} from './home/home.component';
 import {ContactComponent} from './contact/contact.component';
 import {LandingComponent} from './landing/landing.component';
 import {Landing2Component} from './landing2/landing2.component';
+import {PatientlistrecordviewComponent} from './patientlistrecordview/patientlistrecordview.component';
+import {UsermanagementlistComponent} from './usermanagementlist/usermanagementlist.component';
 
 
 const appRoutes: Routes = [
@@ -83,7 +85,9 @@ const appRoutes: Routes = [
     { path: 'sharelink', component: SharelinkComponent},
     { path: 'contact', component: ContactComponent},
     { path: 'landing', component: LandingComponent},
-    { path: 'landing2', component: LandingComponent},
+    { path: 'landing2', component: Landing2Component},
+    { path: 'patientlist', component: PatientlistrecordviewComponent},
+    { path: 'userlist', component: UsermanagementlistComponent},
 
 
    // { path: 'content', component: ContentComponent,outlet:'content'},

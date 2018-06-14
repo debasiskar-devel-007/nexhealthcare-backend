@@ -51,6 +51,8 @@ import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { LandingComponent } from './landing/landing.component';
 import { Landing2Component } from './landing2/landing2.component';
+import { PatientlistrecordviewComponent } from './patientlistrecordview/patientlistrecordview.component';
+import { UsermanagementlistComponent } from './usermanagementlist/usermanagementlist.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +95,9 @@ import { Landing2Component } from './landing2/landing2.component';
       HomeComponent,
       ContactComponent,
       LandingComponent,
-      Landing2Component
+      Landing2Component,
+      PatientlistrecordviewComponent,
+      UsermanagementlistComponent
   ],
   imports: [
     BrowserModule,
