@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CookieService} from 'angular2-cookie/core';
 declare var moment: any;
 @Component({
     selector: 'app-userrecruiterdetail',
@@ -11,39 +12,48 @@ declare var moment: any;
     providers: [Commonservices],
 })
 export class UserrecruiterdetailComponent implements OnInit {
+    private addcookie: CookieService;
+    private cookiedetails;
     public serverurl;
     public id;
     public type;
-
     public dataForm: FormGroup ;
     public fb;
     public usastates;
     public passerror ;
     public getdetailsbyidis ;
     public tags ;
+    public allusers;
+    // to add edit delete note
+    public divaddnote;
+    public addnote;
+    public noteslist;
+    public addit = 1;
+    public allnotearr: any = [];
+    public successfuladdnotemodal: boolean = false;
+    public successfulupdatenotemodal: boolean = false;
+    public editnoteid;
+    public shownoteerror;
+    public showdeletenotemodal: boolean = false;
+    public showdeletesuccessmodal: boolean = false;
+    public deleteid;
 
-    constructor( fb: FormBuilder, private _http: Http, private router: Router, private route: ActivatedRoute, private _commonservices: Commonservices) {
+    constructor( fb: FormBuilder, private _http: Http, private router: Router, private route: ActivatedRoute, private _commonservices: Commonservices, addcookie: CookieService) {
         this.fb = fb;
         this.serverurl = _commonservices.url;
+        this.addcookie = addcookie ;
+        this.cookiedetails = this.addcookie.getObject('cookiedetails');
         this.getusastates();
         this.alltags();
     }
-    getusastates() {
-        let link = this.serverurl + 'getusastates';
-        this._http.get(link)
-            .subscribe(res => {
-                let result = res.json();
-                this.usastates = result;
 
-            }, error => {
-                console.log('Oooops!');
-            });
-    }
     ngOnInit() {
         this.route.params.subscribe(params => {
             this.id = params['id'];
+            console.log('this.id');
             console.log(this.id);
             this.getdetailsbyid();
+            this.getnotes();
         });
         this.dataForm = this.fb.group({
             uniqueid: ['', Validators.required],
@@ -66,21 +76,33 @@ export class UserrecruiterdetailComponent implements OnInit {
             status: ['', Validators.required],
             zip: ['', Validators.required],
             subdomain: ['', Validators.required],
-
-
             agentexperience: ['', Validators.required],
             olderclients: ['', Validators.required],
             noofplanBcard: ['', Validators.required],
         });
     }
+
+    getusastates() {
+        let link = this.serverurl + 'getusastates';
+        this._http.get(link)
+            .subscribe(res => {
+                let result = res.json();
+                this.usastates = result;
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
+
     showtime(dateis) {
         if (dateis != null) {
-        return moment(dateis).format('MM-DD-YYYY');
-    }
-    else {
-        return '';
+            return moment(dateis).format('MM-DD-YYYY');
+        }
+        else {
+            return '';
         }
     }
+
+    // To show the employment status
     alltags() {
         let link = this.serverurl + 'alltags';
         this._http.get(link)
@@ -89,11 +111,11 @@ export class UserrecruiterdetailComponent implements OnInit {
                 if (result.status == 'success') {
                     this.tags = result.id;
                 }
-
             }, error => {
                 console.log('Oooops!');
             });
     }
+
     showtagname(tagid) {
         for (let i in this.tags) {
             if (this.tags[i]._id == tagid) {
@@ -232,8 +254,140 @@ export class UserrecruiterdetailComponent implements OnInit {
             }
         }
     }
+
     cancelit() {
         this.router.navigate(['/userrecruiterlist', this.type]);
+    }
+
+    // note requirements
+
+    showtimefornote(time) {
+        return moment(time).format('MMM Do, YYYY');
+    }
+    showname(id) {
+        for (let i in this.allusers) {
+            if (this.allusers[i]._id == id) {
+                return this.allusers[i].firstname + ' ' + this.allusers[i].lastname;
+            }
+        }
+    }
+    getnotes() {
+        this.allnotearr = [];
+        let link = this.serverurl + 'getnotesforusers';
+        let data = {userid : this.id};
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                if (result.status == 'success' && typeof(result.id) != 'undefined') {
+                    this.noteslist = result.id;
+                    console.log('this.noteslist----');
+                    console.log(this.noteslist);
+                } else {
+                }
+            }, error => {
+                console.log('Ooops');
+            });
+    }
+
+    addsimplenote() {
+        let data;
+        let link = this.serverurl + 'noteaddforusers';
+        if (this.addnote != null) {
+            data = {
+                userid: this.id,
+                added_by: this.cookiedetails.id,
+                note: this.addnote,
+                //  added_on: this.getdate(),
+            };
+            this._http.post(link, data)
+                .subscribe(res => {
+                    let result = res.json();
+                    if (result.status == 'success') {
+                        this.addnote = null;
+                        this.divaddnote = false;
+                        this.successfuladdnotemodal = true;
+                        setTimeout(() => {
+                            this.successfuladdnotemodal = false;
+                        }, 2000);
+                        this.getnotes();
+                    }
+                }, error => {
+                    console.log('Oooops!');
+                });
+            // }
+        }
+        else {
+            this.shownoteerror = true;
+        }
+    }
+
+    updatesimplenote() {
+        let link = this.serverurl + 'noteupdateforusers';
+        let data = {
+            _id: this.editnoteid,
+            note: this.addnote,
+        };
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                if (result.status == 'success') {
+                    this.divaddnote = false;
+                    this.addnote = null;
+                    this.addit = 1;
+                    this.getnotes();
+                    this.successfulupdatenotemodal = true;
+                    setTimeout(() => {
+                        this.successfulupdatenotemodal = false;
+                    }, 2000);
+                }
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
+
+    deletethisnote() {
+        let link = this.serverurl + 'notedeleteforusers';
+        let data = {
+            _id: this.deleteid,
+        };
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                if (result.status == 'success') {
+                    this.showdeletenotemodal = false;
+                    this.showdeletesuccessmodal = true;
+                    setTimeout(() => {
+                        this.showdeletesuccessmodal = false;
+                    }, 2000);
+                    this.getnotes();
+                }
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
+
+    editnote(item) {
+        this.editnoteid = item._id;
+        this.divaddnote = true;
+        this.addnote = item.note;
+        this.addit = 0; // edit
+    }
+
+    show_div_to_add_note() {
+        this.divaddnote = true;
+    }
+
+    cancelnote() {
+        this.addnote = null;
+        this.divaddnote = false;
+    }
+
+    deletenote(id) {
+        this.deleteid = id;
+        this.showdeletenotemodal = true;
+    }
+    onHidden() {
+        this.showdeletenotemodal = false;
     }
 
 /*    getdetailsbyid() {

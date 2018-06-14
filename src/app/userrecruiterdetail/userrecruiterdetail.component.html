@@ -480,9 +480,110 @@
         <div class="clearfix"></div>
 
       </form>
+
+      <div class="notes_divwrapper">
+        <h6 class="h6_texthading">Add Notes</h6>
+        <div class="pateintdetail_left_form pateintdetail_left_formnew">
+          <div class="addnoteblock">
+            <div class="form-group form-group_autowidth">
+              <h3 style="cursor: pointer;" class="addnote" (click)="show_div_to_add_note()">+ Add a simple note</h3>
+              <div class="addnote-textarea" *ngIf="divaddnote">
+                <textarea placeholder="Notes" [(ngModel)]="addnote"></textarea>
+
+                <button type="button" class="btn btn-primary btnsave" (click)="addsimplenote()" *ngIf="addit==1">Save</button> <!-- 1 for add-->
+                <button type="button" class="btn btn-primary btnsave" (click)="updatesimplenote()" *ngIf="addit==0">Update</button> <!-- 2 for update -->
+                <button type="button" class="btn btn-primary btncancel" (click)="cancelnote()">Cancel </button>
+              </div>
+              <span class="has-error" *ngIf="shownoteerror">Note is required!</span>
+            </div>
+            <div class="addnote_textarea_table" *ngIf="noteslist">
+              <table class="table table-striped">
+                <!--    <tbody *ngFor="let item of allnotearr; let i = index">-->
+                <tr *ngFor="let item of noteslist | paginate: { itemsPerPage: 5, currentPage: p }; let j = index">
+                  <td><label>{{item.note}}</label></td>
+                  <td><span>{{showname(item.added_by)}}</span></td>
+                  <td><span>{{showtimefornote(item.added_on)}}</span></td>
+                  <td><span (click)="editnote(item)" class="note_link">Edit</span>
+                    <span (click)="deletenote(item._id)" class="note_link">Delete</span></td>
+                </tr>
+                <!-- <tr>
+                <td><label>note</label></td>
+                <td><span>John Test</span></td>
+                <td><span>May 24, 2018</span></td>
+              </tr>-->
+                <!--  </tbody>-->
+              </table>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+
+      </div>
+
     </div>
 
   </div>
 </div>
 
 <app-frontfooter></app-frontfooter>
+
+
+<div *ngIf="showdeletesuccessmodal" class=" sign_modal modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <img src="../../assets/images/completewebinarlogo.png" alt="#" class="popup_logo1">
+        <h1 class="text-center">Your note has been deleted.</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="successfuladdnotemodal" class=" sign_modal modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <img src="../../assets/images/completewebinarlogo.png" alt="#" class="popup_logo1">
+        <h1 class="text-center">Your note has been added.</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="successfulupdatenotemodal" class=" sign_modal modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <img src="../../assets/images/completewebinarlogo.png" alt="#" class="popup_logo1">
+        <h1 class="text-center">Your note has been updated.</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showdeletenotemodal" class=" sign_modal modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <img src="../../assets/images/completewebinarlogo.png" alt="#" class="popup_logo1">
+        <h1 class="text-center">Are you sure that you want to delete this note?</h1>
+        <div class="modal-footer popupnewbtnwrapper">
+          <button class="btn btn-primary popbtn2" (click)="deletethisnote()">Yes</button>
+          <button class="btn btn-primary popbtn2" (click)="onHidden()">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
