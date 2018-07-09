@@ -435,7 +435,7 @@
 
                     <div class="form-group">
                       <label>State: <span>*</span></label>
-                      <select class="form-control" [formControl]="dataForm1.controls['state1']" disabled="disabled">
+                      <select class="form-control" [formControl]="dataForm1.controls['state1']">
                         <option value="" disabled selected>Select State</option>
                         <option value="{{item.name}}" *ngFor="let item of usastates; let i = index">{{item.name}}</option>
                       </select>

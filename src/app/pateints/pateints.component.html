@@ -109,10 +109,12 @@
           </div>
 -->
           <div class="divnew"  *ngIf="isthisadmin=='admin'">
-            <span class="clicklink" (click)="showquestionaryform(item._id)">Click to view</span>
+            <span class="clicklink" (click)="showquestionaryform(item._id)" *ngIf="item.PatientRecordCompletedOrNot[0]?.iscompleted==1">Click to view</span>
+            <span *ngIf="item.PatientRecordCompletedOrNot[0]==null || item.PatientRecordCompletedOrNot[0]?.iscompleted==0">Not Available</span>
           </div>
           <div class="divnew"  *ngIf="isthisadmin=='admin'">
-            <span  class="clicklink" (click)="gotopdf(item._id)">Click to download</span>
+            <span  class="clicklink" (click)="gotopdf(item._id)" *ngIf="item.PatientRecordCompletedOrNot[0]?.iscompleted==1">Click to download</span>
+            <span *ngIf="item.PatientRecordCompletedOrNot[0]==null || item.PatientRecordCompletedOrNot[0]?.iscompleted==0">Not Available</span>
           </div>
 
           <!--<div class="div5" *ngIf="isthisadmin=='admin' ">

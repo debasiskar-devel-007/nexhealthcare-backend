@@ -450,6 +450,7 @@ export class PateintsComponent implements OnInit {
                     console.log(result.id);
                     this.datalist = result.id;
                     this.patientlist = this.datalist;
+                    console.log(this.patientlist[0].PatientRecordCompletedOrNot[0].iscompleted);
                    /* for (let j in this.datalist) {
                         if (this.datalist[j].PatientRecordCompletedOrNot.length > 0) {
                             console.log('inside');

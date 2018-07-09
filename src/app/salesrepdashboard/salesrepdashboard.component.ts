@@ -24,6 +24,7 @@ export class SalesrepdashboardComponent implements OnInit {
     public patientdeclined ;
     public patientsubmitted ;
     public patientlist ;
+    public patientno ;
     public patientacceptednumber: number = 0;
     public patientdeclinednumber: number = 0;
     public patientsubmittednumber: number = 0;
@@ -41,9 +42,11 @@ export class SalesrepdashboardComponent implements OnInit {
             if (this.cookiedetails.type == 'superadmin') {
                 this.totalnoofpatients();
                 this.getPatient_addedbyList();
+                this.getsubmitaprovePatient_addedbyList(1);
             }
             else {
                 this.getpatientlistunderthisid();
+                this.getsubmitaprovePatient_addedbyList(2);
             }
         }
 
@@ -106,7 +109,7 @@ export class SalesrepdashboardComponent implements OnInit {
                     this.patientlist = this.datalist;
                     console.log('this.patientlist under this userid');
                     console.log(this.patientlist);
-
+/*
                     for (let i in this.patientlist) {
                         if (this.patientlist[i].Tagdetail[0] != null) {
                             if (this.patientlist[i].Tagdetail[0].tagid == '5b0bfa1b3fe08865e7955f71') {
@@ -119,13 +122,43 @@ export class SalesrepdashboardComponent implements OnInit {
                                 this.patientsubmittednumber = this.patientsubmittednumber + 1;
                             }
                         }
+                    }*/
+                }
+            }, error => {
+                console.log('Oooops!');
+            });
+    }
+    getsubmitaprovePatient_addedbyList(type) {
+        let link = this.serverurl + 'getsubmitaprovePatient_addedbyList_all';
+        let data = {
+            userid: this.cookiedetails.id,
+            type: type,
+        };
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                // console.log('result');
+                  console.log(result);
+                if (result.status == 'success') {
+                    this.patientno = result.id;
+                    for (let i in this.patientno) {
+                        if (this.patientno[i].Tagdetail[0] != null) {
+                            if (this.patientno[i].Tagdetail[0].tagid == '5b0bfa1b3fe08865e7955f71') {
+                                this.patientacceptednumber = this.patientacceptednumber + 1;
+                            }
+                            if (this.patientno[i].Tagdetail[0].tagid == '5b0bfa1d3fe08865e7955f72') {
+                                this.patientdeclinednumber = this.patientdeclinednumber + 1;
+                            }
+                            if (this.patientno[i].Tagdetail[0].tagid == '5b0b9235b33cbc2d4af08dd9') {
+                                this.patientsubmittednumber = this.patientsubmittednumber + 1;
+                            }
+                        }
                     }
                 }
             }, error => {
                 console.log('Oooops!');
             });
     }
-
     // user call to patientlist for patient tags numbers
    /* totalnoofpatientsunderthisid() {
         let link = this.serverurl + 'gettotalnoofpatientsunderthisid';
