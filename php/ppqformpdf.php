@@ -71,8 +71,8 @@ $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 //set margins
 $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
 
-$pdf->SetLeftMargin(8);
-$pdf->SetRightMargin(8);
+$pdf->SetLeftMargin(2);
+$pdf->SetRightMargin(2);
 
 //$pdf->SetY(50);
 
@@ -116,13 +116,13 @@ $pdf->AddPage();
 $id = $_GET['id'];
 $curl = curl_init();
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "http://influxiq.com:3020/getpatientrecordforpdf?id=".$id,
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => "",
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 30,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "GET"
+    CURLOPT_URL => "http://influxiq.com:3020/getpatientrecordforpdf?id=".$id,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET"
 ));
 $headers = [];
 curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
@@ -142,13 +142,13 @@ echo $result->phone;*/
 
 $curl1 = curl_init();
 curl_setopt_array($curl1, array(
-  CURLOPT_URL => "http://influxiq.com:3020/getpatientuniqueidforpatientrecordforpdf?id=".$result->patientid,
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => "",
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 30,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "GET"
+    CURLOPT_URL => "http://influxiq.com:3020/getpatientuniqueidforpatientrecordforpdf?id=".$result->patientid,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET"
 ));
 $headers1 = [];
 curl_setopt($curl1, CURLOPT_HTTPHEADER, $headers1);
@@ -162,13 +162,13 @@ $result1uniqueid = $result1->uniqueid;
 
 $curl2 = curl_init();
 curl_setopt_array($curl2, array(
-  CURLOPT_URL => "http://influxiq.com:3020/getrepidforpatientrecordforpdf?id=".$result1->addedby,
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => "",
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 30,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "GET"
+    CURLOPT_URL => "http://influxiq.com:3020/getrepidforpatientrecordforpdf?id=".$result1->addedby,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET"
 ));
 $headers2 = [];
 curl_setopt($curl2, CURLOPT_HTTPHEADER, $headers1);
@@ -181,57 +181,51 @@ $result2uniqueid = $result2->uniqueid;
 echo $result->oralpain;
 exit;*/
 if($result->cgx==1){
-  $result->cgx = 'checked';
+    $result->cgx = 'checked';
 }
 else{
-  $result->cgx = 'false';
+    $result->cgx = 'false';
+}
+if($result->pgxval==1){
+    $result->pgxval = 'checked';
+}
+else{
+    $result->pgxval = 'false';
 }
 if($result->oralpain==1){
-  $result->oralpain = 'checked';
+    $result->oralpain = 'checked';
 }
 else{
-  $result->oralpain = 'false';
+    $result->oralpain = 'false';
 }
 
 if($result->topicalpain==1){
-  $result->topicalpain = 'checked';
+    $result->topicalpain = 'checked';
 }
 else{
-  $result->topicalpain = 'false';
+    $result->topicalpain = 'false';
 }
 
 if($result->derma==1){
-  $result->derma = 'checked';
+    $result->derma = 'checked';
 }
 else{
-  $result->derma = 'false';
+    $result->derma = 'false';
 }
 
 if($result->migrane==1){
-  $result->migrane = 'checked';
+    $result->migrane = 'checked';
 }
 else{
-  $result->migrane = 'false';
+    $result->migrane = 'false';
 }
 
 $html = '
 
-<!--<table style="width: 100%; padding: 20px 0 10px 0;">
-  <tr>
-  
-   <td><div style=" text-align: center;"><img src="adminlogo.png" alt="#" style="display: block; margin: 0 auto;"></div></td>
-</tr>
 
-</table>-->
-<table style="width: 100%; padding: 10px 0 10px 0;">
-  <tr>
-  
-   <td><div style=" text-align: center;"></div>
-   </td>
-  </tr>
-</table>     
+    
 
-<table style="width: 100%; padding: 28px 0; background-color: #1C83B4;">
+<table style="width: 100%; padding: 4px 0; background-color: #1C83B4;">
   <tr>
   
    <td style="text-align: center;  vertical-align: middle;">
@@ -239,13 +233,13 @@ $html = '
     <table style="width: 100%;">
   <tr>
   
-   <td style="text-align: center; width: 5%;">&nbsp; </td>
+   <td style="text-align: center; width: 28%;">&nbsp; </td>
    
-   <td style="text-align: center;  background-color: #295b73 ; width: 10%;"> <img src="training_page_iconpdf.png" alt="#" style="margin-top: 20px;"> </td>
+   <td style="text-align: center;  background-color: #295b73 ; width:4%;"> <img src="training_page_iconpdf.png" alt="#" style="line-height: 10px; width:50px;"> </td>
      
-      <td style="text-align: center; vertical-align: middle; background-color: #295b73 ; width:80%;    font-size:26px!important;
-    color: #fefefe;text-transform: uppercase;"><h1 style="font-size: 26px; line-height: 62px;">PATIENT PROFILE SHEET-(MEDICARE) </h1></td>
-  <td style="text-align: center; width: 5%;">&nbsp; </td>
+      <td style="text-align: center; vertical-align: middle; background-color: #295b73 ; width:40%;    font-size:14px!important;
+    color: #fefefe;text-transform: uppercase;"><h1 style="font-size:14px; line-height:34px;">PATIENT PROFILE SHEET-(MEDICARE) </h1></td>
+  <td style="text-align: center; width: 28%;">&nbsp; </td>
   </tr>
 
 </table>
@@ -257,120 +251,92 @@ $html = '
 </table>
 
 
-<table style="width: 100%; padding: 10px 0 10px 0;">
+<table style="width: 100%; padding: 4px 0 4px 0;">
   <tr>
-   <td style=" vertical-align: middle; width: 120px;     color: #295b73; font-size: 16px; "> <br/> <br/><span>PRODUCT<br/>
-       REQUESTED</span>
+   <td style=" vertical-align: middle;  width: 145px;     color: #295b73; font-size: 12px; "> <span>PRODUCT REQUESTED</span>
   </td>
-  <td style=" vertical-align: middle; width:100px;     font-size: 14px;
+  <td style=" vertical-align: middle;   width: 55px;    font-size: 12px;
     color: #295b73"><!--<span style="display: block"><input type="checkbox" name="box" value="1" readonly="true" />DME</span><br/>
    <span style="display: block"><input type="checkbox" name="box" value="1" readonly="true" />Rx</span><br/>
     <span style="display: block"><input type="checkbox" name="box" value="1" readonly="true" />PGX</span><br/>-->
-    <br/> <br/> <br/> 
-    <span style="display: block"><input type="checkbox" name="box1" id="box1" value="1" readonly="true"  checked="'.$result->cgx.'" />CGX</span>
+  
+<span style="display: block"><input type="checkbox" name="box1" id="box1" value="1" readonly="true"  checked="'.$result->cgx.'" />CGX</span><br/>
+&nbsp;&nbsp;<span style="display: block"><input type="checkbox" name="box1" id="box1" value="1" readonly="true"  checked="'.$result->pgxval.'" />PGX</span>
    
    </td>
    
-     <td style=" vertical-align: middle; width: 90px; color: #295b73; font-size: 16px;" valign="middle">  <br/> <br/><span>Patient Id:</span>
+     <td style=" vertical-align: middle;  width: 60px;  color: #295b73; font-size: 12px;" valign="middle"> <span>Patient Id:</span>
 </td>
 
- <td style=" vertical-align: middle; width: 180px; color: #295b73; font-size: 16px;" valign="bottom">  <br/><br/><u>#'.$result1uniqueid.'</u></td>
+ <td style=" vertical-align: middle;  width: 95px; color: #295b73; font-size: 12px;" valign="bottom">  <u>#'.$result1uniqueid.'</u></td>
    
-  <td style=" vertical-align: middle; width: 220px; color: #295b73; font-size: 17px;" valign="middle"><span>NEX HEALTHCARE<br/>
-610 W Congress Street<br/>
-Detroit, MI 48226
+  <td style=" vertical-align: middle;  width:500px; color: #295b73; font-size: 12px;" valign="middle"><span>ALTUS HEALTHCARE 610 W Congress Street Detroit, MI 48226
 </span>
 </td>
 </tr>
 
 </table>
+<table style="width: 100%; border-top: solid 1px #000; padding-bottom:8px;">
 
-<table style="width: 100%;"><tr><td style="padding: 10px 0;"><hr></td></tr></table>
-
-<table style="width: 100%;">
  <tr>
  
-   <td width="50%;"><span style="font-size: 16px; color: #295b73; "><u>PATIENT INFORMATION</u></span>
-      <br/>    <br/>
+   <td width="50%;"><span style="font-size: 12px; color: #295b73;  "><u>PATIENT INFORMATION</u></span>
+      <br/>   
       <table style="width: 100%;">
         <tr>
-          <td style="width: 35%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>First Name:</span> *</td>
-          <td collapse="3" style=" color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 25px; padding: 0px;">'.$result->firstname.' </td>
+          <td style="width: 30%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>First Name:</span> *</td>
+          <td collapse="3" style=" color: #5b5c5c; width: 70%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->firstname.' </td>
         
          </tr>
          
            <tr>
-          <td style="width: 35%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>Last Name:</span> *</td>
-          <td collapse="3" style=" color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->lastname.' </td>
+          <td style="width: 30%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>Last Name:</span> *</td>
+          <td collapse="3" style=" color: #5b5c5c; width: 70%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->lastname.' </td>
         
          </tr>
          
            <tr>
-          <td style="width: 35%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>Best Phone #:</span> *</td>
-          <td collapse="3" style=" color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->phone.' </td>
+          <td style="width: 30%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>Best Phone #:</span> *</td>
+          <td collapse="3" style=" color: #5b5c5c; width: 70%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->phone.' </td>
         
          </tr>
          
           <tr>
-          <td style="width: 35%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>Address:</span> *</td>
-          <td collapse="3" style=" color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->address.' </td>
+          <td style="width: 30%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>Address:</span> *</td>
+          <td collapse="3" style=" color: #5b5c5c; width: 70%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->address.' </td>
         
          </tr>
          
          <tr>
-          <td style="width: 35%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>City:</span> *</td>
-          <td collapse="3" style=" color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->city.' </td>
+          <td style="width: 30%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>City:</span> *</td>
+          <td collapse="3" style=" color: #5b5c5c; width: 70%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->city.' </td>
         
          </tr>
          
           <tr>
-          <td style="width: 35%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>State:</span> *</td>
-          <td collapse="3" style=" color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->state.' </td>
+          <td style="width: 30%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>State:</span> *</td>
+          <td collapse="3" style=" color: #5b5c5c; width: 70%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->state.' </td>
         
          </tr>
          
           <tr>
-          <td style="width: 35%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>Zip:</span> *</td>
-          <td collapse="3" style=" color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->zip.' </td>
+          <td style="width: 30%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>Zip:</span> *</td>
+          <td collapse="3" style=" color: #5b5c5c; width: 70%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->zip.' </td>
         
          </tr>
          
           <tr>
-          <td style="width: 35%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>Date of Birth:</span> *</td>
-          <td collapse="3" style=" color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->dob.' </td>
+          <td style="width: 30%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>Date of Birth:</span> *</td>
+          <td collapse="3" style=" color: #5b5c5c; width: 70%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->dob.' </td>
         
          </tr>
          
+        
          <tr>
-          <td style="width: 35%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>Gender:</span> *</td>
-          <td collapse="3" style=" color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->gender.' </td>
+          <td style="width: 30%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>Gender:</span> *</td>
+          <td collapse="3" style=" color: #5b5c5c; width: 70%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->gender.' </td>
         
          </tr>
-          <tr>
-          <td style="width: 35%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>Race/Ethnicity:</span> *</td>
-          <td collapse="3" style=" color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->race.' </td>
-        
-         </tr>
-         
-           <tr>
-          <td style="width: 35%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>HT/WT :</span> *</td>
-          <td  style=" color: #5b5c5c; width: 29%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->height.' </td>
-          <td  style=" color: #5b5c5c; width: 7%; text-align: center;  font-size: 12px; line-height: 30px; padding: 0px;">/</td>
-          <td  style=" color: #5b5c5c; width: 29%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->width.' </td>
-        
-         </tr>
-          
-           <tr>
-          <td style="width: 35%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>Allergies :</span> *</td>
-          <td collapse="3" style="  color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->allergies.' </td>
-        
-         </tr>
-           <tr>
-          <td style="width: 35%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>Medicare Claim # :</span> *</td>
-          <td collapse="3" style=" color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->medicareclaim.' </td>
-        
-         </tr>
-         
       
       
       </table>
@@ -380,29 +346,59 @@ Detroit, MI 48226
    </td>
    
    <td width="2%;">&nbsp;</td>
-   <td width="48%;"><span style="font-size: 16px; color: #295b73;"><u>SPECIAL NOTES</u></span>
-     <br/>    <br/>
+   <td width="48%;">
+   
+    <table style="width: 100%; ">
+         <br/>   <br/>  
+          <tr>
+          <td style="width: 32%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>Race/Ethnicity:</span> *</td>
+          <td collapse="3" style=" color: #5b5c5c; width: 68%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->race.' </td>
+        
+         </tr>
+         
+           <tr>
+          <td style="width: 32%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>HT/WT :</span> *</td>
+          <td  style=" color: #5b5c5c; width: 30.5%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->height.' </td>
+          <td  style=" color: #5b5c5c; width: 7%; text-align: center;  font-size: 12px; line-height: 20px; padding: 0px;">/</td>
+          <td  style=" color: #5b5c5c; width: 30.5%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->width.' </td>
+        
+         </tr>
+          
+           <tr>
+          <td style="width: 32%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>Allergies :</span> *</td>
+          <td collapse="3" style="  color: #5b5c5c; width: 68%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->allergies.' </td>
+        
+         </tr>
+           <tr>
+          <td style="width: 32%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>Medicare Claim # :</span> *</td>
+          <td collapse="3" style=" color: #5b5c5c; width: 68%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->medicareclaim.' </td>
+        
+         </tr>
+   
+</table>
+   <span style="font-size: 12px; color: #295b73;"><u>SPECIAL NOTES</u></span>
+     <br/>    
       <table style="width: 100%; ">
         <tr>
-          <td style="width: 10%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>A) :</span></td>
-          <td style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->notes1.' </td>
+          <td style="width: 10%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>A) :</span></td>
+          <td style=" color: #5b5c5c; width:90%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->notes1.' </td>
         
          </tr>
          
            <tr>
-          <td style="width: 10%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>B) :</span></td>
-          <td style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->notes2.' </td>
+          <td style="width: 10%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>B) :</span></td>
+          <td style=" color: #5b5c5c; width:90%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->notes2.' </td>
         
          </tr>
          
            <tr>
-          <td style="width: 10%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>C) :</span></td>
-          <td style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->notes3.' </td>
+          <td style="width: 10%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>C) :</span></td>
+          <td style=" color: #5b5c5c; width:90%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->notes3.' </td>
         
          </tr>
            <tr>
-          <td style="width: 10%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>D) :</span></td>
-          <td style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->notes4.' </td>
+          <td style="width: 10%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>D) :</span></td>
+          <td style=" color: #5b5c5c; width:90%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->notes4.' </td>
         
          </tr>
          
@@ -417,65 +413,63 @@ Detroit, MI 48226
  
  </table>
 
-<table style="width: 100%;"><tr><td style="padding: 10px 0;"><br/><hr></td></tr></table>
 
-<table style="width: 100%;">
+
+<table style="width: 100%;  border-top: solid 1px #000; padding-bottom: 8px;">
  <tr>
  
-   <td width="50%;"><span style="font-size: 16px; color: #295b73;  text-transform: uppercase;"><u>Pharmacy</u></span>
-      <br/>    <br/>
+   <td width="50%;"><span style="font-size: 12px; color: #295b73;  text-transform: uppercase;"><u>Pharmacy</u></span>
+      <br/>  
       <table style="width: 100%;">
         <tr>
-          <td style="width: 48%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>Pharmacy Insurance Name:</span></td>
-          <td collapse="3" style=" color: #5b5c5c; width: 52%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->pharmacyinsurancename.' </td>
+          <td style="width: 41%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>Pharmacy Insurance Name:</span></td>
+          <td collapse="3" style=" color: #5b5c5c; width: 59%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pharmacyinsurancename.' </td>
         
          </tr>
          
           
           <tr>
-          <td style="width: 35%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>ID #:</span></td>
-          <td collapse="3" style=" color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->pharmacyid.' </td>
+          <td style="width: 28%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>ID #:</span></td>
+          <td collapse="3" style=" color: #5b5c5c; width: 72%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pharmacyid.' </td>
         
          </tr>
          
           <tr>
-          <td style="width: 35%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>BIN #:</span></td>
-          <td collapse="3" style=" color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->pharmacybin.' </td>
+          <td style="width: 28%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>BIN #:</span></td>
+          <td collapse="3" style=" color: #5b5c5c; width: 72%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pharmacybin.' </td>
         
          </tr>
              
           <tr>
-          <td style="width: 35%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>PCN #:</span></td>
-          <td collapse="3" style=" color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->pharmacypcn.' </td>
+          <td style="width: 28%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>PCN #:</span></td>
+          <td collapse="3" style=" color: #5b5c5c; width: 72%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pharmacypcn.' </td>
         
          </tr>
          
        
          <tr>
-          <td style="width: 35%; font-size: 12px; color: #5b5c5c; line-height: 30px;"><span>GROUP #:</span></td>
-          <td collapse="3" style=" color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->pharmacygroup.' </td>
+          <td style="width: 28%; font-size: 11px; color: #5b5c5c; line-height: 20px;"><span>GROUP #:</span></td>
+          <td collapse="3" style=" color: #5b5c5c; width: 72%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pharmacygroup.' </td>
         
          </tr>
          
          
-         <tr><td collapse="2">&nbsp;</td></tr>
-         
+    
        
-        <div>&nbsp;</div>
              <tr>
-          <td style="width: 35%; font-size: 12px; color: #295b73; line-height: 30px;"><span>History / Reason:</span></td>
-          <td collapse="3" style=" color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->pharmacyhistory.' </td>
+          <td style="width: 28%; font-size: 11px; color: #295b73; line-height: 20px;"><span>History / Reason:</span></td>
+          <td collapse="3" style=" color: #5b5c5c; width: 72%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pharmacyhistory.' </td>
         
          </tr>
          
         <tr>
-          <td style="width: 35%; font-size: 12px; color: #295b73; line-height: 30px;"><span>Area(s) of Issue:</span></td>
-          <td collapse="3" style=" color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->pharmacyissue.' </td>
+          <td style="width: 28%; font-size: 11px; color: #295b73; line-height: 20px;"><span>Area(s) of Issue:</span></td>
+          <td collapse="3" style=" color: #5b5c5c; width: 72%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pharmacyissue.' </td>
         
          </tr>
          <tr>
-          <td style="width: 35%; font-size: 12px; color: #295b73; line-height: 30px;"><span>Treatments:</span></td>
-          <td collapse="3" style=" color: #5b5c5c; width: 65%; border-bottom: solid 1px #b3b3b4; font-size: 12px; line-height: 30px; padding: 0px;">'.$result->pharmacytreatment.' </td>
+          <td style="width: 28%; font-size: 11px; color: #295b73; line-height: 20px;"><span>Treatments:</span></td>
+          <td collapse="3" style=" color: #5b5c5c; width: 72%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pharmacytreatment.' </td>
         
          </tr>
       
@@ -486,11 +480,11 @@ Detroit, MI 48226
    </td>
    
    <td width="2%;">&nbsp;</td>
-   <td width="48%;"><span style="font-size: 16px; color: #295b73; text-transform: uppercase;"><u>Products Requested</u></span>
-     <br/>    <br/>
+   <td width="48%;"><span style="font-size: 12px; color: #295b73; text-transform: uppercase;"><u>Products Requested</u></span>
+     <br/>        <br/> 
       <table style="width: 100%; ">
         <tr>
-          <td style=" vertical-align: middle; width:370px;     font-size: 12px;
+          <td style=" vertical-align: middle; width:370px;     font-size: 11px;
     color: #5b5c5c"><span style="display: block "><input type="checkbox" name="box" value="1" readonly="true"  checked="'.$result->topicalpain.'"/>TOPICAL PAIN
 
 </span><br/><br/>
@@ -518,52 +512,53 @@ Detroit, MI 48226
  
  </table>
 
-<table style="width: 100%;"><tr><td style="padding: 10px 0;"><br/><hr></td></tr></table>
 
-<table style="width: 100%;">
+
+
+<table style="width: 100%;  border-top: solid 1px #000; padding-top:4px;">
 
    <tr>
-   <td style="width:19%;"><span style=" font-size: 10px; color: #295b73;">QUESTIONNAIRE</span></td>
-       <td style="text-align:right; width:8%;"><span style=" font-size: 10px; color: #5b5c5c;">TYPE <span style="color: #ff0000">*</span></span></td>
+   <td style="width:16%;"><span style=" font-size: 10px; color: #295b73;"><u>QUESTIONNAIRE</u></span></td>
+       <td style="text-align:right; width:9%;"><span style=" font-size: 10px; color: #5b5c5c;">TYPE <span style="color: #ff0000">*</span></span></td>
         <td style="text-align:right; width:2%;"><span style=" font-size: 10px; color: #5b5c5c;">&nbsp;</span></td>
-      <td style="text-align:right; width:8%;"><span style=" font-size: 10px; color: #5b5c5c;">TYPE</span></td>
-      <td style="text-align:right; width:16%; "><span style=" font-size: 10px; color: #5b5c5c;">AGE DIAGNOSED</span></td>
+      <td style="text-align:right; width:9%;"><span style=" font-size: 10px; color: #5b5c5c;">TYPE</span></td>
+      <td style="text-align:right; width:14%; "><span style=" font-size: 10px; color: #5b5c5c;">AGE DIAGNOSED</span></td>
        <td style="text-align:right; width:14%;"><span style=" font-size: 10px; color: #5b5c5c;">IF DECEASED,</span></td>
-         <td style="width:19%;"><span style=" font-size: 10px; color: #295b73;"><u>TYPE OF CANCER</u></span></td>
-   <td style="width:14%;"><span style=" font-size: 10px; color: #295b73;">MEDICATION LIST</span></td>
+         <td style="width:18%;"><span style=" font-size: 10px; color: #295b73;"><u>TYPE OF CANCER</u></span></td>
+   <td style="width:14%;"><span style=" font-size: 10px; color: #295b73;"><u>MEDICATION LIST</u></span></td>
    
    </tr>
 
 </table>
 
 
-<table style="width: 100%;">
+<table style="width: 100%; border-bottom: solid 1px #000;">
 
    <tr>
    
    
    
    
-   <td style="width:19%; text-align:right; ">
-<table><tr><td><strong style=" font-size: 11px; color: #545656; display:block; line-height:26px;">PERSONAL HISTORY:</strong></td></tr></table>
-<table><tr><td><strong style=" font-size: 11px; color: #545656; display:block; line-height:26px;">FAMILY HISTORY:</strong></td></tr></table>
-<table><tr><td><strong style=" font-size: 11px; color: #545656; display:block; line-height:26px;">MOTHER:</span></td></tr></table>
-<table><tr><td><span style=" font-size: 11px; color: #545656; line-height:20px;">FATHER:</span></td></tr></table>
-<table><tr><td><span style=" font-size: 11px; color: #545656; line-height:20px;">DAUGHTER:</span></td></tr></table>
-<table><tr><td><span style=" font-size: 11px; color: #545656; line-height:20px;">SON:</span></td></tr></table>
-<table><tr><td><span style=" font-size: 11px; color: #545656; line-height:20px;">BROTHER:</span></td></tr></table>
-<table><tr><td><span style=" font-size: 11px; color: #545656; line-height:20px;">SISTER:</span></td></tr></table>
-<table><tr><td><span style=" font-size: 11px; color: #545656; line-height:22px;">NEPHEW:</span></td></tr></table>
-<table><tr><td><span style=" font-size: 11px; color: #545656; line-height:22px;">NIECE:</span></td></tr></table>
-<table><tr><td><span style=" font-size: 11px; color: #545656;  line-height:22px;">UNCLE:</span></td></tr></table>
-<table><tr><td><span style=" font-size: 11px; color: #545656;  line-height:22px;">AUTN:</span></td></tr></table>
-<table><tr><td><span style=" font-size: 11px; color: #545656;  line-height:22px;">MOM\'S FATHER:</span></td></tr></table>
-<table><tr><td><span style=" font-size: 11px; color: #545656;  line-height:22px;">MOM\'S MOTHER:</span></td></tr></table>
-<table><tr><td><span style=" font-size: 11px; color: #545656;  line-height:22px;">DAD\'S FATHER:</span></td></tr></table>
-<table><tr><td><span style=" font-size: 11px; color: #545656;  line-height:22px;">DAD\'S MOTHER:</span></td></tr></table>
-<table><tr><td><i style=" font-size: 11px; color: #545656;  line-height:22px;">OTHER:</i></td></tr></table>
-<table><tr><td><i style=" font-size: 11px; color: #545656;  line-height:22px;">OTHER:</i></td></tr></table>
-<table><tr><td><i style=" font-size: 11px; color: #545656;  line-height:22px;">OTHER:</i></td></tr></table>
+   <td style="width:16%; text-align:right; ">
+<table><tr><td><strong style=" font-size: 10px; color: #545656; display:block; line-height:11px;">PERSONAL HISTORY:</strong></td></tr></table>
+<table><tr><td><strong style=" font-size: 10px; color: #545656; display:block; line-height:11px;">FAMILY HISTORY:</strong></td></tr></table>
+<table><tr><td><span style=" font-size: 10px; color: #545656; display:block; line-height:11px;">MOTHER:</span></td></tr></table>
+<table><tr><td><span style=" font-size: 10px; color: #545656; line-height:11px;">FATHER:</span></td></tr></table>
+<table><tr><td><span style=" font-size: 10px; color: #545656; line-height:11px;">DAUGHTER:</span></td></tr></table>
+<table><tr><td><span style=" font-size: 10px; color: #545656; line-height:11px;">SON:</span></td></tr></table>
+<table><tr><td><span style=" font-size: 10px; color: #545656; line-height:11px;">BROTHER:</span></td></tr></table>
+<table><tr><td><span style=" font-size: 10px; color: #545656; line-height:11px;">SISTER:</span></td></tr></table>
+<table><tr><td><span style=" font-size: 10px; color: #545656; line-height:11px;">NEPHEW:</span></td></tr></table>
+<table><tr><td><span style=" font-size: 10px; color: #545656; line-height:11px;">NIECE:</span></td></tr></table>
+<table><tr><td><span style=" font-size: 10px; color: #545656;  line-height:11px;">UNCLE:</span></td></tr></table>
+<table><tr><td><span style=" font-size: 10px; color: #545656;  line-height:11px;">AUTN:</span></td></tr></table>
+<table><tr><td><span style=" font-size: 10px; color: #545656;  line-height:11px;">MOM\'S FATHER:</span></td></tr></table>
+<table><tr><td><span style=" font-size: 10px; color: #545656;  line-height:11px;">MOM\'S MOTHER:</span></td></tr></table>
+<table><tr><td><span style=" font-size: 10px; color: #545656;  line-height:11px;">DAD\'S FATHER:</span></td></tr></table>
+<table><tr><td><span style=" font-size: 10px; color: #545656;  line-height:11px;">DAD\'S MOTHER:</span></td></tr></table>
+<table><tr><td><i style=" font-size: 10px; color: #545656;  line-height:11px;">OTHER:</i></td></tr></table>
+<table><tr><td><i style=" font-size: 10px; color: #545656;  line-height:11px;">OTHER:</i></td></tr></table>
+<table><tr><td><i style=" font-size: 10px; color: #545656;  line-height:11px;">OTHER:</i></td></tr></table>
 </td>
 
 
@@ -572,19 +567,19 @@ Detroit, MI 48226
 
 
 
-<td style="text-align:right; width:8%;">
+<td style="text-align:right; width:9%;">
 
 
 <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->phtype1.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 14px; padding: 0px; text-align:right;">'.$result->phtype1.'</td>
 </tr>
 </table>
 
 
 <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; font-size: 11px; line-height: 35px; padding: 0px; text-align:right;">&nbsp;</td>
+<td  style=" color: #5b5c5c; width: 100%; font-size: 11px; line-height: 27px; padding: 0px; text-align:right;">&nbsp;</td>
 </tr>
 </table>
 
@@ -592,117 +587,117 @@ Detroit, MI 48226
 
 <table style="width:100%;">
     <tr>
- <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->motype1.'</td>
+ <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 19px; padding: 0px; text-align:right;">'.$result->motype1.'</td>
 
     </tr>
     </table>
     <table style="width:100%;">
     <tr>
- <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->fatype1.'</td>
+ <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 21px; padding: 0px; text-align:right;">'.$result->fatype1.'</td>
 
     </tr>
     </table>
     <table style="width:100%;">
     <tr>
- <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->dautype1.'</td>
-
-    </tr>
-    </table>
-    
-    <table style="width:100%;">
-    <tr>
- <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->sontype1.'</td>
+ <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 21px; padding: 0px; text-align:right;">'.$result->dautype1.'</td>
 
     </tr>
     </table>
     
     <table style="width:100%;">
     <tr>
- <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->brotype1.'</td>
+ <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 24px; padding: 0px; text-align:right;">'.$result->sontype1.'</td>
 
     </tr>
     </table>
     
     <table style="width:100%;">
     <tr>
- <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->sistype1.'</td>
+ <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 21px; padding: 0px; text-align:right;">'.$result->brotype1.'</td>
 
     </tr>
     </table>
     
     <table style="width:100%;">
     <tr>
- <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->neptype1.'</td>
+ <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->sistype1.'</td>
 
     </tr>
     </table>
     
     <table style="width:100%;">
     <tr>
- <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->niecetype1.'</td>
+ <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->neptype1.'</td>
 
     </tr>
     </table>
     
     <table style="width:100%;">
     <tr>
- <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->unctype1.'</td>
+ <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->niecetype1.'</td>
 
     </tr>
     </table>
     
     <table style="width:100%;">
     <tr>
- <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->autntype1.'</td>
+ <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 24px; padding: 0px; text-align:right;">'.$result->unctype1.'</td>
 
     </tr>
     </table>
     
     <table style="width:100%;">
     <tr>
- <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->moftype1.'</td>
+ <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 21px; padding: 0px; text-align:right;">'.$result->autntype1.'</td>
 
     </tr>
     </table>
     
     <table style="width:100%;">
     <tr>
- <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->momotype1.'</td>
+ <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->moftype1.'</td>
 
     </tr>
     </table>
     
     <table style="width:100%;">
     <tr>
- <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->daftype1.'</td>
+ <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->momotype1.'</td>
 
     </tr>
     </table>
     
     <table style="width:100%;">
     <tr>
- <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->damtype1.'</td>
+ <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 24px; padding: 0px; text-align:right;">'.$result->daftype1.'</td>
 
     </tr>
     </table>
     
     <table style="width:100%;">
     <tr>
- <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->oth1type1.'</td>
+ <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->damtype1.'</td>
 
     </tr>
     </table>
     
     <table style="width:100%;">
     <tr>
- <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->oth2type1.'</td>
+ <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 24px; padding: 0px; text-align:right;">'.$result->oth1type1.'</td>
 
     </tr>
     </table>
     
     <table style="width:100%;">
     <tr>
- <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->oth3type1.'</td>
+ <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 21px; padding: 0px; text-align:right;">'.$result->oth2type1.'</td>
+
+    </tr>
+    </table>
+    
+    <table style="width:100%;">
+    <tr>
+ <td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 21px; padding: 0px; text-align:right;">'.$result->oth3type1.'</td>
 
     </tr>
     </table>
@@ -716,26 +711,26 @@ Detroit, MI 48226
       <td style="text-align:right; width:2%;">
       
 
-<table><tr><td style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block; ">&nbsp;</span></td></tr></table>
-<table><tr><td style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block; ">&nbsp;</span></td></tr></table>
+<table><tr><td style="line-height:15px;"><span style=" font-size: 11px; color: #545656; display:block; ">&nbsp;</span></td></tr></table>
+<table><tr><td style="line-height:15px;"><span style=" font-size: 11px; color: #545656; display:block; ">&nbsp;</span></td></tr></table>
 
-<table><tr><td style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
-<table><tr><td style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
-<table><tr><td  style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block;">,</span></td></tr></table>
-<table><tr><td  style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
-<table><tr><td  style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block;">,</span></td></tr></table>
-<table><tr><td  style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
-<table><tr><td  style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
-<table><tr><td  style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
-<table><tr><td  style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block;">,</span></td></tr></table>
-<table><tr><td  style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
-<table><tr><td  style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
-<table><tr><td style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block;">,</span></td></tr></table>
-<table><tr><td style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block;">,</span></td></tr></table>
-<table><tr><td style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block;">,</span></td></tr></table>
-<table><tr><td style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block;">,</span></td></tr></table>
-<table><tr><td style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
-<table><tr><td style="line-height:30px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
+<table><tr><td style="line-height:22px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
+<table><tr><td style="line-height:22px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
+<table><tr><td  style="line-height:22px;"><span style=" font-size: 11px; color: #545656; display:block;">,</span></td></tr></table>
+<table><tr><td  style="line-height:22px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
+<table><tr><td  style="line-height:22px;"><span style=" font-size: 11px; color: #545656; display:block;">,</span></td></tr></table>
+<table><tr><td  style="line-height:22px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
+<table><tr><td  style="line-height:22px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
+<table><tr><td  style="line-height:20px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
+<table><tr><td  style="line-height:24px;"><span style=" font-size: 11px; color: #545656; display:block;">,</span></td></tr></table>
+<table><tr><td  style="line-height:22px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
+<table><tr><td  style="line-height:22px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
+<table><tr><td style="line-height:22px;"><span style=" font-size: 11px; color: #545656; display:block;">,</span></td></tr></table>
+<table><tr><td style="line-height:22px;"><span style=" font-size: 11px; color: #545656; display:block;">,</span></td></tr></table>
+<table><tr><td style="line-height:22px;"><span style=" font-size: 11px; color: #545656; display:block;">,</span></td></tr></table>
+<table><tr><td style="line-height:22px;"><span style=" font-size: 11px; color: #545656; display:block;">,</span></td></tr></table>
+<table><tr><td style="line-height:22px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
+<table><tr><td style="line-height:22px;"><span style=" font-size: 11px; color: #545656; display:block; ">,</span></td></tr></table>
       
       
       </td>
@@ -746,103 +741,103 @@ Detroit, MI 48226
 
 
 
- <td style="text-align:right; width:8%;"><span style=" font-size: 11px; color: #5b5c5c;">
+ <td style="text-align:right; width:9%;"><span style=" font-size: 11px; color: #5b5c5c;">
  
  
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->phtype2.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 14px; padding: 0px; text-align:right;">'.$result->phtype2.'</td>
 </tr>
 </table>
 
 <table style="width:100%;">
  <tr>
-<td   style=" color: #5b5c5c; width: 100%; font-size: 11px; line-height: 35px; padding: 0px; text-align:right;">&nbsp;</td>
+<td   style=" color: #5b5c5c; width: 100%; font-size: 11px; line-height: 27px; padding: 0px; text-align:right;">&nbsp;</td>
     </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->motype2.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 19px; padding: 0px; text-align:right;">'.$result->motype2.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->fatype2.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 21px; padding: 0px; text-align:right;">'.$result->fatype2.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->dautype2.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 21px; padding: 0px; text-align:right;">'.$result->dautype2.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->sontype2.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 21px; padding: 0px; text-align:right;">'.$result->sontype2.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->brotype2.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 24px; padding: 0px; text-align:right;">'.$result->brotype2.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->sistype2.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height:21px; padding: 0px; text-align:right;">'.$result->sistype2.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->neptype2.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 24px; padding: 0px; text-align:right;">'.$result->neptype2.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->niecetype2.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height:22px; padding: 0px; text-align:right;">'.$result->niecetype2.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->unctype2.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 24px; padding: 0px; text-align:right;">'.$result->unctype2.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->autntype2.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->autntype2.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->moftype2.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 21px; padding: 0px; text-align:right;">'.$result->moftype2.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->momotype2.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->momotype2.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->daftype2.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->daftype2.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->damtype2.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->damtype2.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->oth1type2.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 24px; padding: 0px; text-align:right;">'.$result->oth1type2.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->oth2type2.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->oth2type2.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->oth3type2.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->oth3type2.'</td>
 </tr>
 </table>
 
@@ -852,11 +847,11 @@ Detroit, MI 48226
 
 
 
-<td style="text-align:right; width:16%; "><span style=" font-size: 11px; color: #5b5c5c;">
+<td style="text-align:right; width:14%; "><span style=" font-size: 11px; color: #5b5c5c;">
 
 <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->phage.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 14px; padding: 0px; text-align:right;">'.$result->phage.'</td>
 </tr>
 </table>
 
@@ -864,93 +859,93 @@ Detroit, MI 48226
 
 <table style="width:100%;">
  <tr>
-<td   style=" color: #5b5c5c; width: 100%; font-size: 11px; line-height: 35px; padding: 0px; text-align:right;">&nbsp;</td>
+<td   style=" color: #5b5c5c; width: 100%; font-size: 11px; line-height: 27px; padding: 0px; text-align:right;">&nbsp;</td>
     </tr>
 </table>
 
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->moage.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 19px; padding: 0px; text-align:right;">'.$result->moage.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->faage.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 21px; padding: 0px; text-align:right;">'.$result->faage.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->dauage.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 21px; padding: 0px; text-align:right;">'.$result->dauage.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->sonage.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->sonage.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->broage.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 24px; padding: 0px; text-align:right;">'.$result->broage.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->sisage.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 21px; padding: 0px; text-align:right;">'.$result->sisage.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->nepage.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 24px; padding: 0px; text-align:right;">'.$result->nepage.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->nieceage.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->nieceage.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->uncage.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 24px; padding: 0px; text-align:right;">'.$result->uncage.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->autnage.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->autnage.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->mofage.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 21px; padding: 0px; text-align:right;">'.$result->mofage.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->momoage.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->momoage.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->dafage.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->dafage.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->damage.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->damage.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->oth1age.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 24px; padding: 0px; text-align:right;">'.$result->oth1age.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->oth2age.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->oth2age.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->oth3age.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height:22px; padding: 0px; text-align:right;">'.$result->oth3age.'</td>
 </tr>
 </table>
 
@@ -961,12 +956,12 @@ Detroit, MI 48226
 
 
 
-       <td style="text-align:right; width:14%;">
+       <td style="text-align:right; width:12%;">
        
        
 <table style="width:100%;">
  <tr>
-<td  style=" color: #5b5c5c; width: 100%;  font-size: 11px; line-height: 18px; padding: 0px; text-align:center;">AGE AT<br/>
+<td  style=" color: #5b5c5c; width: 100%;  font-size: 11px; line-height: 14px; padding: 0px; text-align:center;">AGE AT<br/>
 DEATH</td>
     </tr>
 </table>
@@ -974,93 +969,93 @@ DEATH</td>
 
 <table style="width:100%;">
  <tr>
-<td   style=" color: #5b5c5c; width: 100%; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">&nbsp;</td>
+<td   style=" color: #5b5c5c; width: 100%; font-size: 11px; line-height:12px; padding: 0px; text-align:right;">&nbsp;</td>
     </tr>
 </table>
 
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->modead.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px; text-align:right;">'.$result->modead.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->fadead.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->fadead.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->daudead.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->daudead.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->sondead.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->sondead.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->brodead.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->brodead.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->sisdead.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->sisdead.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->nepdead.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->nepdead.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->niecedead.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 23px; padding: 0px; text-align:right;">'.$result->niecedead.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->uncdead.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 23px; padding: 0px; text-align:right;">'.$result->uncdead.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->autndead.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 23px; padding: 0px; text-align:right;">'.$result->autndead.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->momodead.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 23px; padding: 0px; text-align:right;">'.$result->momodead.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->mofdead.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->mofdead.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->dafdead.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->dafdead.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->damdead.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->damdead.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->oth1dead.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->oth1dead.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->oth2dead.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->oth2dead.'</td>
 </tr>
 </table>
  <table style="width:100%;">
 <tr>
-<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px; text-align:right;">'.$result->oth3dead.'</td>
+<td  style=" color: #5b5c5c; width: 100%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px; text-align:right;">'.$result->oth3dead.'</td>
 </tr>
 </table>
 
@@ -1072,38 +1067,38 @@ DEATH</td>
        
        
        
-         <td style="width:19%;">
-<span style="font-size: 13px; color: #545656;">* <u>Breast</u></span><br/>
- <span style="font-size: 13px; color: #545656;">* <u>Ovarian</u></span><br/>
-  <span style="font-size: 13px; color: #545656;">* Digestive</span><br/>
-  <span style="font-size: 12px; color: #545656;">&nbsp;&nbsp;&nbsp;- Pancreatic</span><br/>
-  <span style="font-size: 12px; color: #545656;">&nbsp;&nbsp;&nbsp;- Colon</span><br/>
-  <span style="font-size: 12px; color: #545656;">&nbsp;&nbsp;&nbsp;- Rectal</span><br/>
-  <span style="font-size: 12px; color: #545656;">&nbsp;&nbsp;&nbsp;- Gallbladder</span><br/>
-  <span style="font-size: 12px; color: #545656;">&nbsp;&nbsp;&nbsp;- Intestinal</span><br/>
-  <span style="font-size: 12px; color: #545656;">&nbsp;&nbsp;&nbsp;- Stomach</span><br/>
-  <span style="font-size: 12px; color: #545656;">&nbsp;&nbsp;&nbsp;- Esophageal</span><br/>
-  <span style="font-size: 12px; color: #545656;">&nbsp;&nbsp;&nbsp;- Throat</span><br/>
-  <span style="font-size: 12px; color: #545656;">&nbsp;&nbsp;&nbsp;- Liver</span><br/>
+         <td style="width:15%; line-height: 13px;">
+<span style="font-size: 12px; color: #545656;">* <u>Breast</u></span><br/>
+ <span style="font-size: 12px; color: #545656;">* <u>Ovarian</u></span><br/>
+  <span style="font-size: 12px; color: #545656;">* Digestive</span><br/>
+  <span style="font-size: 11px; color: #545656;">&nbsp;&nbsp;&nbsp;- Pancreatic</span><br/>
+  <span style="font-size: 11px; color: #545656;">&nbsp;&nbsp;&nbsp;- Colon</span><br/>
+  <span style="font-size: 11px; color: #545656;">&nbsp;&nbsp;&nbsp;- Rectal</span><br/>
+  <span style="font-size: 11px; color: #545656;">&nbsp;&nbsp;&nbsp;- Gallbladder</span><br/>
+  <span style="font-size: 11px; color: #545656;">&nbsp;&nbsp;&nbsp;- Intestinal</span><br/>
+  <span style="font-size: 11px; color: #545656;">&nbsp;&nbsp;&nbsp;- Stomach</span><br/>
+  <span style="font-size: 11px; color: #545656;">&nbsp;&nbsp;&nbsp;- Esophageal</span><br/>
+  <span style="font-size: 11px; color: #545656;">&nbsp;&nbsp;&nbsp;- Throat</span><br/>
+  <span style="font-size: 11px; color: #545656;">&nbsp;&nbsp;&nbsp;- Liver</span><br/>
 
- <span style="font-size: 12px; color: #545656;">* Lung</span><br/>
-  <span style="font-size: 12px; color: #545656;">&nbsp;&nbsp;- Other Respiratory</span><br/>
+ <span style="font-size: 11px; color: #545656;">* Lung</span><br/>
+  <span style="font-size: 11px; color: #545656;">&nbsp;&nbsp;- Other Respiratory</span><br/>
 
- <span style="font-size: 12px; color: #545656;">* Genital</span><br/>
-  <span style="font-size: 12px; color: #545656;">&nbsp;&nbsp;&nbsp;- Cervical</span><br/>
-  <span style="font-size: 12px; color: #545656;">&nbsp;&nbsp;&nbsp;- Uterine</span><br/>
-  <span style="font-size: 12px; color: #545656;">&nbsp;&nbsp;&nbsp;- Endometrial</span><br/>
-  <span style="font-size: 12px; color: #545656;">&nbsp;&nbsp;&nbsp;- Other Genital Organs</span><br/>
+ <span style="font-size: 11px; color: #545656;">* Genital</span><br/>
+  <span style="font-size: 11px; color: #545656;">&nbsp;&nbsp;&nbsp;- Cervical</span><br/>
+  <span style="font-size: 11px; color: #545656;">&nbsp;&nbsp;&nbsp;- Uterine</span><br/>
+  <span style="font-size: 11px; color: #545656;">&nbsp;&nbsp;&nbsp;- Endometrial</span><br/>
+  <span style="font-size: 11px; color: #545656;">&nbsp;&nbsp;&nbsp;- Other Genital Organs</span><br/>
 
- <span style="font-size: 12px; color: #545656;">* Prostate</span><br/>
- <span style="font-size: 12px; color: #545656;">* Testicular</span><br/>
- <span style="font-size: 12px; color: #545656;">* Kidney</span><br/>
- <span style="font-size: 12px; color: #545656;">* Bladder</span><br/>
-  <span style="font-size: 12px; color: #545656;">&nbsp;&nbsp;&nbsp;- Urinary Tract</span><br/>
+ <span style="font-size: 11px; color: #545656;">* Prostate</span><br/>
+ <span style="font-size: 11px; color: #545656;">* Testicular</span><br/>
+ <span style="font-size: 11px; color: #545656;">* Kidney</span><br/>
+ <span style="font-size: 11px; color: #545656;">* Bladder</span><br/>
+  <span style="font-size: 11px; color: #545656;">&nbsp;&nbsp;&nbsp;- Urinary Tract</span><br/>
 
- <span style="font-size: 12px; color: #545656;">* Leukemia</span><br/>
- <span style="font-size: 12px; color: #545656;">* Lymphatic</span><br/>
- <span style="font-size: 12px; color: #545656;">* Other Organ Systems</span>
+ <span style="font-size: 11px; color: #545656;">* Leukemia</span><br/>
+ <span style="font-size: 11px; color: #545656;">* Lymphatic</span><br/>
+ <span style="font-size: 11px; color: #545656;">* Other Organ Systems</span>
          
          </td>
          
@@ -1112,68 +1107,68 @@ DEATH</td>
          
          
          
-   <td style="width:14%;"><table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">1.</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx1.'</td></tr></table>
-<table style="width:100%;"><tr><td><div style="padding-top:35px;"></div></td></tr></table>
-<table style="width:100%;"><tr><td><div style="padding-top:35px;"></div></td></tr></table>
+   <td style="width:20%;"><table style="width:100%;"><tr>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 15px; padding: 0px;">1.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 15px; padding: 0px;">'.$result->pgx1.'</td></tr></table>
+<table style="width:100%;"><tr><td style="line-height: 26px;">&nbsp;</td></tr></table>
+
 <table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">2.</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx2.'</td></tr></table>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 20px; padding: 0px;">2.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pgx2.'</td></tr></table>
 <table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">3.</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx3.'</td></tr></table>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 20px; padding: 0px;">3.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pgx3.'</td></tr></table>
 <table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">+</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx4.'</td></tr></table>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 20px; padding: 0px;">4.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pgx4.'</td></tr></table>
 <table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">+</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx5.'</td></tr></table>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 20px; padding: 0px;">5.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pgx5.'</td></tr></table>
 <table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">+</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx6.'</td></tr></table>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 22px; padding: 0px;">6.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px;">'.$result->pgx6.'</td></tr></table>
 <table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">+</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx7.'</td></tr></table>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 22px; padding: 0px;">7.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px;">'.$result->pgx7.'</td></tr></table>
 <table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">+</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx8.'</td></tr></table>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 22px; padding: 0px;">8.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 22px; padding: 0px;">'.$result->pgx8.'</td></tr></table>
 <table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">+</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx9.'</td></tr></table>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 20px; padding: 0px;">9.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pgx9.'</td></tr></table>
 <table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">+</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx10.'</td></tr></table>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 20px; padding: 0px;">10.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pgx10.'</td></tr></table>
 <table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">+</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx11.'</td></tr></table>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 20px; padding: 0px;">11.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pgx11.'</td></tr></table>
 <table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">+</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx12.'</td></tr></table>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 20px; padding: 0px;">12.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pgx12.'</td></tr></table>
 <table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">+</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx13.'</td></tr></table>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 20px; padding: 0px;">13.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pgx13.'</td></tr></table>
 <table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">+</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx14.'</td></tr></table>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 20px; padding: 0px;">14.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pgx14.'</td></tr></table>
 <table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">+</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx15.'</td></tr></table>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 20px; padding: 0px;">15.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pgx15.'</td></tr></table>
 <table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">+</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx16.'</td></tr></table>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 20px; padding: 0px;">16.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pgx16.'</td></tr></table>
 <table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">+</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx17.'</td></tr></table>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 20px; padding: 0px;">17.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pgx17.'</td></tr></table>
 <table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">+</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx18.'</td>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 20px; padding: 0px;">18.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 20px; padding: 0px;">'.$result->pgx18.'</td>
 </tr></table>
 
 
 <table style="width:100%;"><tr>
-<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">+</td>
-<td  style=" color: #5b5c5c; width:80%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx19.'</td>
+<td  style=" color: #5b5c5c; width: 19%;  font-size: 11px; line-height: 30px; padding: 0px;">19.</td>
+<td  style=" color: #5b5c5c; width:65%; border-bottom: solid 1px #b3b3b4; font-size: 11px; line-height: 30px; padding: 0px;">'.$result->pgx19.'</td>
 
 </tr></table>
 
@@ -1194,15 +1189,13 @@ DEATH</td>
 
 
 
-<table style="width: 100%;"><tr><td style="padding: 10px 0;"><br/><hr></td></tr></table>
-
-<table style="width: 100%;">
+<table style="width: 100%; padding-top: 4px;">
 <tr>
- <td  style=" width:28%;font-size: 14px; line-height: 30px; padding: 0px;">&nbsp;</td>
-  <td  style=" color: #646666; width:10%; font-size: 14px; line-height: 30px; padding: 0px;"><span style="font-size: 15px; color: #295b73;">Rep ID:</span></td>
+ <td  style=" width:36%;font-size: 14px; line-height: 20px; padding: 0px;">&nbsp;</td>
+  <td  style=" color: #646666; width:8%; font-size: 14px; line-height: 20px; padding: 0px;"><span style="font-size: 13px; color: #295b73;">Rep ID:</span></td>
 
- <td  style=" color: #646666; width:34%; border-bottom: solid 1px #646666; font-size: 14px; line-height: 30px; padding: 0px;">#'.$result2uniqueid.'</td>
- <td  style=" color: #646666; width:28%; font-size: 14px; line-height: 30px; padding: 0px;">&nbsp;</td>
+ <td  style=" color: #646666; width:20%; border-bottom: solid 1px #646666; font-size: 14px; line-height: 20px; padding: 0px;">#'.$result2uniqueid.'</td>
+ <td  style=" color: #646666; width:36%; font-size: 14px; line-height: 20px; padding: 0px;">&nbsp;</td>
 
 </tr>
 </table>
@@ -1219,7 +1212,7 @@ DEATH</td>
 ';*/
 
 // output the HTML content
-$pdf->SetY(0);
+$pdf->SetY(2);
 //$pdf->SetX(0);
 //$pdf->writeHTML($html.$html2.$html3, true, 0, true, true);
 //$pdf->writeHTML($html, true, false, true, false, '');

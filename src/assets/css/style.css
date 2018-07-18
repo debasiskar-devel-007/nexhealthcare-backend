@@ -824,7 +824,7 @@ a:visited {	text-decoration: none;	outline: none;}
 
 
 
-.pateintdetail_left_formnew2 label{ display:block; width:25%; float: left; font-weight: normal; font-size: 16px; padding-top: 10px; text-align: right; padding-right: 5px;}
+.pateintdetail_left_formnew2 label{ display:block; width:auto; float: left; font-weight: normal; font-size: 16px; padding-top: 10px; text-align: left; padding-right: 5px;}
 
 .pateintdetail_left_formnew2 label span{ display: inline!important;}
 
