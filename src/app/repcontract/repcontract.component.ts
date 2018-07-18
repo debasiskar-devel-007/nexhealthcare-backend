@@ -24,7 +24,7 @@ export class RepcontractComponent implements OnInit {
     public cgxvalue: any = 0;
     public pgxvalue: any = 0;
 
-    constructor(addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
+    constructor(addcookie: CookieService, private _http: Http, private router: Router, public _commonservices: Commonservices) {
         this.serverurl = _commonservices.url;
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');

@@ -128,6 +128,7 @@ export class PateintdetailComponent implements OnInit {
         if (this.dataForm.valid )
         {
             console.log('inside');
+
             let link = this.serverurl + 'patientdetail';
             let data = {
                 firstname: formval.firstname,
@@ -154,6 +155,7 @@ export class PateintdetailComponent implements OnInit {
                 relation: formval.relation,
                 approxage: formval.approxage,*/
             };
+          console.log(data);
             this._http.post(link, data)
                 .subscribe(res => {
                     let result = res.json();
@@ -173,7 +175,8 @@ export class PateintdetailComponent implements OnInit {
     }
 
     closemodal() {
-        this.opensuccessmodal = false;
+      this.getuniquepatientid();
+      this.opensuccessmodal = false;
     }
 
     gotopatientrecord() {

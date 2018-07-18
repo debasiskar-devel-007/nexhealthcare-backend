@@ -38,7 +38,7 @@ export class UserrecruiterdetailComponent implements OnInit {
     public showdeletesuccessmodal: boolean = false;
     public deleteid;
 
-    constructor( fb: FormBuilder, private _http: Http, private router: Router, private route: ActivatedRoute, private _commonservices: Commonservices, addcookie: CookieService) {
+    constructor( fb: FormBuilder, private _http: Http, private router: Router, private route: ActivatedRoute, public _commonservices: Commonservices, addcookie: CookieService) {
         this.fb = fb;
         this.serverurl = _commonservices.url;
         this.addcookie = addcookie ;
@@ -124,37 +124,38 @@ export class UserrecruiterdetailComponent implements OnInit {
         }
     }
 
-    gotoagreementpdf(id) {
-        var url = 'http://altushealthgroup.com/testpdf/html2pdf/employment-agreement.php?id=' + id;
-        window.open(url, '_blank');
-    }
+  gotoagreementpdf(id) {
+    /* var url = 'http://altushealthgroup.com/testpdf/html2pdf/employment-agreement.php?id=' + id;*/
+    var url = 'http://' + this._commonservices.commonvalue.title1 + '/testpdf/html2pdf/employment-agreement.php?id=' + id;
+    window.open(url, '_blank');
+  }
 
-    getdetailsbyid() {
-        let link = this.serverurl + 'getuserdetailswithtags';
-        let data = {userid : this.id};
-        this._http.post(link, data)
-            .subscribe(res => {
-                let result = res.json();
-                //   console.log(result);
-                if (result.status == 'success' && typeof(result.id) != 'undefined') {
-                    console.log('result.id------------------------------');
-                    console.log(result.id);
-                    this.getdetailsbyidis = result.id;
-                    let userdet = result.id;
-                    this.type = userdet.type;
-                    this.dataForm = this.fb.group({
-                        uniqueid: [userdet.uniqueid],
-                        username: [userdet.username],
-                        password: [''],
-                        confpassword: [''],
-                        firstname: [userdet.firstname, Validators.required],
-                        lastname: [userdet.lastname, Validators.required],
-                        address: [userdet.address, Validators.required],
-                        address2: [userdet.address2],
-                        email: [userdet.email],
-                        //   phone: [userdet.phone, Validators.required],
-                        phone: [userdet.phone, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
-                        city: [userdet.city, Validators.required],
+  getdetailsbyid() {
+    let link = this.serverurl + 'getuserdetailswithtags';
+    let data = {userid : this.id};
+    this._http.post(link, data)
+      .subscribe(res => {
+        let result = res.json();
+        //   console.log(result);
+        if (result.status == 'success' && typeof(result.id) != 'undefined') {
+          console.log('result.id------------------------------');
+          console.log(result.id);
+          this.getdetailsbyidis = result.id;
+          let userdet = result.id;
+          this.type = userdet.type;
+          this.dataForm = this.fb.group({
+            uniqueid: [userdet.uniqueid],
+            username: [userdet.username],
+            password: [''],
+            confpassword: [''],
+            firstname: [userdet.firstname, Validators.required],
+            lastname: [userdet.lastname, Validators.required],
+            address: [userdet.address, Validators.required],
+            address2: [userdet.address2],
+            email: [userdet.email],
+            //   phone: [userdet.phone, Validators.required],
+            phone: [userdet.phone, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
+            city: [userdet.city, Validators.required],
                         state: [userdet.state, Validators.required],
                         gender: [userdet.gender, Validators.required],
                         dob: [userdet.dob, Validators.required],

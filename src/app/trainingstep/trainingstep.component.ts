@@ -20,7 +20,7 @@ export class TrainingstepComponent implements OnInit {
     public webinar : any;
     public gonextmodal: boolean = false;
 
-    constructor(addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
+    constructor(addcookie: CookieService, private _http: Http, private router: Router, public _commonservices: Commonservices) {
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
         console.log('trainingstep get cookie');

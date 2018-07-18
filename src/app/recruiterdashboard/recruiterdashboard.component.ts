@@ -20,7 +20,7 @@ export class RecruiterdashboardComponent implements OnInit {
     public logintime;
     public signuptime;
 
-    constructor( addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
+    constructor( addcookie: CookieService, private _http: Http, private router: Router, public _commonservices: Commonservices) {
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
         // console.log(this.cookiedetails);

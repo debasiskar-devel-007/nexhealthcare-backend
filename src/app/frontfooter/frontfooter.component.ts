@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Commonservices} from '../app.commonservices' ;
 @Component({
     selector: 'app-frontfooter',
     templateUrl: './frontfooter.component.html',
-    styleUrls: ['./frontfooter.component.css']
+    styleUrls: ['./frontfooter.component.css'],
+  providers: [Commonservices],
 })
 export class FrontfooterComponent implements OnInit {
     public termsmodal: boolean = false;
     public policymodal: boolean = false;
-    constructor() { }
+    constructor( public _commonservices: Commonservices) { }
 
     ngOnInit() {
     }

@@ -39,7 +39,7 @@ export class RepsignupComponent implements OnInit {
     public webinarlist = [];
     public wrongtokenforleadrolemodal: boolean = false;
 
-    constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices, private route: ActivatedRoute) {
+    constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, public _commonservices: Commonservices, private route: ActivatedRoute) {
         this.fb = fb;
         RepsignupComponent.blankemail = false;
         RepsignupComponent.invalidemail = false;
@@ -60,7 +60,8 @@ export class RepsignupComponent implements OnInit {
             //  console.log(splitvalue[0]);
             if (splitvalue[2] == null) {
                 this.type = 'corporate';
-                this.neededhost = 'altushealthgroup.com';
+               // this.neededhost = 'altushealthgroup.com';
+                this.neededhost = _commonservices.commonvalue.commonurl;
                 this.addedby = 'corporate';
             }
             else {
@@ -238,6 +239,7 @@ export class RepsignupComponent implements OnInit {
   }*/
 
     dosubmit(formval) {
+      console.log(formval.username.toLowerCase());
         this.showvalidationerror = 1;
         let x: any;
         for (x in this.dataForm.controls) {
@@ -249,7 +251,7 @@ export class RepsignupComponent implements OnInit {
             let data = {
                 firstname: formval.firstname,
                 lastname: formval.lastname,
-                username: formval.username,
+                username: formval.username.toLowerCase(),
                 email: formval.email,
                 password: formval.password,
                 address: formval.address,

@@ -23,6 +23,7 @@ import { PateintquestionireComponent } from './pateintquestionire/pateintquestio
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -53,7 +54,12 @@ import { LandingComponent } from './landing/landing.component';
 import { Landing2Component } from './landing2/landing2.component';
 import { PatientlistrecordviewComponent } from './patientlistrecordview/patientlistrecordview.component';
 import { UsermanagementlistComponent } from './usermanagementlist/usermanagementlist.component';
+import { HelpdeskaddComponent } from './helpdeskadd/helpdeskadd.component';
+import { HelpdeskeditComponent } from './helpdeskedit/helpdeskedit.component';
+import { HelpdesklistComponent } from './helpdesklist/helpdesklist.component';
 import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
+import { NgxUploaderModule } from 'ngx-uploader';
+import {TooltipModule} from 'ngx-tooltip';
 
 @NgModule({
   declarations: [
@@ -99,6 +105,9 @@ import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
       Landing2Component,
       PatientlistrecordviewComponent,
       UsermanagementlistComponent,
+      HelpdeskaddComponent,
+      HelpdeskeditComponent,
+      HelpdesklistComponent,
   ],
   imports: [
     BrowserModule,
@@ -107,11 +116,14 @@ import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
       FormsModule,
       ReactiveFormsModule,
       HttpModule,
+    HttpClientModule,
     AccordionModule.forRoot(),
       ModalModule.forRoot(),
-      NgxPaginationModule,
-      ClipboardModule,
-      Ng2AutoCompleteModule
+    NgxPaginationModule,
+    ClipboardModule,
+    Ng2AutoCompleteModule,
+    NgxUploaderModule,
+    TooltipModule
   ],
   providers: [appRoutingProviders, CookieService],
   bootstrap: [AppComponent]

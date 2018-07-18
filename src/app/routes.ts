@@ -42,6 +42,9 @@ import {LandingComponent} from './landing/landing.component';
 import {Landing2Component} from './landing2/landing2.component';
 import {PatientlistrecordviewComponent} from './patientlistrecordview/patientlistrecordview.component';
 import {UsermanagementlistComponent} from './usermanagementlist/usermanagementlist.component';
+import {HelpdesklistComponent} from './helpdesklist/helpdesklist.component';
+import {HelpdeskeditComponent} from './helpdeskedit/helpdeskedit.component';
+import {HelpdeskaddComponent} from './helpdeskadd/helpdeskadd.component';
 
 
 const appRoutes: Routes = [
@@ -83,14 +86,18 @@ const appRoutes: Routes = [
     { path: 'reports', component: ReportsComponent},
     { path: 'commissions', component: CommissionsComponent},
     { path: 'sharelink', component: SharelinkComponent},
-    { path: 'contact', component: ContactComponent},
-    { path: 'landing', component: LandingComponent},
-    { path: 'landing2', component: Landing2Component},
-    { path: 'patientlist', component: PatientlistrecordviewComponent},
-    { path: 'userlist', component: UsermanagementlistComponent},
+  { path: 'contact', component: ContactComponent},
+  { path: 'landing', component: LandingComponent},
+  { path: 'landing/:id', component: LandingComponent},
+  { path: 'landing2', component: Landing2Component},
+  { path: 'patientlist', component: PatientlistrecordviewComponent},
+  { path: 'userlist', component: UsermanagementlistComponent},
+  { path: 'helpdeskedit/:id', component: HelpdeskeditComponent},
+  { path: 'helpdesklist', component: HelpdesklistComponent},
+  { path: 'helpdeskadd', component: HelpdeskaddComponent},
 
 
-   // { path: 'content', component: ContentComponent,outlet:'content'},
+  // { path: 'content', component: ContentComponent,outlet:'content'},
 ];
 
 

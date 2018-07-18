@@ -38,39 +38,45 @@
 
                     <table class="pateints_list_weraper_table">
                         <tr>
-                            <th>CGX AMOUNT</th>
-                            <th>PGX AMOUNT</th>
-                            <th>SHARELINK ASSOCIATED WITH COMPENSATION AMOUNT
-                            </th>
+                          <th>CGX AMOUNT</th>
+                          <th>PGX AMOUNT</th>
+                          <th>SHARELINK ASSOCIATED WITH COMPENSATION AMOUNT
+                          </th>
 
                         </tr>
 
-                        <tr *ngFor="let item of compensationList | orderBy:'_id':'reverse' | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
-                            <td>${{item.amount}}</td>
-                            <td>${{item.pgxvalue}}</td>
-                            <td>
-                            <table width="100%" class="compensationmodifier_subtable">
-                                    <tr>
-                                        <td style="text-align: left;"><h4>SIGN UP PAGE:</h4>
-                                       <span>http://{{serverhost}}/#/sign-up/{{item.token}}</span></td>
-                                        <td><input type="button" value="Copy Url" class="copyurlbtn" ngxClipboard [cbContent]='callfunc(item.token)' (click)="showcopied()"></td>
+                      <tr *ngFor="let item of compensationList | orderBy:'_id':'reverse' | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+                        <td>${{item.amount}}</td>
+                        <td>${{item.pgxvalue}}</td>
+                        <td>
+                          <table width="100%" class="compensationmodifier_subtable">
+                            <tr>
+                              <td style="text-align: left;"><h4>SIGN UP PAGE:</h4>
+                                <span>http://{{serverhost}}/#/sign-up/{{item.token}}</span></td>
+                              <td><input type="button" value="Copy Url" class="copyurlbtn" ngxClipboard [cbContent]='callfunc(item.token)' (click)="showcopied()"></td>
 
-                                    </tr>
+                            </tr>
+                            <tr>
+                              <td style="text-align: left;"><h4>LANDING PAGE:</h4>
+                                <span>http://{{serverhost}}/#/landing/{{item.token}}</span></td>
+                              <td><input type="button" value="Copy Url" class="copyurlbtn" ngxClipboard [cbContent]='callfunc2(item.token)' (click)="showcopied()"></td>
 
-                                <tr>
-                                    <td style="text-align: left;"><h4>VIDEO PAGE:</h4>
+                            </tr>
 
-                                   <span>http://{{serverhost}}/#/cgx/{{item.token}}</span></td>
-                                   <td><input type="button" value="Copy Url" class="copyurlbtn" ngxClipboard [cbContent]='callfunc1(item.token)' (click)="showcopied()"></td>
+                            <tr>
+                              <td style="text-align: left;"><h4>VIDEO PAGE:</h4>
 
-                                </tr>
+                                <span>http://{{serverhost}}/#/cgx/{{item.token}}</span></td>
+                              <td><input type="button" value="Copy Url" class="copyurlbtn" ngxClipboard [cbContent]='callfunc1(item.token)' (click)="showcopied()"></td>
 
-
-
-                                </table>
+                            </tr>
 
 
-                               <!-- <div class="compensationmodifierlinkdiv"><h4>SIGN UP PAGE: <span>http://{{serverhost}}/#/sign-up/{{item.token}}</span></h4>
+
+                          </table>
+
+
+                              <!-- <div class="compensationmodifierlinkdiv"><h4>SIGN UP PAGE: <span>http://{{serverhost}}/#/sign-up/{{item.token}}</span></h4>
                                      <input type="button" value="Copy Url" class="copyurlbtn" ngxClipboard [cbContent]='callfunc(item.token)' (click)="showcopied()">
                                     <div class="clearfix"></div>
                                 </div>

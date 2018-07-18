@@ -49,6 +49,10 @@ export class CompensationmodifierComponent implements OnInit {
         //  return 'https://' + this.serverhost + '/#/sign-up/' + token;
         return 'http://' + this.serverhost + '/#/cgx/' + token;
     }
+    callfunc2(token) {
+        //  return 'https://' + this.serverhost + '/#/sign-up/' + token;
+        return 'http://' + this.serverhost + '/#/landing/' + token;
+    }
     showcopied() {
         this.copiedmodal = true;
         setTimeout(() => {

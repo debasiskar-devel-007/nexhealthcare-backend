@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
-import {Http} from '@angular/http';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import {CookieService} from 'angular2-cookie/core';
 import {Commonservices} from '../app.commonservices' ;
+import {Provider} from '@angular/compiler/src/core';
 
 @Component({
     selector: 'app-login',
@@ -16,19 +18,21 @@ export class LoginComponent implements OnInit {
     private fb;
     private isSubmit;
     private isemailvalidate;
-    public is_error;
+  public is_error;
     private addcookie: CookieService;
     private cookiedetails;
     public serverurl;
     public serverhost;
     public neededhost;
 
-    constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
+    constructor(fb: FormBuilder, addcookie: CookieService, private _http: HttpClient, private router: Router, private _commonservices: Commonservices) {
         this.fb = fb;
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
         this.serverurl = _commonservices.url;
         this.serverhost = _commonservices.hostis;
+        console.log('this.serverhost');
+        console.log(this.serverhost);
         var splitvalue = this.serverhost.split('.');
         // console.log('splitvalue  ' + splitvalue);
         //  console.log('this.serverhost   ' + this.serverhost);
@@ -65,10 +69,14 @@ export class LoginComponent implements OnInit {
             let data = {usernameoremail: formval.usernameoremail, password: formval.password};
 
             this._http.post(link, data)
-                .subscribe(res => {
-                    let result = res.json();
-                    console.log('result-----------');
-                    console.log(result);
+              .subscribe(res => {
+                //let result = res;
+                let result: any;
+                result=res;
+                console.log('result-----------');
+                console.log(result);
+                    console.log(result.msg);
+                    console.log(result.msg._id);
                     if (result.status == 'success') {
                         let addresultforcookie = {
                             id : result.msg._id,

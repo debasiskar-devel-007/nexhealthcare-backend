@@ -254,13 +254,17 @@
 
         <div class="pateintdetail_right">
           <div class="pateints_btn_wrapper">
-            <input type="submit"  value="Save" class="btn1" />
-            <input type="button"  value="Cancel" class="btn2" (click)="cancel()"/>
-            <input type="button"  value="Back - List View" class="btn2" (click)="backtolistview()"/>
+            <input type="submit"  value="Save" class="btn1" *ngIf="cookiedetails.type!='helpdesk'"/>
+            <input type="button"  value="Cancel" class="btn2" (click)="cancel()" *ngIf="cookiedetails.type!='helpdesk'"/>
+            <input type="button"  value="Back - List View" class="btn2" (click)="backtolistview()" *ngIf="cookiedetails.type!='helpdesk'"/>
 
             <input type="button"  value="Patient Profile Sheet" class="btn2" (click)="openquesmodal()" *ngIf="iscompletedpatientrecord==0"/>
             <input type="button"  value="View PPS" class="btn2" (click)="openquesmodalreadonly()" *ngIf="iscompletedpatientrecord==1"/>
-            <input type="button"  value="Download PPS" class="btn2" *ngIf="iscompletedpatientrecord==1"/>
+            <input type="button"  value="Download PPS" class="btn2" (click)="gotopdf()" *ngIf="iscompletedpatientrecord==1"/>
+            <input type="button"  value="PGX Medication Checklist" class="btn2" (click)="openpgxmedicationmodal()"/>
+            <input type="button"  value="Symptom Checklist" class="btn2" (click)="opensymptommodal()" *ngIf="iscompletedccsrecord==0"/>
+            <input type="button"  value="View Symptom Checklist" class="btn2" (click)="opensymptommodalreadonly()" *ngIf="iscompletedccsrecord==1"/>
+            <input type="button"  value="Download Symptom Checklist" class="btn2" (click)="gotocsspdf()" *ngIf="iscompletedccsrecord==1"/>
           </div>
         </div>
 
@@ -343,7 +347,7 @@
 
         <div class="container-fluid admin_inner_heading">
 
-          <h2><span>Patient Profile Sheet-(Medicare) </span></h2>
+          <h2><span>Patient Profile Sheet </span></h2>
 
         </div>
 
@@ -380,7 +384,7 @@
                         </div>
                       </td>
                       <td>
-                        <h3>Altus Health Group<br/>
+                        <h3>{{_commonservices.commonvalue.mailfrom}}<br/>
                           610 W Congress Street<br/>
                           Detroit, MI 48226
                         </h3>
@@ -435,7 +439,7 @@
 
                     <div class="form-group">
                       <label>State: <span>*</span></label>
-                      <select class="form-control" [formControl]="dataForm1.controls['state1']" disabled="disabled">
+                      <select class="form-control" [formControl]="dataForm1.controls['state1']" >
                         <option value="" disabled selected>Select State</option>
                         <option value="{{item.name}}" *ngFor="let item of usastates; let i = index">{{item.name}}</option>
                       </select>
@@ -566,13 +570,229 @@
                 </div>
 
 
-                <div class="pateintquestionire_div2">
+                <div class="pateintquestionire_div2 insurencedet_block">
+                  <h3>Insurance Details</h3>
+                  <div class="clearfix"></div>
+
+                  <div class="form-group-div">
+                    <div class="insurencedet_subblock"><input type="checkbox" (click)="setinsurancevalue()" [formControl]="dataForm1.controls['insurance1']" value="Medicare"><span>Medicare</span><div class="clearfix"></div>
+
+  </div>
+
+                    <div class="insurencedet_subblock"> <input  [formControl]="dataForm1.controls['insurance2']" type="checkbox" (click)="setinsurancevalue()" value="Medadvantage"><span>Medadvantage</span><div class="clearfix"></div></div>
+
+                      <div class="insurencedet_subblock"><input [formControl]="dataForm1.controls['insurance3']"  type="checkbox" (click)="setinsurancevalue()" value="Commercial"><span>Commercial</span><div class="clearfix"></div></div>
+
+                        <div class="insurencedet_subblock"><input type="checkbox" [formControl]="dataForm1.controls['insurance4']" (click)="setinsurancevalue()" value="none"><span>None</span><div class="clearfix"></div></div>
+
+                    <div class="clearfix"></div>
+                  <!--  <span class="has-error" *ngIf ="dataForm1.controls['insurance1'].touched && !dataForm1.controls['insurance1'].valid && dataForm1.controls['insurance2'].touched && !dataForm1.controls['insurance2'].valid && dataForm1.controls['insurance3'].touched && !dataForm1.controls['insurance3'].valid && dataForm1.controls['insurance4'].touched && !dataForm1.controls['insurance4'].valid">Please choose an answer !</span>-->
+
+                    <div class="insurencedet_subblock2" *ngIf="dataForm1.value.insurance1==true" id="planbcard">
+
+                      <h2 class="newdetails_heading">Medicare Details</h2>
+
+
+                      <label>Do you have the Plan B card?</label>
+
+
+                      <input type="radio" name="planbcard" (click)="setplancardbvalue('yes')"  [ngModel]="planbcard" value="yes" [ngModelOptions]="{standalone: true}" ><p>Yes</p>
+                      <input type="radio" (click)="setplancardbvalue('no')"  [ngModel]="planbcard" value="no" name="planbcard" [ngModelOptions]="{standalone: true}"><p>No</p>
+                      <span class="has-error" *ngIf ="inmediplanbcarderror">{{inmediplanbcarderror}}</span>
+                      <div class="clearfix"></div>
+
+                      <div class="insurencedet_subblock3">
+                        <label>Policy Number:</label>
+                        <input type="text" [formControl]="dataForm1.controls['medicarepolicyno']"   name="medicarepolicyno" (blur)="callmedpolicyerror()" >
+                        <span class="has-error" *ngIf ="inmedipolicynoerror">{{inmedipolicynoerror}}</span>
+                        <div class="clearfix"></div>
+                      </div>
+                      <div class="insurencedet_subblock3">
+                        <label>Policy Image:</label>
+                        <input type="button" class="btn btn-primary btnform" value="Upload Image" (click)="callimagesegment()">
+                        <div class="clearfix"></div>
+                      </div>
+
+                        <label>Is this your Primary Policy:</label>
+
+                        <input type="radio" [formControl]="dataForm1.controls['mediprimarypolicy']" value="yes" name="mediprimarypolicy" (click)="callmedprimarypolicyerror()"> <p>Yes</p>
+
+                        <input type="radio" [formControl]="dataForm1.controls['mediprimarypolicy']" value="no" name="mediprimarypolicy" (click)="callmedprimarypolicyerror()"> <p>No</p>
+
+                      <span class="has-error" *ngIf ="inmedprimarypolicyerror">{{inmedprimarypolicyerror}}</span>
+                        <div class="clearfix"></div>
+
+
+
+
+
+                    </div>
+
+
+                    <div class="insurencedet_subblock2" *ngIf="dataForm1.value.insurance3==true">
+                      <div class="insurencedet_subblock3">
+
+                        <h2 class="newdetails_heading">Commercial Details</h2>
+                      <label>Carrier:</label>
+                      <select  [formControl]="dataForm1.controls['carrier']"  name="carrier" (change)="commercialcarrier()">
+                        <option value="">Select One</option>
+                        <option value="United Health care">United Health care</option>
+                        <option value="Aetna">Aetna</option>
+                        <option value="Cigna">Cigna</option>
+                        <option value="Blue Cross Blue Shield">Blue Cross Blue Shield</option>
+                        <option value="Other"> Other</option>
+
+                      </select>
+                        <span class="has-error" *ngIf ="incommercialcarriererror">{{incommercialcarriererror}}</span>
+                      <div class="clearfix"></div>
+
+                      </div>
+
+                      <div class="insurencedet_subblock3">
+                        <label>Plan Type:</label>
+                       <input [formControl]="dataForm1.controls['carrierplan']"   type="text" (blur)="callcarrierplanerror()" >
+                        <span class="has-error" *ngIf ="incarrierplanerror">{{incarrierplanerror}}</span>
+                        <div class="clearfix"></div>
+
+                      </div>
+
+                      <div class="insurencedet_subblock3">
+                        <label>Policy Number:</label>
+                        <input type="text" [formControl]="dataForm1.controls['carrierpolicyno']"   name="carrierpolicyno" (blur)="callcarrierpolicynoerror()">
+                        <span class="has-error" *ngIf ="carrierpolicynoerror">{{carrierpolicynoerror}}</span>
+                        <div class="clearfix"></div>
+
+                      </div>
+
+
+                      <div class="insurencedet_subblock3_new">
+                        <label>Is this your Primary Policy:</label>
+                        <input type="radio" [formControl]="dataForm1.controls['comprimarypolicy']" name="comprimarypolicy" value="yes" (click)="callcarrierprimarypolicyerror()"> <p>Yes</p>
+                        <input type="radio" [formControl]="dataForm1.controls['comprimarypolicy']" name="comprimarypolicy" value="no" (click)="callcarrierprimarypolicyerror()"> <p>No</p>
+                        <span class="has-error" *ngIf ="carrierprimarypolicynoerror">{{carrierprimarypolicynoerror}}</span>
+                        <div class="clearfix"></div>
+
+                      </div>
+
+
+
+                    </div>
+
+
+
+
+                  </div>
+
+
+
+
+                </div>
+
+
+                <div class="pateintquestionire_div2 pateintquestionire_div2_new_block" >
+
+                  <h3>Client profile questionnaire<!-- for "data farming"--></h3>
+                  <div class="clearfix"></div>
+
+                  <div class="form-group">
+                   <label> Do you use Diabetic supplies (meters, strips, lancets, needles, etc):</label>
+                   <p><input type="radio" name="ds" [formControl]="dataForm1.controls['diabetic_sup']" value="yes"><span>Yes</span>
+                    <input name="ds" type="radio" [formControl]="dataForm1.controls['diabetic_sup']" value="no"><span>No</span></p>
+                    <span class="has-error" *ngIf ="dataForm1.controls['diabetic_sup'].touched && !dataForm1.controls['diabetic_sup'].valid">Please choose an answer !</span>
+                    <div class="clearfix"></div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label>Do you use Wound care supplies:</label>
+                    <p><input type="radio"  name="ws" [formControl]="dataForm1.controls['wound_sup']" value="yes"><span>Yes</span>
+                    <input type="radio" name="ws" [formControl]="dataForm1.controls['wound_sup']" value="no"><span>No</span></p>
+                    <span class="has-error" *ngIf ="dataForm1.controls['wound_sup'].touched && !dataForm1.controls['wound_sup'].valid">Please choose an answer !</span>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="clearfix"></div>
+                   <div class="form-group">
+                     <label> Do you have or have you ever used a brace for
+                     pain relief:</label>
+                     <p> <input type="radio" name="ps" [formControl]="dataForm1.controls['pain_sup']" value="yes"><span>Yes</span>
+                     <input type="radio" name="ps" [formControl]="dataForm1.controls['pain_sup']" value="no"><span>No</span></p>
+                     <span class="has-error" *ngIf ="dataForm1.controls['pain_sup'].touched && !dataForm1.controls['pain_sup'].valid">Please choose an answer !</span>
+                     <div class="clearfix"></div>
+                   </div>
+
+                     <div class="form-group">
+                       <label> Do you use topical creams:</label>
+                       <p> <input type="radio" [formControl]="dataForm1.controls['topical_sup']" value="yes" name="ts"><span>Yes</span>
+                       <input type="radio" [formControl]="dataForm1.controls['topical_sup']" value="no" name="ts"><span>No</span></p>
+                       <span class="has-error" *ngIf ="dataForm1.controls['topical_sup'].touched && !dataForm1.controls['topical_sup'].valid">Please choose an answer !</span>
+                       <div class="clearfix"></div>
+                     </div>
+                  <div class="clearfix"></div>
+                    <div class="form-group">
+                      <label>Have you ever tried Braces:</label>
+                      <p><input type="radio" [formControl]="dataForm1.controls['braces_sup']" value="yes" name="bs1"><span>Yes</span>
+                      <input type="radio" name="bs1" [formControl]="dataForm1.controls['braces_sup']" value="no"><span>No</span></p>
+                      <span class="has-error" *ngIf ="dataForm1.controls['braces_sup'].touched && !dataForm1.controls['braces_sup'].valid">Please choose an answer !</span>
+                      <div class="clearfix"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label> Do you use as Walker:</label>
+                      <p><input type="radio" name="ws1" [formControl]="dataForm1.controls['walker_sup']" value="yes"><span>Yes</span>
+                      <input type="radio" name="ws1" [formControl]="dataForm1.controls['walker_sup']" value="no"><span>No</span></p>
+                      <span class="has-error" *ngIf ="dataForm1.controls['walker_sup'].touched && !dataForm1.controls['walker_sup'].valid">Please choose an answer !</span>
+                      <div class="clearfix"></div>
+                    </div>
+
+                  <div class="clearfix"></div>
+
+                       <div class="form-group">
+                         <label>Do you use a Scooter:</label>
+                         <p><input type="radio" [formControl]="dataForm1.controls['scooter_sup']" name="w3s" value="yes"><span>Yes</span>
+                         <input type="radio" [formControl]="dataForm1.controls['scooter_sup']" name="w3s" value="no"><span>No</span></p>
+                         <span class="has-error" *ngIf ="dataForm1.controls['scooter_sup'].touched && !dataForm1.controls['scooter_sup'].valid">Please choose an answer !</span>
+                         <div class="clearfix"></div>
+                       </div>
+
+                     <div class="form-group">
+                       <label> Do you have Allergies:</label>
+                       <p> <input type="radio" name="as" [formControl]="dataForm1.controls['allergies_sup']" value="yes"><span>Yes</span>
+                       <input type="radio" name="as" [formControl]="dataForm1.controls['allergies_sup']" value="no"><span>No</span></p>
+                       <span class="has-error" *ngIf ="dataForm1.controls['allergies_sup'].touched && !dataForm1.controls['allergies_sup'].valid">Please choose an answer !</span>
+                       <div class="clearfix"></div>
+                     </div>
+                  <div class="clearfix"></div>
+                    <div class="form-group">
+                      <label> Do you use Catheters:</label>
+                      <p><input type="radio" name="cs1" [formControl]="dataForm1.controls['catheters_sup']" value="yes"><span>Yes</span>
+                      <input type="radio" name="cs1" [formControl]="dataForm1.controls['catheters_sup']" value="no"><span>No</span></p>
+                      <span class="has-error" *ngIf ="dataForm1.controls['catheters_sup'].touched && !dataForm1.controls['catheters_sup'].valid">Please choose an answer !</span>
+                      <div class="clearfix"></div>
+                    </div>
+                  <div class="clearfix"></div>
+                    <div class="form-group lastgroup ">
+                      <label>Have you ever had cancer (We need to add the Telemed Portal to drop down when the "yes" box is checked, the "Req" form is created in there.  Also need the signs and symptoms form needs to be available there as well, not sure if you can possible even somehow tie the signs/symptoms to the type of cancers in the personal section):</label>
+                      <p><input type="radio" [formControl]="dataForm1.controls['cancer_sup']" name="cs2" value="yes" (click)="showhidepatientquestionarydiv(1)"><span>Yes</span>
+                      <input type="radio" [formControl]="dataForm1.controls['cancer_sup']" value="no" name="cs2" (click)="showhidepatientquestionarydiv(2)"><span>No</span></p>
+                      <span class="has-error" *ngIf ="dataForm1.controls['cancer_sup'].touched && !dataForm1.controls['cancer_sup'].valid">Please choose an answer !</span>
+                      <div class="clearfix"></div>
+                    </div>
+
+                  <div class="clearfix"></div>
+                </div>
+
+
+                <div class="pateintquestionire_div2" *ngIf="showquestionarydiv">
 
                   <div class="pateintquestionire_div2_left2 pateintquestionire_div2_left2new">
+
                     <div class="pateintquestionire_div2_left2_heading">
                       <div class="left2_heading2"><h5 style="text-transform: uppercase;"><!--<span>CGX</span>--> Questionnaire</h5></div>
+                      <div class="left2_heading4new"><p>NAME</p></div>
                       <div class="left2_heading3"><p>TYPE<span style="color: #ff0000; display: inline;">*</span></p></div>
-                      <div class="left2_heading4"><p>TYPE</p></div>
+                      <div class="left2_heading4"><p>RELATION TYPE</p></div>
+                      <div class="left2_heading4"><p>DIAGNOSE STAGE</p></div>
                       <div class="left2_heading5"><p>AGE DIAGNOSED</p></div>
                       <div class="left2_heading6"><p> IF DECEASED,</p></div>
 
@@ -582,12 +802,41 @@
 
                     <div class="pateintquestionire_div2_left2_contain">
                       <div class="left2_heading2"><p><strong>PERSONAL HISTORY:</strong></p></div>
-                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['phtype1']"/>
+                      <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['phname']"/></div>
+                      <div class="left2_heading3">
+                        <!--<input type="hidden" [formControl]="dataForm1.controls['phtype1']"/> -->
+                        <button type="button" (click)="opentypemodal(1)"> Select Type</button>
+                        <div class="clearfix"></div><b>{{dataForm1.value.phtype1}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.phtype1">(1st Degree)</b>
+
                         <div class="clearfix"></div>
                         <span class="has-error" *ngIf ="dataForm1.controls['phtype1'].touched && !dataForm1.controls['phtype1'].valid" style="padding-right: 10px;">This is required!</span>
                       </div>
 
-                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['phtype2']"/></div>
+
+                      <div class="left2_heading4" id="phrelationtype">
+                        <select [formControl]="dataForm1.controls['relation1']"  name="relation1" >
+                          <option value="">Relation Type</option>
+                          <option value="Maternal">Maternal</option>
+                          <option value="Paternal">Paternal </option>
+                        </select>
+                      </div>
+
+
+
+                        <div class="left2_heading4"><!--<input type="text" [formControl]="dataForm1.controls['phtype2']"/>-->
+
+                        <select  [formControl]="dataForm1.controls['degree1']">
+                          <option value="">Select Diagnose Stage</option>
+                          <option value="1st">1st</option>
+                          <option value="2nd">2nd</option>
+                          <option value="3rd">3rd</option>
+                          <option value="4th">4th</option>
+                          <option value="Unknown">Unknown</option>
+
+                        </select>
+
+                      </div>
                       <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['phage']"/></div>
                       <div class="left2_heading6"><p>AGE AT<br/>
                         DEATH</p></div>
@@ -595,71 +844,324 @@
 
                       <div class="clearfix"></div>
                     </div>
-                    <div class="pateintquestionire_div2_left2_contain">
+                 <!--   <div class="pateintquestionire_div2_left2_contain history1 hide">
                       <div class="left2_heading2"><p><strong>FAMILY HISTORY:</strong></p></div>
                       <div class="left2_heading3">&nbsp;</div>
+                      <div class="left2_heading4">&nbsp;</div>
                       <div class="left2_heading4">&nbsp;</div>
                       <div class="left2_heading5">&nbsp;</div>
                       <div class="left2_heading6">&nbsp;</div>
 
 
                       <div class="clearfix"></div>
-                    </div>
-                    <div class="pateintquestionire_div2_left2_contain">
-                      <div class="left2_heading2"><p>MOTHER:</p></div>
-                      <div class="left2_heading3"><input type="text"  [formControl]="dataForm1.controls['motype1']"/><span>,</span></div>
-                      <div class="left2_heading4"><input type="text"  [formControl]="dataForm1.controls['motype2']"/></div>
+                    </div>-->
+                    <div class="pateintquestionire_div2_left2_contain history1 hide">
+                      <div class="left2_heading2"><!--<p>MOTHER:</p>-->
+                      <select [formControl]="dataForm1.controls['familyrelation1']"  name="familyrelation1" (change)="disablefields(1)">
+                        <option value="">Select Relation</option>
+                        <option value="Mother">Mother</option>
+                        <option value="Father">Father</option>
+                        <option value="Daughter">Daughter</option>
+                        <option value="Son">Son</option>
+                        <option value="Brother">Brother</option>
+                        <option value="Sister">Sister</option>
+                        <option value="Nephew">Nephew</option>
+                        <option value="Niece">Niece</option>
+                        <option value="Cousin">Cousin</option>
+                        <option value="Uncle">Uncle</option>
+                        <option value="Aunt">Aunt</option>
+                        <option value="Grand Father">Grand Father</option>
+                        <option value="Grand Mother">Grand Mother</option>
+                      </select>
+                      </div>
+                      <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation1name']" name="familyrelation1name"/></div>
+                      <div class="left2_heading3">
+                        <!--<input type="hidden" [formControl]="dataForm1.controls['motype1']"/> -->
+                        <button type="button" (click)="opentypemodal(2)"> Select Type</button>
+                        <div class="clearfix"></div><b>{{dataForm1.value.motype1}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.motype1">{{showdeg[1]}}</b>
+
+                      </div>
+                      <div class="left2_heading4 relationtype1">
+
+                        <select [formControl]="dataForm1.controls['relation2']"  name="relation2" >
+                          <option value="">Relation Type</option>
+                          <option value="Maternal">Maternal</option>
+                          <option value="Paternal">Paternal </option>
+                        </select>
+
+                      </div>
+                      <!--<div class="left2_heading4"><input type="text"  [formControl]="dataForm1.controls['motype2']"/></div>-->
+                      <div class="left2_heading4">
+                      <select  [formControl]="dataForm1.controls['degree2']">
+                        <option value="">Select Diagnose Stage</option>
+                        <option value="1st">1st</option>
+                        <option value="2nd">2nd</option>
+                        <option value="3rd">3rd</option>
+                        <option value="4th">4th</option>
+                        <option value="Unknown">Unknown</option>
+                      </select>
+                      </div>
+
                       <div class="left2_heading5"><input type="text"  [formControl]="dataForm1.controls['moage']"/></div>
                       <div class="left2_heading6"><input type="text"  [formControl]="dataForm1.controls['modead']"/></div>
-
-
                       <div class="clearfix"></div>
                     </div>
 
-                    <div class="pateintquestionire_div2_left2_contain">
-                      <div class="left2_heading2"><p>FATHER:</p></div>
-                      <div class="left2_heading3"><input type="text"  [formControl]="dataForm1.controls['fatype1']"/><span>,</span></div>
-                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['fatype2']" /></div>
+
+                    <div class="pateintquestionire_div2_left2_contain history2 hide">
+                      <div class="left2_heading2"><!--<p>FATHER:</p>-->
+                        <select [formControl]="dataForm1.controls['familyrelation2']"  name="familyrelation2" (change)="disablefields(2)">
+                          <option value="">Select Relation</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Father">Father</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Son">Son</option>
+                          <option value="Brother">Brother</option>
+                          <option value="Sister">Sister</option>
+                          <option value="Nephew">Nephew</option>
+                          <option value="Niece">Niece</option>
+                          <option value="Cousin">Cousin</option>
+                          <option value="Uncle">Uncle</option>
+                          <option value="Aunt">Aunt</option>
+                          <option value="Grand Father">Grand Father</option>
+                          <option value="Grand Mother">Grand Mother</option>
+                        </select>
+                      </div>
+                      <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation2name']" name="familyrelation2name"/></div>
+                      <div class="left2_heading3">
+                        <!--<input type="hidden" [formControl]="dataForm1.controls['fatype1']"/> -->
+                        <button type="button"  (click)="opentypemodal(3)"> Select Type</button>
+                        <div class="clearfix"></div><b>{{dataForm1.value.fatype1}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.fatype1">{{showdeg[2]}}</b>
+                      </div>
+                      <div class="left2_heading4 relationtype2">
+
+                        <select [formControl]="dataForm1.controls['relation3']"  name="relation3" >
+                          <option value="">Relation Type</option>
+                          <option value="Maternal">Maternal</option>
+                          <option value="Paternal">Paternal </option>
+                        </select>
+
+                      </div>
+                     <!-- <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['fatype2']" /></div>-->
+                      <div class="left2_heading4">
+                        <select  [formControl]="dataForm1.controls['degree3']">
+                          <option value="">Select Diagnose Stage</option>
+                          <option value="1st">1st</option>
+                          <option value="2nd">2nd</option>
+                          <option value="3rd">3rd</option>
+                          <option value="4th">4th</option>
+                          <option value="Unknown">Unknown</option>
+                        </select>
+                      </div>
                       <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['faage']" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['fadead']" /></div>
-
-
                       <div class="clearfix"></div>
                     </div>
-                    <div class="pateintquestionire_div2_left2_contain">
-                      <div class="left2_heading2"><p>DAUGHTER:</p></div>
-                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['dautype1']" /><span>,</span></div>
-                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['dautype2']" /></div>
+
+
+                    <div class="pateintquestionire_div2_left2_contain history3 hide">
+                      <div class="left2_heading2"><!--<p>DAUGHTER:</p>-->
+                        <select [formControl]="dataForm1.controls['familyrelation3']"  name="familyrelation3" (change)="disablefields(3)">
+                          <option value="">Select Relation</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Father">Father</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Son">Son</option>
+                          <option value="Brother">Brother</option>
+                          <option value="Sister">Sister</option>
+                          <option value="Nephew">Nephew</option>
+                          <option value="Niece">Niece</option>
+                          <option value="Cousin">Cousin</option>
+                          <option value="Uncle">Uncle</option>
+                          <option value="Aunt">Aunt</option>
+                          <option value="Grand Father">Grand Father</option>
+                          <option value="Grand Mother">Grand Mother</option>
+                        </select>
+                      </div>
+                      <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation3name']" name="familyrelation3name"/></div>
+                      <div class="left2_heading3">
+                        <!--<input type="hidden" [formControl]="dataForm1.controls['dautype1']"/> -->
+                        <button type="button" (click)="opentypemodal(4)"> Select Type</button>
+                        <div class="clearfix"></div><b>{{dataForm1.value.dautype1}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.dautype1">{{showdeg[3]}}</b>
+                      </div>
+                      <div class="left2_heading4 relationtype3">
+
+                        <select [formControl]="dataForm1.controls['relation4']"  name="relation4" >
+                          <option value="">Relation Type</option>
+                          <option value="Maternal">Maternal</option>
+                          <option value="Paternal">Paternal </option>
+                        </select>
+
+                      </div>
+                    <!--  <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['dautype2']" /></div>-->
+                      <div class="left2_heading4">
+                        <select  [formControl]="dataForm1.controls['degree4']">
+                          <option value="">Select Diagnose Stage</option>
+                          <option value="1st">1st</option>
+                          <option value="2nd">2nd</option>
+                          <option value="3rd">3rd</option>
+                          <option value="4th">4th</option>
+                          <option value="Unknown">Unknown</option>
+                        </select>
+                      </div>
                       <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['dauage']" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['daudead']" /></div>
 
 
                       <div class="clearfix"></div>
                     </div>
-                    <div class="pateintquestionire_div2_left2_contain">
-                      <div class="left2_heading2"><p>SON:</p></div>
-                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['sontype1']" /><span>,</span></div>
-                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['sontype2']" /></div>
+                    <div class="pateintquestionire_div2_left2_contain  history4 hide">
+                      <div class="left2_heading2"><!--<p>SON:</p>-->
+                        <select [formControl]="dataForm1.controls['familyrelation4']"  name="familyrelation4" (change)="disablefields(4)">
+                          <option value="">Select Relation</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Father">Father</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Son">Son</option>
+                          <option value="Brother">Brother</option>
+                          <option value="Sister">Sister</option>
+                          <option value="Nephew">Nephew</option>
+                          <option value="Niece">Niece</option>
+                          <option value="Cousin">Cousin</option>
+                          <option value="Uncle">Uncle</option>
+                          <option value="Aunt">Aunt</option>
+                          <option value="Grand Father">Grand Father</option>
+                          <option value="Grand Mother">Grand Mother</option>
+                        </select>
+                      </div>
+                      <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation4name']"/></div>
+                      <div class="left2_heading3">
+                        <!--<input type="hidden" [formControl]="dataForm1.controls['sontype1']"/> -->
+                        <button type="button" (click)="opentypemodal(5)"> Select Type</button>
+                        <div class="clearfix"></div><b>{{dataForm1.value.sontype1}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.sontype1">{{showdeg[4]}}</b>
+                      </div>
+                      <div class="left2_heading4 relationtype4">
+
+                        <select [formControl]="dataForm1.controls['relation5']"  name="relation5" >
+                          <option value="">Relation Type</option>
+                          <option value="Maternal">Maternal</option>
+                          <option value="Paternal">Paternal </option>
+                        </select>
+
+                      </div>
+                      <!--<div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['sontype2']" /></div>-->
+                      <div class="left2_heading4">
+                        <select  [formControl]="dataForm1.controls['degree5']">
+                          <option value="">Select Diagnose Stage</option>
+                          <option value="1st">1st</option>
+                          <option value="2nd">2nd</option>
+                          <option value="3rd">3rd</option>
+                          <option value="4th">4th</option>
+                          <option value="Unknown">Unknown</option>
+                        </select>
+                      </div>
                       <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['sonage']" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['sondead']" /></div>
 
 
                       <div class="clearfix"></div>
                     </div>
-                    <div class="pateintquestionire_div2_left2_contain">
-                      <div class="left2_heading2"><p>BROTHER:</p></div>
-                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['brotype1']" /><span>,</span></div>
-                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['brotype2']" /></div>
+                    <div class="pateintquestionire_div2_left2_contain  history5 hide">
+                      <div class="left2_heading2"><!--<p>BROTHER:</p>-->
+                        <select [formControl]="dataForm1.controls['familyrelation5']"  name="familyrelation5" (change)="disablefields(5)">
+                          <option value="">Select Relation</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Father">Father</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Son">Son</option>
+                          <option value="Brother">Brother</option>
+                          <option value="Sister">Sister</option>
+                          <option value="Nephew">Nephew</option>
+                          <option value="Niece">Niece</option>
+                          <option value="Cousin">Cousin</option>
+                          <option value="Uncle">Uncle</option>
+                          <option value="Aunt">Aunt</option>
+                          <option value="Grand Father">Grand Father</option>
+                          <option value="Grand Mother">Grand Mother</option>
+                        </select>
+                      </div>
+                      <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation5name']"/></div>
+                      <div class="left2_heading3">
+                        <!--<input type="hidden" [formControl]="dataForm1.controls['brotype1']"/> -->
+                        <button type="button" (click)="opentypemodal(6)"> Select Type</button>
+                        <div class="clearfix"></div><b>{{dataForm1.value.brotype1}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.brotype1">{{showdeg[5]}}</b>
+                      </div>
+                      <div class="left2_heading4 relationtype5">
+
+                        <select [formControl]="dataForm1.controls['relation6']"  name="relation6" >
+                          <option value="">Relation Type</option>
+                          <option value="Maternal">Maternal</option>
+                          <option value="Paternal">Paternal </option>
+                        </select>
+
+                      </div>
+                      <!--<div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['brotype2']" /></div>-->
+                      <div class="left2_heading4">
+                        <select  [formControl]="dataForm1.controls['degree6']">
+                          <option value="">Select Diagnose Stage</option>
+                          <option value="1st">1st</option>
+                          <option value="2nd">2nd</option>
+                          <option value="3rd">3rd</option>
+                          <option value="4th">4th</option>
+                          <option value="Unknown">Unknown</option>
+                        </select>
+                      </div>
                       <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['broage']" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['brodead']" /></div>
 
 
                       <div class="clearfix"></div>
                     </div>
-                    <div class="pateintquestionire_div2_left2_contain">
-                      <div class="left2_heading2"><p>SISTER:</p></div>
-                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['sistype1']" /><span>,</span></div>
-                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['sistype2']" /></div>
+                    <div class="pateintquestionire_div2_left2_contain  history6 hide">
+                      <div class="left2_heading2"><!--<p>SISTER:</p>-->
+                        <select [formControl]="dataForm1.controls['familyrelation6']"  name="familyrelation6" (change)="disablefields(6)">
+                          <option value="">Select Relation</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Father">Father</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Son">Son</option>
+                          <option value="Brother">Brother</option>
+                          <option value="Sister">Sister</option>
+                          <option value="Nephew">Nephew</option>
+                          <option value="Niece">Niece</option>
+                          <option value="Cousin">Cousin</option>
+                          <option value="Uncle">Uncle</option>
+                          <option value="Aunt">Aunt</option>
+                          <option value="Grand Father">Grand Father</option>
+                          <option value="Grand Mother">Grand Mother</option>
+                        </select></div>
+                      <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation6name']"/></div>
+                      <div class="left2_heading3">
+                        <!--<input type="hidden" [formControl]="dataForm1.controls['sistype1']"/> -->
+                        <button type="button" (click)="opentypemodal(7)"> Select Type</button>
+                        <div class="clearfix"></div><b>{{dataForm1.value.sistype1}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.sistype1">{{showdeg[6]}}</b>
+                      </div>
+                      <div class="left2_heading4 relationtype6">
+
+                        <select [formControl]="dataForm1.controls['relation7']"  name="relation7" >
+                          <option value="">Relation Type</option>
+                          <option value="Maternal">Maternal</option>
+                          <option value="Paternal">Paternal </option>
+                        </select>
+
+                      </div>
+                     <!-- <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['sistype2']" /></div>-->
+                      <div class="left2_heading4">
+                        <select  [formControl]="dataForm1.controls['degree7']">
+                          <option value="">Select Diagnose Stage</option>
+                          <option value="1st">1st</option>
+                          <option value="2nd">2nd</option>
+                          <option value="3rd">3rd</option>
+                          <option value="4th">4th</option>
+                          <option value="Unknown">Unknown</option>
+                        </select>
+                      </div>
                       <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['sisage']" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['sisdead']" /></div>
 
@@ -667,20 +1169,104 @@
                       <div class="clearfix"></div>
                     </div>
 
-                    <div class="pateintquestionire_div2_left2_contain">
-                      <div class="left2_heading2"><p>NEPHEW:</p></div>
-                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['neptype1']" /><span>,</span></div>
-                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['neptype2']" /></div>
+                    <div class="pateintquestionire_div2_left2_contain history7 hide">
+                      <div class="left2_heading2"><!--<p>NEPHEW:</p>-->
+                        <select [formControl]="dataForm1.controls['familyrelation7']"  name="familyrelation7" (change)="disablefields(7)">
+                          <option value="">Select Relation</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Father">Father</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Son">Son</option>
+                          <option value="Brother">Brother</option>
+                          <option value="Sister">Sister</option>
+                          <option value="Nephew">Nephew</option>
+                          <option value="Niece">Niece</option>
+                          <option value="Cousin">Cousin</option>
+                          <option value="Uncle">Uncle</option>
+                          <option value="Aunt">Aunt</option>
+                          <option value="Grand Father">Grand Father</option>
+                          <option value="Grand Mother">Grand Mother</option>
+                        </select>
+                      </div>
+                      <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation7name']"/></div>
+                      <div class="left2_heading3">
+                        <!--<input type="hidden" [formControl]="dataForm1.controls['neptype1']"/> -->
+                        <button type="button" (click)="opentypemodal(8)"> Select Type</button>
+                        <div class="clearfix"></div><b>{{dataForm1.value.neptype1}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.neptype1">{{showdeg[7]}}</b>
+                      </div>
+                      <div class="left2_heading4 relationtype7">
+
+                        <select [formControl]="dataForm1.controls['relation8']"  name="relation8" >
+                          <option value="">Relation Type</option>
+                          <option value="Maternal">Maternal</option>
+                          <option value="Paternal">Paternal </option>
+                        </select>
+
+                      </div>
+                      <!--<div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['neptype2']" /></div>-->
+                      <div class="left2_heading4">
+                        <select  [formControl]="dataForm1.controls['degree8']">
+                          <option value="">Select Diagnose Stage</option>
+                          <option value="1st">1st</option>
+                          <option value="2nd">2nd</option>
+                          <option value="3rd">3rd</option>
+                          <option value="4th">4th</option>
+                          <option value="Unknown">Unknown</option>
+                        </select>
+                      </div>
                       <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['nepage']" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['nepdead']" /></div>
 
 
                       <div class="clearfix"></div>
                     </div>
-                    <div class="pateintquestionire_div2_left2_contain">
-                      <div class="left2_heading2"><p>NIECE:</p></div>
-                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['niecetype1']" /><span>,</span></div>
-                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['niecetype2']" /></div>
+                    <div class="pateintquestionire_div2_left2_contain history8 hide">
+                      <div class="left2_heading2"><!--<p>NIECE:</p>-->
+                        <select [formControl]="dataForm1.controls['familyrelation8']"  name="familyrelation8" (change)="disablefields(8)">
+                          <option value="">Select Relation</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Father">Father</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Son">Son</option>
+                          <option value="Brother">Brother</option>
+                          <option value="Sister">Sister</option>
+                          <option value="Nephew">Nephew</option>
+                          <option value="Niece">Niece</option>
+                          <option value="Cousin">Cousin</option>
+                          <option value="Uncle">Uncle</option>
+                          <option value="Aunt">Aunt</option>
+                          <option value="Grand Father">Grand Father</option>
+                          <option value="Grand Mother">Grand Mother</option>
+                        </select>
+                      </div>
+                      <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation8name']"/></div>
+                      <div class="left2_heading3">
+                        <!--<input type="hidden" [formControl]="dataForm1.controls['niecetype1']"/> -->
+                        <button type="button" (click)="opentypemodal(9)"> Select Type</button>
+                        <div class="clearfix"></div><b>{{dataForm1.value.niecetype1}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.niecetype1">{{showdeg[8]}}</b>
+                      </div>
+                      <div class="left2_heading4 relationtype8">
+
+                        <select [formControl]="dataForm1.controls['relation9']"  name="relation9" >
+                          <option value="">Relation Type</option>
+                          <option value="Maternal">Maternal</option>
+                          <option value="Paternal">Paternal </option>
+                        </select>
+
+                      </div>
+                      <!--<div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['niecetype2']" /></div>-->
+                      <div class="left2_heading4">
+                        <select  [formControl]="dataForm1.controls['degree9']">
+                          <option value="">Select Diagnose Stage</option>
+                          <option value="1st">1st</option>
+                          <option value="2nd">2nd</option>
+                          <option value="3rd">3rd</option>
+                          <option value="4th">4th</option>
+                          <option value="Unknown">Unknown</option>
+                        </select>
+                      </div>
                       <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['nieceage']" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['niecedead']" /></div>
 
@@ -688,20 +1274,105 @@
                       <div class="clearfix"></div>
                     </div>
 
-                    <div class="pateintquestionire_div2_left2_contain">
-                      <div class="left2_heading2"><p>UNCLE:</p></div>
-                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['unctype1']" /><span>,</span></div>
-                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['unctype2']" /></div>
+                    <div class="pateintquestionire_div2_left2_contain history9 hide">
+                      <div class="left2_heading2"><!--<p>UNCLE:</p>-->
+                        <select [formControl]="dataForm1.controls['familyrelation9']"  name="familyrelation9" (change)="disablefields(9)">
+                          <option value="">Select Relation</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Father">Father</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Son">Son</option>
+                          <option value="Brother">Brother</option>
+                          <option value="Sister">Sister</option>
+                          <option value="Nephew">Nephew</option>
+                          <option value="Niece">Niece</option>
+                          <option value="Cousin">Cousin</option>
+                          <option value="Uncle">Uncle</option>
+                          <option value="Aunt">Aunt</option>
+                          <option value="Grand Father">Grand Father</option>
+                          <option value="Grand Mother">Grand Mother</option>
+                        </select>
+                      </div>
+                      <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation9name']"/></div>
+                      <div class="left2_heading3">
+                        <!--<input type="hidden" [formControl]="dataForm1.controls['unctype1']"/> -->
+                        <button type="button" (click)="opentypemodal(10)"> Select Type</button>
+                        <div class="clearfix"></div><b>{{dataForm1.value.unctype1}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.unctype1">{{showdeg[9]}}</b>
+                      </div>
+                      <div class="left2_heading4 relationtype9">
+
+                        <select [formControl]="dataForm1.controls['relation10']"  name="relation10" >
+                          <option value="">Relation Type</option>
+                          <option value="Maternal">Maternal</option>
+                          <option value="Paternal">Paternal </option>
+                        </select>
+
+                      </div>
+                     <!-- <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['unctype2']" /></div>-->
+                      <div class="left2_heading4">
+                        <select  [formControl]="dataForm1.controls['degree10']">
+                          <option value="">Select Diagnose Stage</option>
+                          <option value="1st">1st</option>
+                          <option value="2nd">2nd</option>
+                          <option value="3rd">3rd</option>
+                          <option value="4th">4th</option>
+                          <option value="Unknown">Unknown</option>
+                        </select>
+                      </div>
                       <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['uncage']" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['uncdead']" /></div>
 
 
                       <div class="clearfix"></div>
                     </div>
-                    <div class="pateintquestionire_div2_left2_contain">
-                      <div class="left2_heading2"><p>AUTN:</p></div>
-                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['autntype1']" /><span>,</span></div>
-                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['autntype2']" /></div>
+                    <div class="pateintquestionire_div2_left2_contain history10 hide">
+                      <div class="left2_heading2"><!--<p>AUTN:</p>-->
+                        <select [formControl]="dataForm1.controls['familyrelation10']"  name="familyrelation10" (change)="disablefields(10)">
+                          <option value="">Select Relation</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Father">Father</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Son">Son</option>
+                          <option value="Brother">Brother</option>
+                          <option value="Sister">Sister</option>
+                          <option value="Nephew">Nephew</option>
+                          <option value="Niece">Niece</option>
+                          <option value="Cousin">Cousin</option>
+                          <option value="Uncle">Uncle</option>
+                          <option value="Aunt">Aunt</option>
+                          <option value="Grand Father">Grand Father</option>
+                          <option value="Grand Mother">Grand Mother</option>
+                        </select>
+                      </div>
+                      <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation10name']"/></div>
+                      <!--<div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['autntype1']" /><span>,</span></div>-->
+                      <div class="left2_heading3">
+                        <!--<input type="hidden" [formControl]="dataForm1.controls['autntype1']"/> -->
+                        <button type="button" (click)="opentypemodal(11)"> Select Type</button>
+                        <div class="clearfix"></div><b>{{dataForm1.value.autntype1}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.autntype1">{{showdeg[10]}}</b>
+                      </div>
+                      <div class="left2_heading4 relationtype10">
+
+                        <select [formControl]="dataForm1.controls['relation11']"  name="relation11" >
+                          <option value="">Relation Type</option>
+                          <option value="Maternal">Maternal</option>
+                          <option value="Paternal">Paternal </option>
+                        </select>
+
+                      </div>
+                      <!--<div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['autntype2']" /></div>-->
+                      <div class="left2_heading4">
+                        <select  [formControl]="dataForm1.controls['degree11']">
+                          <option value="">Select Diagnose Stage</option>
+                          <option value="1st">1st</option>
+                          <option value="2nd">2nd</option>
+                          <option value="3rd">3rd</option>
+                          <option value="4th">4th</option>
+                          <option value="Unknown">Unknown</option>
+                        </select>
+                      </div>
                       <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['autnage']" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['autndead']" /></div>
 
@@ -709,10 +1380,52 @@
                       <div class="clearfix"></div>
                     </div>
 
-                    <div class="pateintquestionire_div2_left2_contain">
-                      <div class="left2_heading2"><p>MOM'S FATHER:</p></div>
-                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['moftype1']" /><span>,</span></div>
-                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['moftype2']" /></div>
+                    <div class="pateintquestionire_div2_left2_contain history11 hide">
+                      <div class="left2_heading2"><!--<p>MOM'S FATHER:</p>-->
+                        <select [formControl]="dataForm1.controls['familyrelation11']"  name="familyrelation11" (change)="disablefields(11)">
+                          <option value="">Select Relation</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Father">Father</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Son">Son</option>
+                          <option value="Brother">Brother</option>
+                          <option value="Sister">Sister</option>
+                          <option value="Nephew">Nephew</option>
+                          <option value="Niece">Niece</option>
+                          <option value="Cousin">Cousin</option>
+                          <option value="Uncle">Uncle</option>
+                          <option value="Aunt">Aunt</option>
+                          <option value="Grand Father">Grand Father</option>
+                          <option value="Grand Mother">Grand Mother</option>
+                        </select>
+                      </div>
+                      <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation11name']"/></div>
+                      <div class="left2_heading3">
+                        <!--<input type="hidden" [formControl]="dataForm1.controls['moftype1']"/> -->
+                        <button type="button" (click)="opentypemodal(12)"> Select Type</button>
+                        <div class="clearfix"></div><b>{{dataForm1.value.moftype1}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.moftype1">{{showdeg[11]}}</b>
+                      </div>
+                      <div class="left2_heading4 relationtype11">
+
+                        <select [formControl]="dataForm1.controls['relation12']"  name="relation12" >
+                          <option value="">Relation Type</option>
+                          <option value="Maternal">Maternal</option>
+                          <option value="Paternal">Paternal </option>
+                        </select>
+
+                      </div>
+                      <!--<div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['moftype2']" /></div>-->
+                      <div class="left2_heading4">
+                        <select  [formControl]="dataForm1.controls['degree12']">
+                          <option value="">Select Diagnose Stage</option>
+                          <option value="1st">1st</option>
+                          <option value="2nd">2nd</option>
+                          <option value="3rd">3rd</option>
+                          <option value="4th">4th</option>
+                          <option value="Unknown">Unknown</option>
+                        </select>
+                      </div>
                       <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['mofage']" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['mofdead']" /></div>
 
@@ -720,10 +1433,52 @@
                       <div class="clearfix"></div>
                     </div>
 
-                    <div class="pateintquestionire_div2_left2_contain">
-                      <div class="left2_heading2"><p>MOM'S MOTHER:</p></div>
-                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['momotype1']" /><span>,</span></div>
-                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['momotype2']" /></div>
+                    <div class="pateintquestionire_div2_left2_contain history12 hide">
+                      <div class="left2_heading2"><!--<p>MOM'S MOTHER:</p>-->
+                        <select [formControl]="dataForm1.controls['familyrelation12']"  name="familyrelation12" (change)="disablefields(12)">
+                          <option value="">Select Relation</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Father">Father</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Son">Son</option>
+                          <option value="Brother">Brother</option>
+                          <option value="Sister">Sister</option>
+                          <option value="Nephew">Nephew</option>
+                          <option value="Niece">Niece</option>
+                          <option value="Cousin">Cousin</option>
+                          <option value="Uncle">Uncle</option>
+                          <option value="Aunt">Aunt</option>
+                          <option value="Grand Father">Grand Father</option>
+                          <option value="Grand Mother">Grand Mother</option>
+                        </select>
+                      </div>
+                      <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation12name']"/></div>
+                      <div class="left2_heading3">
+                        <!--<input type="hidden" [formControl]="dataForm1.controls['momotype1']"/> -->
+                        <button type="button" (click)="opentypemodal(13)"> Select Type</button>
+                        <div class="clearfix"></div><b>{{dataForm1.value.momotype1}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.momotype1">{{showdeg[12]}}</b>
+                      </div>
+                      <div class="left2_heading4 relationtype12">
+
+                        <select [formControl]="dataForm1.controls['relation13']"  name="relation13" >
+                          <option value="">Relation Type</option>
+                          <option value="Maternal">Maternal</option>
+                          <option value="Paternal">Paternal </option>
+                        </select>
+
+                      </div>
+                      <!--<div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['momotype2']" /></div>-->
+                      <div class="left2_heading4">
+                        <select  [formControl]="dataForm1.controls['degree13']">
+                          <option value="">Select Diagnose Stage</option>
+                          <option value="1st">1st</option>
+                          <option value="2nd">2nd</option>
+                          <option value="3rd">3rd</option>
+                          <option value="4th">4th</option>
+                          <option value="Unknown">Unknown</option>
+                        </select>
+                      </div>
                       <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['momoage']" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['momodead']" /></div>
 
@@ -731,10 +1486,52 @@
                       <div class="clearfix"></div>
                     </div>
 
-                    <div class="pateintquestionire_div2_left2_contain">
-                      <div class="left2_heading2"><p>DAD'S FATHER:</p></div>
-                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['daftype1']" /><span>,</span></div>
-                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['daftype2']" /></div>
+                    <div class="pateintquestionire_div2_left2_contain history13 hide">
+                      <div class="left2_heading2"><!--<p>DAD'S FATHER:</p>-->
+                        <select [formControl]="dataForm1.controls['familyrelation13']"  name="familyrelation13" (change)="disablefields(13)">
+                          <option value="">Select Relation</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Father">Father</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Son">Son</option>
+                          <option value="Brother">Brother</option>
+                          <option value="Sister">Sister</option>
+                          <option value="Nephew">Nephew</option>
+                          <option value="Niece">Niece</option>
+                          <option value="Cousin">Cousin</option>
+                          <option value="Uncle">Uncle</option>
+                          <option value="Aunt">Aunt</option>
+                          <option value="Grand Father">Grand Father</option>
+                          <option value="Grand Mother">Grand Mother</option>
+                        </select>
+                      </div>
+                      <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation13name']"/></div>
+                      <div class="left2_heading3">
+                        <!--<input type="hidden" [formControl]="dataForm1.controls['daftype1']"/> -->
+                        <button type="button" (click)="opentypemodal(14)"> Select Type</button>
+                        <div class="clearfix"></div><b>{{dataForm1.value.daftype1}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.daftype1">{{showdeg[13]}}</b>
+                      </div>
+                      <div class="left2_heading4 relationtype13">
+
+                        <select [formControl]="dataForm1.controls['relation14']"  name="relation14" >
+                          <option value="">Relation Type</option>
+                          <option value="Maternal">Maternal</option>
+                          <option value="Paternal">Paternal </option>
+                        </select>
+
+                      </div>
+                      <!--<div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['daftype2']" /></div>-->
+                      <div class="left2_heading4">
+                        <select  [formControl]="dataForm1.controls['degree14']">
+                          <option value="">Select Diagnose Stage</option>
+                          <option value="1st">1st</option>
+                          <option value="2nd">2nd</option>
+                          <option value="3rd">3rd</option>
+                          <option value="4th">4th</option>
+                          <option value="Unknown">Unknown</option>
+                        </select>
+                      </div>
                       <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['dafage']" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['dafdead']" /></div>
 
@@ -742,10 +1539,52 @@
                       <div class="clearfix"></div>
                     </div>
 
-                    <div class="pateintquestionire_div2_left2_contain">
-                      <div class="left2_heading2"><p>DAD'S MOTHER:</p></div>
-                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['damtype1']" /><span>,</span></div>
-                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['damtype2']" /></div>
+                    <div class="pateintquestionire_div2_left2_contain history14 hide">
+                      <div class="left2_heading2"><!--<p>DAD'S MOTHER:</p>-->
+                        <select [formControl]="dataForm1.controls['familyrelation14']"  name="familyrelation14" (change)="disablefields(14)">
+                          <option value="">Select Relation</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Father">Father</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Son">Son</option>
+                          <option value="Brother">Brother</option>
+                          <option value="Sister">Sister</option>
+                          <option value="Nephew">Nephew</option>
+                          <option value="Niece">Niece</option>
+                          <option value="Cousin">Cousin</option>
+                          <option value="Uncle">Uncle</option>
+                          <option value="Aunt">Aunt</option>
+                          <option value="Grand Father">Grand Father</option>
+                          <option value="Grand Mother">Grand Mother</option>
+                        </select>
+                      </div>
+                      <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation14name']"/></div>
+                      <div class="left2_heading3">
+                        <!--<input type="hidden" [formControl]="dataForm1.controls['damtype1']"/> -->
+                        <button type="button" (click)="opentypemodal(15)"> Select Type</button>
+                        <div class="clearfix"></div><b>{{dataForm1.value.damtype1}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.damtype1">{{showdeg[14]}}</b>
+                      </div>
+                      <div class="left2_heading4 relationtype14">
+
+                        <select [formControl]="dataForm1.controls['relation15']"  name="relation15" >
+                          <option value="">Relation Type</option>
+                          <option value="Maternal">Maternal</option>
+                          <option value="Paternal">Paternal </option>
+                        </select>
+
+                      </div>
+                     <!-- <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['damtype2']" /></div>-->
+                      <div class="left2_heading4">
+                        <select  [formControl]="dataForm1.controls['degree15']">
+                          <option value="">Select Diagnose Stage</option>
+                          <option value="1st">1st</option>
+                          <option value="2nd">2nd</option>
+                          <option value="3rd">3rd</option>.
+                          <option value="4th">4th</option>
+                          <option value="Unknown">Unknown</option>
+                        </select>
+                      </div>
                       <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['damage']" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['damdead']" /></div>
 
@@ -753,30 +1592,157 @@
                       <div class="clearfix"></div>
                     </div>
 
-                    <div class="pateintquestionire_div2_left2_contain">
-                      <div class="left2_heading2"><p><i>OTHER :</i></p></div>
-                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['oth1type1']" /><span>,</span></div>
-                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['oth1type2']" /></div>
+                    <div class="pateintquestionire_div2_left2_contain history15 hide">
+                      <div class="left2_heading2"><!--<p><i>OTHER :</i></p>-->
+                        <select [formControl]="dataForm1.controls['familyrelation15']"  name="familyrelation15" (change)="disablefields(15)">
+                          <option value="">Select Relation</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Father">Father</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Son">Son</option>
+                          <option value="Brother">Brother</option>
+                          <option value="Sister">Sister</option>
+                          <option value="Nephew">Nephew</option>
+                          <option value="Niece">Niece</option>
+                          <option value="Cousin">Cousin</option>
+                          <option value="Uncle">Uncle</option>
+                          <option value="Aunt">Aunt</option>
+                          <option value="Grand Father">Grand Father</option>
+                          <option value="Grand Mother">Grand Mother</option>
+                        </select>
+                      </div>
+                      <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation15name']"/></div>
+                      <div class="left2_heading3">
+                        <!--<input type="hidden" [formControl]="dataForm1.controls['oth1type1']"/> -->
+                        <button type="button" (click)="opentypemodal(16)"> Select Type</button>
+                        <div class="clearfix"></div><b>{{dataForm1.value.oth1type1}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.oth1type1">{{showdeg[15]}}</b>
+                      </div>
+                      <div class="left2_heading4 relationtype15">
+
+                        <select [formControl]="dataForm1.controls['relation16']"  name="relation16" >
+                          <option value="">Relation Type</option>
+                          <option value="Maternal">Maternal</option>
+                          <option value="Paternal">Paternal </option>
+                        </select>
+
+                      </div>
+                     <!-- <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['oth1type2']" /></div>-->
+                      <div class="left2_heading4">
+                        <select  [formControl]="dataForm1.controls['degree16']">
+                          <option value="">Select Diagnose Stage</option>
+                          <option value="1st">1st</option>
+                          <option value="2nd">2nd</option>
+                          <option value="3rd">3rd</option>
+                          <option value="4th">4th</option>
+                          <option value="Unknown">Unknown</option>
+                        </select>
+                      </div>
                       <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['oth1age']" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['oth1dead']" /></div>
 
 
                       <div class="clearfix"></div>
                     </div>
-                    <div class="pateintquestionire_div2_left2_contain">
-                      <div class="left2_heading2"><p><i>OTHER :</i></p></div>
-                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['oth2type1']" /><span>,</span></div>
-                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['oth2type2']" /></div>
+                    <div class="pateintquestionire_div2_left2_contain history16 hide">
+                      <div class="left2_heading2"><!--<p><i>OTHER :</i></p>-->
+                        <select [formControl]="dataForm1.controls['familyrelation16']"  name="familyrelation16" (change)="disablefields(16)">
+                          <option value="">Select Relation</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Father">Father</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Son">Son</option>
+                          <option value="Brother">Brother</option>
+                          <option value="Sister">Sister</option>
+                          <option value="Nephew">Nephew</option>
+                          <option value="Niece">Niece</option>
+                          <option value="Cousin">Cousin</option>
+                          <option value="Uncle">Uncle</option>
+                          <option value="Aunt">Aunt</option>
+                          <option value="Grand Father">Grand Father</option>
+                          <option value="Grand Mother">Grand Mother</option>
+                        </select>
+                      </div>
+                      <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation16name']"/></div>
+                      <div class="left2_heading3">
+                        <!--<input type="hidden" [formControl]="dataForm1.controls['oth2type1']"/> -->
+                        <button type="button" (click)="opentypemodal(17)"> Select Type</button>
+                        <div class="clearfix"></div><b>{{dataForm1.value.oth2type1}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.oth2type1">{{showdeg[16]}}</b>
+                      </div>
+                      <div class="left2_heading4 relationtype16">
+
+                        <select [formControl]="dataForm1.controls['relation17']"  name="relation17" >
+                          <option value="">Relation Type</option>
+                          <option value="Maternal">Maternal</option>
+                          <option value="Paternal">Paternal </option>
+                        </select>
+
+                      </div>
+                      <!--<div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['oth2type2']" /></div>-->
+                      <div class="left2_heading4">
+                        <select  [formControl]="dataForm1.controls['degree17']">
+                          <option value="">Select Diagnose Stage</option>
+                          <option value="1st">1st</option>
+                          <option value="2nd">2nd</option>
+                          <option value="3rd">3rd</option>
+                          <option value="4th">4th</option>
+                          <option value="Unknown">Unknown</option>
+                        </select>
+                      </div>
                       <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['oth2age']" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['oth2dead']" /></div>
 
 
                       <div class="clearfix"></div>
                     </div>
-                    <div class="pateintquestionire_div2_left2_contain">
-                      <div class="left2_heading2"><p><i>OTHER :</i></p></div>
-                      <div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['oth3type1']" /><span>,</span></div>
-                      <div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['oth3type2']" /></div>
+                    <div class="pateintquestionire_div2_left2_contain history17 hide">
+                      <div class="left2_heading2"><!--<p><i>OTHER :</i></p>-->
+                        <select [formControl]="dataForm1.controls['familyrelation17']"  name="familyrelation17" (change)="disablefields(17)">
+                          <option value="">Select Relation</option>
+                          <option value="Mother">Mother</option>
+                          <option value="Father">Father</option>
+                          <option value="Daughter">Daughter</option>
+                          <option value="Son">Son</option>
+                          <option value="Brother">Brother</option>
+                          <option value="Sister">Sister</option>
+                          <option value="Nephew">Nephew</option>
+                          <option value="Niece">Niece</option>
+                          <option value="Cousin">Cousin</option>
+                          <option value="Uncle">Uncle</option>
+                          <option value="Aunt">Aunt</option>
+                          <option value="Grand Father">Grand Father</option>
+                          <option value="Grand Mother">Grand Mother</option>
+                        </select>
+                      </div>
+                      <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation17name']"/></div>
+                      <!--<div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['oth3type1']" /><span>,</span></div>-->
+                      <div class="left2_heading3">
+                        <!--<input type="hidden" [formControl]="dataForm1.controls['oth3type1']"/> -->
+                        <button type="button" (click)="opentypemodal(18)"> Select Type</button>
+                        <div class="clearfix"></div><b>{{dataForm1.value.oth3type1}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.oth3type1">{{showdeg[17]}}</b>
+                      </div>
+                      <div class="left2_heading4 relationtype17">
+
+                        <select [formControl]="dataForm1.controls['relation18']"  name="relation18" >
+                          <option value="">Relation Type</option>
+                          <option value="Maternal">Maternal</option>
+                          <option value="Paternal">Paternal </option>
+                        </select>
+
+                      </div>
+                      <!--<div class="left2_heading4"><input type="text" [formControl]="dataForm1.controls['oth3type2']" /></div>-->
+                      <div class="left2_heading4">
+                        <select  [formControl]="dataForm1.controls['degree18']">
+                          <option value="">Select Diagnose Stage</option>
+                          <option value="1st">1st</option>
+                          <option value="2nd">2nd</option>
+                          <option value="3rd">3rd</option>
+                          <option value="4th">4th</option>
+                          <option value="Unknown">Unknown</option>
+                        </select>
+                      </div>
                       <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['oth3age']" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['oth3dead']" /></div>
 
@@ -790,7 +1756,7 @@
                   <div class="pateintquestionire_div2_right2">
 
                     <div class="row">
-                      <div class="col-md-6">
+                      <!--<div class="col-md-6">
                         <h3>Type of Cancer</h3>
 
                         <label>* <u>Breast</u></label>
@@ -831,10 +1797,12 @@
                         <label>* Leukemia</label>
                         <label>* Lymphatic</label>
                         <label>* Other Organ Systems</label>
-                      </div>
-                      <div class="col-md-6 pateintquestionirerightPGX">
+                      </div>-->
+
+                      <div class="col-md-12 pateintquestionirerightPGX hide">
                         <div class="pateintquestionire_div2_left2_heading">
                           <div class="left2_heading1"><h5 style="text-align: left;">MEDICATION LIST</h5></div>
+
                           <div class="clearfix"></div>
                         </div>
                         <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
@@ -909,10 +1877,10 @@
                           <div class="left2_heading1"><span>18.</span> <input type="text" [formControl]="dataForm1.controls['pgx18']" (blur)="checkpgx(dataForm1.controls['pgx18'].value)"/></div>
                           <div class="clearfix"></div>
                         </div>
-                        <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
+                       <!-- <div class="pateintquestionire_div2_left2_contain pateintquestionire_div2_left2_containnew">
                           <div class="left2_heading1"><span>19.</span> <input type="text" [formControl]="dataForm1.controls['pgx19']" (blur)="checkpgx(dataForm1.controls['pgx19'].value)"/></div>
                           <div class="clearfix"></div>
-                        </div>
+                        </div>-->
                       </div>
                     </div>
 
@@ -921,6 +1889,10 @@
                   </div>
 
                   <div class="clearfix"></div>
+
+                  <button class="addrecord_btn" type="button" (click)="showsinglediv()">Add Record</button>
+                  <div class="clearfix"></div>
+
                 </div>
 
                 <div class="pateintquestionire_div3">
@@ -947,7 +1919,6 @@
 
 
                 <div class="clearfix"></div>
-
               </form>
 
             </div>
@@ -989,6 +1960,752 @@
         <img src="../../assets/images/completewebinarlogo.png" alt="#" class="popup_logo1">
         <h1 class="text-center" *ngIf="issubmit==false">Profile Patient Sheet Successfully Saved!</h1>
         <h1 class="text-center" *ngIf="issubmit==true">Profile Patient Sheet Successfully Submitted!</h1>
+        <h1 class="text-center" *ngIf="issubmitcommoncancerform==false">Common Cancer Sheet Successfully Saved!</h1>
+        <h1 class="text-center" *ngIf="issubmitcommoncancerform==true">Common Cancer Sheet Successfully Submitted!</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="opentypemodalflag" class=" pateintquestioniremodal pateintquestioniremodalnew2 modal fade" (onHidden)="onHidden1()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+
+        <div class="cancer_list">
+          <div class="container-fluid admin_inner_heading"><h2>Choose cancer type</h2></div>
+          <div class="newpopup_conbox">
+          <div class="form-group1con">
+            <label> <input type="radio" name="breast" value="Breast Cancer" [(ngModel)]="symptomtype"><span>Breast</span></label>
+            <label> <input type="radio" name="prostate" value="Prostate Cancer" [(ngModel)]="symptomtype"><span>Prostate</span></label>
+            <label> <input type="radio" name="ovarian" value="Ovarian Cancer" [(ngModel)]="symptomtype"><span>Ovarian</span></label>
+  <div class="clearfix"></div>
+         </div>
+
+
+            <h2 style="margin-top: 10px!important;">History Of</h2>
+
+            <div class="form-group1con">
+              <label> <input type="radio" name="stomach" value="Stomach" [(ngModel)]="symptomtype"><span>Stomach</span></label>
+              <label class="hide"> <input type="radio"><span>Large Intestine</span></label>
+              <label class="hide"> <input type="radio"><span>Pancreas</span></label>
+              <label class="hide"> <input type="radio"><span>Kidney</span></label>
+              <label class="hide"> <input type="radio"><span>Leukemia</span></label>
+              <label class="hide"> <input type="radio"><span>Melanoma of Skin</span></label>
+              <label class="hide"> <input type="radio"><span>Soft Tissue</span></label>
+              <label class="hide"> <input type="radio" ><span>Brain</span></label>
+              <label> <input type="radio" name="thyroid" value="Thyroid" [(ngModel)]="symptomtype"><span>Thyroid</span></label>
+              <label> <input type="radio" name="otherendocrine" value="Other Endocrine" [(ngModel)]="symptomtype"><span>Other Endocrine</span></label>
+            <label class="hide"> <input type="radio" ><span>Other parts of the Uterus</span></label>
+            <label class="hide"> <input type="radio"><span>Unspecified</span></label>
+            <label class="hide"> <input type="radio"><span>Unspecified</span></label>
+              <div class="clearfix"></div>
+            </div>
+
+            <h2 style="margin-top: 10px!important;">Genetic Susceptibility Of</h2>
+
+            <div class="form-group1con">
+              <label class="hide"> <input type="radio" ><span> Breast Cancer</span></label>
+              <label class="hide"> <input type="radio" ><span> Ovarian Cancer</span></label>
+              <label class="hide"> <input type="radio" ><span> Prostate Cancer</span></label>
+              <label> <input type="radio" name="endocervicalcancer" value="Endo/Cervical Cancer" [(ngModel)]="symptomtype"><span> Endo/Cervical Cancer</span></label>
+              <label> <input type="radio" name="pancreaticendocrine" value="Pancreatic, Pituitary, Mult Endocrine" [(ngModel)]="symptomtype"><span> Pancreatic, Pituitary, Mult Endocrine</span></label>
+
+              <label> <input type="radio" name="allothercancer" value="All other cancer" [(ngModel)]="symptomtype"><span> All other cancer</span></label>
+              <div class="clearfix"></div>
+            </div>
+
+
+            <h2 style="margin-top: 10px!important;">Colorectal/Lynch</h2>
+
+            <div class="form-group1con">
+              <strong>Personal History </strong>
+              <label> <input type="radio" name="largeintestine" value="Large Intestine" [(ngModel)]="symptomtype"><span>Large Intestine</span></label>
+              <label> <input type="radio" name="rectumanus" value="Rectum,rectosigmoid junction, and anus" [(ngModel)]="symptomtype"><span>Rectum,rectosigmoid junction, and anus</span></label>
+              <label> <input type="radio" name="otheruterus" value="Other parts of uterus" [(ngModel)]="symptomtype"><span>Other parts of uterus</span></label>
+
+              <label class="hide"> <input type="radio"><span>Ovarian</span></label>
+              <label> <input type="radio" name="renalpelvis1" value="Renal Pelvis" [(ngModel)]="symptomtype"><span>Renal Pelvis</span></label>
+              <label> <input type="radio" name="ureter1" value="Ureter" [(ngModel)]="symptomtype"><span>Ureter</span></label>
+              <label> <input type="radio" name="Oturinary" value="Other Urinary tract organ" [(ngModel)]="symptomtype"><span>Other Urinary tract organ</span></label>
+              <label> <input type="radio" name="brain" value="Brain" [(ngModel)]="symptomtype"><span>Brain</span></label>
+              <label> <input type="radio" name="colonicpolyps" value="Colonic Polyps" [(ngModel)]="symptomtype"><span>Colonic Polyps</span></label>
+
+              <div class="clearfix"></div>
+
+              <strong>Personal Unspecified  </strong>
+
+              <label> <input type="radio" name="digestiveorgan" value="Digestive Organ" [(ngModel)]="symptomtype"><span>Digestive Organ</span></label>
+
+              <div class="clearfix"></div>
+
+            </div>
+
+            <h2 style="margin-top: 10px!important;">All Other Cancers</h2>
+
+            <div class="form-group1con">
+              <strong>Personal History </strong>
+              <label> <input type="radio" name="esophagus" value="Esophagus" [(ngModel)]="symptomtype"><span>Esophagus</span></label>
+              <label> <input type="radio" name="otherstomach" value="Other Stomach" [(ngModel)]="symptomtype"><span>Other Stomach</span></label>
+              <label class="hide"> <input type="radio"><span>Large Intestine</span></label>
+              <label> <input type="radio" name="liver" value="Liver" [(ngModel)]="symptomtype"><span>Liver</span></label>
+              <label> <input type="radio" name="smallintestine" value="Small Intestine" [(ngModel)]="symptomtype"><span>Small Intestine</span></label>
+              <label> <input type="radio" name="pancreas" value="Pancreas" [(ngModel)]="symptomtype"><span>Pancreas</span></label>
+            <label> <input type="radio" name="digestiveorgans" value="Other digestive organs" [(ngModel)]="symptomtype"><span>Other digestive organs</span></label>
+            <label> <input type="radio" name="bronchuslung" value="Bronchus and Lung" [(ngModel)]="symptomtype"><span>Bronchus and Lung</span></label>
+            <label> <input type="radio" name="trachea" value="trachea" [(ngModel)]="symptomtype"><span>Trachea</span></label>
+            <label> <input type="radio" name="larynx" value="larynx" [(ngModel)]="symptomtype"><span>Larynx</span></label>
+            <label> <input type="radio" name="nasalsinuses" value="Nasal cavaties, middle ear, and accessory sinuses" [(ngModel)]="symptomtype"><span>Nasal cavaties, middle ear, and accessory sinuses</span></label>
+              <label> <input type="radio" name="thymus" value="Thymus" [(ngModel)]="symptomtype"><span>Thymus</span></label>
+              <label> <input type="radio" name="rorgans" value="Respiratory and intrathoracic organs" [(ngModel)]="symptomtype"><span>Respiratory and intrathoracic organs</span></label>
+              <label> <input type="radio" name="cervixuteri" value="Cervix Uteri" [(ngModel)]="symptomtype"><span>Cervix Uteri</span></label>
+              <label class="hide"> <input type="radio"><span>Ovarian</span></label>
+              <label> <input type="radio" name="otforgans" value="Other female genital organs" [(ngModel)]="symptomtype"><span>Other female genital organs</span></label>
+              <label> <input type="radio" name="unmaleorgan" value="Unspecified male genital organ" [(ngModel)]="symptomtype"><span>Unspecified male genital organ</span></label>
+              <label class="hide"> <input type="radio"><span>Prostate</span></label>
+              <label> <input type="radio" name="testis" value="Testis" [(ngModel)]="symptomtype"><span>Testis</span></label>
+              <label> <input type="radio" name="epididymis" value="Epididymis" [(ngModel)]="symptomtype"><span>Epididymis</span></label>
+              <label> <input type="radio" name="otmorgans" value="Other male genital Organs" [(ngModel)]="symptomtype"><span>Other male genital Organs</span></label>
+              <label> <input type="radio" name="urinaryorgan" value="Urinary tract organ" [(ngModel)]="symptomtype"><span>Urinary tract organ</span></label>
+              <label> <input type="radio" name="bladder" value="Bladder" [(ngModel)]="symptomtype"><span>Bladder</span></label>
+              <label> <input type="radio" name="kidney" value="Kidney" [(ngModel)]="symptomtype"><span>Kidney</span></label>
+              <label class="hide"> <input type="radio" name="renalpelvis" value="Renal Pelvis" [(ngModel)]="symptomtype"><span>Renal Pelvis</span></label>
+              <label class="hide"> <input type="radio" name="ureter" value="Ureter" [(ngModel)]="symptomtype"><span>Ureter</span></label>
+              <label class="hide"> <input type="radio" name="othurinaryorgan" value="other urinary tract organ" [(ngModel)]="symptomtype"><span>other urinary tract organ</span></label>
+              <label> <input type="radio" name="Leukemia" value="Leukemia" [(ngModel)]="symptomtype"><span>Leukemia</span></label>
+              <label> <input type="radio" name="hodgkinlymphomas" value="Hodgkin Lymphomas" [(ngModel)]="symptomtype"><span>Hodgkin Lymphomas</span></label>
+              <label> <input type="radio" name="nonhodgkinlymphomas" value="Non-Hodgkin Lymphomas" [(ngModel)]="symptomtype"><span>Non-Hodgkin Lymphomas</span></label>
+              <label> <input type="radio" name="lymphoidtissues" value="Lymphoid, Hematopoietic and Related tissues" [(ngModel)]="symptomtype"><span> Lymphoid, Hematopoietic and Related tissues</span></label>
+
+              <label> <input type="radio" name="tongue" value="Tongue" [(ngModel)]="symptomtype"><span> Tongue</span></label>
+              <label> <input type="radio" name="lippharynx" value="Lip, Oral cavity, and Pharynx" [(ngModel)]="symptomtype"><span> Lip, Oral cavity, and Pharynx</span></label>
+
+              <label> <input type="radio" name="lippharynxun" value="lip, oral cavity, and pharynx unspecified" [(ngModel)]="symptomtype"><span>lip, oral cavity, and pharynx unspecified</span></label>
+              <label> <input type="radio" name="melanomaskin" value="Melanoma of Skin" [(ngModel)]="symptomtype"><span> Melanoma of Skin</span></label>
+
+              <label> <input type="radio" name="skin" value="Skin" [(ngModel)]="symptomtype"><span>Skin </span></label>
+              <label> <input type="radio" name="bone" value="Bone" [(ngModel)]="symptomtype"><span>Bone </span></label>
+              <label> <input type="radio" name="softtissue" value="Soft Tissue" [(ngModel)]="symptomtype"><span>Soft Tissue </span></label>
+              <label> <input type="radio" name="Eye" value="Eye" [(ngModel)]="symptomtype"><span>Eye </span></label>
+              <label class="hide"> <input type="radio"><span>Brain </span></label>
+              <label> <input type="radio" name="nervoustissue" value="Nervous tissue" [(ngModel)]="symptomtype"><span>Nervous tissue </span></label>
+              <label> <input type="radio" name="othsystems" value="Other organs and systems" [(ngModel)]="symptomtype"><span>Other organs and systems</span></label>
+              <label> <input type="radio" name="malignanttissues" value="Malignant neoplasms of lymphoid, hematopoietic and related tissues" [(ngModel)]="symptomtype"><span>Malignant neoplasms of lymphoid, hematopoietic and related tissues</span></label>
+              <label> <input type="radio" name="carrierdisease" value="Carrier genetic disease" [(ngModel)]="symptomtype"><span>Carrier genetic disease</span></label>
+              <label> <input type="radio" name="unspecified" value="Unspecified" [(ngModel)]="symptomtype"><span>Unspecified</span></label>
+
+              <div class="clearfix"></div>
+              <strong class="hide">Genetic Susceptibility To </strong>
+
+              <label class="hide"> <input type="radio"><span>Breast Cancer</span></label>
+              <label class="hide"> <input type="radio"><span>Endo/Cervical Cancer</span></label>
+              <label class="hide"> <input type="radio" ><span>All other cancers</span></label>
+
+              <div class="clearfix"></div>
+            </div>
+
+
+            <div class="pateintquestionire_bottom_form" style="width: 100%;">
+
+              <input type="button" class="pateintquestionirebtn pateintquestionirebtn2" value="Cancel" (click)="cancelvaluefromdataform1()">
+              <input type="submit" class="pateintquestionirebtn " value="Save" (click)="putvaluetodataform1()">
+
+
+              <div class="clearfix"></div>
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div *ngIf="opensymptommodalflag" class="  modal pateintquestioniremodal pateintquestioniremodalnew2  fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid admin_inner_heading"> <h2>SYMPTOMS AND SIGNS</h2></div>
+
+
+        <div class="newpopup_conbox">
+
+          <h2>Common Cancer Symptoms</h2>
+
+          <form role="form" class="form-inline" novalidate [formGroup]="dataForm2" (ngSubmit)="dosubmit2(dataForm2.value)" id="formcss">
+          <div class="form-group">
+            <label>Have you experienced unexplained weight loss?</label>
+            <div class="formgroupsub">
+             <input type="checkbox" [formControl]="dataForm2.controls['weightloss']">
+             <span>R63.4 - Abnormal weight loss</span>
+             <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Any unexplained loss of appetite?</label>
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['appetite']">
+              <span>R63.0 - Anorexia</span>
+              <div class="clearfix"></div>
+            </div>
+            <div class="formgroupsub">
+              <input type="checkbox"  [formControl]="dataForm2.controls['eatingdisorder']">
+              <span>F50.89 - Other specified eating disorder</span>
+              <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Abdominal pain?</label>
+            <div class="formgroupsub">
+              <input type="checkbox"  [formControl]="dataForm2.controls['unabdominalpain']">
+              <span>R10.9 - Unspecified abdominal pain</span>
+              <div class="clearfix"></div>
+            </div>
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['upabdominalpain']">
+              <span>R10.10 - Upper abdominal pain, unspecified</span>
+              <div class="clearfix"></div>
+            </div>
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['ruquadrantpain']">
+              <span>R10.11 - Right upper quadrant pain</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['luquadrantpain']">
+              <span>R10.12 - Left upper quadrant pain</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['labdominalpain']">
+              <span>R10.30 - Lower abdominal pain, unspecified</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['rlquadrantpain']">
+              <span>R10.31 - Right lower quadrant pain</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['llquadrantpain']">
+              <span>R10.32 - Left lower quadrant pain</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['gabdominalpain']">
+              <span>R10.84 - Generalized abdominal pain</span>
+              <div class="clearfix"></div>
+            </div>
+
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Nausea or vomiting?</label>
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['vomiting1']">
+              <span>R11.0 - Nausea</span>
+              <div class="clearfix"></div>
+            </div>
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['vomiting2']">
+              <span>R11.1 - Vomiting</span>
+              <div class="clearfix"></div>
+            </div>
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['vomiting3']">
+              <span>R11.2 - Nausea with vomiting, unspecified</span>
+              <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+
+          <div class="form-group">
+            <label> Any weakness or fatigue?</label>
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['chronicfatigue']">
+              <span>R53.82 - Chronic fatigue, unspecified</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['otherfatigue']">
+              <span>R53.83 - Other fatigue</span>
+              <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+
+          <div class="form-group">
+            <label> Have you experienced any anemia?</label>
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['anemia']">
+              <span>Multiple: D64.9 - Anemia, unspecified</span>
+              <div class="clearfix"></div>
+            </div>
+
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label> Do you have signs of Jaundice?</label>
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['jaundice']">
+              <span>R17 - Unspecified jaundice</span>
+              <div class="clearfix"></div>
+            </div>
+
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label> Feeling very tired all the time?</label>
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['fatigue1']"><span>R53.82 - Chronic fatigue, unspecified</span>
+              <div class="clearfix"></div>
+            </div>
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['fatigue2']"><span>R53.83 - Other fatigue</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label> Do you have Diabetes?</label>
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['type1diabetes']"><span>E10 - Type 1 diabetes mellitus</span>
+              <div class="clearfix"></div>
+            </div>
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['type2diabetes']"><span>E11 - Type 2 diabetes mellitus</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label> Constipation?</label>
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['constipation']"><span>K59.00 - Constipation, unspecified</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Abnormal weight loss?</label>
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['abnormalweightloss']"><span>R63.4 - Abnormal weight loss</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Abnormal weight gain?</label>
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['abnormalweightgain']"><span>R63.5 - Abnormal weight gain</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Skin tags?</label>
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['hypertrophicdisorders']"><span>L91.8 - Other hypertrophic disorders of the skin</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Blood in stool?</label>
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['bloodinstool']"><span>R19.5 - Occult blood in feces</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Dry Skin?</label>
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['skineruption']"><span>R21 - Rash and other nonspecific skin eruption</span>
+              <div class="clearfix"></div>
+            </div>
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['xerosiscutis']"><span>L85.3 - Xerosis cutis</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <h2 style="margin-top: 15px!important;">Breast Cancer Symptoms</h2>
+
+          <div class="form-group">
+            <label>Have you detected a new lump in the breast or underarm?</label>
+
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['lumpinbreast']"><span>N63.0 - Unspecified lump in unspecified breast</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+          <div class="form-group">
+            <label>Have you noticed any thickening or swelling of part of your breast?</label>
+
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['thickeningbreast']"><span>N64.59 - Other signs and symptoms in breast</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+          <div class="form-group">
+            <label>Any Irritation or dimpling of breast skin?</label>
+
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['disordersofbreast']"><span>N64.89 - Other specified disorders of breast</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Any Redness or flaky skin in the nipple area or the breast?</label>
+
+
+            <div class="formgroupsub">
+              <input type="text" [formControl]="dataForm2.controls['rednessnipple']">
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Any Pulling in of the nipple or pain in the nipple area?</label>
+
+
+            <div class="formgroupsub">
+              <input type="text" [formControl]="dataForm2.controls['nipplepain']">
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Nipple discharge other than breast milk, including blood?</label>
+
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['nippledischarge']"><span>N64.52 - Nipple discharge</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Any change in the size or the shape of the breast?</label>
+
+
+            <div class="formgroupsub">
+              <input type="text" [formControl]="dataForm2.controls['breastsize']">
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Pain in any area of the breast?</label>
+
+
+            <div class="formgroupsub">
+              <input type="text" [formControl]="dataForm2.controls['breastpain']">
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+
+          <h2 style="margin-top: 10px!important;">Uterine (Endometrial) Cancer Symptoms</h2>
+
+          <div class="form-group">
+            <label>Any Bleeding? If so, where </label>
+
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['uterinebleeding']"><span>N93.9 - Abnormal uterine and vaginal bleeding, unspecified</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Blood in urine </label>
+
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['bloodinurine']"><span>R31.9 - Hematuria, unspecified</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <h2 style="margin-top: 10px!important;">Colorectal Cancer Symptoms</h2>
+
+          <div class="form-group">
+            <label>1. Blood in or on your stool (bowel movement)? </label>
+
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['melena']"><span>K92.1 - Melena</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>2. Stomach pain, aches, or cramps that don’t go away? </label>
+
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['stomachpainabdominalpain']"><span>R10.9 - Unspecified abdominal pain</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>3. Any changes in your bowel habits? </label>
+
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['bowelhabits']"><span>R19.4 - Change in bowel habit</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>4. Irregular bowel movements, diarrhea or constipation? </label>
+
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['unconstipation']"><span>K59.00 - Constipation, unspecified</span>
+              <div class="clearfix"></div>
+            </div>
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['diarrhea']"><span>R19.7 - Diarrhea, unspecified</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>5. Multiple colon polyps? </label>
+
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['colonpolyps']"><span>K63.5 - Polyp of colon</span>
+              <div class="clearfix"></div>
+            </div>
+
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>6. Rectal bleeding or blood in your stool? </label>
+
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['rectalbleeding']"><span>K62.5 - Hemorrhage of anus and rectum</span>
+              <div class="clearfix"></div>
+            </div>
+
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>7. Abdominal bloating, cramps or discomfort?</label>
+
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['abdominalbloating1']"><span>R14.0 - Abdominal distension (gaseous)</span>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['abdominalbloating2']"><span>R10.9 - Unspecified abdominal pain</span>
+              <div class="clearfix"></div>
+            </div>
+
+
+
+
+            <div class="clearfix"></div>
+          </div>
+          <div class="form-group">
+            <label>8. A feeling that your bowel doesn't empty completely?</label>
+
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['idefecation']"><span>R15.0 - Incomplete defecation</span>
+              <div class="clearfix"></div>
+            </div>
+
+
+
+
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>9. Stools that are thinner than normal?</label>
+
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['ofecalabnormalities']"><span>R19.5 - Other fecal abnormalities</span>
+              <div class="clearfix"></div>
+            </div>
+
+
+
+
+
+            <div class="clearfix"></div>
+          </div>
+
+          <h2 style="margin-top: 10px!important;">Pancreatic Cancer Symptoms</h2>
+
+          <div class="form-group">
+            <label>1. Pain in the upper abdomen which can extend to your back</label>
+
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['pancreaticuabdominalpain']"><span>R10.10 - Upper abdominal pain, unspecified</span>
+              <div class="clearfix"></div>
+            </div>
+
+
+
+
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>2. Swollen gallbladder (usually found by your doctor during a physical exam)</label>
+
+
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['cholecystitis1']"><span>K81.0 - Acute cholecystitis</span>
+              <div class="clearfix"></div>
+            </div>
+            <div class="formgroupsub">
+              <input type="checkbox" [formControl]="dataForm2.controls['cholecystitis2']"><span>K81.9 - Cholecystitis, unspecified</span>
+              <div class="clearfix"></div>
+            </div>
+
+
+
+
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="form-group">
+            <label>3. Have you or do you have any blood clots? </label>
+
+
+            <div class="formgroupsub">
+              <input type="text" [formControl]="dataForm2.controls['noofbloodclots']">
+              <div class="clearfix"></div>
+            </div>
+
+
+
+
+
+            <div class="clearfix"></div>
+          </div>
+
+
+          <div class="pateintquestionire_bottom_form" style="width: 100%;">
+
+            <input type="button" class="pateintquestionirebtn pateintquestionirebtn2" value="Cancel" (click)="cancelit()">
+            <input type="submit" class="pateintquestionirebtn " value="Save" (click)="savecommoncancersymptoms()">
+            <input type="submit" class="pateintquestionirebtn " value="Submit" (click)="submitcommoncancersymptoms()">
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="clearfix"></div>
+          </form>
+        </div>
+
       </div>
     </div>
   </div>
@@ -1049,6 +2766,273 @@
           <button class="btn btn-primary popbtn2" (click)="deletethisnote()">Yes</button>
           <button class="btn btn-primary popbtn2" (click)="onHidden()">No</button>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div *ngIf="issegmentmodalshown" class="modal fade uploadimagemodal" (onHidden)="onHidden1()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div>
+          <img src="../../assets/images/adminlogo.png" alt="logo" class="img-responsive center-block" >
+        </div>
+      </div>
+      <div class="modal-body">
+        <div  class="img-responsive center-block clearfix">
+          <h4 class="modal-title center-block" style="padding-bottom: 5px; text-align: center">Upload Images</h4>
+          <label class="upload-button filechoosebtnbg center-block">
+            <input class="img-responsive center-block clearfix" type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput">
+          </label>
+        </div>
+          <div class="browsefileblockimg">
+            <div class="row">
+              <div class="browsefileblockimgmultiplerow">
+                <div class="browsefileblockimgmultiplerowsingle" *ngIf="files.length>0">
+                  <div class="browsefileblockimgmultiplerowimgagebig">
+                    <img  class="img-responsive center-block firstimgheightset" style="width: 100%; height: auto" src="https://altushealthgroup.com/assets/images/uploads/{{files[0].response}}" >
+                <!--LOCAL-->
+                    <!-- <img  class="img-responsive center-block" style="width: 100%; height: auto" src="http://http://foremostlaboratories.com/assets/images/uploads/{{files[0].response[0]}}" >-->
+                  </div>
+                 <!-- <input type="button"  *ngIf="files.length>0" value="Delete" class="form-control btn btn-primary btnform  center-block" style="margin: 0 auto; width: 30%; float: none">-->
+                </div>
+                <div class="browsefileblockimgmultiplerowsingle" *ngFor="let item of files; let i = index">
+                  <div class="browsefileblockimgmultiplerowsinglesmall">
+                    <img  class="img-responsive center-block" style="padding: 5px" *ngIf="i>0" src="../../assets/images/uploads/{{item.response}}">  <!--LOCAL-->
+                    <!--   <img  class="img-responsive center-block" style="padding: 5px" *ngIf="i>0" src="http://altfatale.com/assets/images/uploads/{{item.response[i]}}">  SERVER-->
+                  </div>
+
+               <!--   <input type="button" *ngIf="i>0" value="Delete" class="form-control btn btn-primary btnform" >-->
+                </div>
+
+                <div class="clearfix"></div>
+
+              </div>
+
+            </div>
+            <input type="button"  *ngIf="files.length>0" value="Save Images" class="btn btn-primary btnform center-block btnsavepopimage" (click)="saveimages()">
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div *ngIf="pgxmedicationmodal" class=" sign_modal pateintquestioniremodal modal fade in" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid admin_inner_heading">
+          <h2>MEDICATION MANAGEMENT CHECKLIST</h2>
+        </div>
+        <div class="medicati_div">
+
+          <div class="medicati_div_heading">PSYCH</div>
+
+          <table class="medicati_div_table1">
+            <tr>
+              <th>BIPOLAR</th>
+              <th>DEPRESSION</th>
+            </tr>
+
+
+            <tr>
+              <td>
+
+                <div class="th_heading">BIPOLAR</div>
+
+                <div class="form_div"><input type="checkbox"> <label>Lithium</label><div class="clearfix"></div></div>
+
+                <div class="form_div"><input type="checkbox"> <label>Abilify</label><div class="clearfix"></div></div>
+                <div class="form_div"><input type="checkbox"> <label>Seroquel</label><div class="clearfix"></div></div>
+                <div class="form_div"><input type="checkbox"> <label>Clonazepam</label><div class="clearfix"></div></div>
+                <div class="form_div"><input type="checkbox"> <label>Latuda</label><div class="clearfix"></div></div>
+                <div class="form_div"><input type="checkbox"> <label>Valium</label><div class="clearfix"></div></div>
+                <div class="form_div"><input type="checkbox"> <label>Ativan</label><div class="clearfix"></div></div>
+                <div class="form_div"><input type="checkbox"> <label>Zyprexa</label><div class="clearfix"></div></div>
+
+                <div class="clearfix"></div>
+
+              </td>
+
+              <td>
+                <div class="th_heading">DEPRESSION</div>
+
+                <div class="medicati_div_td1">
+                  <div class="form_div"><input type="checkbox"><label> Xanax / Alprazolam</label><div class="clearfix"></div></div>
+
+                  <div class="form_div"><input type="checkbox"><label>Zoloft / Certriline</label><div class="clearfix"></div></div>
+
+                  <div class="form_div"><input type="checkbox"><label>Celexa / Citalopram</label><div class="clearfix"></div></div>
+
+                  <div class="form_div"><input type="checkbox"><label>Paxil / Paroxitine</label><div class="clearfix"></div></div>
+
+                  <div class="form_div"><input type="checkbox"><label>Cymbalta / Duloxetine</label><div class="clearfix"></div></div>
+
+                  <div class="form_div"><input type="checkbox"><label>Klonopin / Clonazepam</label><div class="clearfix"></div></div>
+
+                  <div class="form_div"><input type="checkbox"> <label>Wellbutrin / Buproprion</label><div class="clearfix"></div></div>
+
+                  <div class="form_div"><input type="checkbox"><label>Prozac / Fluoxetine</label><div class="clearfix"></div></div>
+                  <div class="clearfix"></div>
+
+                </div>
+
+                <div class="medicati_div_td1">
+
+                  <div class="form_div"><input type="checkbox"><label> Lexapro / Escitalopram</label><div class="clearfix"></div></div>
+                  <div class="form_div "><input type="checkbox"><label> Amitriptyline</label><div class="clearfix"></div></div>
+                  <div class="form_div"><input type="checkbox"><label> Viibryd</label><div class="clearfix"></div></div>
+                  <div class="form_div "><input type="checkbox"><label>Trazodone</label><div class="clearfix"></div></div>
+                  <div class="clearfix"></div>
+
+                </div>
+                <div class="clearfix"></div>
+              </td>
+            </tr>
+
+
+          </table>
+
+
+          <div class="medicati_div_heading">CARDIAC </div>
+
+
+
+          <table>
+            <tr>
+              <th>ANGINA</th>
+              <th>ATHEROSCLEROSIS <span>(High Cholesterol)</span></th>
+              <th>IRRITANT CONTACT DERMATITIS <span>(Skin Rash)</span></th>
+            </tr>
+            <td>
+
+              <div class="th_heading">ANGINA</div>
+
+              <div class="form_div form_div2"><input type="checkbox"><label>NITROs</label><div class="clearfix"></div></div>
+
+              <div class="clearfix"></div>
+
+              <h6>HEART ATTACK</h6>
+              <div class="form_div form_div2"><input type="checkbox"><label>Just take patients
+                statement that they had a
+                heart attack/myocardial
+                infarction
+              </label><div class="clearfix"></div></div>
+
+
+            </td>
+
+            <td>
+
+              <div class="th_heading">ATHEROSCLEROSIS <span>(High Cholesterol)</span></div>
+
+              <div class="form_div"><input type="checkbox"><label>Lipitor / Atorvastatin </label><div class="clearfix"></div></div>
+              <div class="form_div"><input type="checkbox"><label> Crestor / Rosuvastatin</label><div class="clearfix"></div></div>
+              <div class="form_div"><input type="checkbox"><label> Zocor / Simvastatin</label><div class="clearfix"></div></div>
+              <div class="form_div"><input type="checkbox"><label> Mevacor / Lovastatin</label><div class="clearfix"></div></div>
+
+
+              <div class="clearfix"></div>
+
+            </td>
+
+            <td>
+
+              <div class="th_heading">IRRITANT CONTACT DERMATITIS <span>(Skin Rash)</span></div>
+              <div class="form_div form_div2"><input type="checkbox"> <label>Just take patients statement
+                that they had a skin rash at
+                same point
+              </label><div class="clearfix"></div></div>
+
+            </td>
+
+          </table>
+
+
+          <div class="medicati_div_heading">MISCELLANEOUS COMMON DRUG/DISEASE STATES  </div>
+
+          <table>
+            <tr>
+              <th>ACID REFLUX </th>
+              <th>FIBROMYALGIA </th>
+              <th>DERMATITIS</th>
+            </tr>
+
+
+            <tr>
+
+              <td>
+                <div class="th_heading">ACID REFLUX</div>
+
+                <div class="form_div"><input type="checkbox"><label>Prilosec / Omeprazole</label><div class="clearfix"></div></div>
+
+                <div class="form_div form_div_margin"><input type="checkbox"><label>Zantac / Ranitidine</label><div class="clearfix"></div></div>
+
+                <div class="form_div form_div2"><input type="checkbox"><label> Nexium / Esomeprazole</label><div class="clearfix"></div></div>
+
+                <div class="clearfix"></div>
+              </td>
+              <td>
+
+                <div class="th_heading">FIBROMYALGIA</div>
+                <div class="form_div form_div2"><input type="checkbox"><label>Neurontin / Gabapentin</label><div class="clearfix"></div></div>
+
+              </td>
+              <td>
+
+                <div class="th_heading">DERMATITIS</div>
+
+                <div class="form_div"><input type="checkbox"><label> Triamcinolone</label><div class="clearfix"></div></div>
+
+                <div class="form_div "><input type="checkbox"><label>Clobex</label><div class="clearfix"></div></div>
+
+                <div class="form_div"><input type="checkbox"><label>Fluocinonide</label><div class="clearfix"></div></div>
+
+                <div class="form_div "><input type="checkbox"><label>Betamethasone</label><div class="clearfix"></div></div>
+                <div class="clearfix"></div>
+
+              </td>
+
+            </tr>
+
+
+
+
+
+
+
+          </table>
+
+
+          <input type="button"  value="Cancel" class="pateintquestionirebtn pateintquestionirebtn2" />
+          <input type="submit"  value="Submit" class="pateintquestionirebtn" />
+          <input type="submit"  value="Save" class="pateintquestionirebtn" />
+
+
+
+
+          <div class="clearfix"></div>
+
+
+
+        </div>
+
+
+
+
+
       </div>
     </div>
   </div>

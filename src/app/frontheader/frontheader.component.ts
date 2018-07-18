@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CookieService} from 'angular2-cookie/core';
 import {Router} from '@angular/router';
 import {Commonservices} from '../app.commonservices';
-import {Http} from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-frontheader',
@@ -15,7 +15,7 @@ export class FrontheaderComponent implements OnInit {
     public addcookie: CookieService;
     public cookiedetails;
 
-    constructor( addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
+    constructor( addcookie: CookieService, private _http: HttpClient, private router: Router, private _commonservices: Commonservices) {
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
         console.log('from frontheader');

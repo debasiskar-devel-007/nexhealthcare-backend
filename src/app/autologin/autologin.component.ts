@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Http} from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'angular2-cookie/core';
@@ -16,7 +16,7 @@ export class AutologinComponent implements OnInit {
     public serverurl;
     public logintoken;
 
-    constructor(addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices, private route: ActivatedRoute) {
+    constructor(addcookie: CookieService, private _http: HttpClient, private router: Router, private _commonservices: Commonservices, private route: ActivatedRoute) {
         this.serverurl = _commonservices.url;
         this.addcookie = addcookie ;
         this.cookiedetails = this.addcookie.getObject('cookiedetails');
@@ -40,9 +40,10 @@ export class AutologinComponent implements OnInit {
         console.log(data);
         this._http.post(link, data)
             .subscribe(res => {
-                let result = res.json();
+              let result: any;
+              result =res;
               //  console.log(result);
-               // console.log('result.msg.type++++++++++++++');
+              // console.log('result.msg.type++++++++++++++');
                // console.log(result.msg.type);
                 if (result.status == 'success') {
                     let addresultforcookie = {

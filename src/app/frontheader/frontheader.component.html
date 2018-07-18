@@ -34,7 +34,7 @@
                   </ul>
                 </li>-->
                 <li><a href="javascript:void(0)" [routerLink]="['/userlist']" *ngIf="cookiedetails.type=='superadmin'">User Management </a></li>
-                <li  class="btn-group" dropdown>
+                <li  class="btn-group" dropdown *ngIf="cookiedetails.type =='superadmin' || cookiedetails.type =='corporate' || cookiedetails.type =='leadmanager' || cookiedetails.type =='salesrep'">
                   <button id="button-basic2" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
                           aria-controls="dropdown-basic2">
                     CRM <span class="caret"></span>
@@ -94,17 +94,33 @@
                 </li>
 
 
-                <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/trainingcenter']">Training Center</a></li>
-                <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/resource']">Resources</a></li>
-                <li role="menuitem" *ngIf="cookiedetails.type!='superadmin'"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Webinars</a></li>
+                <li role="menuitem" *ngIf="cookiedetails.type!='superadmin' && cookiedetails.type!='helpdesk'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/trainingcenter']">Training Center</a></li>
+                <li role="menuitem" *ngIf="cookiedetails.type!='superadmin' && cookiedetails.type!='helpdesk'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/resource']">Resources</a></li>
+                <li role="menuitem" *ngIf="cookiedetails.type!='superadmin' && cookiedetails.type!='helpdesk'"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Webinars</a></li>
                 <!--<li role="menuitem" *ngIf="cookiedetails.type=='leadmanager' || cookiedetails.type=='salesrep'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/compensationmodifier']" >Sharelink</a></li>-->
                 <li role="menuitem" *ngIf="cookiedetails.type=='leadmanager'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/compensationmodifier']" >Sharelink</a></li>
                 <li role="menuitem" *ngIf="cookiedetails.type=='masteraccount'"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/sharelink']" >Sharelink</a></li>
 
 
-                <li><a href="javascript:void(0)" [routerLink]="['/reports']">Reports </a></li>
-                <li><a href="javascript:void(0)" [routerLink]="['/commissions']">Commissions </a></li>
+                <li><a href="javascript:void(0)" [routerLink]="['/reports']" *ngIf="cookiedetails.type!='helpdesk'">Reports </a></li>
+                <li><a href="javascript:void(0)" [routerLink]="['/commissions']" *ngIf="cookiedetails.type!='helpdesk'">Commissions </a></li>
+                <!--<li><a href="javascript:void(0)" [routerLink]="['/helpdeskadd']" *ngIf="cookiedetails.type=='superadmin'">Add Helpdesk </a></li>-->
                 <!-- <li *ngIf="cookiedetails.type=='leadmanager'"><a href="javascript:void(0)" [routerLink]="['/compensationmodifier']">Compensation Modifier </a></li>-->
+
+
+                <li  class="btn-group" dropdown *ngIf="cookiedetails.type=='superadmin'">
+                  <button id="button-basic9" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                          aria-controls="dropdown-basic4">
+                    Helpdesk Management <span class="caret"></span>
+                  </button>
+                  <ul id="dropdown-basic9" *dropdownMenu class="dropdown-menu"
+                      role="menu" aria-labelledby="button-basic">
+                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/helpdesklist']">Helpdesk List</a></li>
+                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/helpdeskadd']">Add Helpdesk</a></li>
+                  </ul>
+                </li>
+
+
               </ul>
 
 

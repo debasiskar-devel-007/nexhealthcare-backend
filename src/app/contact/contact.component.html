@@ -37,10 +37,15 @@
 
         <img src="../../assets/images/repontact_img1.jpg" class="repcontact_img1">
 
-        <h2>ALTUS HEALTH GROUP\<br>610 West Congress Street
-          Detroit, Michigan 48226</h2>
+      <!--  <h2>{{_commonservices.commonvalue.name}}<br>610 West Congress Street
+          Detroit, Michigan 48226</h2>-->
+        <h2>{{_commonservices.commonvalue.name}}
+        <br>{{_commonservices.commonvalue.address1}}
+          {{_commonservices.commonvalue.address2}}</h2>
 
-        <h4>Email: <a href="mailto:support@altushealthgroup.com" style="text-transform: none;"><!--support@nexhealthsolutions.com-->support@altushealthgroup.com</a></h4>
+        <h4>Email:
+          <a href="mailto:{{_commonservices.commonvalue.mailid}}" style="text-transform: none;">{{_commonservices.commonvalue.mailid}}</a>
+        </h4>
 
       <!--  <h3>Phone Number: <a href="tel:1-833-4ALTUSHEALTH">1-833-4ALTUSHEALTH</a></h3>-->
 

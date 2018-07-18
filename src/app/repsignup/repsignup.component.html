@@ -276,12 +276,12 @@
 
                             </div>
 
-                            <label>What number of your clients are 65 or older? <span>*</span></label>
+                            <label>What types of Insurance do you sell?<span>*</span></label>
 
                             <input type="text" [formControl]="dataForm.controls['olderclients']" (keyup)="showvalidationerror=0">
                             <span class="has-error" *ngIf ="dataForm.controls['olderclients'].touched && !dataForm.controls['olderclients'].valid && showvalidationerror==1"> Please provide the number!</span>
 
-                            <label>In your estimate, what percentage of your clients have their Medicare Plan B Card? <span>*</span></label>
+                            <label>What is the total number of current policy holders you have sold? <span>*</span></label>
 
                             <input type="text" [formControl]="dataForm.controls['noofplanBcard']" (keyup)="showvalidationerror=0">
                             <span class="has-error" *ngIf ="dataForm.controls['noofplanBcard'].touched && !dataForm.controls['noofplanBcard'].valid && showvalidationerror==1"> Please provide the number!</span>
@@ -315,7 +315,7 @@
                     <div class="row">
                         <div class="col-md-12">
 
-                            <label>You will need to choose one of our live onboarding calls to get started with this Altushealth program. Please choose a day and time that will work best for you <span>*</span></label>
+                            <label>You will need to choose one of our live onboarding calls to get started with this {{_commonservices.commonvalue.title1}} program. Please choose a day and time that will work best for you <span>*</span></label>
 
                             <select [formControl]="dataForm.controls['webinarkey']">
                                 <option value="" disabled selected>Select Time</option>

@@ -19,7 +19,7 @@ export class UserrecruitereditComponent implements OnInit {
     public usastates;
     public passerror ;
 
-    constructor(fb: FormBuilder, private _http: Http, private router: Router, private route: ActivatedRoute, private _commonservices: Commonservices) {
+    constructor(fb: FormBuilder, private _http: Http, private router: Router, private route: ActivatedRoute, public _commonservices: Commonservices) {
         this.fb = fb;
         this.serverurl = _commonservices.url;
         this.getusastates();

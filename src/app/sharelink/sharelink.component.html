@@ -12,7 +12,8 @@
         </div>
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 sharelinkblockcontent sharelinkblockcontentright">
           <h2>CGS Page</h2>
-          <input type="text" value="https://tomnexhealth.altushealthgroup.com/recruitment-funnel?lead_id=TlRNM013PT0=&aitrk=2" class="inputbox" disabled>
+
+          <input type="text" value="https://{{serverhost}}/#/cgx" class="inputbox" disabled>
           <div class="share_div">
             <div class="share_block">
               <a href="javascript:void(0);"><img class="stLarge" src="../../assets/images/sharelink_email_32.png"></a>
@@ -23,7 +24,7 @@
               <a href="javascript:void(0);"><img class="stLarge" src="../../assets/images/sharelink_sharethis_32.png"></a>
             </div>
             <div class="share_btn5">
-              <button class="btnshareclass" href="javascript:void(0);" type="button">Copy Link</button>
+              <button class="btnshareclass" href="javascript:void(0);" type="button" ngxClipboard [cbContent]='callfunc1()' (click)="showcopied()">Copy Link</button>
               <div class="clear"></div>
             </div>
           </div>
@@ -37,7 +38,7 @@
         </div>
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 sharelinkblockcontent sharelinkblockcontentright">
           <h2>Signup Page</h2>
-          <input type="text" value="https://tomnexhealth.altushealthgroup.com/recruitment-funnel?lead_id=TlRNM013PT0=&aitrk=2" class="inputbox" disabled>
+          <input type="text" value="https://{{serverhost}}/#/sign-up" class="inputbox" disabled>
           <div class="share_div">
             <div class="share_block">
               <a href="javascript:void(0);"><img class="stLarge" src="../../assets/images/sharelink_email_32.png"></a>
@@ -48,7 +49,32 @@
               <a href="javascript:void(0);"><img class="stLarge" src="../../assets/images/sharelink_sharethis_32.png"></a>
             </div>
             <div class="share_btn5">
-              <button class="btnshareclass" href="javascript:void(0);" type="button">Copy Link</button>
+              <button class="btnshareclass" href="javascript:void(0);" type="button" ngxClipboard [cbContent]='callfunc()' (click)="showcopied()">Copy Link</button>
+              <div class="clear"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row row-eq-height sharelinkblocksingle">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 sharelinkblockcontent sharelinkblockcontentleft">
+          <div class="image_block">
+            <img src="../../assets/images/landing_page.jpg">
+          </div>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 sharelinkblockcontent sharelinkblockcontentright">
+          <h2>Landing Page</h2>
+          <input type="text" value="https://{{serverhost}}/#/landing" class="inputbox" disabled>
+          <div class="share_div">
+            <div class="share_block">
+              <a href="javascript:void(0);"><img class="stLarge" src="../../assets/images/sharelink_email_32.png"></a>
+              <a href="javascript:void(0);"><img class="stLarge" src="../../assets/images/sharelink_facebook_32.png"></a>
+              <a href="javascript:void(0);"><img class="stLarge" src="../../assets/images/sharelink_twitter_32.png"></a>
+              <a href="javascript:void(0);"><img class="stLarge" src="../../assets/images/sharelink_linkedin_32.png"></a>
+              <a href="javascript:void(0);"><img class="stLarge" src="../../assets/images/sharelink_googleplus_32.png"></a>
+              <a href="javascript:void(0);"><img class="stLarge" src="../../assets/images/sharelink_sharethis_32.png"></a>
+            </div>
+            <div class="share_btn5">
+              <button class="btnshareclass" href="javascript:void(0);" type="button" ngxClipboard [cbContent]='callfunc2()' (click)="showcopied()">Copy Link</button>
               <div class="clear"></div>
             </div>
           </div>
@@ -58,3 +84,20 @@
   </div>
 </div>
 <app-frontfooter></app-frontfooter>
+
+
+<div *ngIf="copiedmodal" class=" sign_modal modal fade" (onHidden)="onHidden()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+        <img src="../../assets/images/completewebinarlogo.png" alt="#" class="popup_logo1"><br/>
+        <p class="copiedtext">URL Copied To Clipboard</p>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
