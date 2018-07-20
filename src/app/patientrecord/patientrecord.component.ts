@@ -20,6 +20,7 @@ export class PatientrecordComponent implements OnInit {
   public dataForm2: FormGroup ;
   public fb;
   public fb1;
+  public saveorviewsheet;
   public pgxval : boolean = false;
   public deleteid;
   public editnoteid;
@@ -817,6 +818,7 @@ export class PatientrecordComponent implements OnInit {
     if (val == 1) {
       this.showquestionarydiv = true;
       setTimeout(() => {
+        console.log('disable 1');
       $('.pateintquestionire_div2_left2new #phrelationtype').find('select').attr( 'disabled', 'disabled' );
       }, 500);
     }
@@ -831,9 +833,11 @@ export class PatientrecordComponent implements OnInit {
   disablefields(val) {
     let familyval = 'familyrelation' + val;
     if ($('select[name="' + familyval + '"]').val() == 'Mother' || $('select[name="' + familyval + '"]').val() == 'Father' || $('select[name="' + familyval + '"]').val() == 'Daughter' || $('select[name="' + familyval + '"]').val() == 'Son' || $('select[name="' + familyval + '"]').val() == 'Brother' || $('select[name="' + familyval + '"]').val() == 'Sister' ) {
+        console.log('disable 2');
       $('select[name="' + familyval + '"]').parent().next().next().next().find('select').attr( 'disabled', 'disabled' );
     }
     else {
+        console.log('disable 3');
       $('select[name="' + familyval + '"]').parent().next().next().next().find('select').prop('disabled' , false);
     }
 
@@ -906,26 +910,32 @@ export class PatientrecordComponent implements OnInit {
     window.open(url, '_blank');
   }
                                        /* VIEW IN READ-ONLY */
-  openquesmodalreadonly() {
+  openquesmodalreadonly(val) {
+      this.saveorviewsheet = val;
     this.getpatientdetailsbypatientid();
     this.pateintquestioniremodal = true;
     setTimeout(() => {
       $('#formquestionary').find('input[type="submit"]').hide();
       $('#formquestionary').find('input[type="button"]').hide();
       $( '#formquestionary' ).find('input').each(function() {
+          console.log('disable 4');
         $(this).attr( 'disabled', 'disabled' );
       });
 
       $( '#formquestionary' ).find('textarea').each(function() {
+          console.log('disable 5');
         $(this).attr( 'disabled', 'disabled' );
       });
       $( '#formquestionary' ).find('select').each(function() {
+          console.log('disable 6');
         $(this).attr( 'disabled', 'disabled' );
       });
       $( '#formquestionary' ).find('button').each(function() {
+          console.log('disable 7');
         $(this).attr( 'disabled', 'disabled' );
       });
       setTimeout(() => {
+          console.log('disable 8');
       $('#planbcard').find('input[type="radio"]').attr( 'disabled', 'disabled' );
       }, 500);
      /* $( '#planbcard' ).find('radio').each(function() {
@@ -941,13 +951,16 @@ export class PatientrecordComponent implements OnInit {
       $('#formcss').find('input[type="submit"]').hide();
       $('#formcss').find('input[type="button"]').hide();
       $( '#formcss' ).find('input').each(function() {
+          console.log('disable 9');
         $(this).attr( 'disabled', 'disabled' );
       });
 
       $( '#formcss' ).find('textarea').each(function() {
+          console.log('disable 10');
         $(this).attr( 'disabled', 'disabled' );
       });
       $( '#formcss' ).find('checkbox').each(function() {
+          console.log('disable 11');
         $(this).attr( 'disabled', 'disabled' );
       });
     }, 500);
@@ -956,7 +969,8 @@ export class PatientrecordComponent implements OnInit {
                                   /* PATIENT PROFILE SHEET FUNCTIONALITIES */
 
   /*initialization and getting basic values*/
-  openquesmodal() {
+  openquesmodal(val) {
+    this.saveorviewsheet = val;
     this.pateintquestioniremodal = true;
     this.getdetails();
     setTimeout(() => {
@@ -1220,26 +1234,30 @@ export class PatientrecordComponent implements OnInit {
             var putcancer_sup = 'yes';
             this.showquestionarydiv = true;
             // when there is a saved value regarding add record, then it will show that div
-
-           /*   setTimeout(() => {
-                let i = 1;
-                for (let i = 1; i < 18; i++) {
-                  let familyval = 'familyrelation' + i + 'name';
-                  console.log('selectname="' + familyval + ')';
-                  console.log($('select[name="' + familyval + '"]').val());
-                  if ($('select[name="' + familyval + '"]').val() != null ||  $('select[name="' + familyval + '"]').val() != '' ) {
-                    console.log(i);
-                $('.history' + i).removeClass('hide');
-
-            }
-            }
-              }, 2000);*/
-          /*  if (userdet.familyrelation1name != null || userdet.familyrelation1name != '' ) {
               setTimeout(() => {
-
-                $('.history1').removeClass('hide');
-              }, 2000);
-            }*/
+                  let i = 1;
+                  for (let i = 1; i < 18; i++) {
+                      let familyval = 'familyrelation' + i;
+                      if ( $('select[name="' + familyval + '"]').val() != '' ) {
+                          $('.history' + i).removeClass('hide');
+                      }
+                  }
+                  if (this.saveorviewsheet != 1 ) {
+                      $('#formquestionary').find('input').each(function () {
+                          console.log('disable 12');
+                          $(this).attr('disabled', 'disabled');
+                      });
+                      $('#formquestionary').find('select').each(function () {
+                          console.log('disable 13');
+                          $(this).attr('disabled', 'disabled');
+                      });
+                      $('.left2_heading3').find('button').each(function () {
+                          console.log('disable 14');
+                          $(this).attr('disabled', 'disabled');
+                      });
+                      $('.addrecord_btn').hide();
+                  }
+              }, 500);
           }
           if (userdet.cancer_sup == 0) {
             var putcancer_sup = 'no';
@@ -1731,57 +1749,135 @@ export class PatientrecordComponent implements OnInit {
       }
 
                                              /*ERROR CHECK*/
-      console.log('this.dataForm1.value.medicarepolicyno');
-      console.log(this.dataForm1.value.medicarepolicyno);
-      if (this.dataForm1.value.insurance1 == true && (this.planbcard == 'yes' || this.planbcard == 'no') ) {
+      console.log('this.dataForm1.value.insurance1');
+      console.log(this.dataForm1.value.insurance1);
+     /* if (this.dataForm1.value.insurance1 == true && (this.planbcard == 'yes' || this.planbcard == 'no') ) {
         this.inmediplanbcarderror = null;
       } else {
         this.inmediplanbcarderror = 'Please Choose an answer! ';
-      }
+      }*/
+        if (this.dataForm1.value.insurance1 == true ) {
+            if (this.planbcard == 'yes' || this.planbcard == 'no' ) {
+                this.inmediplanbcarderror = null;
+            }
+            else {
+                this.inmediplanbcarderror = 'Please Choose an answer! ';
+            }
+        } else {
+            this.inmediplanbcarderror = null;
+        }
 
-      if (this.dataForm1.value.insurance1 == true && this.dataForm1.value.medicarepolicyno != null && this.dataForm1.value.medicarepolicyno != '' ) {
-        this.inmedipolicynoerror = null;
-      } else {
-        this.inmedipolicynoerror = 'Please give your policy number! ';
-      }
+        /*  if (this.dataForm1.value.insurance1 == true && this.dataForm1.value.medicarepolicyno != null && this.dataForm1.value.medicarepolicyno != '' ) {
+           console.log('if');
+           this.inmedipolicynoerror = null;
+       } else {
+           console.log('else');
+           this.inmedipolicynoerror = 'Please give your policy number! ';
+       }*/
+        if (this.dataForm1.value.insurance1 == true ) {
+            if (this.dataForm1.value.medicarepolicyno != null && this.dataForm1.value.medicarepolicyno != '') {
+                this.inmedipolicynoerror = null;
+            }
+            else {
+                this.inmedipolicynoerror = 'Please give your policy number! ';
+            }
+        } else {
+            this.inmedipolicynoerror = null;
+        }
 
-      if (this.dataForm1.value.insurance1 == true && (this.dataForm1.value.mediprimarypolicy == 'yes' || this.dataForm1.value.mediprimarypolicy == 'no' )) {
-        this.inmedprimarypolicyerror = null;
-      } else {
-        this.inmedprimarypolicyerror =  'Please Choose an answer! ';
-      }
+        /*if (this.dataForm1.value.insurance1 == true && (this.dataForm1.value.mediprimarypolicy == 'yes' || this.dataForm1.value.mediprimarypolicy == 'no' )) {
+            this.inmedprimarypolicyerror = null;
+        } else {
+            this.inmedprimarypolicyerror =  'Please Choose an answer! ';
+      }*/
+        if (this.dataForm1.value.insurance1 == true ) {
+            if (this.dataForm1.value.mediprimarypolicy == 'yes' || this.dataForm1.value.mediprimarypolicy == 'no') {
+                this.inmedprimarypolicyerror = null;
+            }
+            else {
+                this.inmedprimarypolicyerror =  'Please Choose an answer! ';
+            }
+        } else {
+            this.inmedprimarypolicyerror = null;
+        }
 
-      if (this.dataForm1.value.insurance3 == true && (this.dataForm1.value.carrier != null && this.dataForm1.value.carrier != '')) {
-        // console.log(this.inmedprimarypolicyerror);
+
+     /* if (this.dataForm1.value.insurance3 == true && (this.dataForm1.value.carrier != null && this.dataForm1.value.carrier != '')) {
         this.incommercialcarriererror = null;
       } else {
-        // console.log('elseeeee????????????????????');
-        // console.log(this.inmedprimarypolicyerror);
         this.incommercialcarriererror =  'Please Choose an answer! ';
-      }
+      }*/
+        if (this.dataForm1.value.insurance3 == true ) {
+            if (this.dataForm1.value.carrier != null && this.dataForm1.value.carrier != '') {
+                this.incommercialcarriererror = null;
+            }
+            else {
+                this.incommercialcarriererror =  'Please Choose an answer! ';
+            }
+        } else {
+            this.incommercialcarriererror = null;
+        }
 
-      if (this.dataForm1.value.insurance3 == true && this.dataForm1.value.carrierplan != null && this.dataForm1.value.carrierplan != '') {
+     /* if (this.dataForm1.value.insurance3 == true && this.dataForm1.value.carrierplan != null && this.dataForm1.value.carrierplan != '') {
         this.incarrierplanerror = null;
       } else {
         this.incarrierplanerror = 'Please give your plan type! ';
-      }
+      }*/
+        if (this.dataForm1.value.insurance3 == true ) {
+            if (this.dataForm1.value.carrierplan != null && this.dataForm1.value.carrierplan != '') {
+                this.incarrierplanerror = null;
+            }
+            else {
+                this.incarrierplanerror =   'Please give your plan type! ';
+            }
+        } else {
+            this.incarrierplanerror = null;
+        }
 
-      if (this.dataForm1.value.insurance3 == true && this.dataForm1.value.carrierpolicyno != null && this.dataForm1.value.carrierpolicyno != '') {
+
+     /* if (this.dataForm1.value.insurance3 == true && this.dataForm1.value.carrierpolicyno != null && this.dataForm1.value.carrierpolicyno != '') {
         this.carrierpolicynoerror = null;
       } else {
         this.carrierpolicynoerror = 'Please give your plan type! ';
-      }
+      }*/
+        if (this.dataForm1.value.insurance3 == true ) {
+            if (this.dataForm1.value.carrierpolicyno != null && this.dataForm1.value.carrierpolicyno != '') {
+                this.carrierpolicynoerror = null;
+            }
+            else {
+                this.carrierpolicynoerror =   'Please give your plan type! ';
+            }
+        } else {
+            this.carrierpolicynoerror = null;
+        }
 
-      if (this.dataForm1.value.insurance3 == true && (this.dataForm1.value.comprimarypolicy == 'yes' || this.dataForm1.value.comprimarypolicy == 'no' )) {
+   /*   if (this.dataForm1.value.insurance3 == true && (this.dataForm1.value.comprimarypolicy == 'yes' || this.dataForm1.value.comprimarypolicy == 'no' )) {
         this.carrierprimarypolicynoerror = null;
       } else {
         this.carrierprimarypolicynoerror =  'Please Choose an answer! ';
-      }
+      }*/
+        if (this.dataForm1.value.insurance3 == true ) {
+            if (this.dataForm1.value.comprimarypolicy == 'yes' || this.dataForm1.value.comprimarypolicy == 'no' ) {
+                this.carrierprimarypolicynoerror = null;
+            }
+            else {
+                this.carrierprimarypolicynoerror =  'Please Choose an answer! ';
+            }
+        } else {
+            this.carrierprimarypolicynoerror = null;
+        }
                                                   /*ERROR CHECK*/
 
+/*console.log('carrierprimarypolicynoerror' + this.carrierprimarypolicynoerror);
+console.log('carrierpolicynoerror' + this.carrierpolicynoerror);
+console.log('incarrierplanerror' + this.incarrierplanerror);
+console.log('incommercialcarriererror' + this.incommercialcarriererror);
+console.log('inmedprimarypolicyerror' + this.inmedprimarypolicyerror);
+console.log('inmedipolicynoerror' + this.inmedipolicynoerror);
+console.log('inmediplanbcarderror' + this.inmediplanbcarderror);*/
 
- /*     if (this.dataForm1.valid && this.carrierprimarypolicynoerror == null && this.carrierpolicynoerror == null && this.incarrierplanerror == null && this.incommercialcarriererror == null && this.inmedprimarypolicyerror == null &&  this.inmedipolicynoerror == null &&  this.inmediplanbcarderror == null ) { */
-        if (this.dataForm1.valid ) {
+      if (this.dataForm1.valid && this.carrierprimarypolicynoerror == null && this.carrierpolicynoerror == null && this.incarrierplanerror == null && this.incommercialcarriererror == null && this.inmedprimarypolicyerror == null &&  this.inmedipolicynoerror == null &&  this.inmediplanbcarderror == null ) {
+     //   if (this.dataForm1.valid ) {
         let link= this.serverurl + 'patientrecord';
         let data = {
           patientid: this.id,
@@ -2068,7 +2164,7 @@ export class PatientrecordComponent implements OnInit {
         }
 
         // POINT.  yes/medicare-B yes/other than above mentioned cancers
-        if (this.dataForm1.value.insurance == 'Medicare' && this.planbcard == 'yes' && this.dataForm1.value.phtype1 != 'Breast Cancer' && this.dataForm1.value.phtype1 != 'Prostate Cancer' && this.dataForm1.value.phtype1 != 'Ovarian Cancer') {
+        if (this.dataForm1.value.insurance1 == 'Medicare' && this.planbcard == 'yes' && this.dataForm1.value.phtype1 != 'Breast Cancer' && this.dataForm1.value.phtype1 != 'Prostate Cancer' && this.dataForm1.value.phtype1 != 'Ovarian Cancer') {
           this.hit_map_value = 'YELLOW';
         }
       }
@@ -3205,4 +3301,17 @@ export class PatientrecordComponent implements OnInit {
 
     this.uploadInput.emit(event);
   }
+    show(val) {
+        let familyval = 'familyrelation' + val;
+        if ($('select[name="' + familyval + '"]').val() == 'Mother' || $('select[name="' + familyval + '"]').val() == 'Father' || $('select[name="' + familyval + '"]').val() == 'Brother' || $('select[name="' + familyval + '"]').val() == 'Sister' || $('select[name="' + familyval + '"]').val() == 'Son' || $('select[name="' + familyval + '"]').val() == 'Daughter') {
+            this.showdeg[val] = '(1st Degree)';
+        }
+        else if ($('select[name="' + familyval + '"]').val() == 'Uncle' || $('select[name="' + familyval + '"]').val() == 'Aunt' || $('select[name="' + familyval + '"]').val() == 'Grand Father' || $('select[name="' + familyval + '"]').val() == 'Grand Mother') {
+            this.showdeg[val] = '(2nd Degree)';
+        }
+        else {
+            this.showdeg[val] = '(3rd Degree)';
+        }
+    }
 }
+

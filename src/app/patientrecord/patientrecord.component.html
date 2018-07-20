@@ -258,8 +258,8 @@
             <input type="button"  value="Cancel" class="btn2" (click)="cancel()" *ngIf="cookiedetails.type!='helpdesk'"/>
             <input type="button"  value="Back - List View" class="btn2" (click)="backtolistview()" *ngIf="cookiedetails.type!='helpdesk'"/>
 
-            <input type="button"  value="Patient Profile Sheet" class="btn2" (click)="openquesmodal()" *ngIf="iscompletedpatientrecord==0"/>
-            <input type="button"  value="View PPS" class="btn2" (click)="openquesmodalreadonly()" *ngIf="iscompletedpatientrecord==1"/>
+            <input type="button"  value="Patient Profile Sheet" class="btn2" (click)="openquesmodal(1)" *ngIf="iscompletedpatientrecord==0"/>
+            <input type="button"  value="View PPS" class="btn2" (click)="openquesmodalreadonly(2)" *ngIf="iscompletedpatientrecord==1"/>
             <input type="button"  value="Download PPS" class="btn2" (click)="gotopdf()" *ngIf="iscompletedpatientrecord==1"/>
             <input type="button"  value="PGX Medication Checklist" class="btn2" (click)="openpgxmedicationmodal()"/>
             <input type="button"  value="Symptom Checklist" class="btn2" (click)="opensymptommodal()" *ngIf="iscompletedccsrecord==0"/>
@@ -805,7 +805,7 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['phname']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['phtype1']"/> -->
-                        <button type="button" (click)="opentypemodal(1)"> Select Type</button>
+                        <button type="button" (click)="opentypemodal(1)" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.phtype1}}</b>
                         <div class="clearfix"></div><b *ngIf="dataForm1.value.phtype1">(1st Degree)</b>
 
@@ -877,9 +877,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation1name']" name="familyrelation1name"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['motype1']"/> -->
-                        <button type="button" (click)="opentypemodal(2)"> Select Type</button>
+                        <button type="button" (click)="opentypemodal(2)"  *ngIf="cookiedetails.type!='helpdesk'" class="typeclass">Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.motype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.motype1">{{showdeg[1]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.motype1" class="hide">{{show(1)}}</b><b *ngIf="dataForm1.value.motype1">{{showdeg[1]}}</b>
 
                       </div>
                       <div class="left2_heading4 relationtype1">
@@ -931,9 +931,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation2name']" name="familyrelation2name"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['fatype1']"/> -->
-                        <button type="button"  (click)="opentypemodal(3)"> Select Type</button>
+                        <button type="button"  (click)="opentypemodal(3)" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.fatype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.fatype1">{{showdeg[2]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.fatype1" class="hide">{{show(2)}}</b><b *ngIf="dataForm1.value.fatype1">{{showdeg[2]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype2">
 
@@ -983,9 +983,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation3name']" name="familyrelation3name"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['dautype1']"/> -->
-                        <button type="button" (click)="opentypemodal(4)"> Select Type</button>
+                        <button type="button" (click)="opentypemodal(4)" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.dautype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.dautype1">{{showdeg[3]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.dautype1" class="hide">{{show(3)}}</b><b *ngIf="dataForm1.value.dautype1">{{showdeg[3]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype3">
 
@@ -1035,9 +1035,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation4name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['sontype1']"/> -->
-                        <button type="button" (click)="opentypemodal(5)"> Select Type</button>
+                        <button type="button" (click)="opentypemodal(5)" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.sontype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.sontype1">{{showdeg[4]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.sontype1" class="hide">{{show(4)}}</b><b *ngIf="dataForm1.value.sontype1">{{showdeg[4]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype4">
 
@@ -1087,9 +1087,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation5name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['brotype1']"/> -->
-                        <button type="button" (click)="opentypemodal(6)"> Select Type</button>
+                        <button type="button" (click)="opentypemodal(6)" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.brotype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.brotype1">{{showdeg[5]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.brotype1" class="hide">{{show(5)}}</b><b *ngIf="dataForm1.value.brotype1">{{showdeg[5]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype5">
 
@@ -1138,9 +1138,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation6name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['sistype1']"/> -->
-                        <button type="button" (click)="opentypemodal(7)"> Select Type</button>
+                        <button type="button" (click)="opentypemodal(7)" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.sistype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.sistype1">{{showdeg[6]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.sistype1" class="hide">{{show(6)}}</b><b *ngIf="dataForm1.value.sistype1">{{showdeg[6]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype6">
 
@@ -1191,9 +1191,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation7name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['neptype1']"/> -->
-                        <button type="button" (click)="opentypemodal(8)"> Select Type</button>
+                        <button type="button" (click)="opentypemodal(8)" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.neptype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.neptype1">{{showdeg[7]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.neptype1" class="hide">{{show(7)}}</b><b *ngIf="dataForm1.value.neptype1">{{showdeg[7]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype7">
 
@@ -1243,9 +1243,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation8name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['niecetype1']"/> -->
-                        <button type="button" (click)="opentypemodal(9)"> Select Type</button>
+                        <button type="button" (click)="opentypemodal(9)" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.niecetype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.niecetype1">{{showdeg[8]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.niecetype1" class="hide">{{show(8)}}}</b><b *ngIf="dataForm1.value.niecetype1">{{showdeg[8]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype8">
 
@@ -1296,9 +1296,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation9name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['unctype1']"/> -->
-                        <button type="button" (click)="opentypemodal(10)"> Select Type</button>
+                        <button type="button" (click)="opentypemodal(10)" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.unctype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.unctype1">{{showdeg[9]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.unctype1" class="hide">{{show(9)}}</b><b *ngIf="dataForm1.value.unctype1">{{showdeg[9]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype9">
 
@@ -1349,9 +1349,9 @@
                       <!--<div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['autntype1']" /><span>,</span></div>-->
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['autntype1']"/> -->
-                        <button type="button" (click)="opentypemodal(11)"> Select Type</button>
+                        <button type="button" (click)="opentypemodal(11)" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.autntype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.autntype1">{{showdeg[10]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.autntype1" class="hide">{{show(10)}}</b><b *ngIf="dataForm1.value.autntype1">{{showdeg[10]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype10">
 
@@ -1402,9 +1402,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation11name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['moftype1']"/> -->
-                        <button type="button" (click)="opentypemodal(12)"> Select Type</button>
+                        <button type="button" (click)="opentypemodal(12)" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.moftype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.moftype1">{{showdeg[11]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.moftype1" class="hide">{{show(11)}}</b><b *ngIf="dataForm1.value.moftype1">{{showdeg[11]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype11">
 
@@ -1455,9 +1455,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation12name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['momotype1']"/> -->
-                        <button type="button" (click)="opentypemodal(13)"> Select Type</button>
+                        <button type="button" (click)="opentypemodal(13)" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.momotype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.momotype1">{{showdeg[12]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.momotype1" class="hide">{{show(12)}}</b><b *ngIf="dataForm1.value.momotype1">{{showdeg[12]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype12">
 
@@ -1508,9 +1508,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation13name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['daftype1']"/> -->
-                        <button type="button" (click)="opentypemodal(14)"> Select Type</button>
+                        <button type="button" (click)="opentypemodal(14)" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.daftype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.daftype1">{{showdeg[13]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.daftype1" class="hide">{{show(13)}}</b><b *ngIf="dataForm1.value.daftype1">{{showdeg[13]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype13">
 
@@ -1561,9 +1561,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation14name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['damtype1']"/> -->
-                        <button type="button" (click)="opentypemodal(15)"> Select Type</button>
+                        <button type="button" (click)="opentypemodal(15)" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.damtype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.damtype1">{{showdeg[14]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.damtype1" class="hide">{{show(14)}}</b><b *ngIf="dataForm1.value.damtype1">{{showdeg[14]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype14">
 
@@ -1614,9 +1614,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation15name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['oth1type1']"/> -->
-                        <button type="button" (click)="opentypemodal(16)"> Select Type</button>
+                        <button type="button" (click)="opentypemodal(16)" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.oth1type1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.oth1type1">{{showdeg[15]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.oth1type1" class="hide">{{show(15)}}</b><b *ngIf="dataForm1.value.oth1type1">{{showdeg[15]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype15">
 
@@ -1666,9 +1666,10 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation16name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['oth2type1']"/> -->
-                        <button type="button" (click)="opentypemodal(17)"> Select Type</button>
+                        <button type="button" (click)="opentypemodal(17)" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.oth2type1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.oth2type1">{{showdeg[16]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.oth2type1" class="hide">{{show(16)}}</b>
+                        <b *ngIf="dataForm1.value.oth2type1">{{showdeg[16]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype16">
 
@@ -1719,9 +1720,9 @@
                       <!--<div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['oth3type1']" /><span>,</span></div>-->
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['oth3type1']"/> -->
-                        <button type="button" (click)="opentypemodal(18)"> Select Type</button>
+                        <button type="button" (click)="opentypemodal(18)" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.oth3type1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.oth3type1">{{showdeg[17]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.oth3type1" class="hide">{{show(17)}}</b><b *ngIf="dataForm1.value.oth3type1">{{showdeg[17]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype17">
 
@@ -1890,7 +1891,7 @@
 
                   <div class="clearfix"></div>
 
-                  <button class="addrecord_btn" type="button" (click)="showsinglediv()">Add Record</button>
+                  <button class="addrecord_btn" type="button" (click)="showsinglediv()" *ngIf="cookiedetails.type!='helpdesk'">Add Record</button>
                   <div class="clearfix"></div>
 
                 </div>
@@ -1968,7 +1969,7 @@
 </div>
 
 
-<div *ngIf="opentypemodalflag" class=" pateintquestioniremodal pateintquestioniremodalnew2 modal fade" (onHidden)="onHidden1()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
+<div *ngIf="opentypemodalflag" class=" sign_modal pateintquestioniremodal modal fade in" (onHidden)="onHidden1()" bsModal #staticModal="bs-modal" [config]="{ show: true}"
      tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -1978,145 +1979,186 @@
 
         <div class="cancer_list">
           <div class="container-fluid admin_inner_heading"><h2>Choose cancer type</h2></div>
-          <div class="newpopup_conbox">
-          <div class="form-group1con">
-            <label> <input type="radio" name="breast" value="Breast Cancer" [(ngModel)]="symptomtype"><span>Breast</span></label>
-            <label> <input type="radio" name="prostate" value="Prostate Cancer" [(ngModel)]="symptomtype"><span>Prostate</span></label>
-            <label> <input type="radio" name="ovarian" value="Ovarian Cancer" [(ngModel)]="symptomtype"><span>Ovarian</span></label>
-  <div class="clearfix"></div>
-         </div>
 
 
-            <h2 style="margin-top: 10px!important;">History Of</h2>
+          <div class="newpopup_conbox_wrapper">
 
-            <div class="form-group1con">
-              <label> <input type="radio" name="stomach" value="Stomach" [(ngModel)]="symptomtype"><span>Stomach</span></label>
-              <label class="hide"> <input type="radio"><span>Large Intestine</span></label>
-              <label class="hide"> <input type="radio"><span>Pancreas</span></label>
-              <label class="hide"> <input type="radio"><span>Kidney</span></label>
-              <label class="hide"> <input type="radio"><span>Leukemia</span></label>
-              <label class="hide"> <input type="radio"><span>Melanoma of Skin</span></label>
-              <label class="hide"> <input type="radio"><span>Soft Tissue</span></label>
-              <label class="hide"> <input type="radio" ><span>Brain</span></label>
-              <label> <input type="radio" name="thyroid" value="Thyroid" [(ngModel)]="symptomtype"><span>Thyroid</span></label>
-              <label> <input type="radio" name="otherendocrine" value="Other Endocrine" [(ngModel)]="symptomtype"><span>Other Endocrine</span></label>
-            <label class="hide"> <input type="radio" ><span>Other parts of the Uterus</span></label>
-            <label class="hide"> <input type="radio"><span>Unspecified</span></label>
-            <label class="hide"> <input type="radio"><span>Unspecified</span></label>
-              <div class="clearfix"></div>
-            </div>
 
-            <h2 style="margin-top: 10px!important;">Genetic Susceptibility Of</h2>
+            <div class="form-group1con_wrapper">
+              <div class="medicati_div_heading">Primary</div>
 
-            <div class="form-group1con">
-              <label class="hide"> <input type="radio" ><span> Breast Cancer</span></label>
-              <label class="hide"> <input type="radio" ><span> Ovarian Cancer</span></label>
-              <label class="hide"> <input type="radio" ><span> Prostate Cancer</span></label>
-              <label> <input type="radio" name="endocervicalcancer" value="Endo/Cervical Cancer" [(ngModel)]="symptomtype"><span> Endo/Cervical Cancer</span></label>
-              <label> <input type="radio" name="pancreaticendocrine" value="Pancreatic, Pituitary, Mult Endocrine" [(ngModel)]="symptomtype"><span> Pancreatic, Pituitary, Mult Endocrine</span></label>
-
-              <label> <input type="radio" name="allothercancer" value="All other cancer" [(ngModel)]="symptomtype"><span> All other cancer</span></label>
+              <label class="poplabel1"> <input type="radio" name="breast" value="Breast Cancer" [(ngModel)]="symptomtype"><span>Breast</span></label>
+              <label class="poplabel1"> <input type="radio" name="prostate" value="Prostate Cancer" [(ngModel)]="symptomtype"><span>Prostate</span></label>
+              <label class="poplabel1"> <input type="radio" name="ovarian" value="Ovarian Cancer" [(ngModel)]="symptomtype"><span>Ovarian</span></label>
               <div class="clearfix"></div>
             </div>
 
 
-            <h2 style="margin-top: 10px!important;">Colorectal/Lynch</h2>
 
-            <div class="form-group1con">
-              <strong>Personal History </strong>
-              <label> <input type="radio" name="largeintestine" value="Large Intestine" [(ngModel)]="symptomtype"><span>Large Intestine</span></label>
-              <label> <input type="radio" name="rectumanus" value="Rectum,rectosigmoid junction, and anus" [(ngModel)]="symptomtype"><span>Rectum,rectosigmoid junction, and anus</span></label>
-              <label> <input type="radio" name="otheruterus" value="Other parts of uterus" [(ngModel)]="symptomtype"><span>Other parts of uterus</span></label>
 
-              <label class="hide"> <input type="radio"><span>Ovarian</span></label>
-              <label> <input type="radio" name="renalpelvis1" value="Renal Pelvis" [(ngModel)]="symptomtype"><span>Renal Pelvis</span></label>
-              <label> <input type="radio" name="ureter1" value="Ureter" [(ngModel)]="symptomtype"><span>Ureter</span></label>
-              <label> <input type="radio" name="Oturinary" value="Other Urinary tract organ" [(ngModel)]="symptomtype"><span>Other Urinary tract organ</span></label>
-              <label> <input type="radio" name="brain" value="Brain" [(ngModel)]="symptomtype"><span>Brain</span></label>
-              <label> <input type="radio" name="colonicpolyps" value="Colonic Polyps" [(ngModel)]="symptomtype"><span>Colonic Polyps</span></label>
+            <div class="form-group1con_wrapper">
 
+              <div class="medicati_div_heading">History Of</div>
+              <label class="poplabel4"> <input type="radio" name="stomach" value="Stomach" [(ngModel)]="symptomtype"><span>Stomach</span></label>
+              <label class="poplabel4 "> <input type="radio" name="Large Intestine1" value="Large Intestine1"  [(ngModel)]="symptomtype"><span>Large Intestine</span></label>
+              <label class="poplabel4 "> <input type="radio" name="Pancreas1" value="Pancreas1"  [(ngModel)]="symptomtype"><span>Pancreas</span></label>
+              <label class="poplabel4 "> <input type="radio" name="Breast1" value="Breast1" [(ngModel)]="symptomtype"><span>Breast</span></label>
+              <label class="poplabel4 "> <input type="radio" name="Ovarian1" value="Ovarian1" [(ngModel)]="symptomtype"><span>Ovarian</span></label>
+              <label class="poplabel4 "> <input type="radio" name="Prostate1" value="Prostate1" [(ngModel)]="symptomtype"><span>Prostate</span></label>
+              <label class="poplabel4 "> <input type="radio" name="Kidney1" value="Kidney1" [(ngModel)]="symptomtype"><span>Kidney</span></label>
+              <label class="poplabel4 "> <input type="radio" name="Leukemia1" value="Leukemia1" [(ngModel)]="symptomtype"><span>Leukemia</span></label>
+              <label class="poplabel4 "> <input type="radio" name="Melanoma of Skin1" value="Melanoma of Skin" [(ngModel)]="symptomtype"><span>Melanoma of Skin</span></label>
+              <label class="poplabel4 "> <input type="radio" name="Soft Tissue1" value="Soft Tissue1" [(ngModel)]="symptomtype"><span>Soft Tissue</span></label>
+              <label class="poplabel4 "> <input type="radio"  name="Brain1" value="Brain1" [(ngModel)]="symptomtype"><span>Brain</span></label>
+              <label class="poplabel4"> <input type="radio" name="thyroid" value="Thyroid" [(ngModel)]="symptomtype"><span>Thyroid</span></label>
+              <label class="poplabel4"> <input type="radio" name="otherendocrine" value="Other Endocrine" [(ngModel)]="symptomtype"><span>Other Endocrine</span></label>
+              <label class="poplabel4 "> <input type="radio"  name="Other parts of the Uterus1" value="Other parts of the Uterus" [(ngModel)]="symptomtype"><span>Other parts of the Uterus</span></label>
+              <label class="poplabel4 "> <input type="radio"  name="Soft Tissue2"  value="Soft Tissue2" [(ngModel)]="symptomtype"><span>Soft Tissue</span></label>
+              <label class="poplabel4  "> <input type="radio"  name="Unspecified1" value="Unspecified1" [(ngModel)]="symptomtype"><span>Unspecified</span></label>
               <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+
+          <div class="newpopup_conbox_wrapper">
+            <div class="form-group1con_wrapper ">
+
+              <div class="medicati_div_heading">Genetic Susceptibility Of</div>
+
+              <label class=" poplabel4 "> <input type="radio"   name="Breast Cancer1"  value="Breast Cancer1" [(ngModel)]="symptomtype"><span> Breast Cancer</span></label>
+              <label class="poplabel4 "> <input type="radio"   name="Ovarian Cancer1"  value="Ovarian Cancer1" [(ngModel)]="symptomtype"><span> Ovarian Cancer</span></label>
+              <label class="poplabel4 "> <input type="radio"  name="Prostate Cancer1" value="Prostate Cancer1" [(ngModel)]="symptomtype" ><span> Prostate Cancer</span></label>
+              <label class="poplabel4"> <input type="radio" name="endocervicalcancer" value="Endo/Cervical Cancer" [(ngModel)]="symptomtype"><span> Endo/Cervical Cancer</span></label>
+              <label class="poplabel4"> <input type="radio" name="pancreaticendocrine" value="Pancreatic, Pituitary, Mult Endocrine" [(ngModel)]="symptomtype"><span> Pancreatic, Pituitary, Mult Endocrine</span></label>
+
+              <label class="poplabel4"> <input type="radio" name="allothercancer" value="All other cancer" [(ngModel)]="symptomtype"><span> All other cancer</span></label>
+              <div class="clearfix"></div>
+            </div>
+
+
+
+
+            <div class="form-group1con_wrapper">
+
+              <div class="medicati_div_heading">Colorectal/Lynch</div>
 
               <strong>Personal Unspecified  </strong>
 
-              <label> <input type="radio" name="digestiveorgan" value="Digestive Organ" [(ngModel)]="symptomtype"><span>Digestive Organ</span></label>
+              <label class="poplabel4">  <input type="radio" name="digestiveorgan" value="Digestive Organ" [(ngModel)]="symptomtype"><span>Digestive Organ</span></label>
 
               <div class="clearfix"></div>
 
+              <strong>Personal History </strong>
+              <label class="poplabel2"> <input type="radio" name="largeintestine" value="Large Intestine" [(ngModel)]="symptomtype"><span>Large Intestine</span></label>
+              <label class="poplabel3"> <input type="radio" name="rectumanus" value="Rectum,rectosigmoid junction, and anus" [(ngModel)]="symptomtype"><span>Rectum,rectosigmoid junction, and anus</span></label>
+              <label class="poplabel2"> <input type="radio" name="otheruterus" value="Other parts of uterus" [(ngModel)]="symptomtype"><span>Other parts of uterus</span></label>
+
+              <label class="poplabel3"> <input type="radio" name="Ovarian2" value="Ovarian2" [(ngModel)]="symptomtype"><span>Ovarian</span></label>
+              <label class="poplabel2"> <input type="radio" name="renalpelvis1" value="Renal Pelvis" [(ngModel)]="symptomtype"><span>Renal Pelvis</span></label>
+              <label class="poplabel3"> <input type="radio" name="ureter1" value="Ureter" [(ngModel)]="symptomtype"><span>Ureter</span></label>
+              <label class="poplabel2"> <input type="radio" name="Oturinary" value="Other Urinary tract organ" [(ngModel)]="symptomtype"><span>Other Urinary tract organ</span></label>
+              <label class="poplabel3"><input type="radio" name="brain" value="Brain" [(ngModel)]="symptomtype"><span>Brain</span></label>
+              <label class="poplabel2"> <input type="radio" name="colonicpolyps" value="Colonic Polyps" [(ngModel)]="symptomtype"><span>Colonic Polyps</span></label>
+
+              <div class="clearfix"></div>
+
+
+
+
+
             </div>
 
-            <h2 style="margin-top: 10px!important;">All Other Cancers</h2>
 
-            <div class="form-group1con">
+
+
+
+
+            <div class="clearfix"></div>
+
+          </div>
+
+          <div class="newpopup_conbox_wrapper">
+
+            <div class="form-group1con_wrapper formwrapper_last">
+
+              <div class="medicati_div_heading">All Other Cancers</div>
               <strong>Personal History </strong>
-              <label> <input type="radio" name="esophagus" value="Esophagus" [(ngModel)]="symptomtype"><span>Esophagus</span></label>
-              <label> <input type="radio" name="otherstomach" value="Other Stomach" [(ngModel)]="symptomtype"><span>Other Stomach</span></label>
-              <label class="hide"> <input type="radio"><span>Large Intestine</span></label>
-              <label> <input type="radio" name="liver" value="Liver" [(ngModel)]="symptomtype"><span>Liver</span></label>
-              <label> <input type="radio" name="smallintestine" value="Small Intestine" [(ngModel)]="symptomtype"><span>Small Intestine</span></label>
-              <label> <input type="radio" name="pancreas" value="Pancreas" [(ngModel)]="symptomtype"><span>Pancreas</span></label>
-            <label> <input type="radio" name="digestiveorgans" value="Other digestive organs" [(ngModel)]="symptomtype"><span>Other digestive organs</span></label>
-            <label> <input type="radio" name="bronchuslung" value="Bronchus and Lung" [(ngModel)]="symptomtype"><span>Bronchus and Lung</span></label>
-            <label> <input type="radio" name="trachea" value="trachea" [(ngModel)]="symptomtype"><span>Trachea</span></label>
-            <label> <input type="radio" name="larynx" value="larynx" [(ngModel)]="symptomtype"><span>Larynx</span></label>
-            <label> <input type="radio" name="nasalsinuses" value="Nasal cavaties, middle ear, and accessory sinuses" [(ngModel)]="symptomtype"><span>Nasal cavaties, middle ear, and accessory sinuses</span></label>
-              <label> <input type="radio" name="thymus" value="Thymus" [(ngModel)]="symptomtype"><span>Thymus</span></label>
-              <label> <input type="radio" name="rorgans" value="Respiratory and intrathoracic organs" [(ngModel)]="symptomtype"><span>Respiratory and intrathoracic organs</span></label>
-              <label> <input type="radio" name="cervixuteri" value="Cervix Uteri" [(ngModel)]="symptomtype"><span>Cervix Uteri</span></label>
-              <label class="hide"> <input type="radio"><span>Ovarian</span></label>
-              <label> <input type="radio" name="otforgans" value="Other female genital organs" [(ngModel)]="symptomtype"><span>Other female genital organs</span></label>
-              <label> <input type="radio" name="unmaleorgan" value="Unspecified male genital organ" [(ngModel)]="symptomtype"><span>Unspecified male genital organ</span></label>
-              <label class="hide"> <input type="radio"><span>Prostate</span></label>
-              <label> <input type="radio" name="testis" value="Testis" [(ngModel)]="symptomtype"><span>Testis</span></label>
-              <label> <input type="radio" name="epididymis" value="Epididymis" [(ngModel)]="symptomtype"><span>Epididymis</span></label>
-              <label> <input type="radio" name="otmorgans" value="Other male genital Organs" [(ngModel)]="symptomtype"><span>Other male genital Organs</span></label>
-              <label> <input type="radio" name="urinaryorgan" value="Urinary tract organ" [(ngModel)]="symptomtype"><span>Urinary tract organ</span></label>
-              <label> <input type="radio" name="bladder" value="Bladder" [(ngModel)]="symptomtype"><span>Bladder</span></label>
-              <label> <input type="radio" name="kidney" value="Kidney" [(ngModel)]="symptomtype"><span>Kidney</span></label>
-              <label class="hide"> <input type="radio" name="renalpelvis" value="Renal Pelvis" [(ngModel)]="symptomtype"><span>Renal Pelvis</span></label>
-              <label class="hide"> <input type="radio" name="ureter" value="Ureter" [(ngModel)]="symptomtype"><span>Ureter</span></label>
-              <label class="hide"> <input type="radio" name="othurinaryorgan" value="other urinary tract organ" [(ngModel)]="symptomtype"><span>other urinary tract organ</span></label>
-              <label> <input type="radio" name="Leukemia" value="Leukemia" [(ngModel)]="symptomtype"><span>Leukemia</span></label>
-              <label> <input type="radio" name="hodgkinlymphomas" value="Hodgkin Lymphomas" [(ngModel)]="symptomtype"><span>Hodgkin Lymphomas</span></label>
-              <label> <input type="radio" name="nonhodgkinlymphomas" value="Non-Hodgkin Lymphomas" [(ngModel)]="symptomtype"><span>Non-Hodgkin Lymphomas</span></label>
-              <label> <input type="radio" name="lymphoidtissues" value="Lymphoid, Hematopoietic and Related tissues" [(ngModel)]="symptomtype"><span> Lymphoid, Hematopoietic and Related tissues</span></label>
+              <label class="poplabel4 "> <input type="radio" name="Digestive Organs" value="Digestive Organs" [(ngModel)]="symptomtype"><span>Digestive Organs</span></label>
+              <label class="poplabel4"> <input type="radio" name="esophagus" value="Esophagus" [(ngModel)]="symptomtype"><span>Esophagus</span></label>
+              <label class="poplabel4"> <input type="radio" name="otherstomach" value="Other Stomach" [(ngModel)]="symptomtype"><span>Other Stomach</span></label>
+              <label class="poplabel4 "> <input type="radio" name="Large Intestine2"  value="Large Intestine2" [(ngModel)]="symptomtype"><span>Large Intestine</span></label>
+              <label class="poplabel4 "> <input type="radio" name="Rectum, Rectosigmoid Junction, and Anus" value="Rectum, Rectosigmoid Junction, and Anus" [(ngModel)]="symptomtype"><span>Rectum, Rectosigmoid Junction, and Anus</span></label>
+              <label class="poplabel4"><input type="radio" name="liver" value="Liver" [(ngModel)]="symptomtype"><span>Liver</span></label>
+              <label class="poplabel4"><input type="radio" name="smallintestine" value="Small Intestine" [(ngModel)]="symptomtype"><span>Small Intestine</span></label>
+              <label class="poplabel4"><input type="radio" name="pancreas" value="Pancreas" [(ngModel)]="symptomtype"><span>Pancreas</span></label>
+              <label class="poplabel4"> <input type="radio" name="digestiveorgans" value="Other digestive organs" [(ngModel)]="symptomtype"><span>Other digestive organs</span></label>
+              <label class="poplabel4"> <input type="radio" name="bronchuslung" value="Bronchus and Lung" [(ngModel)]="symptomtype"><span>Bronchus and Lung</span></label>
+              <label class="poplabel4"> <input type="radio" name="trachea" value="trachea" [(ngModel)]="symptomtype"><span>Trachea</span></label>
+              <label class="poplabel4"> <input type="radio" name="larynx" value="larynx" [(ngModel)]="symptomtype"><span>Larynx</span></label>
+              <label class="poplabel4"> <input type="radio" name="nasalsinuses" value="Nasal cavaties, middle ear, and accessory sinuses" [(ngModel)]="symptomtype"><span>Nasal cavaties, middle ear, and accessory sinuses</span></label>
+              <label class="poplabel4"> <input type="radio" name="thymus" value="Thymus" [(ngModel)]="symptomtype"><span>Thymus</span></label>
+              <label class="poplabel4"> <input type="radio" name="rorgans" value="Respiratory and intrathoracic organs" [(ngModel)]="symptomtype"><span>Respiratory and intrathoracic organs</span></label>
+              <label class="poplabel4 "> <input type="radio" name="Breast2" value="Breast2" [(ngModel)]="symptomtype"><span>Breast</span></label>
+              <label class="poplabel4"> <input type="radio" name="cervixuteri" value="Cervix Uteri" [(ngModel)]="symptomtype"><span>Cervix Uteri</span></label>
+              <label class=" poplabel4 "> <input type="radio" name="Ovarian3" value="Ovarian3 Uteri" [(ngModel)]="symptomtype"><span>Ovarian</span></label>
+              <label class="poplabel4"> <input type="radio" name="otforgans" value="Other female genital organs" [(ngModel)]="symptomtype"><span>Other female genital organs</span></label>
+              <label class="poplabel4"> <input type="radio" name="unmaleorgan" value="Unspecified male genital organ" [(ngModel)]="symptomtype"><span>Unspecified male genital organ</span></label>
+              <label class="poplabel4 "> <input type="radio" name="Prostate3" value="Prostate3 Uteri" [(ngModel)]="symptomtype"><span>Prostate</span></label>
+              <label class="poplabel4"> <input type="radio" name="testis" value="Testis" [(ngModel)]="symptomtype"><span>Testis</span></label>
+              <label class="poplabel4"><input type="radio" name="epididymis" value="Epididymis" [(ngModel)]="symptomtype"><span>Epididymis</span></label>
+              <label class="poplabel4"><input type="radio" name="otmorgans" value="Other male genital Organs" [(ngModel)]="symptomtype"><span>Other male genital Organs</span></label>
+              <label class="poplabel4"> <input type="radio" name="urinaryorgan" value="Urinary tract organ" [(ngModel)]="symptomtype"><span>Urinary tract organ</span></label>
+              <label class="poplabel4"> <input type="radio" name="bladder" value="Bladder" [(ngModel)]="symptomtype"><span>Bladder</span></label>
+              <label class="poplabel4"><input type="radio" name="kidney" value="Kidney" [(ngModel)]="symptomtype"><span>Kidney</span></label>
+              <label class="poplabel4 "> <input type="radio" name="renalpelvis" value="Renal Pelvis" [(ngModel)]="symptomtype"><span>Renal Pelvis</span></label>
+              <label class="poplabel4 "> <input type="radio" name="ureter" value="Ureter" [(ngModel)]="symptomtype"><span>Ureter</span></label>
+              <label class=" poplabel4 "> <input type="radio" name="othurinaryorgan" value="other urinary tract organ" [(ngModel)]="symptomtype"><span>other urinary tract organ</span></label>
+              <label class="poplabel4"> <input type="radio" name="Leukemia" value="Leukemia" [(ngModel)]="symptomtype"><span>Leukemia</span></label>
+              <label class="poplabel4"> <input type="radio" name="hodgkinlymphomas" value="Hodgkin Lymphomas" [(ngModel)]="symptomtype"><span>Hodgkin Lymphomas</span></label>
+              <label class="poplabel4"> <input type="radio" name="nonhodgkinlymphomas" value="Non-Hodgkin Lymphomas" [(ngModel)]="symptomtype"><span>Non-Hodgkin Lymphomas</span></label>
+              <label class="poplabel4"> <input type="radio" name="lymphoidtissues" value="Lymphoid, Hematopoietic and Related tissues" [(ngModel)]="symptomtype"><span> Lymphoid, Hematopoietic and Related tissues</span></label>
 
-              <label> <input type="radio" name="tongue" value="Tongue" [(ngModel)]="symptomtype"><span> Tongue</span></label>
-              <label> <input type="radio" name="lippharynx" value="Lip, Oral cavity, and Pharynx" [(ngModel)]="symptomtype"><span> Lip, Oral cavity, and Pharynx</span></label>
+              <label class="poplabel4"> <input type="radio" name="tongue" value="Tongue" [(ngModel)]="symptomtype"><span> Tongue</span></label>
+              <label class="poplabel4"> <input type="radio" name="lippharynx" value="Lip, Oral cavity, and Pharynx" [(ngModel)]="symptomtype"><span> Lip, Oral cavity, and Pharynx</span></label>
 
-              <label> <input type="radio" name="lippharynxun" value="lip, oral cavity, and pharynx unspecified" [(ngModel)]="symptomtype"><span>lip, oral cavity, and pharynx unspecified</span></label>
-              <label> <input type="radio" name="melanomaskin" value="Melanoma of Skin" [(ngModel)]="symptomtype"><span> Melanoma of Skin</span></label>
+              <label class="poplabel4"> <input type="radio" name="lippharynxun" value="lip, oral cavity, and pharynx unspecified" [(ngModel)]="symptomtype"><span>lip, oral cavity, and pharynx unspecified</span></label>
+              <label class="poplabel4"> <input type="radio" name="melanomaskin" value="Melanoma of Skin" [(ngModel)]="symptomtype"><span> Melanoma of Skin</span></label>
 
-              <label> <input type="radio" name="skin" value="Skin" [(ngModel)]="symptomtype"><span>Skin </span></label>
-              <label> <input type="radio" name="bone" value="Bone" [(ngModel)]="symptomtype"><span>Bone </span></label>
-              <label> <input type="radio" name="softtissue" value="Soft Tissue" [(ngModel)]="symptomtype"><span>Soft Tissue </span></label>
-              <label> <input type="radio" name="Eye" value="Eye" [(ngModel)]="symptomtype"><span>Eye </span></label>
-              <label class="hide"> <input type="radio"><span>Brain </span></label>
-              <label> <input type="radio" name="nervoustissue" value="Nervous tissue" [(ngModel)]="symptomtype"><span>Nervous tissue </span></label>
-              <label> <input type="radio" name="othsystems" value="Other organs and systems" [(ngModel)]="symptomtype"><span>Other organs and systems</span></label>
-              <label> <input type="radio" name="malignanttissues" value="Malignant neoplasms of lymphoid, hematopoietic and related tissues" [(ngModel)]="symptomtype"><span>Malignant neoplasms of lymphoid, hematopoietic and related tissues</span></label>
-              <label> <input type="radio" name="carrierdisease" value="Carrier genetic disease" [(ngModel)]="symptomtype"><span>Carrier genetic disease</span></label>
-              <label> <input type="radio" name="unspecified" value="Unspecified" [(ngModel)]="symptomtype"><span>Unspecified</span></label>
+              <label class="poplabel4"> <input type="radio" name="skin" value="Skin" [(ngModel)]="symptomtype"><span>Skin </span></label>
+              <label class="poplabel4"> <input type="radio" name="bone" value="Bone" [(ngModel)]="symptomtype"><span>Bone </span></label>
+              <label class="poplabel4"> <input type="radio" name="softtissue" value="Soft Tissue" [(ngModel)]="symptomtype"><span>Soft Tissue </span></label>
+              <label class="poplabel4"> <input type="radio" name="Eye" value="Eye" [(ngModel)]="symptomtype"><span>Eye </span></label>
+              <label class=" poplabel4 "> <input type="radio" name="Brain3" value="Brain3" [(ngModel)]="symptomtype"><span>Brain </span></label>
+              <label class="poplabel4"> <input type="radio" name="nervoustissue" value="Nervous tissue" [(ngModel)]="symptomtype"><span>Nervous tissue </span></label>
+              <label class="poplabel4"><input type="radio" name="othsystems" value="Other organs and systems" [(ngModel)]="symptomtype"><span>Other organs and systems</span></label>
+
+              <label class="poplabel4"> <input type="radio" name="malignanttissues" value="Malignant neoplasms of lymphoid, hematopoietic and related tissues" [(ngModel)]="symptomtype"><span>Malignant neoplasms of lymphoid, hematopoietic and related tissues</span></label>
+              <label class="poplabel4"> <input type="radio" name="carrierdisease" value="Carrier genetic disease" [(ngModel)]="symptomtype"><span>Carrier genetic disease</span></label>
+              <label class="poplabel4"> <input type="radio" name="unspecified" value="Unspecified" [(ngModel)]="symptomtype"><span>Unspecified</span></label>
 
               <div class="clearfix"></div>
               <strong class="hide">Genetic Susceptibility To </strong>
 
-              <label class="hide"> <input type="radio"><span>Breast Cancer</span></label>
-              <label class="hide"> <input type="radio"><span>Endo/Cervical Cancer</span></label>
-              <label class="hide"> <input type="radio" ><span>All other cancers</span></label>
+              <label class="poplabel4 hide"> <input type="radio" name="Breast Cancer2" value="Breast Cancer2" [(ngModel)]="symptomtype"><span>Breast Cancer</span></label>
+              <label class="poplabel4 hide"> <input type="radio" name="Endo/Cervical Cancer1" value="Endo/Cervical Cancer1" [(ngModel)]="symptomtype"><span>Endo/Cervical Cancer</span></label>
+              <label class="poplabel4 hide"> <input type="radio" name="unspecified1" value="unspecified1" [(ngModel)]="symptomtype"><span>All other cancers</span></label>
 
               <div class="clearfix"></div>
             </div>
 
 
-            <div class="pateintquestionire_bottom_form" style="width: 100%;">
+            <div class="clearfix"></div>
 
-              <input type="button" class="pateintquestionirebtn pateintquestionirebtn2" value="Cancel" (click)="cancelvaluefromdataform1()">
-              <input type="submit" class="pateintquestionirebtn " value="Save" (click)="putvaluetodataform1()">
+          </div>
+
+          <div class="newpopup_conbox_wrapper" style="background: #fff;">
+            <input type="button" class="pateintquestionirebtn pateintquestionirebtn2" value="Cancel" (click)="cancelvaluefromdataform1()">
+            <input type="submit" class="pateintquestionirebtn " value="Save" (click)="putvaluetodataform1()">
 
 
-              <div class="clearfix"></div>
-            </div>
+            <div class="clearfix"></div>
+
 
 
           </div>

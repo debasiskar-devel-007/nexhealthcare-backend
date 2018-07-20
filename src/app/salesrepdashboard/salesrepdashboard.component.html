@@ -549,14 +549,14 @@
                   <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
 
                   <div class="divnew" >
-                    <span class="clicklink" (click)="showquestionaryform(item._id)" *ngIf="item.PatientRecordCompletedOrNot[0]!=null">View PPS</span>
+                      <div *ngIf="item.PatientRecordCompletedOrNot?.length>0"><span class="clicklink" (click)="showquestionaryform(item._id)" *ngIf="item.PatientRecordCompletedOrNot[0].iscompleted==1">View PPS</span></div>
                    <!-- <div *ngIf="item.Commoncancersymptomdetail[0]?.length>0"><span class="clicklink" (click)="showsymptomchecklist(item._id)" *ngIf="item.Commoncancersymptomdetail[0].iscompletedccsrecord=='1'">View Symptom Checklist</span></div>-->
                     <div *ngIf="item.Commoncancersymptomdetail?.length>0"><span class="clicklink" (click)="showsymptomchecklist(item._id)"  *ngIf="item.Commoncancersymptomdetail[0].iscompleted==1">View Symptom Checklist</span></div>
                   </div>
                   <!--  <span class="clicklink" >View PGX Medication Checklist</span>-->
 
                   <div class="divnew" >
-                    <span  class="clicklink" (click)="gotopdf(item._id)" *ngIf="item.PatientRecordCompletedOrNot[0]!=null">Download PPS</span>
+                      <div *ngIf="item.PatientRecordCompletedOrNot?.length>0"> <span  class="clicklink" (click)="gotopdf(item._id)" *ngIf="item.PatientRecordCompletedOrNot[0].iscompleted==1">Download PPS</span></div>
                     <div *ngIf="item.Commoncancersymptomdetail?.length>0"><span  class="clicklink" (click)="gotocsspdf(item._id)" *ngIf="item.Commoncancersymptomdetail[0].iscompleted==1">Download Symptom Checklist</span></div>
                  <!--   <span  class="clicklink" >Download PGX Medication Checklist</span>-->
                   </div>
@@ -1104,7 +1104,7 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['phname']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['phtype1']"/> -->
-                        <button type="button"> Select Type</button>
+                        <button type="button" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.phtype1}}</b>
                         <div class="clearfix"></div><b *ngIf="dataForm1.value.phtype1">(1st Degree)</b>
 
@@ -1166,9 +1166,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation1name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['motype1']"/> -->
-                        <button type="button"> Select Type</button>
+                        <button type="button" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.motype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.motype1">{{show(showdeg[1])}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.motype1" class="hide">{{show(1)}}</b><b *ngIf="dataForm1.value.motype1">{{showdeg[1]}}</b>
 
                       </div>
                       <div class="left2_heading4 relationtype1">
@@ -1220,9 +1220,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation2name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['fatype1']"/> -->
-                        <button type="button"> Select Type</button>
+                        <button type="button" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.fatype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.fatype1">{{showdeg[2]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.fatype1" class="hide">{{show(2)}}</b><b *ngIf="dataForm1.value.fatype1">{{showdeg[2]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype2">
 
@@ -1272,9 +1272,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation3name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['dautype1']"/> -->
-                        <button type="button" > Select Type</button>
+                        <button type="button" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.dautype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.dautype1">{{showdeg[3]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.dautype1" class="hide">{{show(3)}}</b><b *ngIf="dataForm1.value.dautype1">{{showdeg[3]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype3">
 
@@ -1324,9 +1324,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation4name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['sontype1']"/> -->
-                        <button type="button" > Select Type</button>
+                        <button type="button" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.sontype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.sontype1">{{showdeg[4]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.sontype1" class="hide">{{show(4)}}</b><b *ngIf="dataForm1.value.sontype1">{{showdeg[4]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype4">
 
@@ -1376,9 +1376,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation5name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['brotype1']"/> -->
-                        <button type="button" > Select Type</button>
+                        <button type="button" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.brotype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.brotype1">{{showdeg[5]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.brotype1" class="hide">{{show(5)}}</b><b *ngIf="dataForm1.value.brotype1">{{showdeg[5]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype5">
 
@@ -1427,9 +1427,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation6name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['sistype1']"/> -->
-                        <button type="button" > Select Type</button>
+                        <button type="button" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.sistype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.sistype1">{{showdeg[6]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.sistype1" class="hide">{{show(6)}}</b><b *ngIf="dataForm1.value.sistype1">{{showdeg[6]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype6">
 
@@ -1480,9 +1480,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation7name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['neptype1']"/> -->
-                        <button type="button"> Select Type</button>
+                        <button type="button" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.neptype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.neptype1">{{showdeg[7]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.neptype1" class="hide">{{show(7)}}</b><b *ngIf="dataForm1.value.neptype1">{{showdeg[7]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype7">
 
@@ -1532,9 +1532,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation8name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['niecetype1']"/> -->
-                        <button type="button" > Select Type</button>
+                        <button type="button" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.niecetype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.niecetype1">{{showdeg[8]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.niecetype1" class="hide">{{show(8)}}</b><b *ngIf="dataForm1.value.niecetype1">{{showdeg[8]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype8">
 
@@ -1585,9 +1585,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation9name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['unctype1']"/> -->
-                        <button type="button" > Select Type</button>
+                        <button type="button" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.unctype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.unctype1">{{showdeg[9]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.unctype1" class="hide">{{show(9)}}</b><b *ngIf="dataForm1.value.unctype1">{{showdeg[9]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype9">
 
@@ -1638,9 +1638,9 @@
                       <!--<div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['autntype1']" /><span>,</span></div>-->
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['autntype1']"/> -->
-                        <button type="button" > Select Type</button>
+                        <button type="button" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.autntype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.autntype1">{{showdeg[10]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.autntype1" class="hide">{{show(10)}}</b><b *ngIf="dataForm1.value.autntype1">{{showdeg[10]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype10">
 
@@ -1691,9 +1691,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation11name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['moftype1']"/> -->
-                        <button type="button" > Select Type</button>
+                        <button type="button" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.moftype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.moftype1">{{showdeg[11]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.moftype1" class="hide">{{show(11)}}</b><b *ngIf="dataForm1.value.moftype1">{{showdeg[11]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype11">
 
@@ -1744,9 +1744,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation12name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['momotype1']"/> -->
-                        <button type="button"> Select Type</button>
+                        <button type="button" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.momotype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.momotype1">{{showdeg[12]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.momotype1" class="hide">{{show(12)}}</b><b *ngIf="dataForm1.value.momotype1">{{showdeg[12]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype12">
 
@@ -1797,9 +1797,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation13name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['daftype1']"/> -->
-                        <button type="button" > Select Type</button>
+                        <button type="button" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.daftype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.daftype1">{{showdeg[13]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.daftype1" class="hide">{{show(13)}}</b><b *ngIf="dataForm1.value.daftype1">{{showdeg[13]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype13">
 
@@ -1850,9 +1850,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation14name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['damtype1']"/> -->
-                        <button type="button" > Select Type</button>
+                        <button type="button" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.damtype1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.damtype1">{{showdeg[14]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.damtype1" class="hide">{{show(14)}}</b><b *ngIf="dataForm1.value.damtype1">{{showdeg[14]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype14">
 
@@ -1903,9 +1903,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation15name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['oth1type1']"/> -->
-                        <button type="button" > Select Type</button>
+                        <button type="button" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.oth1type1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.oth1type1">{{showdeg[15]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.oth1type1" class="hide">{{show(15)}}</b><b *ngIf="dataForm1.value.oth1type1">{{showdeg[15]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype15">
 
@@ -1955,9 +1955,9 @@
                       <div class="left2_heading4new"><input type="text"  [formControl]="dataForm1.controls['familyrelation16name']"/></div>
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['oth2type1']"/> -->
-                        <button type="button" > Select Type</button>
+                        <button type="button" *ngIf="cookiedetails.type!='helpdesk'"> Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.oth2type1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.oth2type1">{{showdeg[16]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.oth2type1" class="hide">{{show(16)}}</b><b *ngIf="dataForm1.value.oth2type1">{{showdeg[16]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype16">
 
@@ -2008,9 +2008,9 @@
                       <!--<div class="left2_heading3"><input type="text" [formControl]="dataForm1.controls['oth3type1']" /><span>,</span></div>-->
                       <div class="left2_heading3">
                         <!--<input type="hidden" [formControl]="dataForm1.controls['oth3type1']"/> -->
-                        <button type="button" > Select Type</button>
+                        <button type="button" *ngIf="cookiedetails.type!='helpdesk'" > Select Type</button>
                         <div class="clearfix"></div><b>{{dataForm1.value.oth3type1}}</b>
-                        <div class="clearfix"></div><b *ngIf="dataForm1.value.oth3type1">{{showdeg[17]}}</b>
+                        <div class="clearfix"></div><b *ngIf="dataForm1.value.oth3type1" class="hide">{{show(17)}}</b><b *ngIf="dataForm1.value.oth3type1">{{showdeg[17]}}</b>
                       </div>
                       <div class="left2_heading4 relationtype17">
 

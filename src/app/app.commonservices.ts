@@ -6,7 +6,7 @@ export class Commonservices {
   url: any;
   hostis: any;
   commonvalue: any;
-  value = 1;
+  value = 2;
 
   constructor(private http: HttpClient) {
     this.hostis = window.location.host;

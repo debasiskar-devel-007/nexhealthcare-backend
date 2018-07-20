@@ -132,11 +132,12 @@
           </div>
 -->
           <div class="divnew"  *ngIf="isthisadmin=='admin'">
-            <span class="clicklink" (click)="showquestionaryform(item._id)" *ngIf="item.PatientRecordCompletedOrNot[0]!=null">View PPS</span>
+            <div *ngIf="item.PatientRecordCompletedOrNot?.length>0"><span class="clicklink" (click)="showquestionaryform(item._id)" *ngIf="item.PatientRecordCompletedOrNot[0].iscompleted==1">View PPS</span></div>
             <div *ngIf="item.Commoncancersymptomdetail?.length>0"><span class="clicklink" (click)="showsymptomchecklist(item._id)"  *ngIf="item.Commoncancersymptomdetail[0].iscompleted==1">View Symptom Checklist</span></div>
           </div>
+
           <div class="divnew"  *ngIf="isthisadmin=='admin'">
-            <span  class="clicklink" (click)="gotopdf(item._id)" *ngIf="item.PatientRecordCompletedOrNot[0]!=null">Download PPS</span>
+            <div *ngIf="item.PatientRecordCompletedOrNot?.length>0"> <span  class="clicklink" (click)="gotopdf(item._id)" *ngIf="item.PatientRecordCompletedOrNot[0].iscompleted==1">Download PPS</span></div>
             <div *ngIf="item.Commoncancersymptomdetail?.length>0"><span  class="clicklink" (click)="gotocsspdf(item._id)" *ngIf="item.Commoncancersymptomdetail[0].iscompleted==1">Download Symptom Checklist</span></div>
           </div>
 

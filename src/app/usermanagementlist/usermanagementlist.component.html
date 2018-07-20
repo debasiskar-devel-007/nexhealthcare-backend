@@ -93,7 +93,7 @@
           <p *ngIf="item.Repcontractdetail[0]">{{item.Repcontractdetail[0].pgxvalue}}</p>
           <p *ngIf="!item.Repcontractdetail[0]">No amount given</p>
         </td>
-        <td *ngIf="item.Tagdetail[0]">{{showtagname(item.Tagdetail[0].tagid)}}</td>
+      <td><p *ngIf="item.Tagdetail[0]">{{showtagname(item.Tagdetail[0].tagid)}}</p></td>
         <td>
           <p *ngIf="item.iswebinarchekced == 0 || item.iswebinarchekced== null">No
             <br/><small (click)="markasdone(item._id)">Mark as Done</small>
