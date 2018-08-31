@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
-import {CookieService} from 'angular2-cookie/core';
+import {CookieService} from 'ngx-cookie-service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -20,12 +20,13 @@ export class MyaccountComponent implements OnInit {
     public type;
     public usastates;
     public passerror;
+    public addpatientvalidation: any = 0;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.fb = fb;
         this.serverurl = _commonservices.url;
         this.addcookie = addcookie;
-        this.cookiedetails = this.addcookie.getObject('cookiedetails');
+        this.cookiedetails = this.addcookie.get('cookiedetails');
         console.log('this.cookiedetails');
         console.log(this.cookiedetails);
         if (this.cookiedetails == null) {
@@ -70,7 +71,7 @@ export class MyaccountComponent implements OnInit {
     }
     getaccountdetails() {
         let link = this.serverurl + 'getuserdetails';
-        let data = {userid : this.cookiedetails.id};
+        let data = {userid : this.cookiedetails};
         this._http.post(link, data)
             .subscribe(res => {
                 let result = res.json();
@@ -105,6 +106,7 @@ export class MyaccountComponent implements OnInit {
     }
 
     dosubmit(formval) {
+        this.addpatientvalidation = 1;
         this.passerror = null;
         console.log(this.dataForm.valid);
         console.log(formval.password);
@@ -114,7 +116,7 @@ export class MyaccountComponent implements OnInit {
             if (this.dataForm.valid) {
                 let link= this.serverurl + 'edituserdetails';
                 let data = {
-                    id: this.cookiedetails.id,
+                    id: this.cookiedetails,
                     firstname: formval.firstname,
                     lastname: formval.lastname,
                     address: formval.address,
@@ -155,7 +157,7 @@ export class MyaccountComponent implements OnInit {
                         console.log('yo');
                         let link= this.serverurl + 'edituserdetails';
                         let data = {
-                            id: this.cookiedetails.id,
+                            id: this.cookiedetails,
                             firstname: formval.firstname,
                             lastname: formval.lastname,
                             password: formval.password,
@@ -187,4 +189,10 @@ export class MyaccountComponent implements OnInit {
             }
         }
     }
+    addpatientvalidationcall() {
+        this.addpatientvalidation = 0;
+    }
+    /*gotodashboard() {
+        this.router.navigate(['/rep-dashboard']);
+    }*/
 }

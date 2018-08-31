@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CookieService} from 'angular2-cookie/core';
+import {CookieService} from 'ngx-cookie-service';
 import {Router} from '@angular/router';
 import {Http} from '@angular/http';
 import {Commonservices} from '../app.commonservices';
@@ -22,13 +22,13 @@ export class TrainingstepComponent implements OnInit {
 
     constructor(addcookie: CookieService, private _http: Http, private router: Router, public _commonservices: Commonservices) {
         this.addcookie = addcookie ;
-        this.cookiedetails = this.addcookie.getObject('cookiedetails');
-        console.log('trainingstep get cookie');
-        console.log(this.cookiedetails);
+        this.cookiedetails = this.addcookie.get('cookiedetails');
+      //  console.log('trainingstep get cookie');
+      //  console.log(this.cookiedetails);
         this.serverurl = _commonservices.url;
-        if (this.cookiedetails == null) {
-            this.router.navigate(['/log-in']);
-        } else {
+      if (this.cookiedetails == null || this.cookiedetails <5) {
+        this.router.navigate(['/log-in']);
+      } else {
             this.callit();
             this.getuserdetails();
         }
@@ -40,12 +40,12 @@ export class TrainingstepComponent implements OnInit {
     callit() {
         let link = this.serverurl + 'gettrainingvideostatusindex';
         let data = {
-            userid: this.cookiedetails.id,
+            userid: this.cookiedetails,
         };
         this._http.post(link, data)
             .subscribe(res => {
                 let result = res.json();
-                console.log(result);
+             //   console.log(result);
                 this.trainingvideolist = parseInt(result.status.timeindex);
                 console.log(this.trainingvideolist);
                 // console.log(this.trainingvideolist.status.timeindex);
@@ -56,7 +56,7 @@ export class TrainingstepComponent implements OnInit {
     getuserdetails() {
         let link = this.serverurl + 'getuserdetails';
         let data = {
-            userid: this.cookiedetails.id,
+            userid: this.cookiedetails,
         };
         this._http.post(link, data)
             .subscribe(res => {
@@ -71,16 +71,17 @@ export class TrainingstepComponent implements OnInit {
 
         setTimeout(() => {
             var curval=this.trainingvideolist;
-            console.log('curvval '+ this.trainingvideolist );
-            console.log('curvval '+ curval );
+          //  console.log('curvval '+ this.trainingvideolist );
+           // console.log('curvval '+ curval );
             let vindex=this.vindex;
             /* console.log("$('#tspan').text()");
         console.log($('#tspan').text());
         console.log($('#tspan').html());*/
+            console.log(document.getElementById('video1'));
             document.getElementById('video1').addEventListener('loadedmetadata', function() {
 
-                console.log('vindex');
-                console.log(vindex);
+              //  console.log('vindex');
+              //  console.log(vindex);
                 if(vindex==1) $('video').get(0).currentTime = curval;
                 else $('video').get(0).pause();
             }, true);
@@ -99,8 +100,8 @@ export class TrainingstepComponent implements OnInit {
                     $('video').find('source').attr('src', '');
                     //  this.gonextmodal = true;
                     $('#modalcall').click();
-                    console.log('aud');
-                    console.log(aud);
+                  //  console.log('aud');
+                  //  console.log(aud);
                 }, 1000);
             };
             $('video').get(0).play();
@@ -112,14 +113,14 @@ export class TrainingstepComponent implements OnInit {
         // console.log(aud.currentTime);
         let link = this.serverurl + 'trainingvideostatus';
         let data = {
-            userid: this.cookiedetails.id,
+            userid: this.cookiedetails,
             timeindex: $('video').get(0).currentTime,
         };
         this._http.post(link, data)
             .subscribe(res => {
                 let result = res.json();
                 if (result.status == 'success') {
-                    this.addcookie.removeAll();
+                    this.addcookie.deleteAll();
                     this.router.navigate(['/log-in']);
                 }
             }, error => {
@@ -133,7 +134,7 @@ export class TrainingstepComponent implements OnInit {
     callreplay() {
         let link = this.serverurl + 'trainingvideostatusforreplay';
         let data = {
-            userid: this.cookiedetails.id,
+            userid: this.cookiedetails,
             timeindex: 'c',
         };
         this._http.post(link, data)
@@ -149,12 +150,22 @@ export class TrainingstepComponent implements OnInit {
     demomodal() {
         this.gonextmodal = true;
     }
-    calldashboard() {
-        let link = this.serverurl + 'dashboardtrainingvideostatus';
-        let data = {
-            userid: this.cookiedetails.id,
+    calldashboard(val) {
+      var link;
+      var data;
+      if (val == 1) {
+         link = this.serverurl + 'dashboardtrainingvideostatus';
+         data = {
+            userid: this.cookiedetails,
             timeindex: 'c',
         };
+      }
+      if (val == 2) { // skip
+         link = this.serverurl + 'skipstep';
+         data = {
+          userid: this.cookiedetails
+        };
+      }
         this._http.post(link, data)
             .subscribe(res => {
                 let result = res.json();

@@ -22,7 +22,7 @@
 
     <div class="pateints_header">
 
-      <h2>Pre-<span>qualification</span></h2>
+   <!--   <h2>Pre-<span>qualification</span></h2>
 
       <h6> Before you submit this patient, please make sure they are: </h6>
 
@@ -34,7 +34,7 @@
 
         <p>  3. Currently have the red, white, and blue Medicare Part-B card
         </p>
-      </div>
+      </div>-->
 
       <div class="pateints_header_left"><h2>Patient <span>Information</span></h2></div>
       <div class="pateints_header_right"></div>
@@ -61,31 +61,31 @@
 
             <div class="form-group">
               <label>First Name<span style="color: #ff0000;">*</span></label>
-              <input type="text"  class="form-control" placeholder="First Name" [formControl]="dataForm.controls['firstname']"/>
+              <input type="text"  class="form-control" placeholder="First Name" [formControl]="dataForm.controls['firstname']" (keyup)="addpatientvalidationcall()"/>
               <div class="clearfix"></div>
 
-              <span class="has-error" *ngIf ="dataForm.controls['firstname'].touched && !dataForm.controls['firstname'].valid">Firstname is required!</span></div>
+              <span class="has-error" *ngIf ="dataForm.controls['firstname'].touched && !dataForm.controls['firstname'].valid && addpatientvalidation==1">First Name is required!</span></div>
 
             <div class="form-group">
               <label>Last Name<span style="color: #ff0000;">*</span></label>
-              <input type="text"  class="form-control"  placeholder="Last Name" [formControl]="dataForm.controls['lastname']"/>
+              <input type="text"  class="form-control"  placeholder="Last Name" [formControl]="dataForm.controls['lastname']" (keyup)="addpatientvalidationcall()"/>
               <div class="clearfix"></div>
-              <span class="has-error" *ngIf ="dataForm.controls['lastname'].touched && !dataForm.controls['lastname'].valid">Lastname is required!</span></div>
+              <span class="has-error" *ngIf ="dataForm.controls['lastname'].touched && !dataForm.controls['lastname'].valid && addpatientvalidation==1">Last Name is required!</span></div>
             <div class="clearfix"></div>
 
             <div class="form-group">
               <label>Phone Number<span style="color: #ff0000;">*</span></label>
-              <input type="text"  class="form-control"  appNumber placeholder="Phone Number" [formControl]="dataForm.controls['phone']"/>
+              <input type="text"  class="form-control"  appNumber placeholder="Phone Number" [formControl]="dataForm.controls['phone']" (keyup)="addpatientvalidationcall()"/>
               <div class="clearfix"></div>
-              <span class="has-error" *ngIf ="dataForm.controls['phone'].touched && !dataForm.controls['phone'].valid">Phone No must be 10 numbers!</span></div>
+              <span class="has-error" *ngIf ="dataForm.controls['phone'].touched && !dataForm.controls['phone'].valid && addpatientvalidation==1">Phone no must be 10 numbers!</span></div>
 
 
             <div class="form-group">
-              <label>Email Address</label>
-              <input type="email"  class="form-control"  placeholder="Email Address" [formControl]="dataForm.controls['email']"/>
+              <label>Email Address<span style="color: #ff0000;">*</span></label>
+              <input type="email"  class="form-control"  placeholder="Email Address" [formControl]="dataForm.controls['email']" (keyup)="addpatientvalidationcall()"/>
               <div class="clearfix"></div>
-              <!--<span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('blank')==true">Emailid is Required !</span>
-              <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('invalid')==true">Invalid Emailid!</span>-->
+              <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('blank')==true && addpatientvalidation==1">Email address is Required !</span>
+              <span class="has-error" *ngIf ="dataForm.controls['email'].touched && getemail('invalid')==true && addpatientvalidation==1">Invalid Email address!</span>
             </div>
             <div class="clearfix"></div>
             <!--
@@ -95,19 +95,19 @@
             <div class="form-group">
 
               <label>City<span style="color: #ff0000;">*</span></label>
-              <input type="text"  class="form-control"  placeholder="City" [formControl]="dataForm.controls['city']"/>
+              <input type="text"  class="form-control"  placeholder="City" [formControl]="dataForm.controls['city']" (keyup)="addpatientvalidationcall()"/>
               <div class="clearfix"></div>
-              <span class="has-error" *ngIf ="dataForm.controls['city'].touched && !dataForm.controls['city'].valid">City is required!</span></div>
+              <span class="has-error" *ngIf ="dataForm.controls['city'].touched && !dataForm.controls['city'].valid && addpatientvalidation==1">City is required!</span></div>
 
             <div class="form-group">
               <label>State<span style="color: #ff0000;">*</span></label>
-              <select class="form-control" [formControl]="dataForm.controls['state']">
+              <select class="form-control" [formControl]="dataForm.controls['state']" (change)="addpatientvalidationcall()">
                 <option value="" disabled selected>Select State</option>
                 <option value="{{item.name}}" *ngFor="let item of usastates; let i = index">{{item.name}}</option>
               </select>
               <!--   <input type="text"  class="form-control"  placeholder="State" [formControl]="dataForm.controls['state']"/>-->
               <div class="clearfix"></div>
-              <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid">State is required!</span></div>
+              <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid && addpatientvalidation==1">State is required!</span></div>
 
             <!-- <div class="form-group"><input type="text"  class="form-control"  placeholder="Zip" [formControl]="dataForm.controls['zip']"/>
               <span class="has-error" *ngIf ="dataForm.controls['zip'].touched && !dataForm.controls['zip'].valid">Zip is required!</span></div>

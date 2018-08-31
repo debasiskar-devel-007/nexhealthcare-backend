@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
-import {CookieService} from 'angular2-cookie/core';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-compensationmodifier',
@@ -28,7 +28,7 @@ export class CompensationmodifierComponent implements OnInit {
         this.serverurl = _commonservices.url;
         this.serverhost = _commonservices.hostis;
         this.addcookie = addcookie;
-        this.cookiedetails = this.addcookie.getObject('cookiedetails');
+        this.cookiedetails = this.addcookie.get('cookiedetails');
         console.log('this.cookiedetails');
         console.log(this.cookiedetails);
         if (this.cookiedetails == null) {
@@ -43,15 +43,15 @@ export class CompensationmodifierComponent implements OnInit {
     }
     callfunc(token) {
         //  return 'https://' + this.serverhost + '/#/sign-up/' + token;
-        return 'http://' + this.serverhost + '/#/sign-up/' + token;
+        return 'https://' + this.serverhost + '/#/sign-up/' + token;
     }
     callfunc1(token) {
         //  return 'https://' + this.serverhost + '/#/sign-up/' + token;
-        return 'http://' + this.serverhost + '/#/cgx/' + token;
+        return 'https://' + this.serverhost + '/#/cgx/' + token;
     }
     callfunc2(token) {
         //  return 'https://' + this.serverhost + '/#/sign-up/' + token;
-        return 'http://' + this.serverhost + '/#/landing/' + token;
+        return 'https://' + this.serverhost + '/#/landing/' + token;
     }
     showcopied() {
         this.copiedmodal = true;
@@ -62,7 +62,7 @@ export class CompensationmodifierComponent implements OnInit {
     getcompensationlist() {
         let link = this.serverurl + 'compensationlistbyuserid';
         let data = {
-            userid: this.cookiedetails.id
+            userid: this.cookiedetails
         }
         this._http.post(link, data)
             .subscribe(res => {
@@ -163,7 +163,7 @@ export class CompensationmodifierComponent implements OnInit {
         if (this.pgxerror == null && this.compensationerror == null) {
             let link = this.serverurl + 'addcompensation';
             let data = {
-                userid: this.cookiedetails.id,
+                userid: this.cookiedetails,
                 amount: this.compensationamount,
                 pgxvalue: this.pgxvalue,
             };

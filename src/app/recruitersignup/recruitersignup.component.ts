@@ -3,7 +3,7 @@ import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms';
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
-import {CookieService} from 'angular2-cookie/core';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-recruitersignup',
@@ -30,7 +30,7 @@ export class RecruitersignupComponent implements OnInit {
         RecruitersignupComponent.invalidemail = false;
         this.serverurl = _commonservices.url;
         this.addcookie = addcookie ;
-        this.cookiedetails = this.addcookie.getObject('cookiedetails');
+        this.cookiedetails = this.addcookie.get('cookiedetails');
     }
 
     ngOnInit() {
@@ -179,7 +179,7 @@ export class RecruitersignupComponent implements OnInit {
                             username : formval.username,
                             type : 'recruiter',
                         };
-                        this.addcookie.putObject('cookiedetails', addresultforcookie);
+                        this.addcookie.set('cookiedetails', '');
                         console.log('cookiedetails from recruitersignup page');
                         console.log(this.cookiedetails);
                         this.dataForm.reset();

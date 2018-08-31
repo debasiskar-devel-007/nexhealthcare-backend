@@ -18,6 +18,8 @@ export class HelpdeskeditComponent implements OnInit {
   public serverurl;
   public usastates;
   public passerror ;
+    public addpatientvalidation: any = 0;
+
 
   constructor(fb: FormBuilder, private _http: Http, private router: Router, private route: ActivatedRoute, public _commonservices: Commonservices) {
     this.fb = fb;
@@ -94,6 +96,7 @@ export class HelpdeskeditComponent implements OnInit {
   }
   
   dosubmit(formval) {
+      this.addpatientvalidation = 1;
     this.passerror = null;
     console.log(this.dataForm.valid);
     console.log(formval.password);
@@ -174,4 +177,7 @@ export class HelpdeskeditComponent implements OnInit {
   cancelit() {
     this.router.navigate(['/helpdesklist']);
   }
+    addpatientvalidationcall() {
+        this.addpatientvalidation = 0;
+    }
 }

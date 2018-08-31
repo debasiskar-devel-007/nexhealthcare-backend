@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
-import {CookieService} from 'angular2-cookie/core';
+//import {CookieService} from 'angular2-cookie/core';
 import {FormBuilder} from '@angular/forms';
 
 
@@ -16,6 +16,7 @@ export class PatientlistrecordviewComponent implements OnInit {
     public patientlist: any = [];
     public serverurl;
     public tags;
+    public p;
 
     constructor( private _http: Http, private router: Router, private _commonservices: Commonservices, private route: ActivatedRoute) {
         this.serverurl = _commonservices.url;
@@ -72,6 +73,23 @@ export class PatientlistrecordviewComponent implements OnInit {
                     return this.tags[i].tagname;
                 }
             }
+        }
+    }
+    gotopatientrecord(id, tagid) {
+        if (tagid == '5b0bfa1b3fe08865e7955f71') {
+            this.router.navigate(['/patientrecord', id, 1]); // accept
+        }
+        if (tagid == '5b0bfa1d3fe08865e7955f72') {
+            this.router.navigate(['/patientrecord', id, 2]); // decline
+        }
+        if (tagid == '5b0cda8121eaaa0244d52b9e') {
+            this.router.navigate(['/patientrecord', id, 3]); // lead
+        }
+        if (tagid == '5b0b9235b33cbc2d4af08dd9') {
+            this.router.navigate(['/patientrecord', id, 4]); // pps submitted
+        }
+        if (tagid == '5afad90dde56b53d10e2ab4d') {
+            this.router.navigate(['/patientrecord', id, 5]); // pf submitted
         }
     }
 }

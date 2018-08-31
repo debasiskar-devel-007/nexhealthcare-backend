@@ -53,6 +53,7 @@
           <p *ngIf="item.type=='leadmanager'">Lead Manager</p>
           <p *ngIf="item.type=='corporate'">Corporate</p>
           <p *ngIf="item.type=='superadmin'">Super Admin</p>
+          <p *ngIf="item.type=='helpdesk'">Help Desk</p>
         </td>
         <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.addedby}}</td>
         <!--<td [routerLink]="['/userrecruiterdetail',item._id]">

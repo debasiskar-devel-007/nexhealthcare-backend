@@ -3,7 +3,7 @@ import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms';
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
-import {CookieService} from 'angular2-cookie/core';
+import {CookieService} from 'ngx-cookie-service';
 declare var moment: any;
 declare var $: any;
 
@@ -41,6 +41,9 @@ export class LandingComponent implements OnInit {
   public uniquerepid;
   public webinarlist = [];
   public wrongtokenforleadrolemodal: boolean = false;
+  public username;
+    public flag;
+    public mastergroupid;
 
   constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, public _commonservices: Commonservices, private route: ActivatedRoute) {
     this.fb = fb;
@@ -48,7 +51,7 @@ export class LandingComponent implements OnInit {
     LandingComponent.invalidemail = false;
     this.serverurl = _commonservices.url;
     this.addcookie = addcookie ;
-    this.cookiedetails = this.addcookie.getObject('cookiedetails');
+    this.cookiedetails = this.addcookie.get('cookiedetails');
     console.log(window.location.host);
     this.hostname = window.location.host;
     this.serverhost = _commonservices.hostis;
@@ -109,6 +112,11 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.route.params.subscribe(params => {
+          this.username = params['username'];
+          this.mastergroupid = params['id'];
+          this.flag = params['flag'];
+      });
     this.passmatchvalidate = false;
     this.dataForm = this.fb.group({
       firstname: ['', Validators.required],
@@ -130,6 +138,10 @@ export class LandingComponent implements OnInit {
       webinarkey: ['', Validators.required],
       phone: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
     }, {validator: this.matchingPasswords('password', 'confpassword')});
+
+      if (this.flag != null && this.username != null && this.mastergroupid != null) {
+          this.getuserdetailsbyuseridnew();
+      }
   }
 
   getusastates() {
@@ -256,14 +268,15 @@ export class LandingComponent implements OnInit {
         olderclients: formval.olderclients,
         noofplanBcard: formval.noofplanBcard,
         webinarkey: formval.webinarkey,
-        //  type: 'salesrep',
-        type: this.type,
+          type: 'salesrep',
+      //  type: this.type,
         signup_step: 1,
         cgxamountoflead: this.cgxamount,
         pgxvalueoflead: this.pgxvalue,
         addedby: this.addedby,
         iswebinarchekced: 0,
         uniqueid: this.uniquerepid,
+          mastergroupid: this.mastergroupid,
       };
       console.log('data-------');
       console.log(data);
@@ -283,7 +296,8 @@ export class LandingComponent implements OnInit {
               var newurl = 'http://localhost:4200/#/autologin/' + result.id.logintoken;
             }
             else {
-              var newurl = 'http://' + formval.username + '.' + this.neededhost + '/#/autologin/' + result.id.logintoken;
+              var newurl = 'https://' + formval.username + '.' + this.neededhost + '/#/autologin/' + result.id.logintoken;
+            //  var newurl = 'http://' + this.neededhost + '/#/autologin/' + result.id.logintoken;
             }
             console.log(newurl);
             window.location.href = newurl;
@@ -318,7 +332,7 @@ export class LandingComponent implements OnInit {
 
   getwebinarlist() {
     this.webinarlist = [];
-    let link = 'http://nexhealthtoday.com/getwebinarlist.php';
+      let link = this._commonservices.phpurl + 'getwebinarlist.php';
     this._http.get(link)
       .subscribe(res => {
         let results = res.json();
@@ -339,7 +353,7 @@ export class LandingComponent implements OnInit {
   }
 
   callcreateregistratsphppage(id) {
-    let link = 'http://nexhealthtoday.com/createregistrants.php?id=' + id;
+    let link = this._commonservices.phpurl + 'createregistrants.php?id=' + id;
     this._http.get(link)
       .subscribe(res => {
         let result = res.json();
@@ -370,5 +384,20 @@ callterms() {
       scrollTop: $('.landing_top1_right_wrapper').offset().top
     }, 'slow');
   }
-
+    getuserdetailsbyuseridnew() {
+        let link = this.serverurl + 'getuserdetailsbyuseridnew';
+        let data = {_id : this.username};
+        this._http.post(link, data)
+            .subscribe(res => {
+                let result = res.json();
+                console.log(result);
+                if (result.status == 'success' && typeof(result.id) != 'undefined') {
+                    this.addedby = result.id.username;
+                    console.log('addedby' + this.addedby);
+                } else {
+                }
+            }, error => {
+                console.log('Ooops');
+            });
+    }
 }

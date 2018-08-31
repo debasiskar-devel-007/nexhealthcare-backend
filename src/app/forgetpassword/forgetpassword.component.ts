@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import {Http} from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import {CookieService} from 'angular2-cookie/core';
+import {CookieService} from 'ngx-cookie-service';
 import {Commonservices} from '../app.commonservices' ;
 
 @Component({
@@ -22,11 +22,12 @@ export class ForgetpasswordComponent implements OnInit {
     public addcookie: CookieService;
     public cookiedetails;
     public showmessage;
+    public addpatientvalidation: any = 0;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.fb = fb;
         this.addcookie = addcookie ;
-        this.cookiedetails = this.addcookie.getObject('cookiedetails');
+        this.cookiedetails = this.addcookie.get('cookiedetails');
         this.serverurl = _commonservices.url;
     }
 
@@ -63,6 +64,7 @@ export class ForgetpasswordComponent implements OnInit {
 
 
     dosubmit(formval) {
+        this.addpatientvalidation = 1;
         console.log('submit');
         this.is_error = 0;
         let x: any;
@@ -83,7 +85,7 @@ export class ForgetpasswordComponent implements OnInit {
                     console.log(result);
                     console.log(result.msg);
                     if (result.status == 'success') {
-                        this.addcookie.putObject('cookiedetails', result.msg);
+                        this.addcookie.set('cookiedetails', result.msg);
                         // this.cookiedetails = this.addcookie.getObject('cookiedetails');
                         this.showmessage = 'Success! The Email should be arriving shortly.';
                     }
@@ -95,5 +97,8 @@ export class ForgetpasswordComponent implements OnInit {
                     console.log("Oooops!");
                 });
         }
+    }
+    addpatientvalidationcall() {
+        this.addpatientvalidation = 0;
     }
 }

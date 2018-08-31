@@ -3,8 +3,7 @@ import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms';
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
-import {CookieService} from 'angular2-cookie/core';
-import {RepsignupComponent} from '../repsignup/repsignup.component';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-resetpassword',
@@ -25,6 +24,7 @@ export class ResetpasswordComponent implements OnInit {
     public userdetails;
     public modalpasswordupdated;
     public id;
+    public addpatientvalidation: any = 0;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices, private route: ActivatedRoute) {
         this.fb = fb;
@@ -101,6 +101,7 @@ export class ResetpasswordComponent implements OnInit {
     }
 
     dosubmit(formval) {
+        this.addpatientvalidation = 1;
         console.log('hi');
         console.log(this.dataForm.valid);
         console.log(this.passmatchvalidate);
@@ -137,5 +138,8 @@ export class ResetpasswordComponent implements OnInit {
     onHidden() {
         this.modalpasswordupdated = false;
         this.router.navigate(['/']);
+    }
+    addpatientvalidationcall() {
+        this.addpatientvalidation = 0;
     }
 }

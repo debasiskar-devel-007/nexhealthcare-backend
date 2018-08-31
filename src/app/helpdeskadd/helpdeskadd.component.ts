@@ -3,7 +3,7 @@ import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms';
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
-import {CookieService} from 'angular2-cookie/core';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-helpdeskadd',
@@ -27,14 +27,17 @@ export class HelpdeskaddComponent implements OnInit {
   private passmatchvalidate;
   public alreadyexist: any;
   public uniquerepid;
+  public username;
   public showvalidationerror = 0;
   id: number;
+    public addpatientvalidation: any = 0;
 
   constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private route: ActivatedRoute, private _commonservices: Commonservices) {
     this.fb = fb;
     this.serverurl = _commonservices.url;
     this.addcookie = addcookie;
-    this.cookiedetails = this.addcookie.getObject('cookiedetails');
+    this.cookiedetails = this.addcookie.get('cookiedetails');
+    this.username = this.addcookie.get('username');
     console.log('this.cookiedetails');
     console.log(this.cookiedetails);
       this.getusastates();
@@ -174,6 +177,7 @@ export class HelpdeskaddComponent implements OnInit {
   }
 
   dosubmit(formval) {
+      this.addpatientvalidation = 1;
     this.showvalidationerror = 1;
     let x: any;
     for (x in this.dataForm.controls) {
@@ -195,7 +199,7 @@ export class HelpdeskaddComponent implements OnInit {
         dob: formval.dob,
         phone: formval.phone,
         uniqueid: formval.uniqueid,
-        addedby: this.cookiedetails.username,
+        addedby: this.username,
         type: 'helpdesk'
       };
       this._http.post(link, data)
@@ -261,4 +265,7 @@ export class HelpdeskaddComponent implements OnInit {
           console.log('Ooops');
         });
   }*/
+    addpatientvalidationcall() {
+        this.addpatientvalidation = 0;
+    }
 }

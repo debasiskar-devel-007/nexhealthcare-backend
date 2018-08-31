@@ -3,7 +3,7 @@ import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms';
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
-import {CookieService} from 'angular2-cookie/core';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-pateintdetail',
@@ -25,12 +25,13 @@ export class PateintdetailComponent implements OnInit {
     public opensuccessmodal: boolean = false;
     public uniquepatientid;
     public tagid;
+    public addpatientvalidation: any = 0;
 
     constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, private _commonservices: Commonservices) {
         this.fb = fb;
         this.serverurl = _commonservices.url;
         this.addcookie = addcookie ;
-        this.cookiedetails = this.addcookie.getObject('cookiedetails');
+        this.cookiedetails = this.addcookie.get('cookiedetails');
         this.getusastates();
         this.getuniquepatientid();
     }
@@ -83,8 +84,8 @@ export class PateintdetailComponent implements OnInit {
         this.dataForm = this.fb.group({
             firstname: ['', Validators.required],
             lastname: ['', Validators.required],
-            //  email: ['', Validators.compose([Validators.required, PateintdetailComponent.validateEmail])],
-            email: [''],
+              email: ['', Validators.compose([Validators.required, PateintdetailComponent.validateEmail])],
+          //  email: [''],
             phone: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
             city: ['', Validators.required],
             state: ['', Validators.required]
@@ -119,7 +120,11 @@ export class PateintdetailComponent implements OnInit {
         console.log(this.dataForm.value);
         //  this.dataForm.value.state = null;
     }
+    addpatientvalidationcall() {
+        this.addpatientvalidation = 0;
+    }
     dosubmit(formval) {
+        this.addpatientvalidation = 1;
         let x: any;
         for (x in this.dataForm.controls) {
             this.dataForm.controls[x].markAsTouched();
@@ -138,7 +143,7 @@ export class PateintdetailComponent implements OnInit {
                 //  address: formval.address,
                 city: formval.city,
                 state: formval.state,
-                addedby: this.cookiedetails.id,
+                addedby: this.cookiedetails,
                 uniqueid: this.uniquepatientid,
                 /*zip: formval.zip,
                 gender: formval.gender,

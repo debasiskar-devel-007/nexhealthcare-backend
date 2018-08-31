@@ -3,8 +3,10 @@ import { Http } from '@angular/http';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CookieService} from 'angular2-cookie/core';
+import {CookieService} from 'ngx-cookie-service';
+import {Location} from '@angular/common';
 declare var moment: any;
+declare var $: any;
 @Component({
     selector: 'app-userrecruiterdetail',
     templateUrl: './userrecruiterdetail.component.html',
@@ -12,37 +14,41 @@ declare var moment: any;
     providers: [Commonservices],
 })
 export class UserrecruiterdetailComponent implements OnInit {
-    private addcookie: CookieService;
-    private cookiedetails;
-    public serverurl;
-    public id;
-    public type;
-    public dataForm: FormGroup ;
-    public fb;
-    public usastates;
-    public passerror ;
-    public getdetailsbyidis ;
-    public tags ;
-    public allusers;
-    // to add edit delete note
-    public divaddnote;
-    public addnote;
-    public noteslist;
-    public addit = 1;
-    public allnotearr: any = [];
-    public successfuladdnotemodal: boolean = false;
-    public successfulupdatenotemodal: boolean = false;
-    public editnoteid;
-    public shownoteerror;
-    public showdeletenotemodal: boolean = false;
-    public showdeletesuccessmodal: boolean = false;
-    public deleteid;
+  private addcookie: CookieService;
+  private cookiedetails;
+  public serverurl;
+  public id;
+  public type;
+  public dataForm: FormGroup ;
+  public fb;
+  public usastates;
+  public passerror ;
+  public getdetailsbyidis ;
+  public tags ;
+  public allusers;
+  // to add edit delete note
+  public divaddnote;
+  public addnote;
+  public noteslist;
+  public addit = 1;
+  public allnotearr: any = [];
+  public successfuladdnotemodal: boolean = false;
+  public successfulupdatenotemodal: boolean = false;
+  public editnoteid;
+  public shownoteerror;
+  public showdeletenotemodal: boolean = false;
+  public showdeletesuccessmodal: boolean = false;
+  public deleteid;
+  public addpatientvalidation: any = 0;
+  private usertype: string;
+  private addedby: string;
 
-    constructor( fb: FormBuilder, private _http: Http, private router: Router, private route: ActivatedRoute, public _commonservices: Commonservices, addcookie: CookieService) {
+    constructor( fb: FormBuilder, private _http: Http, private router: Router, private route: ActivatedRoute, public _commonservices: Commonservices, addcookie: CookieService,private _location: Location) {
         this.fb = fb;
         this.serverurl = _commonservices.url;
         this.addcookie = addcookie ;
-        this.cookiedetails = this.addcookie.getObject('cookiedetails');
+        this.cookiedetails = this.addcookie.get('cookiedetails');
+        this.usertype = this.addcookie.get('type');
         this.getusastates();
         this.alltags();
     }
@@ -76,12 +82,24 @@ export class UserrecruiterdetailComponent implements OnInit {
             status: ['', Validators.required],
             zip: ['', Validators.required],
             subdomain: ['', Validators.required],
-            agentexperience: ['', Validators.required],
-            olderclients: ['', Validators.required],
-            noofplanBcard: ['', Validators.required],
+            agentexperience: [''],
+            olderclients: [''],
+            noofplanBcard: [''],
         });
-    }
 
+        if(this.usertype!='superadmin') {
+          console.log('user type .....'+this.usertype);
+          console.log($('.addedbyinput').length);
+          $('.addedbyinput').prop('disabled', 'disabled');
+        }
+    }
+  ngAfterViewChecked(){
+    if(this.usertype!='superadmin') {
+      console.log('user type .....'+this.usertype);
+      console.log($('.addedbyinput').length);
+      $('.addedbyinput').prop('disabled', 'disabled');
+    }
+  }
     getusastates() {
         let link = this.serverurl + 'getusastates';
         this._http.get(link)
@@ -126,7 +144,7 @@ export class UserrecruiterdetailComponent implements OnInit {
 
   gotoagreementpdf(id) {
     /* var url = 'http://altushealthgroup.com/testpdf/html2pdf/employment-agreement.php?id=' + id;*/
-    var url = 'http://' + this._commonservices.commonvalue.title1 + '/testpdf/html2pdf/employment-agreement.php?id=' + id;
+    var url = 'https://' + this._commonservices.commonvalue.commonurl + '/testpdf/html2pdf/employment-agreement.php?id=' + id;
     window.open(url, '_blank');
   }
 
@@ -165,9 +183,9 @@ export class UserrecruiterdetailComponent implements OnInit {
                         status: [userdet.status, Validators.required],*/
                         zip: [userdet.zip, Validators.required],
                         subdomain: [userdet.username],
-                        agentexperience: [userdet.agentexperience, Validators.required],
-                        olderclients: [userdet.olderclients, Validators.required],
-                        noofplanBcard: [userdet.noofplanBcard, Validators.required],
+                        agentexperience: [userdet.agentexperience],
+                        olderclients: [userdet.olderclients],
+                        noofplanBcard: [userdet.noofplanBcard],
                     });
                 } else {
                 }
@@ -177,31 +195,37 @@ export class UserrecruiterdetailComponent implements OnInit {
     }
 
     dosubmit(formval) {
+        this.addpatientvalidation = 1;
         this.passerror = null;
+        console.log('formval');
+        console.log(formval);
+        console.log(this.addedby);
         if (formval.password == null || formval.password == '') {
             //  if (this.dataForm.valid && this.passmatchvalidate && UserrecruitereditComponent.invalidpassword == false) {
             if (this.dataForm.valid) {
                 let link= this.serverurl + 'edituserdetails';
                 let data = {
-                    id: this.id,
-                    firstname: formval.firstname,
-                    lastname: formval.lastname,
-                    address: formval.address,
-                    address2: formval.address2,
-                    phone: formval.phone,
-                    city: formval.city,
-                    state: formval.state,
-                    zip: formval.zip,
-                    gender: formval.gender,
-                    dob: formval.dob,
-                    type: formval.type,
-                    agentexperience: formval.agentexperience,
-                    olderclients: formval.olderclients,
-                    noofplanBcard: formval.noofplanBcard,
+                  id: this.id,
+                  firstname: formval.firstname,
+                  addedby: formval.addedby,
+                  lastname: formval.lastname,
+                  address: formval.address,
+                  address2: formval.address2,
+                  phone: formval.phone,
+                  city: formval.city,
+                  state: formval.state,
+                  zip: formval.zip,
+                  gender: formval.gender,
+                  dob: formval.dob,
+                  type: formval.type,
+                  agentexperience: formval.agentexperience,
+                  olderclients: formval.olderclients,
+                  noofplanBcard: formval.noofplanBcard,
                 };
                 this._http.post(link, data)
                     .subscribe(data => {
-                        this.router.navigate(['/userrecruiterlist', formval.type]);
+                        //this.router.navigate(['/userrecruiterlist', formval.type]);
+                      this._location.back();
                     }, error => {
                         console.log('Oooops!');
                     });
@@ -296,7 +320,7 @@ export class UserrecruiterdetailComponent implements OnInit {
         if (this.addnote != null) {
             data = {
                 userid: this.id,
-                added_by: this.cookiedetails.id,
+                added_by: this.cookiedetails,
                 note: this.addnote,
                 //  added_on: this.getdate(),
             };
@@ -408,4 +432,7 @@ export class UserrecruiterdetailComponent implements OnInit {
                 console.log('Ooops');
             });
     }*/
+    addpatientvalidationcall() {
+        this.addpatientvalidation = 0;
+    }
 }

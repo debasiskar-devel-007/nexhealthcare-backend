@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import {CookieService} from 'angular2-cookie/core';
+import {CookieService} from 'ngx-cookie-service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
     private cookiedetails;
     constructor( addcookie: CookieService, private router: Router) {
         this.addcookie = addcookie ;
-        this.cookiedetails = this.addcookie.getObject('cookiedetails');
+        this.cookiedetails = this.addcookie.get('cookiedetails');
         /*   console.log(this.cookiedetails);
         if (this.cookiedetails == null) {
             this.router.navigate(['/']);
@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
     ngOnInit() {
     }
     calllogout() {
-        this.addcookie.removeAll();
+        this.addcookie.deleteAll();
         this.router.navigate(['/log-in']);
     }
 }

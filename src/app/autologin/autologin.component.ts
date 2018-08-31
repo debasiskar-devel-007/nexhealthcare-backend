@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
-import {CookieService} from 'angular2-cookie/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-autologin',
@@ -19,7 +19,7 @@ export class AutologinComponent implements OnInit {
     constructor(addcookie: CookieService, private _http: HttpClient, private router: Router, private _commonservices: Commonservices, private route: ActivatedRoute) {
         this.serverurl = _commonservices.url;
         this.addcookie = addcookie ;
-        this.cookiedetails = this.addcookie.getObject('cookiedetails');
+        this.cookiedetails = this.addcookie.get('cookiedetails');
 
     }
 
@@ -56,7 +56,12 @@ export class AutologinComponent implements OnInit {
                     };
                     console.log('add result to cookie ++++++');
                     console.log(addresultforcookie);
-                    this.addcookie.putObject('cookiedetails', addresultforcookie);
+                  this.addcookie.set('cookiedetails', result.msg._id);
+                  this.addcookie.set('fname', result.msg.firstname);
+                  this.addcookie.set('lname',result.msg.lastname);
+                  this.addcookie.set('username',result.msg.username);
+                  this.addcookie.set('email',result.msg.email);
+                  this.addcookie.set('type',result.msg.type);
                     console.log('cookiedetails put in autologin--------');
                     console.log(this.cookiedetails);
                     console.log('result.msg.type');
@@ -67,9 +72,12 @@ export class AutologinComponent implements OnInit {
                             this.router.navigate(['/employment-agreement']);
                         }
                         else if (result.msg.signup_step == '2') {
-                            this.router.navigate(['/trainingstep']);
+                            this.router.navigate(['/agreement']);
                         }
                         else if (result.msg.signup_step == '3') {
+                            this.router.navigate(['/trainingstep']);
+                        }
+                        else if (result.msg.signup_step == '4') {
                             if (result.msg.iswebinarchekced == 0 || result.msg.iswebinarchekced == null) {
                             this.router.navigate(['/completewebinar']);
                             }
@@ -85,12 +93,15 @@ export class AutologinComponent implements OnInit {
                             this.router.navigate(['/employment-agreement']);
                         }
                         else if (result.msg.signup_step == '2') {
+                          this.router.navigate(['/agreement']);
+                        }
+                        else if (result.msg.signup_step == '3') {
                             this.router.navigate(['/trainingstep']);
                         }
                         /*else if (result.msg.signup_step == '3') {
                             this.router.navigate(['/rep-dashboard']);
                         }*/
-                        else if (result.msg.signup_step == '3') {
+                        else if (result.msg.signup_step == '4') {
                           if (result.msg.iswebinarchekced == 0 || result.msg.iswebinarchekced == null) {
                             this.router.navigate(['/completewebinar']);
                           }
@@ -104,13 +115,17 @@ export class AutologinComponent implements OnInit {
                         if (result.msg.signup_step == '1') {
                             this.router.navigate(['/employment-agreement']);
                         }
+
                         else if (result.msg.signup_step == '2') {
+                          this.router.navigate(['/agreement']);
+                        }
+                        else if (result.msg.signup_step == '3') {
                             this.router.navigate(['/trainingstep']);
                         }
                         /*else if (result.msg.signup_step == '3') {
                             this.router.navigate(['/recruiterdashboard']);
                         }*/
-                        else if (result.msg.signup_step == '3') {
+                        else if (result.msg.signup_step == '4') {
                           if (result.msg.iswebinarchekced == 0 || result.msg.iswebinarchekced == null) {
                             this.router.navigate(['/completewebinar']);
                           }

@@ -30,8 +30,8 @@
             </div>
             <div class="form_wrapper_text_subdiv">
                 <img src="../../assets/images/new_repsignup_img2.jpg" alt="#">
-                <h5>All your clients, age 65 and older, will benefit from this new noninvasive at home DNA genetic screening for cancer. </h5>
-
+                <!--<h5>All your clients, age 65 and older, will benefit from this new noninvasive at home DNA genetic screening for cancer. </h5>-->
+                <h5>All your clients will benifit from this new noninvasive at home DNA genetic screening for cancer.</h5>
             </div>
 
 
@@ -39,7 +39,9 @@
 
 
             <div class="form_wrapper_text_subdiv2">
-                <label>This test is no cost to your clients that have the Plan B Medicare card</label>
+                <label><!--This test is no cost to your clients that have the Plan B Medicare card-->
+                    Offer no cost cancer screening test to your insured clients and you get paid!
+                </label>
                 <label>Quickly qualify them and fill out the quick info patient intake
                     form then make one call for validation.</label>
                 <label>They will be immediately contacted for an over the phone
@@ -252,7 +254,7 @@
 
                 </div>
 
-                <div class="form_div_row experiencewrapper">
+                <div class="form_div_row experiencewrapper hide">
                     <div class="row">
                         <div class="col-md-12">
                             <h2 class="h2minheight" style="padding: 20px 0 0 0;">Experience </h2>
@@ -313,7 +315,8 @@
 
                 <div class="form_div_row form_div_rowbottom">
                     <div class="row">
-                        <div class="col-md-12">
+
+                        <div class="col-md-12"  *ngIf="show_webinar_or_not==1">
 
                             <label>You will need to choose one of our live onboarding calls to get started with this {{_commonservices.commonvalue.title1}} program. Please choose a day and time that will work best for you <span>*</span></label>
 
@@ -321,42 +324,42 @@
                                 <option value="" disabled selected>Select Time</option>
                                 <option *ngFor="let item of webinarlist; let i = index" value="{{item.webinark}}">{{showdateproperly(item.times[0].startTime, item.times[0].endTime)}}</option>
 
-                              <!--  <option>Fri, May 25, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Sat, May 26, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Sun, May 27, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Mon, May 28, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Tue, May 29, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Wed, May 30, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Thu, May 31, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Fri, Jun 1, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Mon, Jun 4, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Tue, Jun 5, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Wed, Jun 6, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Thu, Jun 7, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Fri, Jun 8, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Mon, Jun 11, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Tue, Jun 12, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Wed, Jun 13, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Thu, Jun 14, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Fri, Jun 15, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Mon, Jun 18, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Tue, Jun 19, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Wed, Jun 20, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Thu, Jun 21, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Fri, Jun 22, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Sat, Jun 23, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Sun, Jun 24, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Mon, Jun 25, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Tue, Jun 26, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Wed, Jun 27, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Thu, Jun 28, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Fri, Jun 29, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Sat, Jun 30, 2018 5:00 PM - 6:00 PM PDT</option>
-                                <option>Sun, Jul 1, 2018 5:00 PM - 6:00 PM PDT</option>-->
+                                <!--  <option>Fri, May 25, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Sat, May 26, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Sun, May 27, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Mon, May 28, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Tue, May 29, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Wed, May 30, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Thu, May 31, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Fri, Jun 1, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Mon, Jun 4, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Tue, Jun 5, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Wed, Jun 6, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Thu, Jun 7, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Fri, Jun 8, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Mon, Jun 11, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Tue, Jun 12, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Wed, Jun 13, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Thu, Jun 14, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Fri, Jun 15, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Mon, Jun 18, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Tue, Jun 19, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Wed, Jun 20, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Thu, Jun 21, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Fri, Jun 22, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Sat, Jun 23, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Sun, Jun 24, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Mon, Jun 25, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Tue, Jun 26, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Wed, Jun 27, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Thu, Jun 28, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Fri, Jun 29, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Sat, Jun 30, 2018 5:00 PM - 6:00 PM PDT</option>
+                                  <option>Sun, Jul 1, 2018 5:00 PM - 6:00 PM PDT</option>-->
                             </select>
 
                             <div class="clearfix"></div>
-                            <span class="has-error" *ngIf ="dataForm.controls['webinarkey'].touched && !dataForm.controls['webinarkey'].valid"> This is required!</span>
+                            <span class="has-error" *ngIf ="webinarkeyerror"> {{webinarkeyerror}}</span>
                         </div>
                         <div class="clearfix"></div>
 

@@ -108,7 +108,7 @@
 
   .admin_footer2 {
     padding: 12px 0;
-    background: #373c40;
+    background: #373c40; margin-top: 22px!important;
   }
 
   .rep-dashboard_new_block3 .colmd4_1st .rep-dashboard_new_block3_wrapper .rep-dashboard_new_block3_wrapper_sub .wrapper3_sub_con span{ padding: 5px;}
@@ -123,7 +123,7 @@
 
   .videoWrapperblockdiv {
     width: 67%;
-    margin: 0 auto;
+
   }
 
   .rep-dashboard_new_block3 .colmd4_1st .rep-dashboard_new_block3_wrapper .wrapper3_sub_link{ font-size: 18px;}
@@ -136,6 +136,8 @@
 }
 
 @media(max-width:1540px) {
+
+  .rep-dashboard_new_block2_wrapper3_contain span{ font-size: 15px;}
 
   .admindashboardcon3{ width: 98%;}
   /*
@@ -243,7 +245,6 @@
 
   .videoWrapperblockdiv {
     width: 79%;
-    margin: 0 auto;
   }
 
   .rep-dashboard_new_block3 .colmd4_1st .rep-dashboard_new_block3_wrapper h2 {
@@ -262,7 +263,7 @@
   .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper .wrapper3_sub_link{left: 10px; bottom: 10px;}
   .admin_footer2 {
     padding: 10px 0;
-    background: #373c40;
+    background: #373c40;  margin-top: 22px!important;
   }
 
   .rep-dashboard_new_block1 {
@@ -353,7 +354,6 @@
 
   .videoWrapperblockdiv {
     width: 75%;
-    margin: 0 auto;
   }
 
   .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper h2 {
@@ -469,9 +469,9 @@
   .pateintdetail_left_formnew2 label {
     width: 30%;
   }
-  .pateintdetail_left_formnew2 .form-group .has-error {
-    padding-left: 30%;
-  }
+  /* .pateintdetail_left_formnew2 .form-group .has-error {
+     padding-left: 30%;
+   }*/
 }
 
 @media(max-width:1280px) {
@@ -495,11 +495,29 @@
 
 @media(max-width:1199px) {
 
+  .myaccount_form_wrapper{ padding: 0px;}
+
+
+
+  .rep-dashboard_new_block3 .col-md-4 .wrapper3_sub_link{ position: inherit!important; left: 0!important; bottom: 0!important; width: 100%!important;}
+
+
+  .pateintquestionire_div2_left2new{ width: 1030px!important;}
+
+  .pateintquestionire_div2{ overflow-x: auto;}
+
+  .pateintquestionire_div2_left2 .left2_heading4new{ width: 110px;}
+  .pateintquestionire_div2_left2 .left2_heading2new{ width: 86px;}
+
+  .pateintquestionire_div2 .pateintquestionire_div2_left .form-group{ width:100%; margin:8px 0 12px 0; float: none;}
+
+  .pateintquestionire_div2 .pateintquestionire_div2_left .form-group label{     padding-bottom: 10px!important;}
+
   .admindashboardmenublock .col-sm-7 a{ font-size: 16px;}
 
   .admindashboardmenublock .col-sm-7 .btn-primary{ font-size: 16px;}
 
-  .pateintquestionire_div2_scroll{ width: 100%; overflow-x: scroll}
+  .pateintquestionire_div2_scroll{ width: 100%; overflow-x: auto;}
 
   .pateintquestionire_div2_scroll     .pateintquestionire_div2{ width: 1100px;}
 
@@ -512,10 +530,10 @@
 
   .pateintquestionire_div2 .pateintquestionire_div2_left .form-group textarea{display: block; width: 100%; float: none;}
 
-  .pateintquestionire_div2 .pateintquestionire_div2_left .form-group .form-control2_pq{ width:100px!important; }
+  .pateintquestionire_div2 .pateintquestionire_div2_left .form-group .form-control2_pq{ width:30px!important; }
 
 
-  .pateintquestioniremodal .pateintquestionire_div2 .pateintquestionire_div2_left .form-group .form-control2_pqr{ width:100px!important; }
+  .pateintquestioniremodal .pateintquestionire_div2 .pateintquestionire_div2_left .form-group .form-control2_pqr{ width:58px!important; }
 
   .pateintquestionire_div2 .pateintquestionire_div2_right .form-group label{ display: block; width: 100%; float: none;}
 
@@ -610,7 +628,16 @@
   .rep-dashboard_new_block2 .col-md-4{   width: 100%;  float: none; }
   .rep-dashboard_new_block2 .col-md-6{   width: 100%!important;  float: none;}
 
-  .rep-dashboard_new_block2_wrapper3{ background-size: 100%; padding-top: 20%;}
+ /* .rep-dashboard_new_block2_wrapper3{ background-size: 100%; padding-top: 20%;}*/
+
+  .rep-dashboard_new_block2_wrapper3_contain {
+     position: inherit;
+    left: 0px;
+     top: 0;
+    transform: translate(0, 0);
+  }
+
+  .rep-dashboard_new_block2_wrapper3_contain span{ font-size: 16px;}
 
   .rep-dashboard_new_block2 .colmd3_1st .rep-dashboard_new_block2_wrapper1 .form-group label{ width: 100%; float: none;}
 
@@ -711,13 +738,13 @@
 
   .userrecruiterlist_table_wrapper {
     width: 98%;
-    overflow-x: scroll;
+    overflow-x: auto;
   }
 
   .pateints_list_weraper {
     margin: 20px 0;
     width: 100%;
-    overflow-x: scroll;
+    overflow-x: auto;
   }
   .pateints_list_weraper .pateints_list_table_header{ width: 1200px;}
   .pateints_list_weraper .pateints_list_table_contain{ width: 1200px;}
@@ -791,6 +818,57 @@
 
 @media(max-width:767px) {
 
+
+  .completewebinarbginnercontentmain p{ padding-left: 15px; padding-right: 15px;}
+  .completewebinarbginnercontentmain .pdiv{ padding-left: 15px; padding-right: 15px; padding-bottom: 15px;}
+
+
+  .completewebinarbginnercontentmain{ margin-top: 10px;}
+
+
+
+  .completewebinarlogo {
+    width: 274px;
+    height: 116px;
+    display: block;
+    margin: 0 auto 0px;
+    position: relative;
+  }
+
+  .completewebinarbginnercontentmain{ padding: 0px;}
+  .repsignup_topblock_menudiv {
+    width: 100%;
+    float: none;
+    margin: 0 auto;
+  }
+
+  .repsignup_topblock_menudiv .nav>li {
+    position: relative;
+    display: inline-block;
+  }
+
+  .repsignup_topblock .row {
+    width: 100%;
+  }
+
+  .repportal_btn {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+  }
+
+  .repsignup_footer .col-sm-4 img {
+    width: 160px;
+    display: block;
+    margin: 10px auto;
+  }
+  .repsignup_footer .col-xl-8 p{ text-align: center; padding-bottom: 10px;}
+
+  .loginadminblock_bottomwrapper span {
+    text-align: center;
+    float: none;
+    display: inline-block;}
+
   .form-group1con_wrapper{ width: 100%; float: none; display: block; }
 
 
@@ -827,14 +905,14 @@
 }
 
 @media(max-width:640px) {
-  .form-group1con_wrapper label {
-    display: block;
-    padding: 5px 0;
-    float: none;
-    margin: 0 10px;
-    width: 100%!important;
-    overflow: hidden;
-  }
+  /*  .form-group1con_wrapper label {
+      display: block;
+      padding: 5px 0;
+      float: none;
+      margin: 0 10px;
+      width: 100%!important;
+      overflow: hidden;
+    }*/
 
   .form-group1con_wrapper label span {
     float: left;
@@ -843,6 +921,24 @@
     width: 90%;
   }
 
+
+  .login_form_box {
+    width: 90%;}
+
+  .login_form_wrapper .login_link1 {
+    width: 100%;
+    float: none;
+    text-align: center;
+    display: block;
+  }
+
+  .login_form_wrapper .login_link2 {
+    width: 100%;
+    float: none;  padding-top: 10px; text-align: center!important;
+    display: block;
+  }
+
+  .login_body h2{ padding-top: 120px;     margin: 30px 0;}
 }
 
 @media(max-width:540px) {
@@ -888,6 +984,8 @@
     background-size: 100%!important;}
 
   .admindashboardcon2_sub_condiv{ width: 96%; float: none; margin: 5px auto;}
+
+  .sign_modal .modal-content label{ font-size: 14px;}
 }
 
 
@@ -932,6 +1030,12 @@
 
 
 @media(max-width:767px) {
+
+  .admindashboardmenublock_menu .navbar-nav>li {
+    float: left!important;
+  }
+
+  .admindashboardmenublock .nav>li{ clear: both!important;}
   .sharelinkblock_mainwrapper h2 {
     max-width: 94%;
   }
@@ -1067,7 +1171,7 @@
   }
   .repportal_btn {
     position: absolute;
-    top: 80%;
+    top: 70%;
     left: 50%;
   }
 }
@@ -1075,15 +1179,14 @@
 @media(max-width:767px) {
 
   .repportal_btn {
-    width: 280px;
-    height: 75px;
-    background-size: cover;
-    margin-right: 15px;
+    position: absolute;
+    top: 65%;
+    left: 50%;
   }
 
   .repportal_btn a {
-    font-size: 20px;
-    padding: 25px 0 0 82px;
+
+    padding: 30px 0 0 82px;
   }
   .loginadminblock_middlewrapper img {
     left: -30%;
@@ -1099,12 +1202,27 @@
   }
 }
 
-
 @media only screen and (max-width: 530px) {
-  .repportal_btn{ float: none; margin: 0 auto; margin-bottom: 10px;}
+  .repportal_btn a {
+    font-size: 24px;
+    padding: 0px 0 0 55px;
+    line-height: 64px;
+  }
 
+  .repportal_btn {
+    float: none;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 230px;
+    background-size: 100%;
+    height: auto;
+  }
+  .repportal_btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
 }
-
 
 
 @media only screen and (max-width: 1199px) {
@@ -1161,8 +1279,8 @@
 
     background-position:  center 4px;
     padding: 80px 10px 5px 10px;
-    font-size: 40px;
-    line-height: 40px;
+    font-size: 30px;
+    line-height: 30px;
     color: #fefefe;
     text-transform: uppercase;
     font-family: 'proximanova-bold';
@@ -1845,6 +1963,10 @@
   .mobilenms_landing_img1{ display: block; width: 100%;}
 
   .landing_top1_left_top h2{ font-size: 32px; line-height: 32px; padding-top: 20px;}
+
+
+  .completewebselect {
+    width: 100%!important; float: none; margin-bottom: 5px;}
 }
 
 
@@ -1874,6 +1996,8 @@
   .landing_top1_formbod h2 span {
     font-size: 20px;
   }
+
+  .rep-dashboard_new_block2_wrapper3_contain span a{word-break: break-all;}
 }
 
 
@@ -1896,6 +2020,8 @@
     width: 280px;}
 
   .lan3btn_div a{ font-size: 32px!important;}
+
+
 }
 
 

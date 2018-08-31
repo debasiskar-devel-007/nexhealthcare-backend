@@ -8,8 +8,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class UsersearchPipe implements PipeTransform {
 
     transform(value: any, args?: any): any {
-      //   console.log('arg' + args);
-         console.log('value');
+        // console.log('arg' + args);
+       //  console.log('value');
        //  console.log(value);
         var val1: any = [];
         var flag: any = 0;
@@ -55,6 +55,8 @@ export class UsersearchPipe implements PipeTransform {
         for (let key in vals) {
 
             flag = 0;
+              console.log('args');
+              console.log(args);
             //  console.log('value');
             //  console.log(value[key]);
             for (let key1 in value[key]) {

@@ -3,7 +3,7 @@ import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms';
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
-import {CookieService} from 'angular2-cookie/core';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-userrecruiterlist',
@@ -69,7 +69,9 @@ export class UserrecruiterlistComponent implements OnInit {
         }
     }
     getUserList() {
-        let link = this.serverurl + 'user&repcontractList';
+        let link = this.serverurl + 'usernrepcontractList';
+        console.log('link-------');
+        console.log(link);
         this._http.get(link)
             .subscribe(res => {
                 let result = res.json();

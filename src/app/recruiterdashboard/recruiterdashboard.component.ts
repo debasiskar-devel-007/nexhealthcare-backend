@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CookieService} from 'angular2-cookie/core';
+import {CookieService} from 'ngx-cookie-service';
 import {Router} from '@angular/router';
 import {Commonservices} from '../app.commonservices';
 import {Http} from '@angular/http';
@@ -22,7 +22,7 @@ export class RecruiterdashboardComponent implements OnInit {
 
     constructor( addcookie: CookieService, private _http: Http, private router: Router, public _commonservices: Commonservices) {
         this.addcookie = addcookie ;
-        this.cookiedetails = this.addcookie.getObject('cookiedetails');
+        this.cookiedetails = this.addcookie.get('cookiedetails');
         // console.log(this.cookiedetails);
         this.serverurl = _commonservices.url;
         if (this.cookiedetails == null) {
@@ -38,7 +38,7 @@ export class RecruiterdashboardComponent implements OnInit {
         console.log('getuserdetails');
         let link = this.serverurl + 'getuserdetails';
         let data = {
-            userid: this.cookiedetails.id,
+            userid: this.cookiedetails,
         };
         this._http.post(link, data)
             .subscribe(res => {
@@ -56,7 +56,7 @@ export class RecruiterdashboardComponent implements OnInit {
             });
     }
     calllogout() {
-        this.addcookie.removeAll();
+        this.addcookie.deleteAll();
         this.router.navigate(['/log-in']);
     }
     onHidden() {

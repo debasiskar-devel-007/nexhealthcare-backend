@@ -63,9 +63,9 @@
       </div>
 
       <div class="pateints_list_table_contain" *ngFor="let item of patientlist | orderBy:'_id':'reverse' | usersearch:listFilter.value| paginate: { itemsPerPage: 25, currentPage: p }; let i = index">
-        <div class="row row-eq-height" *ngIf="tags">
+        <div class="row row-eq-height" *ngIf="tags" (click)="gotopatientrecord(item._id, item.Tagdetail[0].tagid)">
           <div class="divnew ">
-            <span>{{item.uniqueid}}</span>
+            <span >{{item.uniqueid}}</span>
           </div>
           <div class="divnew">
             <span *ngIf="item.Tagdetail[0]!=null">{{showtagnme(item.Tagdetail[0].tagid)}}</span>

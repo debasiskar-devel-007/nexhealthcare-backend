@@ -307,33 +307,33 @@
 
               <div class="form-group hide">
                 <label>Confirm  Password:</label>
-                <input type="password" class="form-control" [formControl]="dataForm.controls['confpassword']"/>
+                <input type="password" class="form-control" [formControl]="dataForm.controls['confpassword']" (keyup)="addpatientvalidationcall()"/>
                 <div class="clearfix"></div>
-                <span class="has-error" *ngIf="passerror">{{passerror}}</span>
+                <span class="has-error" *ngIf="passerror && addpatientvalidation==1">{{passerror}}</span>
               </div>
 
               <div class="clearfix"></div>
 
               <div class="form-group">
                 <label>First Name</label>
-                <input type="text"  class="form-control" placeholder="First Name" [formControl]="dataForm.controls['firstname']"/>  <div class="clearfix"></div>
-                <span class="has-error" *ngIf ="dataForm.controls['firstname'].touched && !dataForm.controls['firstname'].valid">Firstname is required!</span></div>
+                <input type="text"  class="form-control" placeholder="First Name" [formControl]="dataForm.controls['firstname']" (keyup)="addpatientvalidationcall()"/>  <div class="clearfix"></div>
+                <span class="has-error" *ngIf ="dataForm.controls['firstname'].touched && !dataForm.controls['firstname'].valid && addpatientvalidation==1">Firstname is required!</span></div>
 
               <div class="form-group">
                 <label>Last Name</label>
-                <input type="text"  class="form-control"  placeholder="Last Name" [formControl]="dataForm.controls['lastname']"/>  <div class="clearfix"></div>
-                <span class="has-error" *ngIf ="dataForm.controls['lastname'].touched && !dataForm.controls['lastname'].valid">Lastname is required!</span></div>
+                <input type="text"  class="form-control"  placeholder="Last Name" [formControl]="dataForm.controls['lastname']" (keyup)="addpatientvalidationcall()"/>  <div class="clearfix"></div>
+                <span class="has-error" *ngIf ="dataForm.controls['lastname'].touched && !dataForm.controls['lastname'].valid && addpatientvalidation==1">Lastname is required!</span></div>
 
               <div class="clearfix"></div>
 
-              <div class="form-group">
+              <div class="form-group addressgroup">
                 <label>Address  :</label>
-                <textarea [formControl]="dataForm.controls['address']"></textarea>
+                <textarea [formControl]="dataForm.controls['address']" (keyup)="addpatientvalidationcall()"></textarea>
                 <div class="clearfix"></div>
-                <span class="has-error" *ngIf ="dataForm.controls['address'].touched && !dataForm.controls['address'].valid">Invalid Address!</span>
+                <span class="has-error" *ngIf ="dataForm.controls['address'].touched && !dataForm.controls['address'].valid && addpatientvalidation==1">Invalid Address!</span>
               </div>
 
-              <div class="form-group">
+              <div class="form-group addressgroup">
                 <label>Address2  :</label>
                 <textarea [formControl]="dataForm.controls['address2']"></textarea>
                 <div class="clearfix"></div>
@@ -341,31 +341,31 @@
               <div class="clearfix"></div>
               <div class="form-group form-group3row">
                 <label>City</label>
-                <input type="text"  class="form-control"  placeholder="City" [formControl]="dataForm.controls['city']"/>  <div class="clearfix"></div>
-                <span class="has-error" *ngIf ="dataForm.controls['city'].touched && !dataForm.controls['city'].valid">City is required!</span></div>
+                <input type="text"  class="form-control"  placeholder="City" [formControl]="dataForm.controls['city']" (keyup)="addpatientvalidationcall()"/>  <div class="clearfix"></div>
+                <span class="has-error" *ngIf ="dataForm.controls['city'].touched && !dataForm.controls['city'].valid && addpatientvalidation==1">City is required!</span></div>
 
               <div class="form-group form-group3row">
                 <label>State</label>
-                <select class="form-control" [formControl]="dataForm.controls['state']">
+                <select class="form-control" [formControl]="dataForm.controls['state']" (change)="addpatientvalidationcall()">
                   <option value="" disabled selected>Select State</option>
                   <option value="{{item.name}}" *ngFor="let item of usastates; let i = index">{{item.name}}</option>
                 </select>
                 <div class="clearfix"></div>
-                <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid">State is required!</span></div>
+                <span class="has-error" *ngIf ="dataForm.controls['state'].touched && !dataForm.controls['state'].valid && addpatientvalidation==1">State is required!</span></div>
 
               <div class="form-group form-group3row">
                 <label>Zip    :</label>
-                <input type="text" class="form-control" [formControl]="dataForm.controls['zip']">
+                <input type="text" class="form-control" [formControl]="dataForm.controls['zip']" (keyup)="addpatientvalidationcall()">
                 <div class="clearfix"></div>
-                <span class="has-error" *ngIf ="dataForm.controls['zip'].touched && !dataForm.controls['zip'].valid">Invalid Zip!</span>
+                <span class="has-error" *ngIf ="dataForm.controls['zip'].touched && !dataForm.controls['zip'].valid && addpatientvalidation==1">Invalid Zip!</span>
               </div>
 
               <div class="clearfix"></div>
 
               <div class="form-group">
                 <label>Phone Number:</label>
-                <input type="text" class="form-control" appNumber [formControl]="dataForm.controls['phone']">
-                <span class="has-error" *ngIf ="dataForm.controls['phone'].touched && !dataForm.controls['phone'].valid">Phone No must be 10 numbers!</span>
+                <input type="text" class="form-control" appNumber [formControl]="dataForm.controls['phone']" (keyup)="addpatientvalidationcall()">
+                <span class="has-error" *ngIf ="dataForm.controls['phone'].touched && !dataForm.controls['phone'].valid && addpatientvalidation==1">Phone No must be 10 numbers!</span>
                 <div class="clearfix"></div>
               </div>
 
@@ -382,8 +382,8 @@
 
               <div class="form-group">
                 <label>Gender  :</label>
-                <select class="form-control2" [formControl]="dataForm.controls['gender']">
-                  <span class="has-error" *ngIf ="dataForm.controls['gender'].touched && !dataForm.controls['gender'].valid"> You must choose your gender!</span>
+                <select class="form-control2" [formControl]="dataForm.controls['gender']" (click)="addpatientvalidationcall()">
+                  <span class="has-error" *ngIf ="dataForm.controls['gender'].touched && !dataForm.controls['gender'].valid && addpatientvalidation==1"> You must choose your gender!</span>
                   <option value="male" name="gender">Male </option>
                   <option value="female" name="gender">Female </option>
                 </select>
@@ -392,33 +392,33 @@
 
               <div class="form-group">
                 <label>Date Of birth :</label>
-                <input type="text" class="form-control" [formControl]="dataForm.controls['dob']">
+                <input type="text" class="form-control" [formControl]="dataForm.controls['dob']" (keyup)="addpatientvalidationcall()">
                 <div class="clearfix"></div>
-                <span class="has-error" *ngIf ="dataForm.controls['dob'].touched && !dataForm.controls['dob'].valid">Invalid Date of Birth!</span>
+                <span class="has-error" *ngIf ="dataForm.controls['dob'].touched && !dataForm.controls['dob'].valid && addpatientvalidation==1">Invalid Date of Birth!</span>
               </div>
 
               <div class="clearfix"></div>
 
-              <div class="form-group form-group1row">
+              <div class="form-group form-group1row hide">
                 <label><!--How many years have you been an insurance agent?--> Years As An Agent  </label>
-                <input type="text" class="form-control" [formControl]="dataForm.controls['agentexperience']">
+                <input type="text" class="form-control" [formControl]="dataForm.controls['agentexperience']" (keyup)="addpatientvalidationcall()">
                 <div class="clearfix"></div>
-                <span class="has-error" *ngIf ="dataForm.controls['agentexperience'].touched && !dataForm.controls['agentexperience'].valid">Invalid Value!</span>
+                <span class="has-error" *ngIf ="dataForm.controls['agentexperience'].touched && !dataForm.controls['agentexperience'].valid && addpatientvalidation==1">Invalid Value!</span>
               </div>
 
 
-              <div class="form-group form-group1row">
+              <div class="form-group form-group1row hide">
                 <label><!--What number of your clients are 65 or older?-->Number Of Clients 65+?</label>
-                <input type="text" class="form-control" [formControl]="dataForm.controls['olderclients']">
+                <input type="text" class="form-control" [formControl]="dataForm.controls['olderclients']" (keyup)="addpatientvalidationcall()">
                 <div class="clearfix"></div>
-                <span class="has-error" *ngIf ="dataForm.controls['olderclients'].touched && !dataForm.controls['olderclients'].valid">Invalid Value!</span>
+                <span class="has-error" *ngIf ="dataForm.controls['olderclients'].touched && !dataForm.controls['olderclients'].valid && addpatientvalidation==1">Invalid Value!</span>
               </div>
 
-              <div class="form-group form-group1row">
+              <div class="form-group form-group1row hide">
                 <label><!--In your estimate, what percentage of your clients have their Medicare Plan B Card?--> % Of Client With Medicare Plan B Card? </label>
-                <input type="text" class="form-control" [formControl]="dataForm.controls['noofplanBcard']">
+                <input type="text" class="form-control" [formControl]="dataForm.controls['noofplanBcard']" (keyup)="addpatientvalidationcall()">
                 <div class="clearfix"></div>
-                <span class="has-error" *ngIf ="dataForm.controls['noofplanBcard'].touched && !dataForm.controls['noofplanBcard'].valid">Invalid Value!</span>
+                <span class="has-error" *ngIf ="dataForm.controls['noofplanBcard'].touched && !dataForm.controls['noofplanBcard'].valid && addpatientvalidation==1">Invalid Value!</span>
               </div>
               <div class="clearfix"></div>
 
@@ -429,17 +429,25 @@
 
               <div *ngIf="getdetailsbyidis!=null">
                 <div class="form-group" *ngIf="getdetailsbyidis.signuptime!=null">
+                  <label>User Id</label>
+                  <input type="text"  class="form-control"  placeholder="Date Added" value="{{getdetailsbyidis.uniqueid}}" readonly/>  <div class="clearfix"></div>
+                </div>
+                <div class="form-group" *ngIf="getdetailsbyidis.signuptime!=null">
+                  <label>Role</label>
+                  <input type="text"  class="form-control"  placeholder="Date Added" value="{{getdetailsbyidis.type}}" readonly/>  <div class="clearfix"></div>
+                </div>
+                <div class="form-group" *ngIf="getdetailsbyidis.signuptime!=null">
                   <label>Date Added</label>
                   <input type="text"  class="form-control"  placeholder="Date Added" value="{{showtime(getdetailsbyidis.signuptime)}}" readonly/>  <div class="clearfix"></div>
                 </div>
 
-              <div class="form-group">
-                <label>Username : </label>
-                <input type="text" class="form-control" [formControl]="dataForm.controls['username']" readonly/>
-                <div class="clearfix"></div>
-              </div>
+                <div class="form-group">
+                  <label>Username : </label>
+                  <input type="text" class="form-control" [formControl]="dataForm.controls['username']" readonly/>
+                  <div class="clearfix"></div>
+                </div>
 
-              <div class="form-group">
+                <div class="form-group">
                 <label>Rep ID: </label>
                 <input type="text" class="form-control" [formControl]="dataForm.controls['uniqueid']" readonly/>
                 <div class="clearfix"></div>
@@ -449,12 +457,14 @@
 
                 <div class="form-group"  *ngIf="getdetailsbyidis.addedby!=null">
                   <label>Enroller</label>
-                  <input type="text"  class="form-control"  placeholder="Enroller" readonly value="{{getdetailsbyidis.addedby}}"/>  <div class="clearfix"></div>
+                  <input type="text"  class="form-control addedbyinput"  [formControl]="dataForm.controls['addedby']"   placeholder="Enroller"  />  <div class="clearfix"></div>
+
+                  <span class="has-error" *ngIf ="dataForm.controls['addedby'].touched && !dataForm.controls['addedby'].valid && addpatientvalidation==1">Enroller Required!!</span>
                 </div>
 
                 <div class="form-group form-group2row"  *ngIf="getdetailsbyidis.cgxamountoflead!=null && getdetailsbyidis.type!='leadmanager'">
                   <label>CGX</label>
-                  <input type="text"  class="form-control"  placeholder="CGX" readonly value="{{getdetailsbyidis.cgxamountoflead}}"/>  <div class="clearfix"></div>
+                  <input type="text"  class="form-control"   placeholder="CGX" readonly value="{{getdetailsbyidis.cgxamountoflead}}"/>  <div class="clearfix"></div>
                 </div>
 
                 <div class="form-group form-group2row"  *ngIf="getdetailsbyidis.type=='leadmanager'">
@@ -462,12 +472,12 @@
                   <input type="text"  class="form-control"  placeholder="CGX" readonly value=10/>  <div class="clearfix"></div>
                 </div>
 
-                <div class="form-group form-group2row"  *ngIf="getdetailsbyidis.pgxvalueoflead!=null  && getdetailsbyidis.type!='leadmanager'">
+                <div class="form-group form-group2row hide"  *ngIf="getdetailsbyidis.pgxvalueoflead!=null  && getdetailsbyidis.type!='leadmanager'">
                   <label>PGX</label>
                   <input type="text"  class="form-control"  placeholder="PGX" readonly value="{{getdetailsbyidis.pgxvalueoflead}}"/>  <div class="clearfix"></div>
                 </div>
 
-                <div class="form-group form-group2row"  *ngIf=" getdetailsbyidis.type=='leadmanager'">
+                <div class="form-group form-group2row hide"  *ngIf=" getdetailsbyidis.type=='leadmanager'">
                   <label>PGX</label>
                   <input type="text"  class="form-control"  placeholder="PGX" readonly value="0"/>  <div class="clearfix"></div>
                 </div>

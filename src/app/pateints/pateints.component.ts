@@ -3,7 +3,7 @@ import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms';
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Commonservices} from '../app.commonservices' ;
-import {CookieService} from 'angular2-cookie/core';
+import {CookieService} from 'ngx-cookie-service';
 declare var $: any;
 declare var moment: any;
 
@@ -23,9 +23,10 @@ export class PateintsComponent implements OnInit {
     public addcookie: CookieService;
     public cookiedetails;
     public tags;
-  public showdeg: any =[];
+  public showdeg: any = [];
     public repuniqueid;
     public patientlist: any = [];
+    public patientlistincomplete: any = [];
     public dataForm1: FormGroup ;
     public pateintquestioniremodal: boolean = false;
   public showquestionarydiv: boolean = false;
@@ -41,10 +42,21 @@ export class PateintsComponent implements OnInit {
   public filterval2;
   // public filterhitmap : any = null;
   public patientlistoriginal: any = [];
+  public patientlistcomplete: any = [];
   public planbcard: any = '';
+  public planbcard_1: any = '';
+  public planbcard_2: any = '';
+  public planbcard_3: any = '';
+  public planbcard_4: any = '';
+  public planbcard_5: any = '';
+  public planbcard_6: any = '';
   public patientdetails;
   public opensymptommodalflag: boolean = false;
+  public pgxmedicationmodal: boolean = false;
   public dataForm2: FormGroup ;
+    public loadervalue:boolean = true;
+  public dataForm3: FormGroup ;
+  public usertype: string;
 
   constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, public _commonservices: Commonservices, private route: ActivatedRoute) {
     this.serverurl = _commonservices.url;
@@ -52,7 +64,7 @@ export class PateintsComponent implements OnInit {
     this.getusastates();
         //  if (this.isthisadmin != 'admin') {
         this.addcookie = addcookie ;
-        this.cookiedetails = this.addcookie.getObject('cookiedetails');
+        this.cookiedetails = this.addcookie.get('cookiedetails');
         //  this.callcookiedetails();
         console.log(this.cookiedetails);
         // this.getpatientlistunderthisid();
@@ -73,6 +85,7 @@ export class PateintsComponent implements OnInit {
       race1: [''],
       height1: [''],
       width1: [''],
+      weight1: [''],
       allergies1: [''],
       medicareclaim1: [''],
       notes1: [''],
@@ -99,10 +112,14 @@ export class PateintsComponent implements OnInit {
       medicarepolicyno: [''],
       mediprimarypolicy: [''],
       comprimarypolicy: [''],
+        medadvantageprimarypolicy: [''],
+        medadvantageplan: [''],
+        medadvantagepolicyno: [''],
       /*   phtype1: ['', Validators.required],*/
       phtype1: [''],
       /* phtype2: [''],*/
       phage: [''],
+        phdead: [''],
       motype1: [''],
       /* motype2: [''],*/
       moage: [''],
@@ -201,8 +218,11 @@ export class PateintsComponent implements OnInit {
       braces_sup: ['' ],
       topical_sup: ['' ],
       pain_sup: [''],
+      triedbraces: [''],
+      lastbrace: [''],
       wound_sup: [''],
       diabetic_sup: ['' ],
+      familyrelation0: [''],
       familyrelation1: [''],
       familyrelation2: [''],
       familyrelation3: [''],
@@ -274,7 +294,91 @@ export class PateintsComponent implements OnInit {
       familyrelation14name: [''],
       familyrelation15name: [''],
       familyrelation16name: [''],
-      familyrelation17name: ['']
+      familyrelation17name: [''],
+        insurance1_1: [''],
+        insurance2_1: [''],
+        insurance3_1: [''],
+        insurance4_1: [''],
+        planbcard_1: [''],
+        medicarepolicyno_1: [''],
+        mediprimarypolicy_1: [''],
+        medadvantageprimarypolicy_1: [''],
+        medadvantageplan_1: [''],
+        medadvantagepolicyno_1: [''],
+        comprimarypolicy_1: [''],
+        carrier_1: [''],
+        carrierplan_1: [''],
+        carrierpolicyno_1: [''],
+        insurance1_2: [''],
+        insurance2_2: [''],
+        insurance3_2: [''],
+        insurance4_2: [''],
+        planbcard_2: [''],
+        medicarepolicyno_2: [''],
+        mediprimarypolicy_2: [''],
+        medadvantageprimarypolicy_2: [''],
+        medadvantageplan_2: [''],
+        medadvantagepolicyno_2: [''],
+        comprimarypolicy_2: [''],
+        carrier_2: [''],
+        carrierplan_2: [''],
+        carrierpolicyno_2: [''],
+        insurance1_3: [''],
+        insurance2_3: [''],
+        insurance3_3: [''],
+        insurance4_3: [''],
+        planbcard_3: [''],
+        medicarepolicyno_3: [''],
+        mediprimarypolicy_3: [''],
+        medadvantageprimarypolicy_3: [''],
+        medadvantageplan_3: [''],
+        medadvantagepolicyno_3: [''],
+        comprimarypolicy_3: [''],
+        carrier_3: [''],
+        carrierplan_3: [''],
+        carrierpolicyno_3: [''],
+        insurance1_4: [''],
+        insurance2_4: [''],
+        insurance3_4: [''],
+        insurance4_4: [''],
+        planbcard_4: [''],
+        medicarepolicyno_4: [''],
+        mediprimarypolicy_4: [''],
+        medadvantageprimarypolicy_4: [''],
+        medadvantageplan_4: [''],
+        medadvantagepolicyno_4: [''],
+        comprimarypolicy_4: [''],
+        carrier_4: [''],
+        carrierplan_4: [''],
+        carrierpolicyno_4: [''],
+        insurance1_5: [''],
+        insurance2_5: [''],
+        insurance3_5: [''],
+        insurance4_5: [''],
+        planbcard_5: [''],
+        medicarepolicyno_5: [''],
+        mediprimarypolicy_5: [''],
+        medadvantageprimarypolicy_5: [''],
+        medadvantageplan_5: [''],
+        medadvantagepolicyno_5: [''],
+        comprimarypolicy_5: [''],
+        carrier_5: [''],
+        carrierplan_5: [''],
+        carrierpolicyno_5: [''],
+        insurance1_6: [''],
+        insurance2_6: [''],
+        insurance3_6: [''],
+        insurance4_6: [''],
+        planbcard_6: [''],
+        medicarepolicyno_6: [''],
+        mediprimarypolicy_6: [''],
+        medadvantageprimarypolicy_6: [''],
+        medadvantageplan_6: [''],
+        medadvantagepolicyno_6: [''],
+        comprimarypolicy_6: [''],
+        carrier_6: [''],
+        carrierplan_6: [''],
+        carrierpolicyno_6: ['']
     });
     this.dataForm2 = this.fb.group({
       weightloss: [''],
@@ -332,6 +436,43 @@ export class PateintsComponent implements OnInit {
       cholecystitis2: [''],
       noofbloodclots: [''],
     });
+    this.dataForm3 = this.fb.group({
+      lithium: [''],
+      abilify: [''],
+      seroquel: [''],
+      clonazepam: [''],
+      latuda: [''],
+      valium: [''],
+      ativan: [''],
+      zyprexa: [''],
+      xanax: [''],
+      zoloft: [''],
+      celexa: [''],
+      paxil: [''],
+      cymbalta: [''],
+      klonopin: [''],
+      waellbutrin: [''],
+      prozac: [''],
+      lexapro: [''],
+      amitriptyline: [''],
+      viibryd: [''],
+      trazodone: [''],
+      nitros: [''],
+      heartattack: [''],
+      lipitor: [''],
+      crestor: [''],
+      zocor: [''],
+      mevacor: [''],
+      skinrash: [''],
+      prilosec: [''],
+      zantac: [''],
+      nexium: [''],
+      neurontin: [''],
+      triamcinolone: [''],
+      clobex: [''],
+      fluocinonide: [''],
+      betamethasone: ['']
+    });
     }
     getusastates() {
         let link = this.serverurl + 'getusastates';
@@ -377,6 +518,15 @@ export class PateintsComponent implements OnInit {
                 console.log('Ooops');
             });
     }
+
+
+  editheatmap(i) {
+    console.log('coloradd' + i);
+    //   this.showheatmapeditdiv = 1-this.showheatmapeditdiv;
+    $('.td_color_con').addClass('hide');
+    $('.coloradd' + i).removeClass('hide');
+  }
+
     getrepid(itemid) {
         let link = this.serverurl + 'getrepdetails';
         let data = {_id : itemid};
@@ -397,6 +547,7 @@ export class PateintsComponent implements OnInit {
         this.openapprovemodal = false;
         this.opendeclinemodal = false;
       this.opensymptommodalflag = false;
+      this.pgxmedicationmodal = false;
     }
     ngOnInit() {
         this.route.params.subscribe(params => {
@@ -404,38 +555,92 @@ export class PateintsComponent implements OnInit {
              console.log(this.isthisadmin);
         });
         if (this.isthisadmin == 'admin') {
+
+          let usertype=this.addcookie.get('type');
+          this.usertype=this.addcookie.get('type');
+          console.log('usertype');
+          console.log(usertype);
+
             console.log('this.isthisadmin**************');
             console.log(this.isthisadmin);
-            this.getPatient_addedbyList();
+           if(usertype=='superadmin') this.getPatient_addedbyList();
+           else  this.router.navigate(['/patient-list']);
         }
         else {
+          console.log('admin but not with admin argument .... ');
+          this.usertype=this.addcookie.get('type');
+          if(this.usertype=='superadmin') this.router.navigate(['/patient-list','admin']);
+          // else  this.router.navigate(['/patient-list']);
             console.log('this.isthisadmin@@@@@@@@');
             console.log(this.isthisadmin);
             this.getpatientlistunderthisid();
         }
     }
   filterbyhitmap(val) {
+    console.log(this.patientlist);
+    this.patientlistcomplete = [];
+    if (val == 'RED' || val == 'GREEN' || val == 'YELLOW' ) {
+      for (let i in this.patientlist) {
+        // console.log(this.patientlistoriginal[i].PatientRecordCompletedOrNot[0]);
+        if (this.patientlist[i].PatientRecordCompletedOrNot[0] != null) {
+          if (this.patientlist[i].PatientRecordCompletedOrNot[0].hit_map_value.toLowerCase() == val.toLowerCase()) {
+            //  this.patientlist.push(this.patientlistoriginal[i]);
+            this.patientlistcomplete.push(this.patientlist[i]);
+          }
+        }
+      }
+    }
+    else if (val == 'GREY') {
+      for (let i in this.patientlist) {
+        // if (this.patientlistoriginal[i].PatientRecordCompletedOrNot[0] != null) {
+        if (this.patientlist[i].hit_map_value == '') {
+          //   this.patientlist.push(this.patientlistoriginal[i]);
+          this.patientlistcomplete.push(this.patientlist[i]);
+        }
+        //  }
+      }
+    }
+    else {
+     // this.patientlist = this.patientlistoriginal;
+      this.patientlistcomplete = this.patientlistoriginal;
+    }
+
+/*
      // this.filterhitmap = val;
-   /* this.filterval2 = '';
+   /!* this.filterval2 = '';
     this.filterval2 = val;
-      this.searchbyval(); */
+      this.searchbyval(); *!/
  //   this.patientlistoriginal = this.patientlist;
     console.log('=======');
     console.log(this.patientlistoriginal);
     this.patientlist = [];
-    if (val != 'ALL') {
+    this.patientlistcomplete = [];
+    if (val == 'RED' || val == 'GREEN' || val == 'YELLOW' ) {
       for (let i in this.patientlistoriginal) {
        // console.log(this.patientlistoriginal[i].PatientRecordCompletedOrNot[0]);
         if (this.patientlistoriginal[i].PatientRecordCompletedOrNot[0] != null) {
         if (this.patientlistoriginal[i].PatientRecordCompletedOrNot[0].hit_map_value == val) {
-          this.patientlist.push(this.patientlistoriginal[i]);
+        //  this.patientlist.push(this.patientlistoriginal[i]);
+          this.patientlistcomplete.push(this.patientlistoriginal[i]);
         }
         }
       }
     }
+    else if (val == 'GREY') {
+      for (let i in this.patientlistoriginal) {
+       // if (this.patientlistoriginal[i].PatientRecordCompletedOrNot[0] != null) {
+          if (this.patientlistoriginal[i].hit_map_value == '') {
+         //   this.patientlist.push(this.patientlistoriginal[i]);
+            this.patientlistcomplete.push(this.patientlistoriginal[i]);
+          }
+      //  }
+      }
+    }
     else {
       this.patientlist = this.patientlistoriginal;
-    }
+      this.patientlistcomplete = this.patientlistoriginal;
+    //  this.patientlist = this.patientlistcomplete;
+    }*/
   }
 
   searchbyval() {
@@ -491,22 +696,68 @@ export class PateintsComponent implements OnInit {
 
     gotopdf(id) {
        // var url = 'http://altushealthgroup.com/testpdf/html2pdf/ppqformpdf.php?id=' + id;
-      var url = 'http://' + this._commonservices.commonvalue.commonurl + '/testpdf/html2pdf/ppqformpdf.php?id=' + id;
+      var url = 'https://' + this._commonservices.commonvalue.commonurl + '/downloadppsadmin.php?id=' + id._id+'&fname='+id.firstname+'&lastname='+id.lastname+'&uid='+id.uniqueid;
         window.open(url, '_blank');
     }
+
+
+  hitmapupdate(patientid , val) {
+    let link = this.serverurl + 'hitmapupdate';
+    if (val == 1) { // red
+      var data = {
+        patientid: patientid,
+        hit_map_value: 'RED',
+      };
+    }
+    if (val == 2) { // green
+      var data = {
+        patientid: patientid,
+        hit_map_value: 'GREEN',
+      };
+    }
+    if (val == 3) { // yellow
+      var data = {
+        patientid: patientid,
+        hit_map_value: 'YELLOW',
+      };
+    }
+    this._http.post(link, data)
+      .subscribe(data => {
+        let result = data.json();
+        if (result.status == 'success') {
+          this.getPatient_addedbyList();
+        }
+      }, error => {
+        console.log('Oooops!');
+      });
+  }
+
+
     // admin call to patientlist
     getPatient_addedbyList() {
+        this.loadervalue = true;
         this.patientlist = [];
+        this.patientlistincomplete = [];
         this.patientlistoriginal = [];
-        let link = this.serverurl + 'patient_addedbylist';
+        let link = this.serverurl + 'patient_addedbylist?limit=100';
         this._http.get(link)
             .subscribe(res => {
                 let result = res.json();
                 if (result.status == 'success') {
                     console.log(result.id);
                     this.datalist = result.id;
+                    this.loadervalue = false;
                     this.patientlist = this.datalist;
-                  this.patientlistoriginal = this.patientlist;
+                  for (let i in this.patientlist) {
+                    if (this.patientlist[i].hit_map_value == '') {
+                      this.patientlistincomplete.push(this.patientlist[i]);
+                    }
+                    else {
+                      this.patientlistcomplete.push(this.patientlist[i]);
+                    }
+                  }
+                  this.patientlistoriginal = this.patientlistcomplete;
+                  this.getPatient_addedbyListwithoutlimit();
                    /* for (let j in this.datalist) {
                         if (this.datalist[j].PatientRecordCompletedOrNot.length > 0) {
                             console.log('inside');
@@ -522,6 +773,48 @@ export class PateintsComponent implements OnInit {
             });
         console.log('this.patientlist----------');
         console.log(this.patientlist);
+    }
+    getPatient_addedbyListwithoutlimit() {
+        this.loadervalue = true;
+      // this.patientlist = [];
+      // this.patientlistoriginal = [];
+      let link = this.serverurl + 'patient_addedbylist';
+      this._http.get(link)
+        .subscribe(res => {
+          let result = res.json();
+          if (result.status == 'success') {
+            console.log(result.id);
+            this.datalist = result.id;
+            this.loadervalue = false;
+            this.patientlist = this.datalist;
+            this.patientlistincomplete = [];
+              this.patientlistcomplete = [];
+            for (let i in this.patientlist) {
+              if (this.patientlist[i].hit_map_value == '') {
+                this.patientlistincomplete.push(this.patientlist[i]);
+              }
+              else {
+                this.patientlistcomplete.push(this.patientlist[i]);
+              }
+            }
+            this.patientlistoriginal = this.patientlistcomplete;
+            /* for (let j in this.datalist) {
+                        if (this.datalist[j].PatientRecordCompletedOrNot.length > 0) {
+                            console.log('inside');
+                            if (this.datalist[j].PatientRecordCompletedOrNot[0].iscompleted == 1) {
+                                this.patientlist.push(this.datalist[j]);
+                            }
+                        }
+                    }*/
+                }
+
+            }, error => {
+                console.log('Oooops!');
+            });
+        console.log('this.patientlist----------');
+        console.log(this.patientlist);
+        console.log('this.patientlistcomplete----------');
+        console.log(this.patientlistcomplete);
     }
 
     gotopatientrecord(id, tagid) {
@@ -583,6 +876,8 @@ export class PateintsComponent implements OnInit {
                 if (result.status == 'success') {
                     this.openapprovemodal = false;
                     if (this.isthisadmin == 'admin') {
+
+                      //alert(usertype);
                         this.getPatient_addedbyList();
                     }
                     else {
@@ -616,26 +911,36 @@ export class PateintsComponent implements OnInit {
     }
     // user call to patientlist
     getpatientlistunderthisid() {
+        this.loadervalue = true;
         let link = this.serverurl + 'getpatientlistunderthisid';
         let data = {
-            userid: this.cookiedetails.id,
+            userid: this.cookiedetails,
         };
         this._http.post(link, data)
             .subscribe(res => {
                 let result = res.json();
                 if (result.status == 'success') {
                     this.datalist = result.id;
+                    this.loadervalue = false;
                     this.patientlist = this.datalist;
-                  this.patientlistoriginal = this.patientlist;
+                //  this.patientlistoriginal = this.patientlist;
                     console.log('this.patientlist under this userid');
                     console.log(this.patientlist);
+                  for (let i in this.patientlist) {
+                    if (this.patientlist[i].hit_map_value == '') {
+                      this.patientlistincomplete.push(this.patientlist[i]);
+                    }
+                    else {
+                      this.patientlistcomplete.push(this.patientlist[i]);
+                    }
+                  }
+                  this.patientlistoriginal = this.patientlistcomplete;
                 }
             }, error => {
                 console.log('Oooops!');
             });
     }
 
-/*todays update*/
   getdetails(id) {
     let link = this.serverurl + 'getpatientdetails';
     let data = {_id : id};
@@ -675,6 +980,11 @@ export class PateintsComponent implements OnInit {
           } if (userdet.mediprimarypolicy == 0) {
             var putmediprimarypolicy= 'no';
           }
+          if (userdet.medadvantageprimarypolicy == 1) {
+            var putmedadvantageprimarypolicy = 'yes';
+          } if (userdet.medadvantageprimarypolicy == 0) {
+            var putmedadvantageprimarypolicy= 'no';
+          }
           if (userdet.comprimarypolicy == 1) {
             var putcomprimarypolicy = 'yes';
           } if (userdet.comprimarypolicy == 0) {
@@ -691,11 +1001,22 @@ export class PateintsComponent implements OnInit {
               $( '.pateintquestionire_div2_left2_contain' ).find('select').each(function() {
                 $(this).attr( 'disabled', 'disabled' );
               });
-
+             //   $('#pateintquestionire_div2_left2_heading').removeClass('hide');
             }, 500);
           }  if (userdet.cancer_sup == 0) {
             var putcancer_sup = 'no';
-            this.showquestionarydiv = false;
+         //   this.showquestionarydiv = false;
+                this.showquestionarydiv = true;
+                setTimeout(() => {
+                    $( '.pateintquestionire_div2_left2_contain' ).find('input').each(function() {
+                        $(this).attr( 'disabled', 'disabled' );
+                    });
+
+                    $( '.pateintquestionire_div2_left2_contain' ).find('select').each(function() {
+                        $(this).attr( 'disabled', 'disabled' );
+                    });
+                    //   $('#pateintquestionire_div2_left2_heading').removeClass('hide');
+                }, 500);
           }
           if (userdet.catheters_sup == 1) {
             var putcatheters_sup = 'yes';
@@ -718,6 +1039,7 @@ export class PateintsComponent implements OnInit {
           }
           if (userdet.braces_sup == 1) {
             var putbraces_sup = 'yes';
+            this.disabledatepicker();
           }  if (userdet.braces_sup == 0) {
             var putbraces_sup = 'no';
           }
@@ -728,6 +1050,7 @@ export class PateintsComponent implements OnInit {
           }
           if (userdet.pain_sup == 1) {
             var putpain_sup = 'yes';
+            this.disableselect();
           }  if (userdet.pain_sup == 0) {
             var putpain_sup = 'no';
           }
@@ -746,7 +1069,66 @@ export class PateintsComponent implements OnInit {
           if (userdet.insurance1 == true || userdet.insurance3 == true) {
             this.disableit();
           }
-          this.dataForm1 = this.fb.group({
+
+            if (userdet.planbcard_1 == 1) { var putplanbcard_1 = 'yes'; }
+            if (userdet.planbcard_1 == 0) { var putplanbcard_1 = 'no'; }
+            if (userdet.mediprimarypolicy_1 == 1) { var putmediprimarypolicy_1 = 'yes';}
+            if (userdet.mediprimarypolicy_1 == 0) { var putmediprimarypolicy_1= 'no';}
+            if (userdet.medadvantageprimarypolicy_1 == 1) { var putmedadvantageprimarypolicy_1 = 'yes';}
+            if (userdet.medadvantageprimarypolicy_1 == 0) { var putmedadvantageprimarypolicy_1= 'no';}
+            if (userdet.comprimarypolicy_1 == 1) { var putcomprimarypolicy_1 = 'yes';}
+            if (userdet.comprimarypolicy_1 == 0) { var putcomprimarypolicy_1 = 'no';}
+
+            if (userdet.planbcard_2 == 1) { var putplanbcard_2 = 'yes'; }
+            if (userdet.planbcard_2 == 0) { var putplanbcard_2 = 'no'; }
+            if (userdet.mediprimarypolicy_2 == 1) { var putmediprimarypolicy_2 = 'yes'; }
+            if (userdet.mediprimarypolicy_2 == 0) { var putmediprimarypolicy_2= 'no'; }
+            if (userdet.medadvantageprimarypolicy_2 == 1) { var putmedadvantageprimarypolicy_2 = 'yes'; }
+            if (userdet.medadvantageprimarypolicy_2 == 0) { var putmedadvantageprimarypolicy_2= 'no'; }
+            if (userdet.comprimarypolicy_2 == 1) { var putcomprimarypolicy_2 = 'yes'; }
+            if (userdet.comprimarypolicy_2 == 0) { var putcomprimarypolicy_2 = 'no'; }
+
+
+            if (userdet.planbcard_3 == 1) { var putplanbcard_3 = 'yes'; }
+            if (userdet.planbcard_3 == 0) { var putplanbcard_3 = 'no'; }
+            if (userdet.mediprimarypolicy_3 == 1) { var putmediprimarypolicy_3 = 'yes'; }
+            if (userdet.mediprimarypolicy_3 == 0) { var putmediprimarypolicy_3= 'no'; }
+            if (userdet.medadvantageprimarypolicy_3 == 1) { var putmedadvantageprimarypolicy_3 = 'yes'; }
+            if (userdet.medadvantageprimarypolicy_3 == 0) { var putmedadvantageprimarypolicy_3= 'no'; }
+            if (userdet.comprimarypolicy_3 == 1) { var putcomprimarypolicy_3 = 'yes'; }
+            if (userdet.comprimarypolicy_3 == 0) { var putcomprimarypolicy_3 = 'no'; }
+
+            if (userdet.planbcard_4 == 1) { var putplanbcard_4 = 'yes'; }
+            if (userdet.planbcard_4 == 0) { var putplanbcard_4 = 'no'; }
+            if (userdet.mediprimarypolicy_4 == 1) { var putmediprimarypolicy_4 = 'yes'; }
+            if (userdet.mediprimarypolicy_4 == 0) { var putmediprimarypolicy_4 = 'no'; }
+            if (userdet.medadvantageprimarypolicy_4 == 1) { var putmedadvantageprimarypolicy_4 = 'yes'; }
+            if (userdet.medadvantageprimarypolicy_4 == 0) { var putmedadvantageprimarypolicy_4 = 'no'; }
+            if (userdet.comprimarypolicy_4 == 1) { var putcomprimarypolicy_4 = 'yes'; }
+            if (userdet.comprimarypolicy_4 == 0) { var putcomprimarypolicy_4 = 'no'; }
+
+
+            if (userdet.planbcard_5 == 1) { var putplanbcard_5 = 'yes'; }
+            if (userdet.planbcard_5 == 0) { var putplanbcard_5 = 'no'; }
+            if (userdet.mediprimarypolicy_5 == 1) { var putmediprimarypolicy_5 = 'yes'; }
+            if (userdet.mediprimarypolicy_5 == 0) { var putmediprimarypolicy_5 = 'no'; }
+            if (userdet.medadvantageprimarypolicy_5 == 1) { var putmedadvantageprimarypolicy_5 = 'yes'; }
+            if (userdet.medadvantageprimarypolicy_5 == 0) { var putmedadvantageprimarypolicy_5 = 'no'; }
+            if (userdet.comprimarypolicy_5 == 1) { var putcomprimarypolicy_5 = 'yes'; }
+            if (userdet.comprimarypolicy_5 == 0) { var putcomprimarypolicy_5 = 'no'; }
+
+            if (userdet.planbcard_6 == 1) { var putplanbcard_6 = 'yes'; }
+            if (userdet.planbcard_6 == 0) { var putplanbcard_6 = 'no'; }
+            if (userdet.mediprimarypolicy_6 == 1) { var putmediprimarypolicy_6 = 'yes'; }
+            if (userdet.mediprimarypolicy_6 == 0) { var putmediprimarypolicy_6 = 'no'; }
+            if (userdet.medadvantageprimarypolicy_6 == 1) { var putmedadvantageprimarypolicy_6 = 'yes'; }
+            if (userdet.medadvantageprimarypolicy_6 == 0) { var putmedadvantageprimarypolicy_6 = 'no'; }
+            if (userdet.comprimarypolicy_6 == 1) { var putcomprimarypolicy_6 = 'yes'; }
+            if (userdet.comprimarypolicy_6 == 0) { var putcomprimarypolicy_6 = 'no'; }
+
+
+         // console.log('userdet.weight======'+userdet.weight);
+            this.dataForm1 = this.fb.group({
             cgx1: [userdet.cgx],
             pgxval: [userdet.pgxval],
             firstname1: [userdet.firstname, Validators.required],
@@ -761,8 +1143,9 @@ export class PateintsComponent implements OnInit {
             race1: [userdet.race, Validators.required],
             height1: [userdet.height, Validators.required],
             width1: [userdet.width, Validators.required],
+              weight1: [userdet.weight],
             allergies1: [userdet.allergies],
-            medicareclaim1: [userdet.medicareclaim, Validators.required],
+            medicareclaim1: [userdet.medicareclaim],
             notes1: [userdet.notes1],
             notes2: [userdet.notes2],
             notes3: [userdet.notes3],
@@ -786,11 +1169,15 @@ export class PateintsComponent implements OnInit {
             medicarepolicyno: [userdet.medicarepolicyno],
             mediprimarypolicy: [putmediprimarypolicy],
             comprimarypolicy: [putcomprimarypolicy],
+              medadvantageprimarypolicy: [putmedadvantageprimarypolicy],
+              medadvantageplan: [userdet.medadvantageplan],
+              medadvantagepolicyno: [userdet.medadvantagepolicyno],
             /* planbcard: [putplanbcard],*/
             /*   phtype1: [userdet.phtype1, Validators.required],*/
             phtype1: [userdet.phtype1],
             /*  phtype2: [userdet.phtype2],*/
             phage: [userdet.phage],
+              phdead: [userdet.phdead],
             motype1: [userdet.motype1],
             /*motype2: [userdet.motype2],*/
             moage: [userdet.moage],
@@ -891,6 +1278,9 @@ export class PateintsComponent implements OnInit {
             pain_sup: [putpain_sup ],
             wound_sup: [putwound_sup],
             diabetic_sup: [putdiabetic_sup ],
+              triedbraces: [userdet.triedbraces ],
+              lastbrace: [userdet.lastbrace],
+            familyrelation0: [userdet.familyrelation0 ],
             familyrelation1: [userdet.familyrelation1 ],
             familyrelation2: [userdet.familyrelation2 ],
             familyrelation3: [userdet.familyrelation3 ],
@@ -962,16 +1352,114 @@ export class PateintsComponent implements OnInit {
             familyrelation14name: [userdet.familyrelation14name ],
             familyrelation15name: [userdet.familyrelation15name ],
             familyrelation16name: [userdet.familyrelation16name ],
-            familyrelation17name: [userdet.familyrelation17name ]
+            familyrelation17name: [userdet.familyrelation17name ],
+              insurance1_1: [userdet.insurance1_1],
+              insurance2_1: [userdet.insurance2_1],
+              insurance3_1: [userdet.insurance3_1],
+              insurance4_1: [userdet.insurance4_1],
+              medicarepolicyno_1: [userdet.medicarepolicyno_1],
+              mediprimarypolicy_1: [putmediprimarypolicy_1],
+              medadvantageprimarypolicy_1: [putmedadvantageprimarypolicy_1],
+              medadvantageplan_1: [userdet.medadvantageplan_1],
+              medadvantagepolicyno_1: [userdet.medadvantagepolicyno_1],
+              comprimarypolicy_1: [putcomprimarypolicy_1],
+              carrier_1: [userdet.carrier_1],
+              carrierplan_1: [userdet.carrierplan_1],
+              carrierpolicyno_1: [userdet.carrierpolicyno_1],
+
+              insurance1_2: [userdet.insurance1_2],
+              insurance2_2: [userdet.insurance2_2],
+              insurance3_2: [userdet.insurance3_2],
+              insurance4_2: [userdet.insurance4_2],
+              medicarepolicyno_2: [userdet.medicarepolicyno_2],
+              mediprimarypolicy_2: [putmediprimarypolicy_2],
+              medadvantageprimarypolicy_2: [putmedadvantageprimarypolicy_2],
+              medadvantageplan_2: [userdet.medadvantageplan_2],
+              medadvantagepolicyno_2: [userdet.medadvantagepolicyno_2],
+              comprimarypolicy_2: [putcomprimarypolicy_2],
+              carrier_2: [userdet.carrier_2],
+              carrierplan_2: [userdet.carrierplan_2],
+              carrierpolicyno_2: [userdet.carrierpolicyno_2],
+              insurance1_3: [userdet.insurance1_3],
+              insurance2_3: [userdet.insurance2_3],
+              insurance3_3: [userdet.insurance3_3],
+              insurance4_3: [userdet.insurance4_3],
+              medicarepolicyno_3: [userdet.medicarepolicyno_3],
+              mediprimarypolicy_3: [putmediprimarypolicy_3],
+              medadvantageprimarypolicy_3: [putmedadvantageprimarypolicy_3],
+              medadvantageplan_3: [userdet.medadvantageplan_3],
+              medadvantagepolicyno_3: [userdet.medadvantagepolicyno_3],
+              comprimarypolicy_3: [putcomprimarypolicy_3],
+              carrier_3: [userdet.carrier_3],
+              carrierplan_3: [userdet.carrierplan_3],
+              carrierpolicyno_3: [userdet.carrierpolicyno_3],
+              insurance1_4: [userdet.insurance1_4],
+              insurance2_4: [userdet.insurance2_4],
+              insurance3_4: [userdet.insurance3_4],
+              insurance4_4: [userdet.insurance4_4],
+              medicarepolicyno_4: [userdet.medicarepolicyno_4],
+              mediprimarypolicy_4: [putmediprimarypolicy_4],
+              medadvantageprimarypolicy_4: [putmedadvantageprimarypolicy_4],
+              medadvantageplan_4: [userdet.medadvantageplan_4],
+              medadvantagepolicyno_4: [userdet.medadvantagepolicyno_4],
+              comprimarypolicy_4: [putcomprimarypolicy_4],
+              carrier_4: [userdet.carrier_4],
+              carrierplan_4: [userdet.carrierplan_4],
+              carrierpolicyno_4: [userdet.carrierpolicyno_4],
+              insurance1_5: [userdet.insurance1_5],
+              insurance2_5: [userdet.insurance2_5],
+              insurance3_5: [userdet.insurance3_5],
+              insurance4_5: [userdet.insurance4_5],
+              medicarepolicyno_5: [userdet.medicarepolicyno_5],
+              mediprimarypolicy_5: [putmediprimarypolicy_5],
+              medadvantageprimarypolicy_5: [putmedadvantageprimarypolicy_5],
+              medadvantageplan_5: [userdet.medadvantageplan_5],
+              medadvantagepolicyno_5: [userdet.medadvantagepolicyno_5],
+              comprimarypolicy_5: [putcomprimarypolicy_5],
+              carrier_5: [userdet.carrier_5],
+              carrierplan_5: [userdet.carrierplan_5],
+              carrierpolicyno_5: [userdet.carrierpolicyno_5],
+              insurance1_6: [userdet.insurance1_6],
+              insurance2_6: [userdet.insurance2_6],
+              insurance3_6: [userdet.insurance3_6],
+              insurance4_6: [userdet.insurance4_6],
+              medicarepolicyno_6: [userdet.medicarepolicyno_6],
+              mediprimarypolicy_6: [putmediprimarypolicy_6],
+              medadvantageprimarypolicy_6: [putmedadvantageprimarypolicy_6],
+              medadvantageplan_6: [userdet.medadvantageplan_6],
+              medadvantagepolicyno_6: [userdet.medadvantagepolicyno_6],
+              comprimarypolicy_6: [putcomprimarypolicy_6],
+              carrier_6: [userdet.carrier_6],
+              carrierplan_6: [userdet.carrierplan_6],
+              carrierpolicyno_6: [userdet.carrierpolicyno_6]
           });
           this.planbcard  = putplanbcard;
+          this.planbcard_1  = putplanbcard_1;
+          this.planbcard_2  = putplanbcard_2;
+          this.planbcard_3  = putplanbcard_3;
+          this.planbcard_4  = putplanbcard_4;
+          this.planbcard_5  = putplanbcard_5;
+          this.planbcard_6  = putplanbcard_6;
 
           setTimeout(() => {
             $('.left2_heading4new').each(function() {
               if ($(this).find('input').val() == null || $(this).find('input').val() == '') {
                 $(this).parent().hide();
+                console.log('calling this?');
               }
             });
+           // console.log($('#pateintquestionire_div2_left2_heading').html());
+              $('#pateintquestionire_div2_left2_heading').removeAttr('style');
+
+              for (let j = 1; j < 7; j++) {
+                  let insurance1 = 'insurance1_' + j;
+                  let insurance2 = 'insurance2_' + j;
+                  let insurance3 = 'insurance3_' + j;
+                  let insurance4 = 'insurance4_' + j;
+                  if ($('input[name="' + insurance1 + '"]').prop('checked') == false && $('input[name="' + insurance2 + '"]').prop('checked') == false && $('input[name="' + insurance3 + '"]').prop('checked') == false && $('input[name="' + insurance4 + '"]').prop('checked') == false) {
+                      $('.insuranceinformation' + j).hide();
+                  }
+              }
           }, 1500);
         } else {
         }
@@ -986,6 +1474,7 @@ export class PateintsComponent implements OnInit {
           $(this).parent().hide();
         }
       });
+        $('#pateintquestionire_div2_left2_heading').removeAttr('style');
     }, 200);
     // then disable
     setTimeout(() => {
@@ -1016,20 +1505,35 @@ export class PateintsComponent implements OnInit {
       });
     }, 500);
   }
-  show(val) {
+ /* show(val) {
     let familyval = 'familyrelation' + val;
-    if ($('select[name="' + familyval + '"]').val() == 'Mother' || $('select[name="' + familyval + '"]').val() == 'Father' || $('select[name="' + familyval + '"]').val() == 'Brother' || $('select[name="' + familyval + '"]').val() == 'Sister') {
+    if ($('select[name="' + familyval + '"]').val() == 'Self' || $('select[name="' + familyval + '"]').val() == 'Mother' || $('select[name="' + familyval + '"]').val() == 'Father' || $('select[name="' + familyval + '"]').val() == 'Brother' || $('select[name="' + familyval + '"]').val() == 'Sister') {
       this.showdeg[val] = '(1st Degree)';
     }
-    else if ($('select[name="' + familyval + '"]').val() == 'Uncle' || $('select[name="' + familyval + '"]').val() == 'Aunt') {
+    else if ($('select[name="' + familyval + '"]').val() == 'Uncle' || $('select[name="' + familyval + '"]').val() == 'Aunt' || $('select[name="' + familyval + '"]').val() == 'Grand Father' || $('select[name="' + familyval + '"]').val() == 'Grand Mother') {
       this.showdeg[val] = '(2nd Degree)';
     }
     else {
       this.showdeg[val] = '(3rd Degree)';
     }
-  }
+  }*/
+    show(val) {
+        let familyval = 'familyrelation' + val;
+        if ( $('select[name="' + familyval + '"]').val() == 'Mother' || $('select[name="' + familyval + '"]').val() == 'Father' || $('select[name="' + familyval + '"]').val() == 'Brother' || $('select[name="' + familyval + '"]').val() == 'Sister' || $('select[name="' + familyval + '"]').val() == 'Son' || $('select[name="' + familyval + '"]').val() == 'Daughter') {
+            this.showdeg[val] = '1st Degree';
+        }
+        else if ($('select[name="' + familyval + '"]').val() == 'Uncle' || $('select[name="' + familyval + '"]').val() == 'Aunt' ) {
+            this.showdeg[val] = '2nd Degree';
+        }
+        else if ($('select[name="' + familyval + '"]').val() == 'Nephew' || $('select[name="' + familyval + '"]').val() == 'Niece' || $('select[name="' + familyval + '"]').val() == 'Cousin' || $('select[name="' + familyval + '"]').val() == 'Grand Father' || $('select[name="' + familyval + '"]').val() == 'Grand Mother') {
+            this.showdeg[val] = '3rd Degree';
+        }
+        else {
+            this.showdeg[val] = '';
+        }
+    }
   gotocsspdf(id) {
-    var url = 'http://' + this._commonservices.commonvalue.commonurl + '/testpdf/html2pdf/common_cancer_symptoms.php?id=' + id;
+    var url = 'https://' + this._commonservices.commonvalue.commonurl + '/testpdf/html2pdf/common_cancer_symptoms.php?id=' + id;
     window.open(url, '_blank');
   }
   showsymptomchecklist(id) {
@@ -1120,5 +1624,101 @@ export class PateintsComponent implements OnInit {
       }, error => {
         console.log('Ooops');
       });
+  }
+    showinproperform(val) {
+        var returnarr = [];
+        var k;
+        for (let i in val) {
+            k = val[i].replace(/\d+/g, '');
+            k = k.replace('_', '');
+            returnarr.push(k);
+        }
+        return returnarr;
+        //  return val;
+    }
+  showmedicationpgx(id) {
+    this.medicationpgxbypatientid(id);
+    this.pgxmedicationmodal = true;
+    setTimeout(() => {
+      $( '#formpgx' ).find('input').each(function() {
+        $(this).attr( 'disabled', 'disabled' );
+      });
+      $( '#formpgx' ).find('textarea').each(function() {
+        $(this).attr( 'disabled', 'disabled' );
+      });
+      $( '#formpgx' ).find('checkbox').each(function() {
+        $(this).attr( 'disabled', 'disabled' );
+      });
+    }, 500);
+  }
+  medicationpgxbypatientid(id) {
+    let link = this.serverurl + 'getmedicationpgxbypatientid';
+    let data = {patientid : id};
+    this._http.post(link, data)
+      .subscribe(res => {
+        let result = res.json();
+        if (result.status == 'success' && typeof(result.id) != 'undefined') {
+          console.log('getmedicationpgxbypatientid');
+          console.log(result.id);
+          let userdet = result.id;
+          this.dataForm3 = this.fb.group({
+            lithium: [userdet.lithium],
+            abilify: [userdet.abilify],
+            seroquel: [userdet.seroquel],
+            clonazepam: [userdet.clonazepam],
+            latuda: [userdet.latuda],
+            valium: [userdet.valium],
+            ativan: [userdet.ativan],
+            zyprexa: [userdet.zyprexa],
+            xanax: [userdet.xanax],
+            zoloft: [userdet.zoloft],
+            celexa: [userdet.celexa],
+            paxil: [userdet.paxil],
+            cymbalta: [userdet.cymbalta],
+            klonopin: [userdet.klonopin],
+            waellbutrin: [userdet.waellbutrin],
+            prozac: [userdet.prozac],
+            lexapro: [userdet.lexapro],
+            amitriptyline: [userdet.amitriptyline],
+            viibryd: [userdet.viibryd],
+            trazodone: [userdet.trazodone],
+            nitros: [userdet.nitros],
+            heartattack: [userdet.heartattack],
+            lipitor: [userdet.lipitor],
+            crestor: [userdet.crestor],
+            zocor: [userdet.zocor],
+            mevacor: [userdet.mevacor],
+            skinrash: [userdet.skinrash],
+            prilosec: [userdet.prilosec],
+            zantac: [userdet.zantac],
+            nexium: [userdet.nexium],
+            neurontin: [userdet.neurontin],
+            triamcinolone: [userdet.triamcinolone],
+            clobex: [userdet.clobex],
+            fluocinonide: [userdet.fluocinonide],
+            betamethasone: [userdet.betamethasone],
+          });
+        } else {
+        }
+      }, error => {
+        console.log('Ooops');
+      });
+  }
+
+  gotopgxpdf(id) {
+    var url = 'https://' + this._commonservices.commonvalue.commonurl + '/testpdf/html2pdf/medication_checklist.php?id=' + id;
+    window.open(url, '_blank');
+  }
+  disableselect() {
+    setTimeout(() => {
+      $( '#formquestionary' ).find('select').each(function() {
+        $(this).attr( 'disabled', 'disabled' );
+      });
+    }, 500);
+  }
+  disabledatepicker() {
+    setTimeout(() => {
+      $( '#bsDatepickerid' ).attr( 'disabled', 'disabled' );
+    }, 500);
   }
 }
