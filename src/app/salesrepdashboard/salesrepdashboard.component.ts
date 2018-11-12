@@ -35,7 +35,7 @@ export class SalesrepdashboardComponent implements OnInit {
     public patientsubmittednumber: number = 0;
     public filterval;
     public filterval1;
-    public showloader=1;
+    public showloader=0;
     public patientdetails;
     public patientuniqueid;
     public repuniqueid;
@@ -67,6 +67,7 @@ export class SalesrepdashboardComponent implements OnInit {
   public opensymptommodalflag: boolean = false;
   public pgxmedicationmodal: boolean = false;
   public dataForm3: FormGroup ;
+  public itemsPerPage: number = 25;
 
     constructor( fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, public _commonservices: Commonservices) {
         this.addcookie = addcookie ;
@@ -519,6 +520,7 @@ export class SalesrepdashboardComponent implements OnInit {
     openmodal() {
         this.comingsoonmodal = true;
     }
+
     // admin call to patientlist
     getPatient_addedbyList() {
         this.patientlist = [];
@@ -547,6 +549,7 @@ export class SalesrepdashboardComponent implements OnInit {
         console.log('this.patientlist----------');
         console.log(this.patientlist);
     }
+
     // user call to patientlist
     getpatientlistunderthisid() {
         let link = this.serverurl + 'getpatientlistunderthisid_only6';
@@ -571,6 +574,7 @@ export class SalesrepdashboardComponent implements OnInit {
           console.log('Oooops!');
         });
     }
+
   getpatientcountunderthisid() {
     let link = this.serverurl + 'getpatientcountunderthisid';
     let data:any;
@@ -723,13 +727,17 @@ export class SalesrepdashboardComponent implements OnInit {
                 console.log('Oooops!');
             });
     }*/
+
   showtime(time) {
     return moment(time).format('MM-DD-YYYY');
   }
+
     getPatientListforhelpdesk() {
-    this.showloader=0;
+      //  this.patientlistoriginalforhelpdesk = [];
+    this.showloader=1;
       //  this.patientlistforhelpdesk = [];
-        //this.patientlistoriginalforhelpdesk = [];
+      //  this.patientlistoriginalforhelpdesk = [];
+      //  this.patientlistoriginalforhelpdeskcopy = [];
       let userid:any;
       if(this.usertype=='superadmin'){
         userid='';
@@ -740,20 +748,25 @@ export class SalesrepdashboardComponent implements OnInit {
             .subscribe(res => {
                 let result = res.json();
                 if (result.status == 'success') {
-                  this.showloader=1;
+                  this.showloader=0;
                   //  console.log(result.id);
                     this.patientlistforhelpdesk = result.id;
                     console.log('===*********===');
                     console.log(this.patientlistforhelpdesk);
                      for (let j in this.patientlistforhelpdesk) {
                      if (this.patientlistforhelpdesk[j].helpdeskid==this.cookiedetails || this.patientlistforhelpdesk[j].helpdeskid==null) {
-                     this.patientlistoriginalforhelpdesk.push(this.patientlistforhelpdesk[j]); // patients who are under this id or not assigned to any helpdesk
+                     this.patientlistoriginalforhelpdeskcopy.push(this.patientlistforhelpdesk[j]); // patients who are under this id or not assigned to any helpdesk
                      }
                      }
-                    this.patientlistoriginalforhelpdeskcopy = this.patientlistoriginalforhelpdesk;
-                  this.patientlistoriginalforhelpdesk.reverse();
+                    for (let j in this.patientlistoriginalforhelpdeskcopy) {
+                        if (this.patientlistoriginalforhelpdeskcopy[j].hit_map_value != '') {
+                            this.patientlistoriginalforhelpdesk.push(this.patientlistoriginalforhelpdeskcopy[j]);
+                        }
+                    }
+                   // this.patientlistoriginalforhelpdeskcopy = this.patientlistoriginalforhelpdesk;
+               //   this.patientlistoriginalforhelpdesk.reverse();
+                    this.getPatientListforhelpdeskwithoutlimit();
                 }
-                this.getPatientListforhelpdeskwithoutlimit();
 
             }, error => {
                 console.log('Oooops!');
@@ -761,15 +774,12 @@ export class SalesrepdashboardComponent implements OnInit {
     }
 
     getPatientListforhelpdeskwithoutlimit() {
-
-      //  this.patientlistforhelpdesk = [];
-        //this.patientlistoriginalforhelpdesk = [];
       let userid:any;
       if(this.usertype=='superadmin'){
         userid='';
       }
       else userid=this.cookiedetails;
-        let link = this.serverurl + 'patient_addedbylist?userid='+userid;
+        let link = this.serverurl + 'patient_addedbylist?limit=1000000000?userid='+userid;
         this._http.get(link)
             .subscribe(res => {
                 let result = res.json();
@@ -777,27 +787,28 @@ export class SalesrepdashboardComponent implements OnInit {
                   this.approvedpatient=0;
                   this.declinedpatient=0;
                   this.submittedpatient=0;
-                  //  console.log(result.id);
                     this.patientlistforhelpdesk = result.id;
-                    console.log('===*********===');
-                    console.log(this.patientlistforhelpdesk);
-                    console.log('this.patientlistforhelpdesk.length 777');
-                    console.log(this.patientlistforhelpdesk.length);
+                    this.patientlistoriginalforhelpdesk = [];
                      for (let j in this.patientlistforhelpdesk) {
-                       //console.log(this.patientlistforhelpdesk[j]);
                        if(this.patientlistforhelpdesk[j].hit_map_value=='GREEN' || this.patientlistforhelpdesk[j].hit_map_value=='green'|| this.patientlistforhelpdesk[j].hit_map_value=='Green') this.approvedpatient++;
                        if(this.patientlistforhelpdesk[j].hit_map_value=='RED' || this.patientlistforhelpdesk[j].hit_map_value=='red'|| this.patientlistforhelpdesk[j].hit_map_value=='Red') {
-                         console.log('red'+this.patientlistforhelpdesk[j].hit_map_value+this.patientlistforhelpdesk[j]._id)
+                       //  console.log('red'+this.patientlistforhelpdesk[j].hit_map_value+this.patientlistforhelpdesk[j]._id)
                          this.declinedpatient++;
                        }
                        if(typeof (this.patientlistforhelpdesk[j].PatientRecordCompletedOrNot[0])!='undefined' && this.patientlistforhelpdesk[j].PatientRecordCompletedOrNot[0].iscompleted==1) this.submittedpatient++;
                      if (this.patientlistforhelpdesk[j].helpdeskid==this.cookiedetails || this.patientlistforhelpdesk[j].helpdeskid==null) {
-                     this.patientlistoriginalforhelpdesk.push(this.patientlistforhelpdesk[j]); // patients who are under this id or not assigned to any helpdesk
+                     this.patientlistoriginalforhelpdeskcopy.push(this.patientlistforhelpdesk[j]); // patients who are under this id or not assigned to any helpdesk
                      }
-
                      }
-                    this.patientlistoriginalforhelpdeskcopy = this.patientlistoriginalforhelpdesk;
-                  this.patientlistoriginalforhelpdesk.reverse();
+                   // this.patientlistoriginalforhelpdeskcopy = this.patientlistoriginalforhelpdesk;
+                 // this.patientlistoriginalforhelpdesk.reverse();
+                    for (let j in this.patientlistoriginalforhelpdeskcopy) {
+                        if (this.patientlistoriginalforhelpdeskcopy[j].hit_map_value != '') {
+                            this.patientlistoriginalforhelpdesk.push(this.patientlistoriginalforhelpdeskcopy[j]);
+                        }
+                    }
+                  console.log('this.patientlistoriginalforhelpdesk');
+                  console.log(this.patientlistoriginalforhelpdesk);
                 }
 
             }, error => {
@@ -809,9 +820,6 @@ export class SalesrepdashboardComponent implements OnInit {
 
 
     filterbyhitmap(val) {
-      //  console.log(this.patientlistoriginalforhelpdesk);
-      //  console.log('=============================');
-      //  console.log(this.patientlistoriginalforhelpdeskcopy);
         this.patientlistoriginalforhelpdesk = [];
         if (val != 'ALL') {
             for (let i in this.patientlistoriginalforhelpdeskcopy) {
@@ -821,11 +829,40 @@ export class SalesrepdashboardComponent implements OnInit {
                     }
                 }
             }
-          this.patientlistoriginalforhelpdesk.reverse();
+         // this.patientlistoriginalforhelpdesk.reverse();
         }
         else {
-            this.patientlistoriginalforhelpdesk = this.patientlistoriginalforhelpdeskcopy;
+        //    this.patientlistoriginalforhelpdesk = this.patientlistoriginalforhelpdeskcopy;
           this.patientlistoriginalforhelpdesk.reverse();
+        }
+
+        this.patientlistoriginalforhelpdesk = [];
+        if (val == 'RED' || val == 'GREEN' || val == 'YELLOW' ) {
+            for (let i in this.patientlistoriginalforhelpdeskcopy) {
+                if (this.patientlistoriginalforhelpdeskcopy[i].PatientRecordCompletedOrNot[0] != null && this.patientlistoriginalforhelpdeskcopy[i].PatientRecordCompletedOrNot[0].hit_map_value!=null) {
+                    if (this.patientlistoriginalforhelpdeskcopy[i].PatientRecordCompletedOrNot[0].hit_map_value.toLowerCase() == val.toLowerCase()) {
+                        this.patientlistoriginalforhelpdesk.push(this.patientlistoriginalforhelpdeskcopy[i]);
+                    }
+                }
+            }
+           // this.patientlistoriginalforhelpdesk.reverse();
+        }
+        else if (val == 'GREY') {
+            for (let i in this.patientlistoriginalforhelpdeskcopy) {
+                if (this.patientlistoriginalforhelpdeskcopy[i].hit_map_value == '') {
+                    this.patientlistoriginalforhelpdesk.push(this.patientlistoriginalforhelpdeskcopy[i]);
+                }
+            }
+           // this.patientlistoriginalforhelpdesk.reverse();
+        }
+        else {
+            for (let j in this.patientlistoriginalforhelpdeskcopy) {
+                if (this.patientlistoriginalforhelpdeskcopy[j].hit_map_value != '') {
+                    this.patientlistoriginalforhelpdesk.push(this.patientlistoriginalforhelpdeskcopy[j]);
+                }
+            }
+           // this.patientlistoriginalforhelpdesk = this.patientlistoriginalforhelpdeskcopy;
+          //  this.patientlistoriginalforhelpdesk.reverse();
         }
     }
     getHitmapClass(val) {
@@ -881,6 +918,7 @@ export class SalesrepdashboardComponent implements OnInit {
     this.gotopatientrecord(this.patientidtotakeownership, this.tagid);
   }
   hitmapupdate(patientid , val) {
+    this.showloader=1;
     let link = this.serverurl + 'hitmapupdate';
       if (val == 1) { // red
         var data = {
@@ -904,6 +942,8 @@ export class SalesrepdashboardComponent implements OnInit {
       .subscribe(data => {
         let result = data.json();
         if (result.status == 'success') {
+        //  this.patientlistoriginalforhelpdesk = [];
+        //  this.showloader=0;
           this.getPatientListforhelpdesk();
         }
       }, error => {
@@ -911,10 +951,15 @@ export class SalesrepdashboardComponent implements OnInit {
       });
   }
 
-  gotopdf(id) {
+  /*gotopdf(id) {
     var url = 'https://' + this._commonservices.commonvalue.commonurl + '/testpdf/html2pdf/ppqformpdf.php?id=' + id;
     window.open(url, '_blank');
-  }
+  }*/
+    gotopdf(id) {
+        // var url = 'http://altushealthgroup.com/testpdf/html2pdf/ppqformpdf.php?id=' + id;
+        var url = 'https://' + this._commonservices.commonvalue.commonurl + '/downloadppsadmin.php?id=' + id._id+'&fname='+id.firstname+'&lastname='+id.lastname+'&uid='+id.uniqueid;
+        window.open(url, '_blank');
+    }
 
   getdetails(id) {
     let link = this.serverurl + 'getpatientdetails';

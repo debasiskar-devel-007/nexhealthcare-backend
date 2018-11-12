@@ -9,6 +9,7 @@ export class Commonservices {
   commonvalue: any;
   value = 2;
   public commonresultlimit: number;
+    public totalval: number=0;
 
   constructor(private http: HttpClient) {
     this.hostis = window.location.host;
@@ -18,6 +19,7 @@ export class Commonservices {
       this.url = 'https://greenvalleyportal.com/server.php?q=';
       this.phpurl = 'https://greenvalleyportal.com/';
       this.commonresultlimit = 100000000000000;
+      this.totalval=0;
     if (this.value == 1) {
       this.commonvalue = {
         mailfrom: 'ALtus Health Group',

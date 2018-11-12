@@ -470,10 +470,124 @@
 
 </div>
 <div class="container-fluid pateints_inner_body" *ngIf="usertype=='helpdesk'">
-    <div class="container pateintswrappe">
 
+    <div class="container-fluid pateints_inner_body s_patient_list_container">
+        <div class="container s_patient_wrapper">
+            <div class="s_patient_content_right">
+                <div class="s_rigt_inner_content">
+                    <div class="searchbox">
+                        <h3>Filter by Heatmap:</h3>
+                        <div class="i_filter_wrapper">
+                            <div class="filter_red" (click)="filterbyhitmap('RED')"  [ngClass]="getHitmapClass(1)"></div>
+                            <div class="filter_green"  (click)="filterbyhitmap('GREEN')"  [ngClass]="getHitmapClass(2)"></div>
+                            <div class="filter_yellow"  (click)="filterbyhitmap('YELLOW')"  [ngClass]="getHitmapClass(3)"></div>
+                            <div class="filter_all"  (click)="filterbyhitmap('GREY')"  [ngClass]="getHitmapClass(4)">Incomplete</div>
+                            <div class="filter_all"  (click)="filterbyhitmap('ALL')"  [ngClass]="getHitmapClass(5)">ALL Heatmaps</div>
+                        </div>
+                        <input type="text" placeholder="Search..."  [(ngModel)]="filterval" #listFilter (keyup)="0" class="input_details">
+
+                        <div class="pateints_searchdiv newselectwrapper2" *ngIf="usertype=='superadmin' && searchtagflag > 0">
+                            <ng-select [(ngModel)]="enrollervals" class="pateints_searchdiv_content">
+                                <ng-option *ngFor="let it of enrollervalstotal" [value]="it._id">{{it.fullname}}</ng-option>
+                            </ng-select>
+                            <input type="button" value="Update" (click)="changenroller()">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="s_patient_content_left">
+                <div class="s_left_innerContent">
+                    <div class="s_left_innerContent_bottom">
+                        <h2 *ngIf="patientlistoriginalforhelpdesk" class="">{{ (patientlistoriginalforhelpdesk | newsearch:listFilter.value)?.length }} Results</h2>
+                        <div class="clearfix"></div>
+                        <div class="innerContent_table">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">
+                                        </th>
+                                        <th scope="col" class="innerContent_table_header">
+                                            <span class="innerContent_table_firstrow_header">Patient ID</span>
+                                            <span class="innerContent_table_firstrow_header">Enroller Name</span>
+                                            <span class="innerContent_table_firstrow_header">Enroller ID </span>
+                                            <span class="innerContent_table_firstrow_header">Added On </span>
+                                        </th>
+                                        <th scope="col" class="innerContent_table_header">Patient Name</th>
+                                        <th scope="col" class="innerContent_table_header" *ngIf="isthisadmin!='admin'">Email Address</th>
+                                        <th scope="col" class="innerContent_table_header">Phone Number</th>
+                                        <th scope="col" class="innerContent_table_header">Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="i_filter_wrapper">
+                                    <tr *ngFor="let item of patientlistoriginalforhelpdesk| orderBy:'_id':'reverse'| newsearch:listFilter.value | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index" class="innerContent_table_contents">
+                                        <td>
+                                        </td>
+                                        <td>
+                                            <span class="innerContent_table_firstrow_header" (click)="takeownership(item._id,item.Tagdetail[0].tagid)">Patient ID: {{item.uniqueid}}</span>
+                                            <span class="innerContent_table_firstrow_header" (click)="takeownership(item._id,item.Tagdetail[0].tagid)">  <span *ngIf="item.Addedbydetail[0]!=null">Enroller Name: {{item.Addedbydetail[0].firstname}} {{item.Addedbydetail[0].lastname}}</span></span>
+                                            <span class="innerContent_table_firstrow_header" (click)="takeownership(item._id,item.Tagdetail[0].tagid)">  <span *ngIf="item.Addedbydetail[0]!=null">Enroller ID: {{item.Addedbydetail[0].uniqueid}}</span></span>
+                                           <!-- <span class="innerContent_table_firstrow_header" *ngIf="isthisadmin=='admin'" (click)="takeownership(item._id,item.Tagdetail[0].tagid)">  <span *ngIf="item.Addedbydetail[0]!=null">Enroller ID: {{item.Addedbydetail[0].uniqueid}}</span></span>-->
+                                            <span class="innerContent_table_firstrow_header" (click)="takeownership(item._id,item.Tagdetail[0].tagid)">{{showtime(item.added_on)}}</span>
+                                            <span class="clicklink1lists">
+                                                <div *ngIf="item.PatientRecordCompletedOrNot?.length>0">
+                                                    <p class="clicklink1" (click)="showquestionaryform(item._id)" *ngIf="item.PatientRecordCompletedOrNot[0].iscompleted==1">View PPS</p>
+                                                </div>
+                                                <div *ngIf="item.Commoncancersymptomdetail?.length>0">
+                                                    <p class="clicklink1" (click)="showsymptomchecklist(item._id)"  *ngIf="item.Commoncancersymptomdetail[0].iscompleted==1">View Symptom Checklist</p>
+                                                </div>
+                                                <div *ngIf="item.PatientRecordCompletedOrNot?.length>0 && item.PatientRecordCompletedOrNot[0].iscompleted==1">
+                                                    <p  class="clicklink1" (click)="gotopdf(item)" *ngIf="item.PatientRecordCompletedOrNot[0].iscompleted==1">Download PPS</p>
+                                                </div>
+
+
+                                                <span style="display: block;" *ngIf="item.PatientRecordCompletedOrNot?.length>0">
+                                                    <span *ngIf="item.PatientRecordCompletedOrNot[0].iscompleted==1">
+                                                        <span  class="clicklink1" (click)="editheatmap(i)" style="margin-bottom: 0px;" >Update Heat Map</span>
+                                                        <span class="td_color_con coloradd{{i}} hide" style="display: block; line-height: inherit;" >
+                                                            <span style="font-size: 0px; padding:10px; margin: 0 2px 2px 0;" class="red_tdp"  *ngIf="item.PatientRecordCompletedOrNot[0]?.hit_map_value!='RED'" (click)="hitmapupdate(item._id,1)">Red</span>
+                                                            <span style="font-size: 0px; padding: 10px; margin: 0 2px 2px 0;" class="green_tdp" *ngIf="item.PatientRecordCompletedOrNot[0]?.hit_map_value!='GREEN'" (click)="hitmapupdate(item._id,2)">Green</span>
+                                                            <span style="font-size: 0px; padding: 10px; margin: 0 2px 2px 0;" class="yellow_tdp" *ngIf="item.PatientRecordCompletedOrNot[0]?.hit_map_value!='YELLOW'" (click)="hitmapupdate(item._id,3)">Yellow</span>
+
+                                                        </span>
+                                                    </span>
+
+                                                </span>
+
+                                            </span>
+                                        </td>
+
+                                        <td (click)="takeownership(item._id,item.Tagdetail[0].tagid)">{{item.firstname}} {{item.lastname}}</td>
+                                        <td (click)="takeownership(item._id,item.Tagdetail[0].tagid)" *ngIf="isthisadmin!='admin'">{{item.email}}</td>
+                                        <td (click)="takeownership(item._id,item.Tagdetail[0].tagid)">{{item.phone}}</td>
+                                        <td>
+                                            <div *ngIf="item.PatientRecordCompletedOrNot[0]?.hit_map_value=='RED'  || item.PatientRecordCompletedOrNot[0]?.hit_map_value=='Red'"><div class="filter_red filter_inlist"></div></div>
+                                            <div *ngIf="item.PatientRecordCompletedOrNot[0]?.hit_map_value=='GREEN'  || item.PatientRecordCompletedOrNot[0]?.hit_map_value=='Green'"><div class="filter_green filter_inlist"></div></div>
+                                            <div *ngIf="item.PatientRecordCompletedOrNot[0]?.hit_map_value=='YELLOW' || item.PatientRecordCompletedOrNot[0]?.hit_map_value=='Yellow'"><div class="filter_yellow filter_inlist"></div></div>
+                                            <div *ngIf="item.PatientRecordCompletedOrNot[0]?.hit_map_value=='' || item.PatientRecordCompletedOrNot[0]?.hit_map_value==null "></div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="pagination_wrapper">
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- <div class="container pateintswrappe hide">
         <div class="pateints_header">
-
             <div class="pateints_header_left">
                 <div class="new_label_div">
                     <label>Filter by Heatmap:</label>
@@ -484,22 +598,19 @@
 
                     <div class="clearfix"></div>
                 </div>
-
-
-                <!--<h2>Patients <span>List View</span></h2>-->
-
+                &lt;!&ndash;<h2>Patients <span>List View</span></h2>&ndash;&gt;
             </div>
             <div class="pateints_header_right">
-                <!-- <div class="pateints_searchdiv pateints_searchdiv2">-->
+                &lt;!&ndash; <div class="pateints_searchdiv pateints_searchdiv2">&ndash;&gt;
                 <div class="pateints_searchdiv ">
-                    <!--  <form>-->
+                    &lt;!&ndash;  <form>&ndash;&gt;
                     <input type="text" placeholder="Search..."  [(ngModel)]="filterval" #listFilter (keyup)="0" class="hide">
                     <input type="text" placeholder="Search..." [(ngModel)]="filterval1" (keyup)="searchbyval()">
                     <input type="button">
                     <div class="clearfix"></div>
-                    <!-- </form>-->
+                    &lt;!&ndash; </form>&ndash;&gt;
                 </div>
-                <!--<button [routerLink]="['/add-patient']" class="btn btn-primary patients_btn">Add Patients</button>-->
+                &lt;!&ndash;<button [routerLink]="['/add-patient']" class="btn btn-primary patients_btn">Add Patients</button>&ndash;&gt;
             </div>
             <div class="clearfix"></div>
         </div>
@@ -561,22 +672,22 @@
                     <div class="divnew " (click)="takeownership(item._id,item.Tagdetail[0].tagid)" >
                         <span *ngIf="item.Addedbydetail[0]!=null"> {{item.Addedbydetail[0].uniqueid}}      </span>
                     </div>
-                  <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+                  &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;
 
                   <div class="divnew" >
                       <div *ngIf="item.PatientRecordCompletedOrNot?.length>0"><span class="clicklink" (click)="showquestionaryform(item._id)" *ngIf="item.PatientRecordCompletedOrNot[0].iscompleted==1">View PPS</span></div>
-                   <!-- <div *ngIf="item.Commoncancersymptomdetail[0]?.length>0"><span class="clicklink" (click)="showsymptomchecklist(item._id)" *ngIf="item.Commoncancersymptomdetail[0].iscompletedccsrecord=='1'">View Symptom Checklist</span></div>-->
+                   &lt;!&ndash; <div *ngIf="item.Commoncancersymptomdetail[0]?.length>0"><span class="clicklink" (click)="showsymptomchecklist(item._id)" *ngIf="item.Commoncancersymptomdetail[0].iscompletedccsrecord=='1'">View Symptom Checklist</span></div>&ndash;&gt;
                     <div *ngIf="item.Commoncancersymptomdetail?.length>0"><span class="clicklink" (click)="showsymptomchecklist(item._id)"  *ngIf="item.Commoncancersymptomdetail[0].iscompleted==1">View Symptom Checklist</span></div>
                   </div>
-                  <!--  <span class="clicklink" >View PGX Medication Checklist</span>-->
+                  &lt;!&ndash;  <span class="clicklink" >View PGX Medication Checklist</span>&ndash;&gt;
 
                   <div class="divnew" >
                       <div *ngIf="item.PatientRecordCompletedOrNot?.length>0"> <span  class="clicklink" (click)="gotopdf(item._id)" *ngIf="item.PatientRecordCompletedOrNot[0].iscompleted==1">Download PPS</span></div>
                     <div *ngIf="item.Commoncancersymptomdetail?.length>0"><span  class="clicklink" (click)="gotocsspdf(item._id)" *ngIf="item.Commoncancersymptomdetail[0].iscompleted==1">Download Symptom Checklist</span></div>
-                 <!--   <span  class="clicklink" >Download PGX Medication Checklist</span>-->
+                 &lt;!&ndash;   <span  class="clicklink" >Download PGX Medication Checklist</span>&ndash;&gt;
                   </div>
 
-                  <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+                  &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;
 
                     <div class="divnew " (click)="takeownership(item._id,item.Tagdetail[0].tagid)">
                         <span>{{item.phone}}</span>
@@ -593,12 +704,12 @@
                         <div *ngIf="item.PatientRecordCompletedOrNot[0]?.hit_map_value=='GREEN'  || item.PatientRecordCompletedOrNot[0]?.hit_map_value=='Green'"><div class="filter_green"></div></div>
                         <div *ngIf="item.PatientRecordCompletedOrNot[0]?.hit_map_value=='YELLOW'  || item.PatientRecordCompletedOrNot[0]?.hit_map_value=='Yellow'"><div class="filter_yellow"></div></div>
                         <div *ngIf="item.PatientRecordCompletedOrNot[0]?.hit_map_value=='' || item.PatientRecordCompletedOrNot[0]?.hit_map_value==null "></div>
-                    <!--  <tooltip-content #myTooltip [animation]="true" placement="left">
+                    &lt;!&ndash;  <tooltip-content #myTooltip [animation]="true" placement="left">
                         <div class="filter_red" (click)="hitmapupdate(item._id,1)"></div>
                         <div class="filter_green" (click)="hitmapupdate(item._id,2)"></div>
                         <div class="filter_yellow" (click)="hitmapupdate(item._id,3)"></div>
-                      </tooltip-content>-->
-                      <!--  <a href="javascript:void(0)" [tooltip]="myTooltip" class="tooltipicon">Update</a>-->
+                      </tooltip-content>&ndash;&gt;
+                      &lt;!&ndash;  <a href="javascript:void(0)" [tooltip]="myTooltip" class="tooltipicon">Update</a>&ndash;&gt;
                       <div class="clearfix"></div>
                       <a href="javascript:void(0)" class="td_edit_link" (click)="editheatmap(i)">Edit</a>
 
@@ -629,7 +740,7 @@
 
 
 
-    </div>
+    </div>-->
 
 </div>
 <app-frontfooter></app-frontfooter>
@@ -5101,7 +5212,7 @@
   </div>
 </div>
 
-<div class="loader_body" *ngIf="showloader==0">
+<div class="loader_body" *ngIf="showloader==1">
   <div class="loader_fullpage"></div>
 
 </div>

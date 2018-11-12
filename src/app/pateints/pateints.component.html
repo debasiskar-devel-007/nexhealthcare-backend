@@ -48,6 +48,20 @@
             <div class="clearfix"></div>
          <!-- </form>-->
         </div>
+
+
+        <div class="pateints_searchdiv_wrapper">
+          <div class="pateints_searchdiv newselectwrapper2" *ngIf="usertype=='superadmin' && searchtagflag > 0">
+            <ng-select [(ngModel)]="enrollervals">
+              <ng-option *ngFor="let it of enrollervalstotal" [value]="it._id"  >{{it.fullname}}</ng-option>
+            </ng-select>
+            <input type="button" value="Update" (click)="changenroller()">
+            <div class="clearfix"></div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+
+
         <!--<button [routerLink]="['/add-patient']" class="btn btn-primary patients_btn">Add Patients</button>-->
       </div>
       <div class="clearfix"></div>
@@ -56,6 +70,9 @@
     <div class="pateints_list_weraper "  [ngClass]="get4rowClass()">
       <div class="pateints_list_table_header">
         <div class="row row-eq-height">
+          <div class="divnew ">
+            <input type="checkbox" class="chkallclass" [(ngModel)]="check_uncheck" (click)="check_uncheck_all()"/>
+          </div>
           <div class="divnew ">
             <span>Date    </span>
           </div>
@@ -100,8 +117,12 @@
 
       </div>
 
-      <div class="pateints_list_table_contain" *ngFor="let item of patientlistcomplete | orderBy:'_id':'reverse' | usersearch:listFilter.value| paginate: { itemsPerPage: 25, currentPage: p }; let i = index">
+      <div class="pateints_list_table_contain" *ngFor="let item of patientlistcomplete | orderBy:'_id':'reverse' | usersearch:listFilter.value| paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index">
         <div class="row row-eq-height" >
+
+          <div class="divnew ">
+            <input [(ngModel)]="chk[i]" class="chkinput" (click)="chkvals(item,i)" type="checkbox" value="{{item._id}}"  />
+          </div>
 
           <div class="divnew " (click)="gotopatientrecord(item._id, item.Tagdetail[0].tagid)">
             <span>{{showtime(item.added_on)}}   </span>
@@ -198,7 +219,7 @@
       </div>
 
       <div class="pagination_wrapper">
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        <pagination-controls (pageChange)="p = $event" (click)="pagechange()"></pagination-controls>
       </div>
       <!--<div class="pateints_list_table_contain">
         <div class="row row-eq-height">

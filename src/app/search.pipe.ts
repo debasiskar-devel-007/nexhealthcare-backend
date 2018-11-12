@@ -1,6 +1,7 @@
 
 
 import { Pipe, PipeTransform } from '@angular/core';
+import {Commonservices} from './app.commonservices' ;
 
 @Pipe({
     name: 'usersearch'
@@ -39,6 +40,8 @@ export class UsersearchPipe implements PipeTransform {
                     }
                     c++;
                 }
+                console.log(value);
+                console.log('value');
                 return value;
                 /*return value.filter(value=> (value.firstname.toLocaleLowerCase().indexOf(args) != -1 || value.lastname.toLocaleLowerCase().indexOf(args) != -1 || value.email.toLocaleLowerCase().indexOf(args) != -1)  );*/
             }
@@ -55,8 +58,8 @@ export class UsersearchPipe implements PipeTransform {
         for (let key in vals) {
 
             flag = 0;
-              console.log('args');
-              console.log(args);
+            //  console.log('args');
+            //  console.log(args);
             //  console.log('value');
             //  console.log(value[key]);
             for (let key1 in value[key]) {
@@ -78,6 +81,10 @@ export class UsersearchPipe implements PipeTransform {
                 // return value.filter(value=> (value[key1].toLocaleLowerCase().indexOf(args) != -1)  );
             }
         }
+        console.log('val1');
+        console.log(val1);
+        console.log(val1.length);
+        val1[0].lval=val1.length;
         return val1;
     }
 }

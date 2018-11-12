@@ -54,9 +54,18 @@ export class PateintsComponent implements OnInit {
   public opensymptommodalflag: boolean = false;
   public pgxmedicationmodal: boolean = false;
   public dataForm2: FormGroup ;
-    public loadervalue:boolean = true;
+    public loadervalue:boolean = false;
   public dataForm3: FormGroup ;
   public usertype: string;
+
+
+  public enrollervals: any;
+  public enrollervalstotal: any;
+  public chk: Array<any>=[];
+  public selarr: any = [];
+  public searchtagflag: any = 0;
+  public check_uncheck: any = 0;
+  public itemsPerPage: number = 25;
 
   constructor(fb: FormBuilder, addcookie: CookieService, private _http: Http, private router: Router, public _commonservices: Commonservices, private route: ActivatedRoute) {
     this.serverurl = _commonservices.url;
@@ -473,7 +482,37 @@ export class PateintsComponent implements OnInit {
       fluocinonide: [''],
       betamethasone: ['']
     });
+    this.getUserListunderthisusername('');
+    this.getUserListunderthisusernamewithoutlimit('');
     }
+  getUserListunderthisusername(username) {
+    let link = this.serverurl + 'getUserListunderthisusername';
+    let data = {username : username,limitval:100};
+    this._http.post(link, data)
+      .subscribe(res => {
+        let result = res.json();
+        if (result.status == 'success') {
+          console.log(result);
+          this.enrollervalstotal = result.id;
+        }
+      }, error => {
+        console.log('Oooops!');
+      });
+  }
+  getUserListunderthisusernamewithoutlimit(username) {
+    let link = this.serverurl + 'getUserListunderthisusername';
+    let data = {username : username, limitval:this._commonservices.commonresultlimit};
+    this._http.post(link, data)
+      .subscribe(res => {
+        let result = res.json();
+        if (result.status == 'success') {
+          console.log(result);
+          this.enrollervalstotal = result.id;
+        }
+      }, error => {
+        console.log('Oooops!');
+      });
+  }
     getusastates() {
         let link = this.serverurl + 'getusastates';
         this._http.get(link)
@@ -488,6 +527,84 @@ export class PateintsComponent implements OnInit {
   showtime(time) {
     return moment(time).format('MM-DD-YYYY');
   }
+  pagechange(){
+    $('.chkinput').prop('checked',false);
+    $('.chkallclass').prop('checked',false);
+  }
+  check_uncheck_all() {
+    setTimeout(() => {
+      var startpoint = (this.p - 1) * this.itemsPerPage;
+      var endpoint = (this.p * this.itemsPerPage) - 1;
+      console.log(this.check_uncheck);
+      if (this.check_uncheck == true) {
+        $('.chkinput').prop('checked',true);
+        this.chk = [];
+        this.selarr = [];
+        for (let i = startpoint; i <= endpoint; i++) {
+          this.chk[i] = true;
+          this.searchtagflag++;
+          this.selarr.push(this.datalist[i]._id);
+        }
+      }
+      else {
+        $('.chkinput').prop('checked',false);
+        for (let i = startpoint; i <= endpoint; i++) {
+          this.chk[i] = false;
+          let indexval: any = this.selarr.indexOf(this.datalist[i]._id);
+          this.selarr.splice(indexval, 1);
+          this.searchtagflag --;
+        }
+      }
+      console.log('=====this.chk====');
+      console.log(this.chk);
+      console.log('=====this.selarr====');
+      console.log(this.selarr);
+    }, 50);
+  }
+  chkvals(itemval:any,ival:any) {
+    setTimeout(() => {
+      if (this.chk[ival] == true) {
+        this.searchtagflag++;
+        this.selarr.push(itemval._id);
+      }
+      else {
+        let indexval: any = this.selarr.indexOf(itemval._id);
+        console.log(indexval);
+        this.selarr.splice(indexval, 1);
+        this.searchtagflag --;
+      }
+      console.log(this.selarr);
+      console.log(this.selarr.length);
+    }, 50);
+  }
+
+  changenroller() {
+    let link = this.serverurl + 'changeenroller';
+    let data = {
+      userid : this.selarr,
+      enrollerusername : this.enrollervals,
+      page : 'patients',
+    }
+    this._http.post(link, data)
+      .subscribe(res => {
+        let result = res.json();
+        console.log(result);
+        this.getPatient_addedbyList();
+        $('.chkinput').prop('checked',false);
+        this.selarr=[];
+        this.chk=[];
+        this.searchtagflag=0;
+        console.log('this.searchtagflag');
+        console.log(this.searchtagflag);
+        /*if (result.status == 'success') {
+          if(this.usertype=='superadmin') this.getPatient_addedbyList();
+          else  this.router.navigate(['/patient-list']);
+        }*/
+      }, error => {
+        console.log('Oooops!');
+      });
+  }
+
     /* callcookiedetails() {
     let link = this.serverurl + 'getuserdetails';
     let data = {userid : this.cookiedetails.id};
@@ -748,6 +865,7 @@ export class PateintsComponent implements OnInit {
                     this.datalist = result.id;
                     this.loadervalue = false;
                     this.patientlist = this.datalist;
+               //   this.enrollervalstotal = this.datalist;
                   for (let i in this.patientlist) {
                     if (this.patientlist[i].hit_map_value == '') {
                       this.patientlistincomplete.push(this.patientlist[i]);
@@ -771,11 +889,11 @@ export class PateintsComponent implements OnInit {
             }, error => {
                 console.log('Oooops!');
             });
-        console.log('this.patientlist----------');
+        console.log('this.patientlist------1----');
         console.log(this.patientlist);
     }
     getPatient_addedbyListwithoutlimit() {
-        this.loadervalue = true;
+     //   this.loadervalue = true;
       // this.patientlist = [];
       // this.patientlistoriginal = [];
       let link = this.serverurl + 'patient_addedbylist';
@@ -785,7 +903,10 @@ export class PateintsComponent implements OnInit {
           if (result.status == 'success') {
             console.log(result.id);
             this.datalist = result.id;
-            this.loadervalue = false;
+           /* this.enrollervalstotal = this.datalist;
+            console.log('=====================this.enrollervalstotal===================');
+            console.log(this.enrollervalstotal);*/
+         //   this.loadervalue = false;
             this.patientlist = this.datalist;
             this.patientlistincomplete = [];
               this.patientlistcomplete = [];

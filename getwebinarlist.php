@@ -18,7 +18,7 @@ $consumerkey='tVgBTU4iFslK6IuKdV0AbEyJMpQbDdsS';
 
 $curl1 = curl_init();
 curl_setopt_array($curl1, array(
-    CURLOPT_URL => "http://influxiq.com:3020/getwebinarapivalue",
+    CURLOPT_URL => "http://greenvalleyportal.com:3020/getwebinarapivalue",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,

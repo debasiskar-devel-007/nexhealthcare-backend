@@ -1911,7 +1911,7 @@
                       </select>
                       </div>
 
-                      <div class="left2_heading5"><input type="text"  [formControl]="dataForm1.controls['moage']" name="age1"/></div>
+                      <div class="left2_heading5"><input type="text"  [formControl]="dataForm1.controls['moage']" name="age1" (change)="get_left_heatmap_value(1)"/></div>
                       <div class="left2_heading6"><input type="text"  [formControl]="dataForm1.controls['modead']" name="dead1"/></div>
                       <div class="clearfix"></div>
                     </div>
@@ -1966,7 +1966,7 @@
                           <option value="Unknown">Unknown</option>
                         </select>
                       </div>
-                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['faage']" name="age2"/></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['faage']" name="age2" (change)="get_left_heatmap_value(2)"/></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['fadead']" name="dead2"/></div>
                       <div class="clearfix"></div>
                     </div>
@@ -2021,7 +2021,7 @@
                           <option value="Unknown">Unknown</option>
                         </select>
                       </div>
-                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['dauage']"  name="age3"/></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['dauage']"  name="age3" (change)="get_left_heatmap_value(3)"/></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['daudead']"  name="dead3"/></div>
 
 
@@ -2076,7 +2076,7 @@
                           <option value="Unknown">Unknown</option>
                         </select>
                       </div>
-                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['sonage']" name="age4" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['sonage']" name="age4" (change)="get_left_heatmap_value(4)" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['sondead']"  name="dead4"/></div>
 
 
@@ -2131,7 +2131,7 @@
                           <option value="Unknown">Unknown</option>
                         </select>
                       </div>
-                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['broage']" name="age5" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['broage']" name="age5" (change)="get_left_heatmap_value(5)" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['brodead']" name="dead5" /></div>
 
 
@@ -2184,7 +2184,7 @@
                           <option value="Unknown">Unknown</option>
                         </select>
                       </div>
-                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['sisage']"  name="age6"/></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['sisage']"  name="age6" (change)="get_left_heatmap_value(6)"/></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['sisdead']"  name="dead6"/></div>
 
 
@@ -2239,7 +2239,7 @@
                           <option value="Unknown">Unknown</option>
                         </select>
                       </div>
-                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['nepage']" name="age7" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['nepage']" name="age7" (change)="get_left_heatmap_value(7)" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['nepdead']"  name="dead7"/></div>
 
 
@@ -2293,7 +2293,7 @@
                           <option value="Unknown">Unknown</option>
                         </select>
                       </div>
-                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['nieceage']" name="age8" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['nieceage']" name="age8" (change)="get_left_heatmap_value(8)" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['niecedead']" name="dead8" /></div>
 
 
@@ -2348,7 +2348,7 @@
                           <option value="Unknown">Unknown</option>
                         </select>
                       </div>
-                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['uncage']" name="age9" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['uncage']" name="age9" (change)="get_left_heatmap_value(9)" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['uncdead']" name="dead9" /></div>
 
 
@@ -2403,7 +2403,7 @@
                           <option value="Unknown">Unknown</option>
                         </select>
                       </div>
-                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['autnage']" name="age10" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['autnage']" name="age10" (change)="get_left_heatmap_value(10)" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['autndead']" name="dead10" /></div>
 
 
@@ -2458,7 +2458,7 @@
                           <option value="Unknown">Unknown</option>
                         </select>
                       </div>
-                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['mofage']" name="age11" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['mofage']" name="age11" (change)="get_left_heatmap_value(11)" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['mofdead']" name="dead11" /></div>
 
 
@@ -2513,7 +2513,7 @@
                           <option value="Unknown">Unknown</option>
                         </select>
                       </div>
-                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['momoage']" name="age12" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['momoage']" name="age12" (change)="get_left_heatmap_value(12)" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['momodead']" name="dead12" /></div>
 
 
@@ -2568,7 +2568,7 @@
                           <option value="Unknown">Unknown</option>
                         </select>
                       </div>
-                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['dafage']" name="age13" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['dafage']" name="age13" (change)="get_left_heatmap_value(13)" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['dafdead']" name="dead13" /></div>
 
 
@@ -2623,7 +2623,7 @@
                           <option value="Unknown">Unknown</option>
                         </select>
                       </div>
-                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['damage']" name="age14" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['damage']" name="age14" (change)="get_left_heatmap_value(14)" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['damdead']"  name="dead14"/></div>
 
 
@@ -2678,7 +2678,7 @@
                           <option value="Unknown">Unknown</option>
                         </select>
                       </div>
-                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['oth1age']" name="age15" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['oth1age']" name="age15" (change)="get_left_heatmap_value(15)" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['oth1dead']"  name="age15"/></div>
 
 
@@ -2733,7 +2733,7 @@
                           <option value="Unknown">Unknown</option>
                         </select>
                       </div>
-                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['oth2age']"  name="age16"/></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['oth2age']"  name="age16" (change)="get_left_heatmap_value(16)"/></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['oth2dead']"  name="dead16"/></div>
 
 
@@ -2789,7 +2789,7 @@
                           <option value="Unknown">Unknown</option>
                         </select>
                       </div>
-                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['oth3age']" name="age17" /></div>
+                      <div class="left2_heading5"><input type="text" [formControl]="dataForm1.controls['oth3age']" name="age17" (change)="get_left_heatmap_value(17)" /></div>
                       <div class="left2_heading6"><input type="text" [formControl]="dataForm1.controls['oth3dead']" name="dead17" /></div>
 
 

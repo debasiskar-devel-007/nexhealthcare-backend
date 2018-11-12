@@ -42,7 +42,7 @@
                   </button>
                   <ul id="dropdown-basic7" *dropdownMenu class="dropdown-menu"
                       role="menu" aria-labelledby="button-basic">
-                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/userlist']">User List</a></li>
+                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/userlist1']">User List</a></li>
                     <li *ngIf="usertype=='superadmin' || usertype=='webdevelopers'" role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/helpdesklist']">Helpdesk List</a></li>
                     <!--<li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/helpdeskadd']">Add Helpdesk</a></li>-->
                     <li *ngIf="usertype=='superadmin' || usertype=='webdevelopers' " role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/corporatemanagerlist']">Corporate Manager List</a></li>
@@ -74,7 +74,7 @@
                   </button>
                   <ul id="dropdown-basic5" *dropdownMenu class="dropdown-menu"
                       role="menu" aria-labelledby="button-basic">
-                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/patient-list','admin']">PPS Approval Process</a></li>
+                    <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/patient-list1','admin']">PPS Approval Process</a></li>
                     <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="openmodal()">Status of Patients</a></li>
 
                   </ul>

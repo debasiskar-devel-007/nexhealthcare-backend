@@ -5,6 +5,7 @@ import {Commonservices} from '../app.commonservices' ;
 import {CookieService} from 'ngx-cookie-service';
 import {Validators} from '@angular/forms';
 declare var moment: any;
+declare var $: any;
 
 @Component({
   selector: 'app-usermanagementlist',
@@ -27,6 +28,7 @@ export class UsermanagementlistComponent implements OnInit {
  //   public getdetailsbyidis: any;
     public searchval: any = {addedby: ''};
     public p: number = 1;
+    public itemsPerPage: number = 15;
     public addcookie: CookieService;
     public cookiedetails;
     public hierarchyaddcookie: CookieService;
@@ -38,8 +40,10 @@ export class UsermanagementlistComponent implements OnInit {
     public enrollervalstotal: any;
     public chkvalarr: Array<any>=[] ;
     public hierarchyarr: any = [];
+    public chk: Array<any>=[];
     public selarr: any = [];
     public searchtagflag: any = 0;
+    public check_uncheck: any = 0;
 
     constructor(private _http: Http, private router: Router, private _commonservices: Commonservices,  private route: ActivatedRoute, addcookie: CookieService, hierarchyaddcookie: CookieService) {
         this.serverurl = _commonservices.url;
@@ -106,19 +110,91 @@ export class UsermanagementlistComponent implements OnInit {
             }
         });
     }
+  pagechange(){
+    $('.chkinput').prop('checked',false);
+    $('.chkallclass').prop('checked',false);
+  }
+  check_uncheck_all() {
 
-  chkvals(itemval:any) {
-      if(itemval.chk==true){
+    setTimeout(() => {
+      var startpoint = (this.p - 1) * this.itemsPerPage;
+      var endpoint = (this.p * this.itemsPerPage) - 1;
+      console.log(this.check_uncheck);
+      let totalc=this.datalist.length;
+      if (this.check_uncheck == true) {
+        $('.chkinput').prop('checked',true);
+        this.chk = [];
+        this.selarr = [];
+        for (let i = startpoint; i <= endpoint; i++) {
+          //if(i>=startpoint && i<=endpoint) {
+            this.chk[i] = true;
+            this.searchtagflag++;
+            this.selarr.push(this.datalist[i]._id);
+          //}
+         // else this.chk[i] = false;
+         // this.chkvals(this.datalist[i], i);
+        }
+      }
+      else {
+        $('.chkinput').prop('checked',false);
+        for (let i = startpoint; i <= endpoint; i++) {
+          this.chk[i] = false;
+          let indexval: any = this.selarr.indexOf(this.datalist[i]._id);
+          this.selarr.splice(indexval, 1);
+          this.searchtagflag --;
+        }
+      }
+        console.log('=====this.chk====');
+        console.log(this.chk);
+        console.log('=====this.selarr====');
+        console.log(this.selarr);
+    }, 50);
+  }
+
+  chkvals(itemval:any,ival:any) {
+    setTimeout(() => {
+    //  console.log('=====this.chk====');
+    //  console.log(this.chk);
+      //  console.log(this['chk'+itemval._id]);
+      if (this.chk[ival] == true) {
         this.searchtagflag++;
         this.selarr.push(itemval._id);
-
-      }else{
+      }
+      else {
+        let indexval: any = this.selarr.indexOf(itemval._id);
+        console.log(indexval);
+        this.selarr.splice(indexval, 1);
         this.searchtagflag --;
       }
-      console.log('5454098hjj');
-      console.log(this.chkvalarr);
-      console.log(itemval);
+      console.log(this.selarr);
+      console.log(this.selarr.length);
+    }, 50);
   }
+
+  changenroller() {
+    let link = this.serverurl + 'changeenroller';
+    let data = {
+      userid : this.selarr,
+      enrollerusername : this.enrollervals,
+      page : 'userlist',
+    }
+    this._http.post(link, data)
+      .subscribe(res => {
+        let result = res.json();
+        console.log(result);
+        if (result.status == 'success') {
+          this.getUserListunderthisusername('');
+          this.getUserListunderthisusernamewithoutlimit('');
+          $('.chkinput').prop('checked',false);
+          this.selarr=[];
+          this.chk=[];
+          this.searchtagflag=0;
+        }
+      }, error => {
+        console.log('Oooops!');
+      });
+  }
+
     getUserList() {
         this.loadervalue = true;
         let link = this.serverurl + 'usernrepcontractList';
@@ -130,7 +206,7 @@ export class UsermanagementlistComponent implements OnInit {
                     console.log(result);
                     this.loadervalue = false;
                     this.datalist = result.id;
-                    //this.enrollervalstotal = result.id;
+                    // this.enrollervalstotal = result.id;
                     this.flag = 1;
                    /* this.specificlist = [];
                     this.specificlist1 = [];
@@ -162,7 +238,7 @@ export class UsermanagementlistComponent implements OnInit {
                     this.specificlist1 = [];
                     this.specificlist2 = [];
                     this.specificlist = this.datalist;*/
-                   this.getUserListunderthisusernamewithoutlimit(username);
+                 //  this.getUserListunderthisusernamewithoutlimit(username);
                 }
 
             }, error => {

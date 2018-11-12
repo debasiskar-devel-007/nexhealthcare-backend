@@ -32,6 +32,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { UsersearchPipe } from './search.pipe';
 import { UsersearchPipe1 } from './searchbyfield.pipe';
+import { Newsearchpipe } from './newsearchpipe';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { CompensationmodifierComponent } from './compensationmodifier/compensationmodifier.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
@@ -73,6 +74,8 @@ import { MastergroupeditComponent } from './mastergroupedit/mastergroupedit.comp
 import { enableProdMode } from '@angular/core';
 import { AgreementComponent } from './agreement/agreement.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { Usermanagementlist1Component } from './usermanagementlist1/usermanagementlist1.component';
+import { Patients1Component } from './patients1/patients1.component';
 
 enableProdMode();
 
@@ -96,6 +99,7 @@ enableProdMode();
         PateintdetailComponent,
         UsersearchPipe,
         UsersearchPipe1,
+        Newsearchpipe,
         CompensationmodifierComponent,
         MyaccountComponent,
         PatientrecordComponent,
@@ -130,7 +134,9 @@ enableProdMode();
         MastergroupaddComponent,
         MastergrouplistComponent,
         MastergroupeditComponent,
-        AgreementComponent
+        AgreementComponent,
+        Usermanagementlist1Component,
+        Patients1Component
     ],
     imports: [
         BrowserModule,

@@ -314,6 +314,17 @@
 }
 
 @media(max-width:1366px) {
+  .s_patient_wrapper {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .s_patient_wrapper .s_patient_content_left {
+    width: 73%;
+  }
+  .s_patient_wrapper .s_patient_content_right {
+    width: 24%;
+  }
+
 
   .rep-dashboard_new_block1 .col-md-7 .rep-dashboard_new_text1 p {
     font-size: 14px;
@@ -475,6 +486,7 @@
 }
 
 @media(max-width:1280px) {
+
   .repsignup_mainbody .form_wrapper_text h3 {
     font-size: 18px;
   }
@@ -494,6 +506,12 @@
 }
 
 @media(max-width:1199px) {
+  .s_patient_wrapper .s_patient_content_left .s_left_innerContent .s_left_innerContent_bottom {width: 92%;}
+  .s_left_innerContent .s_left_innerContent_bottom .s_bottom_content {width: 36%;}
+  .s_left_innerContent_bottom .s_content_details{width: 100%;}
+  .s_left_innerContent_bottom .s_content_details .s_middle_box {width: 36%;}
+  .s_left_innerContent_bottom .s_content_details .s_inputbox{padding-right: 15px; }
+  .s_left_innerContent_bottom .s_content_details .s_right_box {width: 64%;}
 
   .myaccount_form_wrapper{ padding: 0px;}
 
@@ -628,12 +646,12 @@
   .rep-dashboard_new_block2 .col-md-4{   width: 100%;  float: none; }
   .rep-dashboard_new_block2 .col-md-6{   width: 100%!important;  float: none;}
 
- /* .rep-dashboard_new_block2_wrapper3{ background-size: 100%; padding-top: 20%;}*/
+  /* .rep-dashboard_new_block2_wrapper3{ background-size: 100%; padding-top: 20%;}*/
 
   .rep-dashboard_new_block2_wrapper3_contain {
-     position: inherit;
+    position: inherit;
     left: 0px;
-     top: 0;
+    top: 0;
     transform: translate(0, 0);
   }
 
@@ -711,7 +729,31 @@
   }
 }
 
+@media(max-width:1100px) {
+  .s_left_innerContent_bottom .s_content_details .s_middle_box {
+    width:36%;
+  }
+  .s_left_innerContent .s_left_innerContent_bottom .s_bottom_content {
+    width: 36%;
+  }
+  .s_left_innerContent .s_left_innerContent_bottom .s_bottom_content_right {
+    width: 64%;
+  }
+}
+
+
+
 @media(max-width:991px) {
+  .s_patient_wrapper .s_patient_content_right {
+    width: 360px;
+    margin: 0 auto;
+    display: block;
+    float: none;
+  }
+  .s_patient_wrapper .s_patient_content_left {
+    width: 100%;
+    float: none;
+  }
 
   .pateintquestioniremodal .pateintquestionirebtn{ float: none;     margin: 10px auto;
     display: block;}
@@ -817,7 +859,7 @@
 
 
 @media(max-width:767px) {
-
+  .s_left_innerContent_bottom .innerContent_table.table-responsive {width: 100%;}
 
   .completewebinarbginnercontentmain p{ padding-left: 15px; padding-right: 15px;}
   .completewebinarbginnercontentmain .pdiv{ padding-left: 15px; padding-right: 15px; padding-bottom: 15px;}
@@ -948,6 +990,8 @@
 }
 
 @media(max-width:480px) {
+
+
   .trainingcentercontentleft .videoWrapper {
     padding-top: 9px;
   }
@@ -979,7 +1023,9 @@
 
 @media(max-width:400px) {
 
-
+  .s_patient_wrapper .s_patient_content_right {
+    width: 100%;
+  }
   .rep-dashboard_new_block3 .colmd4_2nd .rep-dashboard_new_block3_wrapper{ background-position: center top!important; padding-top: 102%!important;
     background-size: 100%!important;}
 

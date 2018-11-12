@@ -15,7 +15,7 @@ error_reporting(E_ALL);
 
 $curl1 = curl_init();
 curl_setopt_array($curl1, array(
-    CURLOPT_URL => "http://influxiq.com:3020/getusersofthisid?id=".$_GET['id'],
+    CURLOPT_URL => "http://greenvalleyportal.com:3020/getusersofthisid?id=".$_GET['id'],
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,

@@ -43,22 +43,18 @@
     </div>
 
 
-    <div class="pateints_searchdiv" style="border-right: solid 10px #fff;">
+    <div class="pateints_searchdiv hide" style="border-right: solid 10px #fff;">
 
-      <input type="text" placeholder="Search Enroller" [(ngModel)]="enrollervals" class="">
+      <input type="text" placeholder="Search Enroller" [(ngModel)]="enrollervals" >
       <div class="clearfix"></div>
     </div>
-    <div class="clearfix"></div>
-  </div>
 
-    <div class="pateints_searchdiv_wrapper">
-
-    <div class="pateints_searchdiv newselectwrapper2" *ngIf="usertype=='superadmin' ">
+    <div class="pateints_searchdiv newselectwrapper2" *ngIf="usertype=='superadmin' && searchtagflag>0">
       <ng-select [(ngModel)]="enrollervals">
         <ng-option *ngFor="let it of enrollervalstotal" [value]="it.username"  >{{it.fullname}}</ng-option>
       </ng-select>
 
-      <input type="button" value="Update" (click)="chkvals(enrollervals)">
+      <input type="button" value="Update" (click)="changenroller()">
       <div class="clearfix"></div>
 
 
@@ -90,7 +86,7 @@
   <div class="userrecruiterlist_table_wrapper">
     <table>
       <tr *ngIf="datalist?.length>0">
-        <th><input type="checkbox" /></th>
+        <th><input type="checkbox" class="chkallclass" [(ngModel)]="check_uncheck" (click)="check_uncheck_all()"/></th>
         <th>User ID</th>
 
         <th>Enroller</th>
@@ -123,8 +119,8 @@
       </tr>-->
 
       <tbody *ngIf="tags?.length>0">
-    <tr *ngFor="let item of datalist | orderBy:'_id':'reverse' | usersearch:listFilter.value | usersearch1:listFilter1.value | paginate: { itemsPerPage: 15, currentPage: p }; let i = index">
-      <td><input [(ngModel)]="item.chk" (click)="chkvals(item)" type="checkbox" value="{{item._id}}"  /></td>
+    <tr *ngFor="let item of datalist | orderBy:'_id':'reverse' | usersearch:listFilter.value | usersearch1:listFilter1.value | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index">
+      <td><input [(ngModel)]="chk[i]" class="chkinput" (click)="chkvals(item,i)" type="checkbox" value="{{item._id}}"  /></td>
         <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.uniqueid}}</td>
       <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.addedby}}</td>
         <td [routerLink]="['/userrecruiterdetail',item._id]">{{item.username}}</td>
@@ -190,7 +186,7 @@
       </tbody>
     </table>
     <div class="pagination_wrapper">
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      <pagination-controls (pageChange)="p = $event" (click)="pagechange()"></pagination-controls>
     </div>
   </div>
 </div>

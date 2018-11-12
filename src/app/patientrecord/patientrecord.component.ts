@@ -19,6 +19,8 @@ export class PatientrecordComponent implements OnInit {
   public dataForm1: FormGroup ;
   public dataForm2: FormGroup ;
   public fb;
+  public cancer_type_modal_val;
+ // public choose_cancer_type_flag = 0;
   public fb1;
   public qstn;
   public saveorviewsheet;
@@ -124,10 +126,12 @@ public digestivecancercountmain: any = 0;
   public dataForm3: FormGroup ;
   public selectedflaginsurance;
   public issubmitpgxform;
+ // public selected_value;
   public iscompletedpgxrecord = 0;
   public usertype: string;
   static invalidtriedbraces;
   public hasprimaryerror = 0;
+  public age_and_cancer_type = 0;
 
   constructor(fb: FormBuilder, fb1: FormBuilder, private _http: Http, private router: Router, private route: ActivatedRoute, public _commonservices: Commonservices, addcookie: CookieService) {
     this.qstn = 'Self';
@@ -3262,7 +3266,7 @@ console.log('control.value'+control.value);
           if (result.id.Helpdeskdetail.length > 0) {
             this.helpdeskmailid = result.id.Helpdeskdetail[0].email;
           }
-          if (result.id.Addedbyrepdetail != null) {
+          if (result.id.Addedbyrepdetail != null && result.id.Addedbyrepdetail.length >0) {
             this.addedbyrepdetailname = result.id.Addedbyrepdetail[0].firstname + ' ' + result.id.Addedbyrepdetail[0].lastname;
           }
           this.patientuniqueid = result.id.uniqueid;
@@ -3272,10 +3276,26 @@ console.log('control.value'+control.value);
       });
 
   }
+  get_left_heatmap_value(val){
+    console.log('get_left_heatmap_value');
+    var value = 'history'+val;
+    console.log($('input[name="age' + val + '"]').val());
+    if($('input[name="age' + val + '"]').val() < 51){
+
+      console.log($('.'+value+' .left2_heading3').find('b').html());
+     // console.log(this.selected_value[0]);
+      //Breast_0 ,Breast1_0,
+    //  if(this.selected_value[0] == 'Breast_0' || this.selected_value[0] == 'Breast1_0'){
+      if($('.'+value+' .left2_heading3').find('b').html()=='Breast'){
+        console.log('update variable');
+        this.age_and_cancer_type=1;
+      }
+    }
+  }
   // Submit PATIENT PROFILE SHEET values
   dosubmit1(formval) {
     console.log('formval.mediprimarypolicy_1  1 '+formval.mediprimarypolicy_1);
-   // console.log('=======? '+formval.lastbrace);
+    // console.log('=======? '+formval.lastbrace);
     // if(typeof(formval.lastbrace)== object) {
    //   formval.lastbrace = JSON.stringify(formval.lastbrace);
    // console.log('======= '+formval.lastbrace);
@@ -3506,6 +3526,11 @@ console.log('control.value'+control.value);
                             if (this.breastcancercountmain > 2) {
                                 this.hit_map_value = 'GREEN';
                                 console.log('inside 19');
+                            }else{
+                              if(this.age_and_cancer_type==1){
+                                this.hit_map_value = 'GREEN';
+                                console.log('inside 192');
+                              }
                             }
                         }
                     }
@@ -6046,12 +6071,15 @@ console.log('inmediplanbcarderror' + this.inmediplanbcarderror);*/
     updatevalue(val) {
       console.log('updatevalue');
             if (this.divshowself == 0) {
-      //  console.log( $('input[name="' + val + '"]').is(':checked') );
+        console.log( $('input[name="' + val + '"]').is(':checked') );
                 setTimeout(() => {
                     //  $( '#newpopup_conbox_wrapper_1' ).find('input[type="checkbox"]').each(function() {
                     // if ($( '#newpopup_conbox_wrapper_1' ).find('input[type="checkbox"]')) {
                     //  if ($(this). prop('checked') == true) {
+                  console.log('input[name + val----------------------------------------------');
+                  console.log($('input[name="' + val + '"]').is(':checked'));
                     if ($('input[name="' + val + '"]').is(':checked') == true) {
+                     // if ($(this).is(':checked'))
                         console.log(val);
                         if (val == 'Breast_0' || val == 'Breast1_0') {
                             this.breastcancercount ++;
@@ -6062,7 +6090,6 @@ console.log('inmediplanbcarderror' + this.inmediplanbcarderror);*/
                         if (val == 'Digestive Organs_0' || val == 'Digestive Organs1_0') {
                             this.digestivecancercount ++;
                         }
-                        console.log();
                     }
                     else {
                         if (val == 'Breast_0' || val == 'Breast1_0') {
@@ -6082,8 +6109,187 @@ console.log('inmediplanbcarderror' + this.inmediplanbcarderror);*/
     }
 
     }
+
+  putvaluetodataform1() {
+    console.log('index is---------');
+    console.log($('.poplabel4').index());
+    this.breastcancercountmain=this.breastcancercount;
+    this.ovariantcancercountmain=this.ovariantcancercount;
+    this.digestivecancercountmain=this.digestivecancercount;
+    var temparr_1 = [];
+    $( '#newpopup_conbox_wrapper_1' ).find('input[type="checkbox"]:checked').each(function() {
+      //  console.log($(this).val());
+      temparr_1.push($(this).val());
+    });
+
+    // this.selected_value = temparr_1;
+    if (this.val == 1) {
+      this.dataForm1.patchValue({
+        phtype1 : temparr_1
+      });
+    }  if (this.val == 2) {
+      this.dataForm1.patchValue({
+        motype1 : temparr_1
+      });
+    }  if (this.val == 3) {
+      this.dataForm1.patchValue({
+        fatype1 : temparr_1
+      });
+    }  if (this.val == 4) {
+      this.dataForm1.patchValue({
+        dautype1 : temparr_1
+      });
+    }  if (this.val == 5) {
+      this.dataForm1.patchValue({
+        sontype1 : temparr_1
+      });
+    }  if (this.val == 6) {
+      this.dataForm1.patchValue({
+        brotype1 : temparr_1
+      });
+    }  if (this.val == 7) {
+      this.dataForm1.patchValue({
+        sistype1 : temparr_1
+      });
+    }  if (this.val == 8) {
+      this.dataForm1.patchValue({
+        neptype1 : temparr_1
+      });
+    }  if (this.val == 9) {
+      this.dataForm1.patchValue({
+        niecetype1 : temparr_1
+      });
+    }  if (this.val == 10) {
+      this.dataForm1.patchValue({
+        unctype1 : temparr_1
+      });
+    }  if (this.val == 11) {
+      this.dataForm1.patchValue({
+        autntype1 : temparr_1
+      });
+    }  if (this.val == 12) {
+      this.dataForm1.patchValue({
+        moftype1 : temparr_1
+      });
+    }  if (this.val == 13) {
+      this.dataForm1.patchValue({
+        momotype1 : temparr_1
+      });
+    }  if (this.val == 14) {
+      this.dataForm1.patchValue({
+        daftype1 : temparr_1
+      });
+    }  if (this.val == 15) {
+      this.dataForm1.patchValue({
+        damtype1 : temparr_1
+      });
+    }  if (this.val == 16) {
+      this.dataForm1.patchValue({
+        oth1type1 : temparr_1
+      });
+    }  if (this.val == 17) {
+      this.dataForm1.patchValue({
+        oth2type1 : temparr_1
+      });
+    }  if (this.val == 18) {
+      this.dataForm1.patchValue({
+        oth3type1 : temparr_1
+      });
+    }
+    this.opentypemodalflag = false;
+    this.symptomtype = null;
+    temparr_1 = [];
+    console.log('this.dataForm1');
+    console.log(this.dataForm1);
+    setTimeout( () => {
+      this.get_left_heatmap_value(this.cancer_type_modal_val);
+    }, 500);
+  }
+
+  cancelvaluefromdataform1() {
+    this.breastcancercount = this.breastcancercountmain;
+    this.ovariantcancercount = this.ovariantcancercountmain;
+    this.digestivecancercount = this.digestivecancercountmain;
+    if (this.val == 1) {
+      this.dataForm1.patchValue({
+        phtype1 : null
+      });
+    }  if (this.val == 2) {
+      this.dataForm1.patchValue({
+        motype1 : null
+      });
+    }  if (this.val == 3) {
+      this.dataForm1.patchValue({
+        fatype1 : null
+      });
+    }  if (this.val == 4) {
+      this.dataForm1.patchValue({
+        dautype1 : null
+      });
+    }  if (this.val == 5) {
+      this.dataForm1.patchValue({
+        sontype1 : null
+      });
+    }  if (this.val == 6) {
+      this.dataForm1.patchValue({
+        brotype1 : null
+      });
+    }  if (this.val == 7) {
+      this.dataForm1.patchValue({
+        sistype1 : null
+      });
+    }  if (this.val == 8) {
+      this.dataForm1.patchValue({
+        neptype1 : null
+      });
+    }  if (this.val == 9) {
+      this.dataForm1.patchValue({
+        niecetype1 : null
+      });
+    }  if (this.val == 10) {
+      this.dataForm1.patchValue({
+        unctype1 : null
+      });
+    }  if (this.val == 11) {
+      this.dataForm1.patchValue({
+        autntype1 : null
+      });
+    }  if (this.val == 12) {
+      this.dataForm1.patchValue({
+        moftype1 : null
+      });
+    }  if (this.val == 13) {
+      this.dataForm1.patchValue({
+        momotype1 : null
+      });
+    }  if (this.val == 14) {
+      this.dataForm1.patchValue({
+        daftype1 : null
+      });
+    }  if (this.val == 15) {
+      this.dataForm1.patchValue({
+        damtype1 : null
+      });
+    }  if (this.val == 16) {
+      this.dataForm1.patchValue({
+        oth1type1 : null
+      });
+    }  if (this.val == 17) {
+      this.dataForm1.patchValue({
+        oth2type1 : null
+      });
+    }  if (this.val == 18) {
+      this.dataForm1.patchValue({
+        oth3type1 : null
+      });
+    }
+    this.opentypemodalflag = false;
+    this.symptomtype = null;
+  }
                                 /*TO PUT LAST POP VALUE TO PATIENT PROFILE SHEET*/
   opentypemodal(val, familyrelation) {
+    this.cancer_type_modal_val = val-1;
+
     if (familyrelation == 'Self') {
       this.divshowself = 1;
     }
@@ -6091,6 +6297,8 @@ console.log('inmediplanbcarderror' + this.inmediplanbcarderror);*/
       this.divshowself = 0;
 
     }
+    // this flag is used to know when to do breastcancer++ ,, it will be done only when the modal opens,, not in multiple click to that checkbox
+   // this.choose_cancer_type_flag ++;
     this.opentypemodalflag = true;
     setTimeout( () => {
       $('.poplabel4').click(function() {
@@ -6383,179 +6591,6 @@ console.log('inmediplanbcarderror' + this.inmediplanbcarderror);*/
     }
   }
 
-  putvaluetodataform1() {
-    console.log('index is---------');
-    console.log($('.poplabel4').index());
-    this.breastcancercountmain=this.breastcancercount;
-    this.ovariantcancercountmain=this.ovariantcancercount;
-    this.digestivecancercountmain=this.digestivecancercount;
-    var temparr_1 = [];
-      $( '#newpopup_conbox_wrapper_1' ).find('input[type="checkbox"]:checked').each(function() {
-            //  console.log($(this).val());
-          temparr_1.push($(this).val());
-      });
-
-
-    if (this.val == 1) {
-      this.dataForm1.patchValue({
-        phtype1 : temparr_1
-      });
-    }  if (this.val == 2) {
-      this.dataForm1.patchValue({
-        motype1 : temparr_1
-      });
-    }  if (this.val == 3) {
-      this.dataForm1.patchValue({
-        fatype1 : temparr_1
-      });
-    }  if (this.val == 4) {
-      this.dataForm1.patchValue({
-        dautype1 : temparr_1
-      });
-    }  if (this.val == 5) {
-      this.dataForm1.patchValue({
-        sontype1 : temparr_1
-      });
-    }  if (this.val == 6) {
-      this.dataForm1.patchValue({
-        brotype1 : temparr_1
-      });
-    }  if (this.val == 7) {
-      this.dataForm1.patchValue({
-        sistype1 : temparr_1
-      });
-    }  if (this.val == 8) {
-      this.dataForm1.patchValue({
-        neptype1 : temparr_1
-      });
-    }  if (this.val == 9) {
-      this.dataForm1.patchValue({
-        niecetype1 : temparr_1
-      });
-    }  if (this.val == 10) {
-      this.dataForm1.patchValue({
-        unctype1 : temparr_1
-      });
-    }  if (this.val == 11) {
-      this.dataForm1.patchValue({
-        autntype1 : temparr_1
-      });
-    }  if (this.val == 12) {
-      this.dataForm1.patchValue({
-        moftype1 : temparr_1
-      });
-    }  if (this.val == 13) {
-      this.dataForm1.patchValue({
-        momotype1 : temparr_1
-      });
-    }  if (this.val == 14) {
-      this.dataForm1.patchValue({
-        daftype1 : temparr_1
-      });
-    }  if (this.val == 15) {
-      this.dataForm1.patchValue({
-        damtype1 : temparr_1
-      });
-    }  if (this.val == 16) {
-      this.dataForm1.patchValue({
-        oth1type1 : temparr_1
-      });
-    }  if (this.val == 17) {
-      this.dataForm1.patchValue({
-        oth2type1 : temparr_1
-      });
-    }  if (this.val == 18) {
-      this.dataForm1.patchValue({
-        oth3type1 : temparr_1
-      });
-    }
-    this.opentypemodalflag = false;
-    this.symptomtype = null;
-    temparr_1 = [];
-    console.log('this.dataForm1');
-    console.log(this.dataForm1);
-  }
-
-  cancelvaluefromdataform1() {
-    this.breastcancercount = this.breastcancercountmain;
-    this.ovariantcancercount = this.ovariantcancercountmain;
-    this.digestivecancercount = this.digestivecancercountmain;
-    if (this.val == 1) {
-      this.dataForm1.patchValue({
-        phtype1 : null
-      });
-    }  if (this.val == 2) {
-      this.dataForm1.patchValue({
-        motype1 : null
-      });
-    }  if (this.val == 3) {
-      this.dataForm1.patchValue({
-        fatype1 : null
-      });
-    }  if (this.val == 4) {
-      this.dataForm1.patchValue({
-        dautype1 : null
-      });
-    }  if (this.val == 5) {
-      this.dataForm1.patchValue({
-        sontype1 : null
-      });
-    }  if (this.val == 6) {
-      this.dataForm1.patchValue({
-        brotype1 : null
-      });
-    }  if (this.val == 7) {
-      this.dataForm1.patchValue({
-        sistype1 : null
-      });
-    }  if (this.val == 8) {
-      this.dataForm1.patchValue({
-        neptype1 : null
-      });
-    }  if (this.val == 9) {
-      this.dataForm1.patchValue({
-        niecetype1 : null
-      });
-    }  if (this.val == 10) {
-      this.dataForm1.patchValue({
-        unctype1 : null
-      });
-    }  if (this.val == 11) {
-      this.dataForm1.patchValue({
-        autntype1 : null
-      });
-    }  if (this.val == 12) {
-      this.dataForm1.patchValue({
-        moftype1 : null
-      });
-    }  if (this.val == 13) {
-      this.dataForm1.patchValue({
-        momotype1 : null
-      });
-    }  if (this.val == 14) {
-      this.dataForm1.patchValue({
-        daftype1 : null
-      });
-    }  if (this.val == 15) {
-      this.dataForm1.patchValue({
-        damtype1 : null
-      });
-    }  if (this.val == 16) {
-      this.dataForm1.patchValue({
-        oth1type1 : null
-      });
-    }  if (this.val == 17) {
-      this.dataForm1.patchValue({
-        oth2type1 : null
-      });
-    }  if (this.val == 18) {
-      this.dataForm1.patchValue({
-        oth3type1 : null
-      });
-    }
-    this.opentypemodalflag = false;
-    this.symptomtype = null;
-  }
   callimagesegment() {
     this.issegmentmodalshown = true;
   }
@@ -6678,13 +6713,16 @@ console.log('inmediplanbcarderror' + this.inmediplanbcarderror);*/
         }
     }
     showinproperform(val) {
+    if(val != '' ){
+   // console.log('line 6693-------- '+val);
+  //  this.selected_value = val;
     var returnarr = [];
     var k;
-  //  console.log(val);
     for (let i in val) {
       k = val[i].replace(/\d+/g, '');
      k = k.replace('_', '');
         returnarr.push(k);
+    }
     }
     return returnarr;
       //  return val;
@@ -7113,4 +7151,6 @@ console.log('inmediplanbcarderror' + this.inmediplanbcarderror);*/
     }, 500);
   }
 }
+
+
 
